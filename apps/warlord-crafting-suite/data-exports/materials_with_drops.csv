@@ -1,0 +1,80 @@
+ID,Name,Tier,Category,Profession,DropRate,ProfessionLevelMin,DropNode,DropActivity,Guaranteed100,Notes
+junk-ore,Junk Ore,0,Ore,Miner,30.0,1,"Beach, Ruins, Scrap Pile",Gathering|Scavenging,false,Starter material everywhere
+copper-ore,Copper Ore,1,Ore,Miner,25.0,1,"Copper Vein, Shallow Mine",Mining,false,Common copper deposits
+iron-ore,Iron Ore,2,Ore,Miner,15.0,10,"Iron Vein, Deep Mine",Mining,false,Requires level 10 Miner
+steel-ore,Steel Ore,3,Ore,Miner,8.0,20,"Steel Deposit, Mountain Mine",Mining,false,Requires level 20 Miner
+mithril-ore,Mithril Ore,4,Ore,Miner,4.0,30,"Mithril Vein, Enchanted Cave",Mining,false,Requires level 30 Miner
+adamantine-ore,Adamantine Ore,5,Ore,Miner,2.0,40,"Adamantine Deposit, Deep Earth",Mining,false,Requires level 40 Miner
+orichalcum-ore,Orichalcum Ore,6,Ore,Miner,1.0,50,"Orichalcum Seam, Ancient Mine",Mining,false,Requires level 50 Miner
+starmetal-ore,Starmetal Ore,7,Ore,Miner,0.3,60,"Meteor Crater, Astral Rift",Mining|Event,false,Requires level 60 Miner
+divine-ore,Divine Ore,8,Ore,Miner,0.1,70,"Divine Quarry, Holy Mountain",Mining|Divine Zone,false,Requires level 70 Miner
+coal,Coal,1,Fuel,Miner,30.0,1,"Coal Seam, Mine",Mining,false,Common fuel source
+refined-coal,Refined Coal,3,Fuel,Miner,10.0,20,"Deep Coal, Charcoal Pit",Mining|Crafting,false,Higher quality fuel
+flux,Flux,2,Reagent,Miner,15.0,10,"Limestone, Salt Flat",Mining,false,Smelting reagent
+refined-flux,Refined Flux,4,Reagent,Miner,5.0,30,"Pure Limestone, Crystal Cave",Mining,false,High-grade smelting reagent
+wood-scraps,Wood Scraps,0,Wood,Forester,30.0,1,"Fallen Tree, Debris",Gathering|Scavenging,false,Starter wood everywhere
+pine-log,Pine Log,1,Wood,Forester,25.0,1,"Pine Tree, Pine Forest",Logging,false,Common softwood
+oak-log,Oak Log,2,Wood,Forester,15.0,10,"Oak Tree, Oak Grove",Logging,false,Requires level 10 Forester
+maple-log,Maple Log,3,Wood,Forester,8.0,20,"Maple Tree, Maple Forest",Logging,false,Requires level 20 Forester
+ash-log,Ash Log,4,Wood,Forester,4.0,30,"Ash Tree, Ancient Forest",Logging,false,Requires level 30 Forester
+ironwood-log,Ironwood Log,5,Wood,Forester,2.0,40,"Ironwood Tree, Petrified Forest",Logging,false,Requires level 40 Forester
+ebony-log,Ebony Log,6,Wood,Forester,1.0,50,"Ebony Tree, Dark Forest",Logging,false,Requires level 50 Forester
+wyrmwood-log,Wyrmwood Log,7,Wood,Forester,0.3,60,"Wyrmwood Tree, Dragon Grove",Logging,false,Requires level 60 Forester
+worldtree-log,Worldtree Log,8,Wood,Forester,0.1,70,"Yggdrasil Branch, Divine Grove",Logging|Divine Zone,false,Requires level 70 Forester
+raw-hide,Raw Hide,1,Leather,Forester,25.0,1,"Wolves, Bears, Deer",Hunting|Skinning,false,Basic animal hide
+thick-hide,Thick Hide,2,Leather,Forester,15.0,10,"Boars, Elk, Large Predators",Hunting|Skinning,false,Requires level 10 Forester
+rugged-leather,Rugged Leather,3,Leather,Forester,8.0,20,"Mountain Lions, Cave Bears",Hunting|Skinning,false,Requires level 20 Forester
+hardened-leather,Hardened Leather,4,Leather,Forester,4.0,30,"Armored Beasts, War Mounts",Hunting|Skinning,false,Requires level 30 Forester
+dragon-hide,Dragon Hide,5,Leather,Forester,2.0,40,"Young Dragons, Wyverns",Hunting|Boss Kill,false,Requires level 40 Forester
+demon-hide,Demon Hide,6,Leather,Forester,1.0,50,"Demons, Hellhounds",Hunting|Boss Kill,false,Requires level 50 Forester
+giant-hide,Giant Hide,7,Leather,Forester,0.3,60,"Titans, Giants",Hunting|Boss Kill,false,Requires level 60 Forester
+celestial-hide,Celestial Hide,8,Leather,Forester,0.1,70,"Celestial Beasts, Divine Animals",Hunting|Divine Zone,false,Requires level 70 Forester
+cloth-scraps,Cloth Scraps,0,Cloth,Mystic,30.0,1,"Ruins, Abandoned Buildings",Gathering|Scavenging,false,Starter cloth everywhere
+linen-thread,Linen Thread,1,Cloth,Mystic,25.0,1,"Flax Field, Linen Farm",Harvesting,false,Basic thread source
+wool-thread,Wool Thread,2,Cloth,Mystic,15.0,10,"Sheep Farm, Highland",Harvesting|Shearing,false,Requires level 10 Mystic
+cotton-thread,Cotton Thread,3,Cloth,Mystic,8.0,20,"Cotton Field, Plantation",Harvesting,false,Requires level 20 Mystic
+silk-thread,Silk Thread,4,Cloth,Mystic,4.0,30,"Silk Worms, Spider Caves",Harvesting|Farming,false,Requires level 30 Mystic
+moonweave-thread,Moonweave Thread,5,Cloth,Mystic,2.0,40,"Moon Flowers, Lunar Garden",Harvesting|Night Only,false,Requires level 40 Mystic
+starweave-thread,Starweave Thread,6,Cloth,Mystic,1.0,50,"Star Flowers, Celestial Garden",Harvesting|Star Event,false,Requires level 50 Mystic
+voidweave-thread,Voidweave Thread,7,Cloth,Mystic,0.3,60,"Void Flowers, Dark Dimension",Harvesting|Void Rift,false,Requires level 60 Mystic
+divine-thread,Divine Thread,8,Cloth,Mystic,0.1,70,"Divine Flowers, Holy Garden",Harvesting|Divine Zone,false,Requires level 70 Mystic
+herbs,Herbs,1,Herb,Chef,25.0,1,"Meadow, Garden, Forest Edge",Foraging,false,Common herbs everywhere
+rare-herbs,Rare Herbs,2,Herb,Chef,12.0,10,"Hidden Glade, Magic Garden",Foraging,false,Requires level 10 Chef
+exotic-herbs,Exotic Herbs,4,Herb,Chef,4.0,30,"Jungle, Tropical Island",Foraging,false,Requires level 30 Chef
+divine-herbs,Divine Herbs,7,Herb,Chef,0.3,60,"Divine Garden, Holy Grove",Foraging|Divine Zone,false,Requires level 60 Chef
+raw-meat,Raw Meat,1,Food,Chef,25.0,1,"Boar, Deer, Rabbit",Hunting,false,Common game meat
+beef,Beef,2,Food,Chef,15.0,10,"Cattle, Bison",Hunting|Farming,false,Requires level 10 Chef
+venison,Venison,3,Food,Chef,8.0,20,"Elk, Stag, Large Deer",Hunting,false,Requires level 20 Chef
+raw-fish,Raw Fish,1,Food,Chef,25.0,1,"River, Lake, Coast",Fishing,false,Common fish
+salmon,Salmon,2,Food,Chef,15.0,10,"River, Waterfall",Fishing,false,Requires level 10 Chef
+berry,Berry,1,Food,Chef,30.0,1,"Bush, Forest, Meadow",Foraging,false,Common berries everywhere
+honey,Honey,2,Food,Chef,12.0,10,"Beehive, Meadow",Foraging|Farming,false,Requires level 10 Chef
+wheat,Wheat,1,Grain,Chef,25.0,1,"Wheat Field, Farm",Farming|Harvesting,false,Common grain
+flour,Flour,1,Grain,Chef,20.0,1,"Mill, Kitchen",Crafting,true,Made from wheat
+water,Water,0,Liquid,Chef,50.0,1,"Well, River, Lake",Gathering,false,Available everywhere
+seawater,Seawater,0,Liquid,Chef,50.0,1,"Ocean, Beach, Salt Flat",Gathering,false,Salt water source
+gunpowder,Gunpowder,1,Explosive,Engineer,20.0,1,"Military Cache, Pirate Ship",Looting|Crafting,false,Basic explosive powder
+refined-gunpowder,Refined Gunpowder,2,Explosive,Engineer,12.0,10,"Armory, Engineer Workshop",Looting|Crafting,false,Requires level 10 Engineer
+black-powder,Black Powder,3,Explosive,Engineer,6.0,20,"Military Fort, Black Market",Looting|Crafting,false,Requires level 20 Engineer
+flash-powder,Flash Powder,4,Explosive,Engineer,3.0,30,"Mage Tower, Alchemist Lab",Looting|Crafting,false,Requires level 30 Engineer
+thunder-powder,Thunder Powder,5,Explosive,Engineer,1.5,40,"Storm Temple, Giant Keep",Looting|Boss Drop,false,Requires level 40 Engineer
+arcane-powder,Arcane Powder,6,Explosive,Engineer,0.8,50,"Arcane Vault, Mage War Zone",Looting|Boss Drop,false,Requires level 50 Engineer
+void-powder,Void Powder,7,Explosive,Engineer,0.2,60,"Void Rift, Dark Lab",Looting|Boss Drop,false,Requires level 60 Engineer
+divine-powder,Divine Powder,8,Explosive,Engineer,0.08,70,"Divine Armory, Holy Arsenal",Looting|Divine Zone,false,Requires level 70 Engineer
+spring,Spring,1,Component,Engineer,25.0,1,"Clockwork, Machinery",Salvage|Crafting,false,Basic mechanical part
+lens,Lens,1,Component,Engineer,20.0,1,"Optics Shop, Mage Tower",Looting|Crafting,false,Glass focusing lens
+circuit,Circuit,4,Component,Engineer,4.0,30,"Tech Lab, Mech Factory",Looting|Crafting,false,Requires level 30 Engineer
+quantum-circuit,Quantum Circuit,7,Component,Engineer,0.3,60,"Void Lab, Quantum Rift",Looting|Boss Drop,false,Requires level 60 Engineer
+standard-gem,Standard Gem,2,Gem,All,12.0,1,"Cave, Mine, Treasure Chest",Mining|Looting,false,Common gems
+fine-gem,Fine Gem,3,Gem,All,6.0,1,"Deep Cave, Dungeon Chest",Mining|Looting,false,Uncommon gems
+pristine-gem,Pristine Gem,4,Gem,All,3.0,1,"Crystal Cave, Boss Drop",Mining|Boss Kill,false,Rare gems
+flawless-gem,Flawless Gem,5,Gem,All,1.5,1,"Ancient Mine, Raid Chest",Mining|Raid,false,Epic gems
+radiant-gem,Radiant Gem,6,Gem,All,0.8,1,"Celestial Cave, World Boss",Mining|World Event,false,Legendary gems
+divine-gem,Divine Gem,8,Gem,All,0.1,1,"Divine Mine, God Realm",Mining|Divine Zone,false,Divine tier gems
+phoenix-feathers,Phoenix Feathers,5,Special,Forester,2.0,40,"Phoenix Nest, Eternal Flame",Boss Kill|Rare Event,false,From phoenix creatures
+dragon-sinew,Dragon Sinew,5,Special,Forester,2.0,40,"Dragon Lair, Wyrm Graveyard",Boss Kill|Skinning,false,From dragon creatures
+hawk-feathers,Hawk Feathers,2,Special,Forester,15.0,10,"Hawk Nest, Mountain",Hunting|Gathering,false,Common raptor feathers
+feathers,Feathers,1,Special,Forester,25.0,1,"Birds, Nests",Hunting|Gathering,false,Common bird feathers
+string,String,1,Special,All,25.0,1,"Shops, Crafting",Purchase|Crafting,true,Basic crafting string
+bowstring,Bowstring,2,Special,Forester,15.0,10,"Crafting, Hunter Lodge",Crafting|Purchase,true,Quality bow string
+silk-string,Silk String,4,Special,Mystic,4.0,30,"Silk Worm Farm, Spider Cave",Crafting|Farming,false,Silk-based string

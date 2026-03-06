@@ -1,0 +1,471 @@
+api.puter.com/readdir:1  Failed to load resource: the server responded with a status of 404 ()
+content.js:1 Uncaught TypeError: Cannot set properties of undefined (setting 'onmessage')
+    at i (content.js:1:13372)
+all-frames.js:15 Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
+    at b (all-frames.js:15:15619)
+b @ all-frames.js:15
+all-frames.js:15 Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
+    at b (all-frames.js:15:15619)
+b @ all-frames.js:15
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_id=cf7024cb-77c7-475f-a8a3-033a61c9f121&puter.app.id=app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0&puter.app.name=grudgecloud&puter.auth.token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoiYXUiLCJ2IjoiMC4wLjAiLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImF1IjoiY3ZJSVZ3UFNSVkcyL1h2eCtRb3M4QT09IiwicyI6IjlGQ1BBVFpuMG80dTFCUmwvWHRWZUE9PSIsImlhdCI6MTc2NzEwNTQyOH0.G_use4KhVe84-zROiDEbIGmuIZQha1pIug7qmxEQKmY&puter.domain=puter.com&puter.origin=https%3A%2F%2Fputer.com&puter.hostname=puter.com&puter.port=&puter.protocol=https&puter.api_origin=https%3A%2F%2Fapi.puter.com&puter.locale=en&puter.args=%7B%7D&utm_source=puter.com:381
+v2/:4 Uncaught TypeError: Cannot read properties of null (reading 'closed')
+(anonymous) @ v2/:4
+setInterval
+(anonymous) @ v2/:4
+signIn @ v2/:4
+handlePuterAuth @ ?puter.app_instance_…-03d2-4551-b6f…:381

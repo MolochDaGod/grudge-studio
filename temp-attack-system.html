@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grudge Attack Motion System - Live Demo</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+    
+    <!-- Puter SDK (optional - comment out if causing errors) -->
+    <!-- <script src="https://js.puter.com/v2/"></script> -->
+    
+    <!-- Three.js -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/loaders/FBXLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            overflow: hidden;
+        }
+        
+        #container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #header {
+            background: rgba(0, 0, 0, 0.3);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid rgba(230, 57, 70, 0.5);
+            z-index: 100;
+        }
+        
+        #header .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        #header .logo-section img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(230, 57, 70, 0.5));
+        }
+        
+        #header h1 {
+            font-size: 24px;
+            background: linear-gradient(45deg, #e63946, #f77f00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+        }
+        
+        #controls-panel {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .btn {
+            background: rgba(230, 57, 70, 0.8);
+            border: 2px solid #e63946;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            background: #e63946;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-secondary {
+            background: rgba(15, 52, 96, 0.8);
+            border-color: #0f3460;
+        }
+        
+        .btn-secondary:hover {
+            background: #0f3460;
+            box-shadow: 0 5px 15px rgba(15, 52, 96, 0.4);
+        }
+        
+        #canvas-container {
+            flex: 1;
+            position: relative;
+        }
+        
+        #info-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid rgba(230, 57, 70, 0.3);
+            min-width: 300px;
+            max-width: 400px;
+            z-index: 50;
+        }
+        
+        #info-panel h3 {
+            margin-bottom: 15px;
+            color: #e63946;
+            font-size: 18px;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        
+        .info-label {
+            color: #aaa;
+            font-size: 14px;
+        }
+        
+        .info-value {
+            color: #fff;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        #instructions {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 12px;
+            border: 2px solid rgba(247, 127, 0, 0.3);
+            text-align: center;
+            z-index: 50;
+        }
+        
+        #instructions h3 {
+            color: #f77f00;
+            margin-bottom: 10px;
+        }
+        
+        .key {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 12px;
+            margin: 5px;
+            border-radius: 6px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            font-weight: 600;
+            font-family: 'Courier New', monospace;
+        }
+        
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 200;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 40px 60px;
+            border-radius: 16px;
+            border: 2px solid rgba(230, 57, 70, 0.5);
+        }
+        
+        #loading .loading-logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px rgba(230, 57, 70, 0.8));
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top-color: #e63946;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        #status {
+            color: #f77f00;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- Header -->
+        <div id="header">
+            <div class="logo-section">
+                <img src="logo.png" alt="Grudge Logo">
+                <h1>Grudge Attack Motion System</h1>
+            </div>
+            <div id="controls-panel">
+                <button class="btn" onclick="performAttack()">Attack (Space)</button>
+                <button class="btn btn-secondary" onclick="resetScene()">Reset</button>
+                <button class="btn btn-secondary" onclick="toggleInfo()">Toggle Info</button>
+            </div>
+        </div>
+        
+        <!-- Canvas Container -->
+        <div id="canvas-container"></div>
+        
+        <!-- Info Panel -->
+        <div id="info-panel">
+            <h3>📊 Scene Info</h3>
+            <div class="info-row">
+                <span class="info-label">FPS:</span>
+                <span class="info-value" id="fps">60</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Animation:</span>
+                <span class="info-value" id="current-anim">Idle</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">State:</span>
+                <span class="info-value" id="state">Ready</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Target:</span>
+                <span class="info-value" id="target">None</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Enemies:</span>
+                <span class="info-value" id="enemy-count">3</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Attack Count:</span>
+                <span class="info-value" id="attack-count">0</span>
+            </div>
+        </div>
+        
+        <!-- Instructions -->
+        <div id="instructions">
+            <h3>🎮 Controls</h3>
+            <div>
+                <span class="key">SPACE</span> Attack
+                <span class="key">R</span> Reset
+                <span class="key">WASD</span> Move Camera
+            </div>
+            <div style="margin-top: 10px; color: #aaa; font-size: 14px;">
+                Left Mouse: Rotate | Right Mouse: Pan | Scroll: Zoom
+            </div>
+        </div>
+        
+        <!-- Loading Screen -->
+        <div id="loading">
+            <img src="logo.png" alt="Grudge Logo" class="loading-logo">
+            <div class="spinner"></div>
+            <h2>Loading Grudge Assets...</h2>
+            <p id="status">Initializing scene</p>
+        </div>
+    </div>
+    
+    <!-- Load Grudge modules as scripts -->
+    <script src="./grudge-loader.js"></script>
+    <script src="./gruda-loader.js"></script>
+    <script src="./attack-motion-system.js"></script>
+    
+    <script>
+        // Global variables
+        let scene, camera, renderer, controls;
+        let attackSystem;
+        let character, enemies = [];
+        let mixer;
+        let clock = new THREE.Clock();
+        let frameCount = 0, lastTime = 0;
+        let attackCount = 0;
+        
+        // Initialize scene
+        async function init() {
+            updateLoadingStatus('Creating scene...');
+            
+            // Scene setup
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x1a1a2e);
+            scene.fog = new THREE.Fog(0x1a1a2e, 10, 50);
+            
+            // Camera
+            camera = new THREE.PerspectiveCamera(
+                75,
+                window.innerWidth / window.innerHeight,
+                0.1,
+                1000
+            );
+            camera.position.set(0, 5, 10);
+            
+            // Renderer
+            const container = document.getElementById('canvas-container');
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight - 60);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            container.appendChild(renderer.domElement);
+            
+            // Controls (OrbitControls is global, not on THREE)
+            controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.target.set(0, 2, 0);
+            
+            // Lights
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+            scene.add(ambientLight);
+            
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            dirLight.position.set(10, 20, 10);
+            dirLight.castShadow = true;
+            dirLight.shadow.camera.far = 50;
+            dirLight.shadow.mapSize.set(2048, 2048);
+            scene.add(dirLight);
+            
+            const hemiLight = new THREE.HemisphereLight(0x87CEEB, 0x543C2A, 0.5);
+            scene.add(hemiLight);
+            
+            updateLoadingStatus('Loading game configuration...');
+            
+            // Load .gruda configuration
+            try {
+                const grudaLoader = new GrudaLoader();
+                const gameConfig = await grudaLoader.load('./config/game.gruda');
+                console.log('Game config loaded:', gameConfig);
+            } catch (error) {
+                console.warn('Could not load .gruda config:', error);
+            }
+            
+            updateLoadingStatus('Creating ground...');
+            
+            // Ground
+            const groundGeometry = new THREE.PlaneGeometry(50, 50);
+            const groundMaterial = new THREE.MeshStandardMaterial({
+                color: 0x16213e,
+                roughness: 0.8,
+                metalness: 0.2
+            });
+            const ground = new THREE.Mesh(groundGeometry, groundMaterial);
+            ground.rotation.x = -Math.PI / 2;
+            ground.receiveShadow = true;
+            scene.add(ground);
+            
+            // Grid
+            const gridHelper = new THREE.GridHelper(50, 50, 0x0f3460, 0x0a2647);
+            scene.add(gridHelper);
+            
+            updateLoadingStatus('Creating character...');
+            
+            // Create simple character (placeholder for .grudge)
+            await createCharacter();
+            
+            updateLoadingStatus('Spawning enemies...');
+            
+            // Create enemies
+            createEnemies();
+            
+            updateLoadingStatus('Initializing attack system...');
+            
+            // Initialize attack system
+            attackSystem = new AttackMotionSystem(character, camera, {
+                detectionRadius: 15.0,
+                traversalTime: 0.5,
+                attackTransitionSpeed: 0.3
+            });
+            
+            // Setup keyboard controls
+            setupControls();
+            
+            // Start animation loop
+            animate();
+            
+            updateLoadingStatus('Ready!');
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+            }, 500);
+        }
+        
+        async function createCharacter() {
+            // Character (simple capsule - would be .grudge file in production)
+            const characterGeometry = new THREE.CapsuleGeometry(0.5, 1.5, 4, 8);
+            const characterMaterial = new THREE.MeshStandardMaterial({
+                color: 0xe63946,
+                roughness: 0.5,
+                metalness: 0.3
+            });
+            character = new THREE.Mesh(characterGeometry, characterMaterial);
+            character.position.set(0, 1.5, 0);
+            character.castShadow = true;
+            scene.add(character);
+            
+            // Add weapon (sword placeholder)
+            const swordGeometry = new THREE.BoxGeometry(0.1, 1.5, 0.05);
+            const swordMaterial = new THREE.MeshStandardMaterial({
+                color: 0xcccccc,
+                metalness: 0.9,
+                roughness: 0.1
+            });
+            const sword = new THREE.Mesh(swordGeometry, swordMaterial);
+            sword.position.set(0.7, 0.5, 0);
+            character.add(sword);
+        }
+        
+        function createEnemies() {
+            const positions = [
+                new THREE.Vector3(5, 1, 5),
+                new THREE.Vector3(-5, 1, 5),
+                new THREE.Vector3(0, 1, 8)
+            ];
+            
+            positions.forEach((pos, index) => {
+                const enemyGeometry = new THREE.CapsuleGeometry(0.5, 1.5, 4, 8);
+                const enemyMaterial = new THREE.MeshStandardMaterial({
+                    color: 0x0f3460,
+                    roughness: 0.6,
+                    metalness: 0.2
+                });
+                const enemy = new THREE.Mesh(enemyGeometry, enemyMaterial);
+                enemy.position.copy(pos);
+                enemy.castShadow = true;
+                enemy.userData.isEnemy = true;
+                enemy.userData.health = 100;
+                scene.add(enemy);
+                enemies.push(enemy);
+            });
+            
+            if (attackSystem) {
+                attackSystem.enemies = enemies;
+            }
+        }
+        
+        function setupControls() {
+            document.addEventListener('keydown', (e) => {
+                if (e.code === 'Space') {
+                    e.preventDefault();
+                    performAttack();
+                } else if (e.code === 'KeyR') {
+                    resetScene();
+                }
+            });
+        }
+        
+        window.performAttack = function() {
+            if (!attackSystem || !character || enemies.length === 0) {
+                console.warn('Attack system not ready or no enemies');
+                return;
+            }
+            
+            // Find nearest enemy
+            let nearestEnemy = null;
+            let nearestDistance = Infinity;
+            
+            enemies.forEach(enemy => {
+                const distance = character.position.distanceTo(enemy.position);
+                if (distance < nearestDistance && distance < 15) {
+                    nearestDistance = distance;
+                    nearestEnemy = enemy;
+                }
+            });
+            
+            if (nearestEnemy) {
+                attackCount++;
+                document.getElementById('attack-count').textContent = attackCount;
+                document.getElementById('target').textContent = `Enemy ${enemies.indexOf(nearestEnemy) + 1}`;
+                document.getElementById('state').textContent = 'Attacking';
+                document.getElementById('current-anim').textContent = 'Attack';
+                
+                // Simple attack animation
+                const startPos = character.position.clone();
+                const targetPos = nearestEnemy.position.clone();
+                targetPos.y = startPos.y;
+                const direction = new THREE.Vector3().subVectors(targetPos, startPos).normalize();
+                const attackPos = targetPos.clone().sub(direction.multiplyScalar(2));
+                
+                // Animate attack
+                let t = 0;
+                const attackDuration = 0.5;
+                const attackInterval = setInterval(() => {
+                    t += 0.016;
+                    const progress = Math.min(t / attackDuration, 1);
+                    character.position.lerpVectors(startPos, attackPos, progress);
+                    character.lookAt(targetPos);
+                    
+                    if (progress >= 1) {
+                        clearInterval(attackInterval);
+                        
+                        // Damage effect
+                        nearestEnemy.userData.health -= 25;
+                        nearestEnemy.material.color.setHex(0xff0000);
+                        setTimeout(() => {
+                            if (nearestEnemy.userData.health > 0) {
+                                nearestEnemy.material.color.setHex(0x0f3460);
+                            } else {
+                                // Remove enemy
+                                scene.remove(nearestEnemy);
+                                enemies = enemies.filter(e => e !== nearestEnemy);
+                                document.getElementById('enemy-count').textContent = enemies.length;
+                            }
+                        }, 200);
+                        
+                        // Return to idle
+                        setTimeout(() => {
+                            document.getElementById('state').textContent = 'Ready';
+                            document.getElementById('current-anim').textContent = 'Idle';
+                            document.getElementById('target').textContent = 'None';
+                        }, 500);
+                    }
+                }, 16);
+            } else {
+                console.log('No enemy in range');
+            }
+        };
+        
+        window.resetScene = function() {
+            // Safety check
+            if (!character || !scene) {
+                console.warn('Scene not initialized yet');
+                return;
+            }
+            
+            // Remove old enemies
+            enemies.forEach(enemy => scene.remove(enemy));
+            enemies = [];
+            
+            // Reset character position
+            character.position.set(0, 1.5, 0);
+            character.rotation.set(0, 0, 0);
+            
+            // Recreate enemies
+            createEnemies();
+            
+            // Reset stats
+            attackCount = 0;
+            document.getElementById('attack-count').textContent = '0';
+            document.getElementById('enemy-count').textContent = '3';
+            document.getElementById('state').textContent = 'Ready';
+            document.getElementById('current-anim').textContent = 'Idle';
+            document.getElementById('target').textContent = 'None';
+        };
+        
+        window.toggleInfo = function() {
+            const panel = document.getElementById('info-panel');
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+        };
+        
+        function updateLoadingStatus(message) {
+            document.getElementById('status').textContent = message;
+        }
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            const delta = clock.getDelta();
+            
+            // Update controls
+            controls.update();
+            
+            // Update attack system
+            if (attackSystem && mixer) {
+                mixer.update(delta);
+                attackSystem.update(delta);
+            }
+            
+            // Update FPS
+            frameCount++;
+            const time = performance.now();
+            if (time >= lastTime + 1000) {
+                document.getElementById('fps').textContent = frameCount;
+                frameCount = 0;
+                lastTime = time;
+            }
+            
+            // Render
+            renderer.render(scene, camera);
+        }
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight - 60);
+        });
+        
+        // Start the app
+        init();
+    </script>
+</body>
+</html>

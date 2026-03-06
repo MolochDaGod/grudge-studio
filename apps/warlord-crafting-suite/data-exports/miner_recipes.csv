@@ -1,0 +1,41 @@
+ID,Name,Category,SubCategory,Acquisition,UnlockNode,DropSource,PurchaseCost,TierRange,Description
+recipe-bloodfeud-blade,Bloodfeud Blade,weapon,swords,skillTree,Miner Master Crafter,,,T1-T8,Forged in endless clan blood feuds
+recipe-wraithfang,Wraithfang,weapon,swords,purchasable,,,500,T1-T8,Whispers forgotten grudges in the dark
+recipe-oathbreaker,Oathbreaker,weapon,swords,skillTree,Miner Master Crafter,,,T1-T8,Breaks ancient oaths of peace
+recipe-kinrend,Kinrend,weapon,swords,skillTree,Miner Master Crafter,,,T1-T8,Rends bonds of blood and kinship
+recipe-dusksinger,Dusksinger,weapon,swords,skillTree,Miner Master Crafter,,,T1-T8,Sings of twilight and ending grudges
+recipe-emberclad,Emberclad,weapon,swords,skillTree,Miner Master Crafter,,,T1-T8,Clad in flames of burning hatred
+recipe-gorehowl,Gorehowl,weapon,axes1h,skillTree,Miner Master Crafter,,,T1-T8,Howls with the gore of fallen foes
+recipe-skullsplitter,Skullsplitter,weapon,axes1h,dropOnly,,"Boss chests, Elite dungeons",,T1-T8,Splits skulls of grudge bearers
+recipe-vengeance,Vengeance,weapon,axes1h,purchasable,,,500,T1-T8,Seeks vengeance for ancient wrongs
+recipe-titanmaul,Titanmaul,weapon,hammers1h,skillTree,Miner Master Crafter,,,T1-T8,Wields the power of titans
+recipe-bloodshiv,Bloodshiv,weapon,daggers,skillTree,Miner Master Crafter,,,T1-T8,Thirsts for blood of enemies
+recipe-shadowfang,Shadowfang,weapon,daggers,purchasable,,,500,T1-T8,Strikes from the shadows
+recipe-skullsunder,Skullsunder,weapon,greatswords,skillTree,Miner Master Crafter,,,T1-T8,Sunders the skulls of foes
+recipe-bloodreaver,Bloodreaver,weapon,greataxes,skillTree,Miner Master Crafter,,,T1-T8,Reaves blood from enemies
+recipe-doomhammer,Doomhammer,weapon,hammers2h,dropOnly,,"Boss chests, World events",,T1-T8,Brings doom to all who oppose
+recipe-voidspear,Voidspear,weapon,spears,purchasable,,,500,T1-T8,Pierces through the void
+recipe-bloodmace,Bloodmace,weapon,maces,purchasable,,,500,T1-T8,Crushes with bloodied fury
+recipe-bloodfeud-metal-helm,Bloodfeud Metal Helm,armor,metal-helm,skillTree,Miner Armorsmith,,,T1-T8,Bloodfeud set helm made of metal
+recipe-bloodfeud-metal-shoulder,Bloodfeud Metal Shoulder,armor,metal-shoulder,skillTree,Miner Armorsmith,,,T1-T8,Bloodfeud set shoulder made of metal
+recipe-bloodfeud-metal-chest,Bloodfeud Metal Chest,armor,metal-chest,purchasable,,,350,T1-T8,Bloodfeud set chest made of metal
+recipe-bloodfeud-metal-hands,Bloodfeud Metal Hands,armor,metal-hands,skillTree,Miner Armorsmith,,,T1-T8,Bloodfeud set hands made of metal
+recipe-bloodfeud-metal-feet,Bloodfeud Metal Feet,armor,metal-feet,purchasable,,,400,T1-T8,Bloodfeud set feet made of metal
+recipe-bloodfeud-metal-ring,Bloodfeud Metal Ring,armor,metal-ring,purchasable,,,450,T1-T8,Bloodfeud set ring made of metal
+recipe-bloodfeud-metal-necklace,Bloodfeud Metal Necklace,armor,metal-necklace,purchasable,,,500,T1-T8,Bloodfeud set necklace made of metal
+recipe-bloodfeud-metal-relic,Bloodfeud Metal Relic,armor,metal-relic,dropOnly,,"Raid bosses, World events",,T1-T8,Bloodfeud set relic made of metal
+recipe-copper-ingot,Copper Ingot,consumable,material,purchasable,,,50,T1-T8,Craftable copper ingot
+recipe-iron-ingot,Iron Ingot,consumable,material,purchasable,,,100,T1-T8,Craftable iron ingot
+recipe-steel-ingot,Steel Ingot,consumable,material,purchasable,,,200,T1-T8,Craftable steel ingot
+recipe-mithril-ingot,Mithril Ingot,consumable,material,skillTree,Rare Metals,,,T1-T8,Craftable mithril ingot
+recipe-adamantine-ingot,Adamantine Ingot,consumable,material,skillTree,Master Smelter,,,T1-T8,Craftable adamantine ingot
+recipe-orichalcum-ingot,Orichalcum Ingot,consumable,material,skillTree,Legendary Smelter,,,T1-T8,Craftable orichalcum ingot
+recipe-starmetal-ingot,Starmetal Ingot,consumable,material,dropOnly,,Meteor sites,,T1-T8,Craftable starmetal ingot
+recipe-divine-ingot,Divine Ingot,consumable,material,dropOnly,,Divine forges,,T1-T8,Craftable divine ingot
+recipe-iron-shield,Iron Shield,consumable,shield,purchasable,,,150,T1-T8,Craftable iron shield
+recipe-steel-shield,Steel Shield,consumable,shield,purchasable,,,300,T1-T8,Craftable steel shield
+recipe-tower-shield,Tower Shield,consumable,shield,skillTree,Shield Smith,,,T1-T8,Craftable tower shield
+recipe-mithril-buckler,Mithril Buckler,consumable,shield,skillTree,Master Smith,,,T1-T8,Craftable mithril buckler
+recipe-divine-aegis,Divine Aegis,consumable,shield,dropOnly,,Divine temples,,T1-T8,Craftable divine aegis
+recipe-grudge-bulwark,Grudge Bulwark,consumable,shield,dropOnly,,Grudge lords,,T1-T8,Craftable grudge bulwark
+recipe-refining-flux,Refining Flux,consumable,material,skillTree,Master Smelter,,,T1-T8,Craftable refining flux

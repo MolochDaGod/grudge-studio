@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grudge Studio Battle Arena</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: #000;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+    }
+    
+    #game-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* Menu Overlay */
+    #menu-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      color: white;
+    }
+
+    #menu-overlay.hidden {
+      display: none;
+    }
+
+    .menu-title {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #ff4444;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .menu-subtitle {
+      font-size: 18px;
+      margin-bottom: 40px;
+      color: #ccc;
+    }
+
+    .menu-input {
+      padding: 12px 20px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      border: 2px solid #ff4444;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-radius: 5px;
+      outline: none;
+      min-width: 300px;
+      text-align: center;
+    }
+
+    .menu-button {
+      padding: 15px 40px;
+      font-size: 18px;
+      background: #ff4444;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px;
+      transition: all 0.3s;
+    }
+
+    .menu-button:hover {
+      background: #ff6666;
+      transform: scale(1.05);
+    }
+
+    .controls-info {
+      margin-top: 40px;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      max-width: 500px;
+    }
+
+    .controls-info h3 {
+      color: #ff4444;
+      margin-bottom: 15px;
+    }
+
+    .controls-info p {
+      margin: 8px 0;
+      color: #ccc;
+    }
+
+    /* Death Screen */
+    #death-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(139, 0, 0, 0.8);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      color: white;
+    }
+
+    #death-screen.visible {
+      display: flex;
+    }
+
+    .death-title {
+      font-size: 64px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+    }
+
+    .death-info {
+      font-size: 24px;
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div id="menu-overlay">
+    <h1 class="menu-title">⚔️ GRUDGE STUDIO BATTLE ARENA ⚔️</h1>
+    <p class="menu-subtitle">Battle Royale - Fight for Survival</p>
+    
+    <input type="text" id="player-name-input" class="menu-input" placeholder="Enter your warrior name" maxlength="20" value="Player">
+    
+    <button id="start-button" class="menu-button">START BATTLE</button>
+    
+    <div class="controls-info">
+      <h3>🎮 CONTROLS</h3>
+      <p>🔼 Arrow Keys - Move your warrior</p>
+      <p>🖱️ Mouse - Aim your weapon</p>
+      <p>🔫 Click - Fire bullets</p>
+      <p>💀 One hit eliminates a player</p>
+      <p>🏆 Eliminate all enemies to win!</p>
+    </div>
+  </div>
+
+  <div id="death-screen">
+    <div class="death-title">☠️ ELIMINATED ☠️</div>
+    <div class="death-info" id="death-message"></div>
+    <button id="respawn-button" class="menu-button">RESPAWN</button>
+  </div>
+
+  <div id="game-container"></div>
+  
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

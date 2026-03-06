@@ -1,0 +1,32 @@
+{
+  "name": "GRUDGE Warlords",
+  "short_name": "GRUDGE",
+  "description": "Crafting & Progression System for GRUDACHAIN - Master professions, craft epic gear, and forge your legend",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f1419",
+  "theme_color": "#d4af37",
+  "orientation": "any",
+  "id": "GRUDACHAIN_WARLORDS",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["games", "entertainment"],
+  "screenshots": [],
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "scope": "/",
+  "lang": "en-US",
+  "dir": "ltr"
+}

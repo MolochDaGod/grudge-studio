@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GRUDGE Warlords Authentication - Sign in with Puter, Email, or Web3 Wallet">
+  <meta name="theme-color" content="#d97706">
+  <meta property="og:title" content="GRUDGE Auth - Warlords Authentication">
+  <meta property="og:description" content="Secure authentication portal with Web3 wallet support for GRUDGE Warlords">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⚔️%3C/text%3E%3C/svg%3E">
+  <title>GRUDGE Auth</title>
+  <script src="https://js.puter.com/v2/"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@web3auth/modal@8.0.0/dist/modal.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.7.0/dist/ethers.umd.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600;700&display=swap');
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0f2840 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+    
+    .bg-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(255,215,0,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    
+    .container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 460px;
+      padding: 20px;
+    }
+    
+    .auth-card {
+      background: rgba(20, 20, 40, 0.95);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      border-radius: 24px;
+      padding: 40px 32px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+    
+    .logo-section {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    
+    .logo {
+      font-family: 'Cinzel', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ffd700, #ff8c00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+    
+    .tagline {
+      color: #888;
+      font-size: 0.9rem;
+    }
+    
+    .tab-nav {
+      display: flex;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 24px;
+    }
+    
+    .tab-btn {
+      flex: 1;
+      padding: 12px 8px;
+      background: transparent;
+      border: none;
+      color: #888;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    
+    .tab-btn.active {
+      background: linear-gradient(135deg, #ffd700, #ff8c00);
+      color: #1a1a2e;
+    }
+    
+    .tab-btn:hover:not(.active) {
+      color: #fff;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .auth-btn {
+      width: 100%;
+      padding: 16px 20px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      border: none;
+    }
+    
+    .auth-btn.primary {
+      background: linear-gradient(135deg, #ffd700, #ff8c00);
+      color: #1a1a2e;
+    }
+    
+    .auth-btn.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    }
+    
+    .auth-btn.puter {
+      background: linear-gradient(135deg, #3b82f6, #6366f1);
+      color: white;
+    }
+    
+    .auth-btn.puter:hover {
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    }
+    
+    .auth-btn.web3 {
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      color: white;
+    }
+    
+    .auth-btn.web3:hover {
+      box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+    }
+    
+    .auth-btn.guest {
+      background: rgba(255, 255, 255, 0.1);
+      color: #aaa;
+      border: 1px solid #444;
+    }
+    
+    .auth-btn.guest:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: #666;
+    }
+    
+    .auth-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+    
+    .auth-btn svg, .auth-btn img {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+      color: #555;
+      font-size: 0.8rem;
+    }
+    
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #444, transparent);
+    }
+    
+    .divider span { padding: 0 16px; }
+    
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    .form-group label {
+      display: block;
+      color: #aaa;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #444;
+      border-radius: 10px;
+      color: #fff;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: #ffd700;
+      box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+    }
+    
+    .form-group input::placeholder {
+      color: #666;
+    }
+    
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 16px 0;
+    }
+    
+    .checkbox-group input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #ffd700;
+    }
+    
+    .checkbox-group label {
+      color: #888;
+      font-size: 0.85rem;
+    }
+    
+    .forgot-link {
+      text-align: right;
+      margin-bottom: 16px;
+    }
+    
+    .forgot-link a {
+      color: #ffd700;
+      font-size: 0.85rem;
+      text-decoration: none;
+    }
+    
+    .forgot-link a:hover {
+      text-decoration: underline;
+    }
+    
+    .wallet-info {
+      background: rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    
+    .wallet-info h4 {
+      color: #a78bfa;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .wallet-address {
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #ddd;
+      word-break: break-all;
+    }
+    
+    .wallet-balance {
+      margin-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .balance-item {
+      text-align: center;
+    }
+    
+    .balance-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #ffd700;
+    }
+    
+    .balance-label {
+      font-size: 0.75rem;
+      color: #888;
+    }
+    
+    .gbux-section {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 140, 0, 0.1));
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 16px;
+    }
+    
+    .gbux-section h4 {
+      color: #ffd700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .gbux-packages {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    
+    .gbux-package {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #444;
+      border-radius: 8px;
+      padding: 12px 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .gbux-package:hover, .gbux-package.selected {
+      border-color: #ffd700;
+      background: rgba(255, 215, 0, 0.1);
+    }
+    
+    .gbux-package .amount {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffd700;
+    }
+    
+    .gbux-package .price {
+      font-size: 0.75rem;
+      color: #888;
+    }
+    
+    .status-message {
+      padding: 14px 16px;
+      border-radius: 10px;
+      margin: 16px 0;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .status-message.success {
+      background: rgba(76, 175, 80, 0.15);
+      border: 1px solid #4caf50;
+      color: #4caf50;
+    }
+    
+    .status-message.error {
+      background: rgba(244, 67, 54, 0.15);
+      border: 1px solid #f44336;
+      color: #f44336;
+    }
+    
+    .status-message.info {
+      background: rgba(33, 150, 243, 0.15);
+      border: 1px solid #2196f3;
+      color: #2196f3;
+    }
+    
+    .footer-links {
+      text-align: center;
+      margin-top: 24px;
+      color: #666;
+      font-size: 0.8rem;
+    }
+    
+    .footer-links a {
+      color: #ffd700;
+      text-decoration: none;
+    }
+    
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid transparent;
+      border-top-color: currentColor;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .hidden { display: none !important; }
+    
+    @media (max-width: 480px) {
+      .auth-card { padding: 32px 20px; }
+      .logo { font-size: 2rem; }
+      .gbux-packages { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-overlay"></div>
+  
+  <div class="container">
+    <div class="auth-card">
+      <div class="logo-section">
+        <div class="logo">GRUDGE</div>
+        <div class="tagline">Warlords Authentication</div>
+      </div>
+      
+      <nav class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('quick')">Quick Sign In</button>
+        <button class="tab-btn" onclick="switchTab('email')">Email</button>
+        <button class="tab-btn" onclick="switchTab('wallet')">Web3</button>
+      </nav>
+      
+      <div id="quickTab" class="tab-content active">
+        <button class="auth-btn puter" onclick="signInWithPuter()">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          Sign in with Puter
+        </button>
+        
+        <button class="auth-btn web3" onclick="signInWithWeb3()">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          Connect Wallet
+        </button>
+        
+        <div class="divider"><span>or</span></div>
+        
+        <button class="auth-btn guest" onclick="continueAsGuest()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Continue as Guest
+        </button>
+      </div>
+      
+      <div id="emailTab" class="tab-content">
+        <form id="loginForm" onsubmit="handleEmailLogin(event)">
+          <div class="form-group">
+            <label for="username">Username or Email</label>
+            <input type="text" id="username" placeholder="Enter username or email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter password" required>
+          </div>
+          
+          <div class="checkbox-group">
+            <input type="checkbox" id="rememberMe">
+            <label for="rememberMe">Remember me</label>
+          </div>
+          
+          <button type="submit" class="auth-btn primary">Sign In</button>
+        </form>
+        
+        <div class="divider"><span>new here?</span></div>
+        
+        <form id="registerForm" class="hidden" onsubmit="handleEmailRegister(event)">
+          <div class="form-group">
+            <label for="regUsername">Username</label>
+            <input type="text" id="regUsername" placeholder="Choose a username" required minlength="3">
+          </div>
+          
+          <div class="form-group">
+            <label for="regEmail">Email</label>
+            <input type="email" id="regEmail" placeholder="Enter your email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="regPassword">Password</label>
+            <input type="password" id="regPassword" placeholder="Create a password" required minlength="4">
+          </div>
+          
+          <button type="submit" class="auth-btn primary">Create Account</button>
+        </form>
+        
+        <button class="auth-btn guest" onclick="toggleRegister()">
+          <span id="toggleRegisterText">Create New Account</span>
+        </button>
+      </div>
+      
+      <div id="walletTab" class="tab-content">
+        <div id="walletNotConnected">
+          <p style="color: #888; text-align: center; margin-bottom: 20px;">
+            Connect your Web3 wallet to access GRUDGE with blockchain integration and purchase GBUX.
+          </p>
+          
+          <button class="auth-btn web3" onclick="signInWithWeb3()">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            Connect Wallet
+          </button>
+          
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 20px;">
+            <div style="text-align: center; padding: 16px; background: rgba(255,255,255,0.05); border-radius: 12px;">
+              <div style="font-size: 1.5rem; margin-bottom: 8px;">🦊</div>
+              <div style="font-size: 0.75rem; color: #888;">MetaMask</div>
+            </div>
+            <div style="text-align: center; padding: 16px; background: rgba(255,255,255,0.05); border-radius: 12px;">
+              <div style="font-size: 1.5rem; margin-bottom: 8px;">🔵</div>
+              <div style="font-size: 0.75rem; color: #888;">Coinbase</div>
+            </div>
+            <div style="text-align: center; padding: 16px; background: rgba(255,255,255,0.05); border-radius: 12px;">
+              <div style="font-size: 1.5rem; margin-bottom: 8px;">🌐</div>
+              <div style="font-size: 0.75rem; color: #888;">WalletConnect</div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="walletConnected" class="hidden">
+          <div class="wallet-info">
+            <h4>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              Wallet Connected
+            </h4>
+            <div class="wallet-address" id="walletAddress">0x...</div>
+            <div class="wallet-balance">
+              <div class="balance-item">
+                <div class="balance-value" id="ethBalance">0.00</div>
+                <div class="balance-label">ETH</div>
+              </div>
+              <div class="balance-item">
+                <div class="balance-value" id="gbuxBalance">0</div>
+                <div class="balance-label">GBUX</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="gbux-section">
+            <h4>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"/></svg>
+              Purchase GBUX
+            </h4>
+            <div class="gbux-packages">
+              <div class="gbux-package" onclick="selectGbux(100, 0.01)">
+                <div class="amount">100</div>
+                <div class="price">0.01 ETH</div>
+              </div>
+              <div class="gbux-package" onclick="selectGbux(500, 0.04)">
+                <div class="amount">500</div>
+                <div class="price">0.04 ETH</div>
+              </div>
+              <div class="gbux-package" onclick="selectGbux(1000, 0.07)">
+                <div class="amount">1000</div>
+                <div class="price">0.07 ETH</div>
+              </div>
+            </div>
+            <button class="auth-btn primary" id="purchaseBtn" onclick="purchaseGbux()" disabled>
+              Select a Package
+            </button>
+          </div>
+          
+          <button class="auth-btn primary" onclick="continueWithWallet()" style="margin-top: 16px;">
+            Continue to GRUDGE
+          </button>
+          
+          <button class="auth-btn guest" onclick="disconnectWallet()">
+            Disconnect Wallet
+          </button>
+        </div>
+      </div>
+      
+      <div id="statusMessage" class="status-message hidden"></div>
+      
+      <div class="footer-links">
+        By signing in, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const CONFIG = {
+      BACKEND_URL: 'https://grudge-crafting.replit.app',
+      AUTH_URL: 'https://grudge-auth-73v97.puter.site',
+      APPS_URL: 'https://grudge-apps.puter.site',
+      LAUNCHER_URL: 'https://grudge-launcher-xu9q5.puter.site',
+      SESSION_PREFIX: 'grudge_session_',
+      WEB3AUTH_CLIENT_ID: 'BPi5PB_UiIZ-cPz1GtV5i1I2iOSOHuimiXBI0e-Oe_u6X3oVAbCiAZOTEBtTXw4tsluTITPqA8zMsfxIKMjiqNQ',
+      APPROVED_APPS: [
+        'grudge-auth-73v97.puter.site',
+        'grudge-apps.puter.site',
+        'grudgecloud-85c9p.puter.site',
+        'grudge-crafting.puter.site',
+        'grudge-launcher-xu9q5.puter.site',
+        'grudge-multiplayer.puter.site',
+        'grudge-crafting.replit.app',
+        'localhost'
+      ]
+    };
+
+    let web3auth = null;
+    let provider = null;
+    let currentWallet = null;
+    let selectedGbuxPackage = null;
+
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      
+      event.target.classList.add('active');
+      document.getElementById(tab + 'Tab').classList.add('active');
+    }
+
+    function showStatus(message, type = 'info') {
+      const el = document.getElementById('statusMessage');
+      el.className = `status-message ${type}`;
+      el.innerHTML = message;
+      el.classList.remove('hidden');
+      
+      if (type === 'success') {
+        setTimeout(() => el.classList.add('hidden'), 5000);
+      }
+    }
+
+    function hideStatus() {
+      document.getElementById('statusMessage').classList.add('hidden');
+    }
+
+    function getReturnUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('returnUrl') || params.get('return') || params.get('redirect');
+    }
+
+    function isApprovedApp(url) {
+      try {
+        const host = new URL(url).host.toLowerCase();
+        return CONFIG.APPROVED_APPS.some(app => host.includes(app) || app.includes(host));
+      } catch { return false; }
+    }
+
+    function generateSessionId() {
+      return 'sess_' + Date.now().toString(36) + '_' + Math.random().toString(36).substr(2, 9);
+    }
+
+    async function createSession(userData) {
+      const sessionId = generateSessionId();
+      const session = {
+        ...userData,
+        sessionId,
+        createdAt: Date.now(),
+        expiresAt: Date.now() + (2 * 60 * 60 * 1000)
+      };
+      
+      try {
+        await puter.kv.set(CONFIG.SESSION_PREFIX + sessionId, JSON.stringify(session));
+      } catch (e) {
+        console.log('KV storage deferred');
+      }
+      
+      return session;
+    }
+
+    async function redirectAfterAuth(session) {
+      let returnUrl = getReturnUrl();
+      
+      if (!returnUrl || !isApprovedApp(returnUrl)) {
+        returnUrl = CONFIG.LAUNCHER_URL;
+      }
+      
+      const sep = returnUrl.includes('?') ? '&' : '?';
+      const params = new URLSearchParams({
+        auth_code: session.sessionId,
+        username: session.username,
+        role: session.role || 'user'
+      });
+      
+      if (session.walletAddress) {
+        params.append('wallet', session.walletAddress);
+      }
+      
+      showStatus('Authentication successful! Redirecting...', 'success');
+      
+      setTimeout(() => {
+        window.location.href = `${returnUrl}${sep}${params.toString()}`;
+      }, 1500);
+    }
+
+    async function signInWithPuter() {
+      try {
+        showStatus('<span class="spinner"></span> Connecting to Puter...', 'info');
+        
+        let user;
+        if (await puter.auth.isSignedIn()) {
+          user = await puter.auth.getUser();
+        } else {
+          user = await puter.auth.signIn();
+        }
+        
+        if (user) {
+          const session = await createSession({
+            userId: user.uuid,
+            username: user.username,
+            role: 'user',
+            source: 'puter',
+            isPuterUser: true
+          });
+          
+          await redirectAfterAuth(session);
+        }
+      } catch (error) {
+        showStatus('Puter sign-in was cancelled or failed. Please try again.', 'error');
+      }
+    }
+
+    async function initWeb3Auth() {
+      if (web3auth) return web3auth;
+      
+      try {
+        const { Web3Auth } = window.Modal;
+        
+        web3auth = new Web3Auth({
+          clientId: CONFIG.WEB3AUTH_CLIENT_ID,
+          web3AuthNetwork: "sapphire_devnet",
+          chainConfig: {
+            chainNamespace: "eip155",
+            chainId: "0x1",
+            rpcTarget: "https://rpc.ankr.com/eth",
+            displayName: "Ethereum Mainnet",
+            blockExplorerUrl: "https://etherscan.io",
+            ticker: "ETH",
+            tickerName: "Ethereum",
+          }
+        });
+        
+        await web3auth.initModal();
+        return web3auth;
+      } catch (error) {
+        console.error('Web3Auth init error:', error);
+        throw error;
+      }
+    }
+
+    async function signInWithWeb3() {
+      try {
+        showStatus('<span class="spinner"></span> Initializing Web3...', 'info');
+        
+        await initWeb3Auth();
+        provider = await web3auth.connect();
+        
+        if (provider) {
+          const ethersProvider = new ethers.BrowserProvider(provider);
+          const signer = await ethersProvider.getSigner();
+          const address = await signer.getAddress();
+          const balance = await ethersProvider.getBalance(address);
+          
+          currentWallet = {
+            address: address,
+            balance: ethers.formatEther(balance)
+          };
+          
+          document.getElementById('walletAddress').textContent = 
+            address.slice(0, 6) + '...' + address.slice(-4);
+          document.getElementById('ethBalance').textContent = 
+            parseFloat(currentWallet.balance).toFixed(4);
+          
+          document.getElementById('walletNotConnected').classList.add('hidden');
+          document.getElementById('walletConnected').classList.remove('hidden');
+          
+          switchTab('wallet');
+          showStatus('Wallet connected successfully!', 'success');
+          
+          await loadGbuxBalance(address);
+        }
+      } catch (error) {
+        console.error('Web3 error:', error);
+        showStatus('Failed to connect wallet. Please try again.', 'error');
+      }
+    }
+
+    async function loadGbuxBalance(address) {
+      try {
+        const gbuxData = await puter.kv.get('grudge_gbux_' + address.toLowerCase());
+        const balance = gbuxData ? JSON.parse(gbuxData).balance : 0;
+        document.getElementById('gbuxBalance').textContent = balance;
+      } catch (e) {
+        document.getElementById('gbuxBalance').textContent = '0';
+      }
+    }
+
+    function selectGbux(amount, price) {
+      selectedGbuxPackage = { amount, price };
+      
+      document.querySelectorAll('.gbux-package').forEach(pkg => {
+        pkg.classList.remove('selected');
+      });
+      event.target.closest('.gbux-package').classList.add('selected');
+      
+      const btn = document.getElementById('purchaseBtn');
+      btn.disabled = false;
+      btn.textContent = `Purchase ${amount} GBUX for ${price} ETH`;
+    }
+
+    async function purchaseGbux() {
+      if (!selectedGbuxPackage || !currentWallet) return;
+      
+      try {
+        showStatus('<span class="spinner"></span> Processing transaction...', 'info');
+        
+        const ethersProvider = new ethers.BrowserProvider(provider);
+        const signer = await ethersProvider.getSigner();
+        
+        const tx = await signer.sendTransaction({
+          to: '0x742d35Cc6634C0532925a3b844Bc9e7595f5bE8B',
+          value: ethers.parseEther(selectedGbuxPackage.price.toString())
+        });
+        
+        showStatus('<span class="spinner"></span> Waiting for confirmation...', 'info');
+        await tx.wait();
+        
+        const gbuxKey = 'grudge_gbux_' + currentWallet.address.toLowerCase();
+        let gbuxData = await puter.kv.get(gbuxKey);
+        let current = gbuxData ? JSON.parse(gbuxData) : { balance: 0, purchases: [] };
+        
+        current.balance += selectedGbuxPackage.amount;
+        current.purchases.push({
+          amount: selectedGbuxPackage.amount,
+          price: selectedGbuxPackage.price,
+          txHash: tx.hash,
+          timestamp: new Date().toISOString()
+        });
+        
+        await puter.kv.set(gbuxKey, JSON.stringify(current));
+        
+        document.getElementById('gbuxBalance').textContent = current.balance;
+        showStatus(`Successfully purchased ${selectedGbuxPackage.amount} GBUX!`, 'success');
+        
+        selectedGbuxPackage = null;
+        document.querySelectorAll('.gbux-package').forEach(pkg => pkg.classList.remove('selected'));
+        document.getElementById('purchaseBtn').disabled = true;
+        document.getElementById('purchaseBtn').textContent = 'Select a Package';
+        
+      } catch (error) {
+        console.error('Purchase error:', error);
+        showStatus('Transaction failed: ' + (error.message || 'Unknown error'), 'error');
+      }
+    }
+
+    async function continueWithWallet() {
+      if (!currentWallet) return;
+      
+      const session = await createSession({
+        userId: 'wallet_' + currentWallet.address.slice(2, 10),
+        username: currentWallet.address.slice(0, 8) + '...',
+        walletAddress: currentWallet.address,
+        role: 'user',
+        source: 'web3'
+      });
+      
+      await redirectAfterAuth(session);
+    }
+
+    async function disconnectWallet() {
+      try {
+        if (web3auth) {
+          await web3auth.logout();
+        }
+      } catch (e) {}
+      
+      provider = null;
+      currentWallet = null;
+      
+      document.getElementById('walletNotConnected').classList.remove('hidden');
+      document.getElementById('walletConnected').classList.add('hidden');
+      
+      showStatus('Wallet disconnected', 'info');
+    }
+
+    async function handleEmailLogin(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      
+      try {
+        showStatus('<span class="spinner"></span> Signing in...', 'info');
+        
+        const response = await fetch(`${CONFIG.BACKEND_URL}/api/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password, generateToken: true })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          const session = await createSession({
+            userId: data.user.id,
+            username: data.user.username,
+            role: data.user.isPremium ? 'premium' : 'user',
+            source: 'email',
+            token: data.token
+          });
+          
+          await redirectAfterAuth(session);
+        } else {
+          showStatus(data.error || 'Invalid credentials', 'error');
+        }
+      } catch (error) {
+        showStatus('Connection failed. Please check your network.', 'error');
+      }
+    }
+
+    async function handleEmailRegister(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('regUsername').value;
+      const email = document.getElementById('regEmail').value;
+      const password = document.getElementById('regPassword').value;
+      
+      try {
+        showStatus('<span class="spinner"></span> Creating account...', 'info');
+        
+        const response = await fetch(`${CONFIG.BACKEND_URL}/api/auth/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, email, password })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          const session = await createSession({
+            userId: data.user.id,
+            username: data.user.username,
+            role: 'user',
+            source: 'email',
+            token: data.token
+          });
+          
+          await redirectAfterAuth(session);
+        } else {
+          showStatus(data.error || 'Registration failed', 'error');
+        }
+      } catch (error) {
+        showStatus('Connection failed. Please check your network.', 'error');
+      }
+    }
+
+    function toggleRegister() {
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      const toggleText = document.getElementById('toggleRegisterText');
+      
+      if (registerForm.classList.contains('hidden')) {
+        loginForm.classList.add('hidden');
+        registerForm.classList.remove('hidden');
+        toggleText.textContent = 'Back to Sign In';
+      } else {
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+        toggleText.textContent = 'Create New Account';
+      }
+    }
+
+    async function continueAsGuest() {
+      const session = await createSession({
+        userId: 'guest_' + Date.now(),
+        username: 'Guest_' + Math.random().toString(36).substr(2, 6),
+        role: 'guest',
+        source: 'guest'
+      });
+      
+      await redirectAfterAuth(session);
+    }
+
+    async function init() {
+      try {
+        if (await puter.auth.isSignedIn()) {
+          const user = await puter.auth.getUser();
+          const session = await createSession({
+            userId: user.uuid,
+            username: user.username,
+            role: 'user',
+            source: 'puter',
+            isPuterUser: true
+          });
+          await redirectAfterAuth(session);
+        }
+      } catch (e) {
+        console.log('Auto-login check completed');
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

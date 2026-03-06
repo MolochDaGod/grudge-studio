@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="GRUDGE" />
+    <meta name="theme-color" content="#d4af37" />
+    <meta name="application-name" content="GRUDGE Warlords" />
+    <meta name="msapplication-TileColor" content="#0f1419" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="GRUDGE Warlords - Forge Your Legend" />
+    <meta property="og:description" content="Create your warrior, master 5 professions, craft 500+ epic items, and dominate the battlefield. Join Order, Chaos, or Neutral factions. Web3 & AI-powered RPG with NFTs." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://grudge-builder-auth.vercel.app" />
+    <meta property="og:image" content="https://warlord-crafting-suite.vercel.app/og-preview.png" />
+    <meta property="og:image:secure_url" content="https://warlord-crafting-suite.vercel.app/og-preview.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="GRUDGE Warlords Login Screen - Epic Fantasy RPG Crafting Game" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:site_name" content="GRUDGE Warlords" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="game:developer" content="GRUDGE Warlords Team" />
+    <meta property="game:genre" content="RPG, Crafting, Web3" />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@GRUDGE_Warlords" />
+    <meta name="twitter:creator" content="@GRUDGE_Warlords" />
+    <meta name="twitter:title" content="GRUDGE Warlords ⚔️ - Forge Your Legend" />
+    <meta name="twitter:description" content="🎮 Epic RPG Crafting System
+⚒️ 5 Professions | 500+ Items
+🎨 AI-Powered Characters
+🔗 Web3 & NFT Integration
+👑 Join Order, Chaos, or Neutral
+
+Sign up now and start your journey!" />
+    <meta name="twitter:image" content="https://warlord-crafting-suite.vercel.app/og-preview.png" />
+    <meta name="twitter:image:alt" content="GRUDGE Warlords - Epic fantasy RPG with crafting and character progression" />
+    
+    <!-- Additional Meta -->
+    <meta name="description" content="GRUDGE Warlords: An immersive crafting and character progression game with AI-powered features, multiplayer support, NFT integration, and extensive game modes." />
+    <meta name="keywords" content="crafting game, RPG, character creation, professions, NFT, blockchain gaming, GRUDGE, Solana, Web3" />
+    <meta name="author" content="GRUDGE Warlords Team" />
+
+    <link rel="icon" type="image/png" href="https://i.imgur.com/bGd5QJ0.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cinzel+Decorative:wght@400;700;900&family=MedievalSharp&family=Uncial+Antiqua&family=IM+Fell+English+SC&family=Spectral+SC:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <title>GRUDGE Warlords - Login</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      position: relative;
+      overflow-x: hidden;
+    }
+    
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(234,179,8,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      background: rgba(15, 23, 42, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(234, 179, 8, 0.3);
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+    
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .logo img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 20px rgba(234, 179, 8, 0.5));
+    }
+    
+    .logo h1 {
+      font-size: 28px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-top: 15px;
+      letter-spacing: 1px;
+    }
+    
+    .logo p {
+      color: #94a3b8;
+      font-size: 14px;
+      margin-top: 8px;
+    }
+    
+    .factions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 25px 0;
+    }
+    
+    .faction {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(234,179,8,0.2), rgba(217,119,6,0.1));
+      border: 2px solid rgba(234,179,8,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 24px;
+    }
+    
+    .faction:hover {
+      transform: scale(1.1);
+      border-color: #f59e0b;
+      box-shadow: 0 0 20px rgba(245,158,11,0.4);
+    }
+    
+    .section {
+      margin-bottom: 25px;
+    }
+    
+    .section-title {
+      font-size: 11px;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    
+    .btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+    }
+    
+    .btn-wallet {
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+      color: white;
+    }
+    
+    .btn-puter {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: white;
+    }
+    
+    .btn-gold {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: white;
+    }
+    
+    .divider {
+      position: relative;
+      text-align: center;
+      margin: 30px 0;
+    }
+    
+    .divider::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 1px;
+      background: rgba(148, 163, 184, 0.2);
+    }
+    
+    .divider span {
+      position: relative;
+      background: #0f172a;
+      padding: 0 15px;
+      color: #64748b;
+      font-size: 12px;
+    }
+    
+    .tabs {
+      display: flex;
+      gap: 5px;
+      background: rgba(30, 41, 59, 0.5);
+      border-radius: 10px;
+      padding: 4px;
+      margin-bottom: 20px;
+    }
+    
+    .tab {
+      flex: 1;
+      padding: 10px;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      color: #94a3b8;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .tab.active {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+    }
+    
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    label {
+      display: block;
+      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    
+    input {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 10px;
+      color: white;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    
+    input:focus {
+      outline: none;
+      border-color: #f59e0b;
+      background: rgba(30, 41, 59, 0.8);
+    }
+    
+    input::placeholder {
+      color: #64748b;
+    }
+    
+    .password-wrapper {
+      position: relative;
+    }
+    
+    .password-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #64748b;
+      cursor: pointer;
+      padding: 8px;
+    }
+    
+    .error {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #fca5a5;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    
+    .success {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #6ee7b7;
+      padding: 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .footer {
+      text-align: center;
+      color: #64748b;
+      font-size: 11px;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+  <body>
+    <script>
+      // Polyfill crypto.randomUUID for browsers that don't support it
+      if (!crypto.randomUUID) {
+        crypto.randomUUID = function() {
+          return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            const r = Math.random() * 16 | 0;
+            const v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+          });
+        };
+      }
+    </script>
+    <script src="https://js.puter.com/v2/"></script>
+    <script>
+      // Suppress Puter whoami 401 errors (user not authenticated with Puter is OK)
+      // We support multiple login methods: username/password, Puter, wallet, guest
+      const originalFetch = window.fetch;
+      window.fetch = function (...args) {
+        return originalFetch.apply(this, args).catch(error => {
+          // Silently handle Puter auth errors
+          if (args[0] && args[0].includes('puter.com/whoami')) {
+            console.debug('Puter auth check skipped (user not signed in to Puter)');
+            return Promise.reject(error);
+          }
+          throw error;
+        });
+      };
+    </script>
+    <script>
+      window.GRUDGE_APP_CONFIG = {
+        appId: 'GRUDGE_AUTH_GATEWAY',
+        version: '1.0.0',
+        buildDate: new Date().toISOString()
+      };
+    </script>
+
+  <div class="container">
+    <!-- Logo & Title -->
+    <div class="logo">
+      <img src="/grudge-logo.png" alt="GRUDGE Warlords">
+      <h1>GRUDGE WARLORDS</h1>
+      <p>Crafting & Progression System</p>
+    </div>
+    
+    <!-- Faction Emblems -->
+    <div class="factions">
+      <div class="faction" title="Order Faction">🛡️</div>
+      <div class="faction" title="Chaos Faction">🔥</div>
+      <div class="faction" title="Neutral Faction">🍃</div>
+    </div>
+    
+    <!-- Messages -->
+    <div id="message" class="hidden"></div>
+    
+    <!-- Quick Play Section -->
+    <div class="section">
+      <div class="section-title">Quick Play</div>
+      
+      <button class="btn btn-primary" onclick="handleGuestLogin()">
+        <span>⚔️</span>
+        <span>Play as Guest</span>
+      </button>
+      
+      <button class="btn btn-wallet" onclick="handleWalletLogin()" id="walletBtn">
+        <span>👛</span>
+        <span>Connect Wallet</span>
+      </button>
+      
+      <button class="btn btn-puter" onclick="handlePuterLogin()" id="puterBtn" style="display:none;">
+        <span>🛡️</span>
+        <span>Sign in with Puter</span>
+      </button>
+    </div>
+    
+    <!-- Divider -->
+    <div class="divider">
+      <span>or sign in for cloud saves</span>
+    </div>
+    
+    <!-- Login/Register Tabs -->
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('login')">Login</button>
+      <button class="tab" onclick="switchTab('register')">Register</button>
+    </div>
+    
+    <!-- Login Form -->
+    <form id="loginForm" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="loginUsername" placeholder="Enter username" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <div class="password-wrapper">
+          <input type="password" id="loginPassword" placeholder="Enter password" required>
+          <button type="button" class="password-toggle" onclick="togglePassword('loginPassword')">👁️</button>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-gold" id="loginBtn">
+        <span>Sign In</span>
+      </button>
+    </form>
+    
+    <!-- Register Form -->
+    <form id="registerForm" class="hidden" onsubmit="handleRegister(event)">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" id="registerUsername" placeholder="Choose username (3-20 chars)" required minlength="3">
+      </div>
+      <div class="form-group">
+        <label>Email (Optional)</label>
+        <input type="email" id="registerEmail" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <div class="password-wrapper">
+          <input type="password" id="registerPassword" placeholder="Choose password (4+ chars)" required minlength="4">
+          <button type="button" class="password-toggle" onclick="togglePassword('registerPassword')">👁️</button>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-gold" id="registerBtn">
+        <span>Create Account</span>
+      </button>
+    </form>
+    
+    <div class="footer">
+      Link accounts in Settings to sync progress
+    </div>
+  </div>
+
+  <script>
+    // Use Vercel backend for API calls
+    const API_URL = 'https://grudge-builder-auth.vercel.app';
+    
+    // Check for Puter availability
+    if (typeof window.puter !== 'undefined') {
+      document.getElementById('puterBtn').style.display = 'flex';
+    }
+    
+    function showMessage(text, type) {
+      const msg = document.getElementById('message');
+      msg.textContent = text;
+      msg.className = type;
+    }
+    
+    function hideMessage() {
+      document.getElementById('message').className = 'hidden';
+    }
+    
+    function switchTab(tab) {
+      const loginForm = document.getElementById('loginForm');
+      const registerForm = document.getElementById('registerForm');
+      const tabs = document.querySelectorAll('.tab');
+      
+      tabs.forEach(t => t.classList.remove('active'));
+      event.target.classList.add('active');
+      
+      if (tab === 'login') {
+        loginForm.classList.remove('hidden');
+        registerForm.classList.add('hidden');
+      } else {
+        loginForm.classList.add('hidden');
+        registerForm.classList.remove('hidden');
+      }
+      
+      hideMessage();
+    }
+    
+    function togglePassword(inputId) {
+      const input = document.getElementById(inputId);
+      input.type = input.type === 'password' ? 'text' : 'password';
+    }
+    
+    function getReturnUrl() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('return') || 'https://grudgewarlords.com';
+    }
+    
+    async function handleLogin(event) {
+      event.preventDefault();
+      const btn = document.getElementById('loginBtn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<div class="spinner"></div><span>Logging in...</span>';
+      btn.disabled = true;
+      
+      const username = document.getElementById('loginUsername').value;
+      const password = document.getElementById('loginPassword').value;
+      
+      try {
+        const response = await fetch(`${API_URL}/api/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok && data.token) {
+          localStorage.setItem('grudge_auth_token', data.token);
+          localStorage.setItem('grudge_user_id', data.userId);
+          localStorage.setItem('grudge_username', data.username);
+          
+          showMessage('Login successful! Redirecting...', 'success');
+          setTimeout(() => window.location.href = getReturnUrl(), 1000);
+        } else {
+          showMessage(data.error || 'Login failed', 'error');
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }
+      } catch (error) {
+        showMessage('Connection error. Please try again.', 'error');
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+      }
+    }
+    
+    async function handleRegister(event) {
+      event.preventDefault();
+      const btn = document.getElementById('registerBtn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<div class="spinner"></div><span>Creating account...</span>';
+      btn.disabled = true;
+      
+      const username = document.getElementById('registerUsername').value;
+      const email = document.getElementById('registerEmail').value;
+      const password = document.getElementById('registerPassword').value;
+      
+      try {
+        const response = await fetch(`${API_URL}/api/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, email, password })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok && data.token) {
+          localStorage.setItem('grudge_auth_token', data.token);
+          localStorage.setItem('grudge_user_id', data.userId);
+          localStorage.setItem('grudge_username', data.username);
+          
+          showMessage('Account created! Redirecting...', 'success');
+          setTimeout(() => window.location.href = getReturnUrl(), 1000);
+        } else {
+          showMessage(data.error || 'Registration failed', 'error');
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }
+      } catch (error) {
+        showMessage('Connection error. Please try again.', 'error');
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+      }
+    }
+    
+    async function handleGuestLogin() {
+      const deviceId = localStorage.getItem('grudge_device_id') || 
+                      'guest_' + Math.random().toString(36).slice(2, 11);
+      localStorage.setItem('grudge_device_id', deviceId);
+      
+      try {
+        const response = await fetch(`${API_URL}/api/guest`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ deviceId })
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+          localStorage.setItem('grudge_auth_token', data.token);
+          localStorage.setItem('grudge_user_id', data.userId);
+          localStorage.setItem('grudge_id', data.grudgeId || '');
+          localStorage.setItem('grudge_username', data.username);
+          
+          showMessage('Guest access granted! Redirecting...', 'success');
+          setTimeout(() => window.location.href = getReturnUrl(), 1000);
+        } else {
+          showMessage('Guest login failed', 'error');
+        }
+      } catch (error) {
+        showMessage('Connection error. Please try again.', 'error');
+      }
+    }
+    
+    async function handleWalletLogin() {
+      try {
+        // Check for Solana wallet (Phantom, Solflare, etc.)
+        if (!window.solana || !window.solana.isPhantom) {
+          showMessage('Please install Phantom wallet', 'error');
+          window.open('https://phantom.app/', '_blank');
+          return;
+        }
+        
+        showMessage('Connecting wallet...', 'success');
+        
+        // Connect to wallet
+        const response = await window.solana.connect();
+        const walletAddress = response.publicKey.toString();
+        
+        // Send to backend
+        const apiResponse = await fetch(`${API_URL}/api/connect-wallet`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            walletAddress,
+            walletType: 'solana'
+          })
+        });
+        
+        const data = await apiResponse.json();
+        
+        if (apiResponse.ok && data.token) {
+          localStorage.setItem('grudge_auth_token', data.token);
+          localStorage.setItem('grudge_user_id', data.userId);
+          localStorage.setItem('grudge_account_id', data.accountId || '');
+          localStorage.setItem('grudge_id', data.grudgeId || '');
+          localStorage.setItem('grudge_username', data.username);
+          localStorage.setItem('grudge_wallet_address', data.walletAddress);
+          
+          showMessage('Wallet connected! Redirecting...', 'success');
+          setTimeout(() => window.location.href = getReturnUrl(), 1000);
+        } else {
+          showMessage(data.error || 'Wallet connection failed', 'error');
+        }
+      } catch (error) {
+        console.error('Wallet error:', error);
+        showMessage('Failed to connect wallet', 'error');
+      }
+    }
+    
+    async function handlePuterLogin() {
+      try {
+        if (typeof window.puter === 'undefined') {
+          showMessage('Puter not available', 'error');
+          return;
+        }
+        
+        showMessage('Signing in with Puter...', 'success');
+        
+        // Puter handles auth client-side
+        const user = await window.puter.auth.signIn();
+        
+        if (user) {
+          // Sync Puter user with our backend
+          const response = await fetch(`${API_URL}/api/connect-wallet`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+              walletAddress: `puter_${user.username}`,
+              walletType: 'puter',
+              puterUsername: user.username,
+              puterEmail: user.email
+            })
+          });
+          
+          const data = await response.json();
+          
+          if (response.ok && data.token) {
+            localStorage.setItem('grudge_auth_token', data.token);
+            localStorage.setItem('grudge_user_id', data.userId);
+            localStorage.setItem('grudge_account_id', data.accountId || '');
+            localStorage.setItem('grudge_id', data.grudgeId || '');
+            localStorage.setItem('grudge_username', data.username);
+            localStorage.setItem('puter_username', user.username);
+            
+            showMessage('Puter sign-in successful! Redirecting...', 'success');
+            setTimeout(() => window.location.href = getReturnUrl(), 1000);
+          } else {
+            showMessage(data.error || 'Puter sync failed', 'error');
+          }
+        }
+      } catch (error) {
+        console.error('Puter error:', error);
+        showMessage('Puter sign-in failed', 'error');
+      }
+    }
+    
+    // Auto-redirect if already logged in
+    window.addEventListener('DOMContentLoaded', () => {
+      const token = localStorage.getItem('grudge_auth_token');
+      if (token && token !== 'guest') {
+        const returnUrl = getReturnUrl();
+        if (returnUrl && returnUrl !== '/') {
+          window.location.href = returnUrl;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

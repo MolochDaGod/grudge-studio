@@ -1,0 +1,20 @@
+{
+  "name": "grudge-cloud",
+  "app_id": "app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0",
+  "version": "1.0.0",
+  "description": "GRUDGE Warlords Cloud Admin - Storage management and data tools",
+  "main": "index.html",
+  "type": "web",
+  "puter": {
+    "apis": ["auth", "kv", "fs", "ai"],
+    "permissions": ["kv:read", "kv:write", "fs:read", "fs:write", "fs:delete", "ai:chat"]
+  },
+  "features": {
+    "storage": "Browse and manage cloud storage",
+    "kv": "Key-value store management",
+    "assets": "Asset library management",
+    "backup": "Data backup and restore",
+    "sync": "Cross-app data synchronization"
+  },
+  "buildTime": "2025-12-30T00:00:00.000Z"
+}

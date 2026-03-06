@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRUDGE Warlords - AI Sprite Generator</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 {
+            text-align: center;
+            color: #d4af37;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .controls {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(212,175,55,0.3);
+        }
+        .control-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        .control-group { flex: 1; min-width: 200px; }
+        label { display: block; margin-bottom: 5px; color: #d4af37; font-size: 14px; }
+        select, input, button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(212,175,55,0.3);
+            background: rgba(0,0,0,0.3);
+            color: #e0e0e0;
+            font-size: 14px;
+        }
+        button {
+            background: linear-gradient(135deg, #d4af37 0%, #aa8c2c 100%);
+            color: #1a1a2e;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(212,175,55,0.4); }
+        button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .status {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-family: monospace;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .sprite-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            border: 1px solid rgba(212,175,55,0.2);
+        }
+        .sprite-card img {
+            max-width: 100%;
+            height: 150px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+        }
+        .sprite-card .name { font-weight: bold; color: #d4af37; margin-bottom: 5px; }
+        .sprite-card .category { font-size: 12px; color: #888; }
+        .sprite-card button { margin-top: 10px; padding: 8px; font-size: 12px; }
+        .progress-bar {
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37, #f0d77e);
+            width: 0%;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GRUDGE Warlords - AI Sprite Generator</h1>
+        
+        <div class="controls">
+            <div class="control-row">
+                <div class="control-group">
+                    <label>Item Category</label>
+                    <select id="category">
+                        <option value="weapon">Weapons</option>
+                        <option value="material">Materials</option>
+                        <option value="armor">Armor</option>
+                        <option value="potion">Potions</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>Art Style</label>
+                    <select id="style">
+                        <option value="pixel">Pixel Art (16-bit)</option>
+                        <option value="painted">Hand-Painted</option>
+                        <option value="flat">Flat Icon</option>
+                        <option value="realistic">Semi-Realistic</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label>AI Model</label>
+                    <select id="model">
+                        <option value="black-forest-labs/FLUX.1-schnell">FLUX.1 Schnell (Fast)</option>
+                        <option value="black-forest-labs/FLUX.2-pro">FLUX.2 Pro (Quality)</option>
+                        <option value="dall-e-3">DALL-E 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="control-row">
+                <div class="control-group" style="flex: 3;">
+                    <label>Custom Item (or leave empty to generate from list)</label>
+                    <input type="text" id="customItem" placeholder="e.g., Bloodfeud Blade, Copper Ore, Mithril Ingot...">
+                </div>
+                <div class="control-group">
+                    <label>&nbsp;</label>
+                    <button onclick="generateSingle()" id="btnSingle">Generate Single</button>
+                </div>
+            </div>
+            <div class="control-row">
+                <div class="control-group">
+                    <label>Batch Size</label>
+                    <input type="number" id="batchSize" value="10" min="1" max="50">
+                </div>
+                <div class="control-group">
+                    <label>&nbsp;</label>
+                    <button onclick="generateBatch()" id="btnBatch">Generate Batch</button>
+                </div>
+                <div class="control-group">
+                    <label>&nbsp;</label>
+                    <button onclick="exportSprites()" id="btnExport">Export to Storage</button>
+                </div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+        </div>
+
+        <div class="status" id="status">Ready. Sign in with Puter to start generating sprites.</div>
+        
+        <div class="gallery" id="gallery"></div>
+    </div>
+
+    <script src="https://js.puter.com/v2/"></script>
+    <script>
+        const STYLE_PROMPTS = {
+            pixel: 'pixel art style, 16-bit RPG game sprite, transparent background, centered, clean edges, vibrant colors',
+            painted: 'hand-painted fantasy game art, detailed textures, soft lighting, game icon style, transparent background',
+            flat: 'flat vector icon style, clean lines, solid colors, game UI icon, transparent background, minimalist',
+            realistic: 'semi-realistic fantasy game art, detailed rendering, dramatic lighting, game inventory icon style'
+        };
+
+        const CATEGORY_PROMPTS = {
+            weapon: 'fantasy RPG weapon, single item, no hands or characters, game inventory icon',
+            material: 'fantasy RPG crafting material, raw resource, game inventory icon, single item',
+            armor: 'fantasy RPG armor piece, equipment icon, game inventory style, single item',
+            potion: 'fantasy RPG potion bottle, magical liquid, glowing effect, game inventory icon'
+        };
+
+        const generatedSprites = [];
+
+        const WEAPONS = [
+            {id: 'sword-bloodfeud', name: 'Bloodfeud Blade', type: 'Sword'},
+            {id: 'sword-wraithfang', name: 'Wraithfang', type: 'Sword'},
+            {id: 'sword-oathbreaker', name: 'Oathbreaker', type: 'Sword'},
+            {id: 'sword-kinrend', name: 'Kinrend', type: 'Sword'},
+            {id: 'sword-dusksinger', name: 'Dusksinger', type: 'Sword'},
+            {id: 'sword-emberclad', name: 'Emberclad', type: 'Sword'},
+            {id: 'axe-bloodfeud', name: 'Bloodfeud Axe', type: 'Axe'},
+            {id: 'axe-wraithfang', name: 'Wraithfang Cleaver', type: 'Axe'},
+            {id: 'hammer-bloodfeud', name: 'Bloodfeud Hammer', type: 'Hammer'},
+            {id: 'bow-bloodfeud', name: 'Bloodfeud Bow', type: 'Bow'},
+            {id: 'staff-bloodfeud', name: 'Bloodfeud Staff', type: 'Staff'},
+            {id: 'dagger-nightfang', name: 'Nightfang', type: 'Dagger'}
+        ];
+
+        const MATERIALS = [
+            {id: 'copper-ore', name: 'Copper Ore', tier: 1},
+            {id: 'iron-ore', name: 'Iron Ore', tier: 2},
+            {id: 'steel-ore', name: 'Steel Ore', tier: 3},
+            {id: 'mithril-ore', name: 'Mithril Ore', tier: 4},
+            {id: 'adamantine-ore', name: 'Adamantine Ore', tier: 5},
+            {id: 'orichalcum-ore', name: 'Orichalcum Ore', tier: 6},
+            {id: 'starmetal-ore', name: 'Starmetal Ore', tier: 7},
+            {id: 'divine-ore', name: 'Divine Ore', tier: 8},
+            {id: 'pine-log', name: 'Pine Log', tier: 1},
+            {id: 'oak-log', name: 'Oak Log', tier: 2},
+            {id: 'minor-essence', name: 'Minor Essence', tier: 1},
+            {id: 'divine-essence', name: 'Divine Essence', tier: 8}
+        ];
+
+        function log(msg) {
+            const status = document.getElementById('status');
+            const time = new Date().toLocaleTimeString();
+            status.innerHTML = `[${time}] ${msg}\n` + status.innerHTML;
+        }
+
+        function buildPrompt(itemName, category, style) {
+            const stylePrompt = STYLE_PROMPTS[style] || STYLE_PROMPTS.pixel;
+            const categoryPrompt = CATEGORY_PROMPTS[category] || CATEGORY_PROMPTS.weapon;
+            return `${itemName}, ${categoryPrompt}, ${stylePrompt}, high quality, game asset`;
+        }
+
+        async function generateSprite(itemName, itemId, category) {
+            const style = document.getElementById('style').value;
+            const model = document.getElementById('model').value;
+            const prompt = buildPrompt(itemName, category, style);
+            
+            log(`Generating: ${itemName}...`);
+            
+            try {
+                const img = await puter.ai.txt2img(prompt, { model });
+                
+                const sprite = {
+                    id: itemId || itemName.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+                    name: itemName,
+                    category: category,
+                    style: style,
+                    imgElement: img,
+                    prompt: prompt,
+                    timestamp: new Date().toISOString()
+                };
+                
+                generatedSprites.push(sprite);
+                renderGallery();
+                log(`✓ Generated: ${itemName}`);
+                return sprite;
+            } catch (err) {
+                log(`✗ Failed: ${itemName} - ${err.message}`);
+                throw err;
+            }
+        }
+
+        async function generateSingle() {
+            const customItem = document.getElementById('customItem').value.trim();
+            const category = document.getElementById('category').value;
+            
+            if (!customItem) {
+                log('Please enter an item name');
+                return;
+            }
+            
+            document.getElementById('btnSingle').disabled = true;
+            try {
+                await generateSprite(customItem, null, category);
+            } finally {
+                document.getElementById('btnSingle').disabled = false;
+            }
+        }
+
+        async function generateBatch() {
+            const category = document.getElementById('category').value;
+            const batchSize = parseInt(document.getElementById('batchSize').value) || 10;
+            const items = category === 'weapon' ? WEAPONS : MATERIALS;
+            const toGenerate = items.slice(0, batchSize);
+            
+            document.getElementById('btnBatch').disabled = true;
+            const progress = document.getElementById('progress');
+            
+            log(`Starting batch generation: ${toGenerate.length} items`);
+            
+            for (let i = 0; i < toGenerate.length; i++) {
+                const item = toGenerate[i];
+                progress.style.width = `${((i + 1) / toGenerate.length) * 100}%`;
+                
+                try {
+                    await generateSprite(item.name, item.id, category);
+                    await new Promise(r => setTimeout(r, 1000));
+                } catch (err) {
+                    log(`Skipping ${item.name} due to error`);
+                }
+            }
+            
+            log(`Batch complete! Generated ${generatedSprites.length} sprites`);
+            document.getElementById('btnBatch').disabled = false;
+        }
+
+        function renderGallery() {
+            const gallery = document.getElementById('gallery');
+            gallery.innerHTML = '';
+            
+            for (const sprite of generatedSprites) {
+                const card = document.createElement('div');
+                card.className = 'sprite-card';
+                card.innerHTML = `
+                    <div class="name">${sprite.name}</div>
+                    <div class="category">${sprite.category} | ${sprite.style}</div>
+                `;
+                
+                if (sprite.imgElement) {
+                    sprite.imgElement.style.maxWidth = '100%';
+                    sprite.imgElement.style.height = '150px';
+                    sprite.imgElement.style.objectFit = 'contain';
+                    card.insertBefore(sprite.imgElement.cloneNode(), card.firstChild);
+                }
+                
+                const saveBtn = document.createElement('button');
+                saveBtn.textContent = 'Save to Cloud';
+                saveBtn.onclick = () => saveSprite(sprite);
+                card.appendChild(saveBtn);
+                
+                gallery.appendChild(card);
+            }
+        }
+
+        async function saveSprite(sprite) {
+            try {
+                log(`Saving ${sprite.name} to cloud...`);
+                
+                const canvas = document.createElement('canvas');
+                const img = sprite.imgElement;
+                canvas.width = img.naturalWidth || 512;
+                canvas.height = img.naturalHeight || 512;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                
+                const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+                const filename = `${sprite.id}.png`;
+                const path = `/grudge-warlords/sprites/${sprite.category}/${filename}`;
+                
+                await puter.fs.write(path, blob, { createMissingParents: true });
+                
+                log(`✓ Saved: ${path}`);
+                sprite.cloudPath = path;
+            } catch (err) {
+                log(`✗ Save failed: ${err.message}`);
+            }
+        }
+
+        async function exportSprites() {
+            log('Exporting all sprites to cloud storage...');
+            
+            for (const sprite of generatedSprites) {
+                if (!sprite.cloudPath) {
+                    await saveSprite(sprite);
+                    await new Promise(r => setTimeout(r, 500));
+                }
+            }
+            
+            const manifest = generatedSprites.map(s => ({
+                id: s.id,
+                name: s.name,
+                category: s.category,
+                style: s.style,
+                cloudPath: s.cloudPath,
+                timestamp: s.timestamp
+            }));
+            
+            await puter.fs.write(
+                '/grudge-warlords/sprites/manifest.json',
+                JSON.stringify(manifest, null, 2),
+                { createMissingParents: true }
+            );
+            
+            log(`✓ Manifest saved with ${manifest.length} sprites`);
+        }
+
+        log('Sprite generator ready. Select category and style, then generate!');
+    </script>
+</body>
+</html>

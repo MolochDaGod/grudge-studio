@@ -1,0 +1,42 @@
+app = "grudge-studio"
+primary_region = "sjc"
+
+[build]
+image = "node:20-alpine"
+cmd = "pnpm install && pnpm build"
+
+[env]
+ARTIFACTS = "/app/apps/warlord-crafting-suite/dist"
+WORKDIR = "/app"
+
+[[services]]
+internal_port = 5000
+processes = ["app"]
+
+[processes.app]
+cmd = "node apps/warlord-crafting-suite/dist/index.cjs"
+memory = 512
+cpu_kind = "shared"
+
+[[env]]
+key = "DATABASE_URL"
+scope = "app"
+value = ""
+
+[[env]]
+key = "NODE_ENV"
+scope = "app"
+value = "production"
+
+[[env]]
+key = "SESSION_SECRET"
+scope = "app"
+value = ""
+
+[checks.alive]
+type = "http"
+interval = 30000
+grace_period = 5000
+method = "GET"
+path = "/api/health"
+timeout = 5000

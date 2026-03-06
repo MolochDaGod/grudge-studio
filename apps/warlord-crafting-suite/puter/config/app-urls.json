@@ -1,0 +1,109 @@
+{
+  "version": "1.1.0",
+  "lastUpdated": "2026-01-01",
+  "description": "Centralized Puter app URL configuration with auth redirect support",
+  "auth": {
+    "authUrl": "https://grudge-auth-73v97.puter.site",
+    "sessionPrefix": "grudge_session_",
+    "loginEndpoint": "/",
+    "logoutEndpoint": "/logout",
+    "verifyEndpoint": "/verify",
+    "redirectParams": ["returnUrl", "return", "redirect"]
+  },
+  "apps": {
+    "auth": {
+      "name": "grudge-auth",
+      "title": "GrudgeAuth",
+      "subdomain": "grudge-auth-73v97",
+      "url": "https://grudge-auth-73v97.puter.site",
+      "appIndex": 18
+    },
+    "cloud": {
+      "name": "grudgecloud",
+      "title": "GrudgeCloud",
+      "subdomain": "grudgecloud-85c9p",
+      "url": "https://grudgecloud-85c9p.puter.site",
+      "appIndex": 20
+    },
+    "studio": {
+      "name": "warlords",
+      "title": "Warlords",
+      "subdomain": "grudge-crafting",
+      "url": "https://grudge-crafting.puter.site",
+      "appIndex": 5
+    },
+    "crafting": {
+      "name": "meta-build",
+      "title": "Grudge Crafting",
+      "subdomain": "grudge-crafting",
+      "url": "https://grudge-crafting.puter.site",
+      "appIndex": 10
+    },
+    "nexus": {
+      "name": "grudge-Nexus",
+      "title": "Grudge Nexus",
+      "subdomain": "grudgeplatform",
+      "url": "https://grudgeplatform.puter.site",
+      "appIndex": 7
+    },
+    "launcher": {
+      "name": "grudge-launcher",
+      "title": "Grudge Launcher",
+      "subdomain": "grudge-launcher-xu9q5",
+      "url": "https://grudge-launcher-xu9q5.puter.site",
+      "appIndex": 3
+    },
+    "apps": {
+      "name": "grudge-apps",
+      "title": "Grudge Apps Portal",
+      "subdomain": "grudge-apps",
+      "url": "https://grudge-apps.puter.site",
+      "description": "Central apps portal for all GRUDGE Warlords apps"
+    },
+    "islands": {
+      "name": "islands",
+      "title": "Islands",
+      "subdomain": "islands-cu83xisb0g",
+      "url": "https://islands-cu83xisb0g.puter.site",
+      "appIndex": 19
+    },
+    "gameEngine": {
+      "name": "Grudge-Game-Editor",
+      "title": "GrudgeGameEngine",
+      "subdomain": "colorful-puppy-4769-zilvf",
+      "url": "https://colorful-puppy-4769-zilvf.puter.site",
+      "appIndex": 13
+    },
+    "connection": {
+      "name": "app-connection",
+      "title": "App Connection",
+      "subdomain": "app-connection-4sonvk",
+      "url": "https://app-connection-4sonvk.puter.site",
+      "appId": "app-e9ac9983-3a7b-4eb1-a7e5-86c9f5a7cd86",
+      "description": "Account connection portal with worker for admin relay"
+    },
+    "multiplayer": {
+      "name": "grudge-multiplayer",
+      "title": "GRUDGE Multiplayer",
+      "subdomain": "grudge-multiplayer",
+      "url": "https://grudge-multiplayer.puter.site",
+      "description": "Colyseus multiplayer client with Puter auth"
+    },
+    "social": {
+      "name": "grudge-social",
+      "title": "GRUDGE Social",
+      "subdomain": "grudge-social",
+      "url": "https://grudge-social.puter.site",
+      "description": "Social API worker for friends, chat, lobbies, PvP"
+    }
+  },
+  "backend": {
+    "replit": "https://grudge-crafting.replit.app",
+    "description": "Use Replit backend for API calls since no Puter server worker exists"
+  },
+  "notes": [
+    "grudge-server-lwvwd does NOT exist - use Replit backend or create Puter Worker",
+    "App names in Puter can differ from subdomain (e.g., 'warlords' → 'Grudge-crafting')",
+    "Always verify subdomain matches actual deployed app before updating"
+  ]
+}

@@ -1,0 +1,22 @@
+ID,Name,Category,SubCategory,Acquisition,UnlockNode,DropSource,PurchaseCost,TierRange,Description
+recipe-ironveil,Ironveil Crossbow,weapon,crossbows,skillTree,Engineer Master Crafter,,,T1-T8,Crossbow of iron protection
+recipe-skullpiercer,Skullpiercer Crossbow,weapon,crossbows,dropOnly,,"Boss chests, Elite dungeons",,T1-T8,Pierces through skull and bone
+recipe-shadowbolt,Shadowbolt Crossbow,weapon,crossbows,purchasable,,,500,T1-T8,Fires bolts of shadow
+recipe-blackpowder,Blackpowder Pistol,weapon,guns,skillTree,Engineer Master Crafter,,,T1-T8,Classic gunpowder firearm
+recipe-ironstorm,Ironstorm Rifle,weapon,guns,skillTree,Engineer Master Crafter,,,T1-T8,Storms of iron and lead
+recipe-bloodcannon,Bloodcannon,weapon,guns,dropOnly,,"Boss chests, Elite dungeons",,T1-T8,Cannon of bloodied destruction
+recipe-grenade,Grenade,consumable,utility,purchasable,,,200,T1-T8,Craftable grenade
+recipe-sticky-bomb,Sticky Bomb,consumable,utility,skillTree,Demolition Expert,,,T1-T8,Craftable sticky bomb
+recipe-siege-bomb,Siege Bomb,consumable,utility,dropOnly,,Siege events,,T1-T8,Craftable siege bomb
+recipe-smoke-bomb,Smoke Bomb,consumable,utility,purchasable,,,120,T1-T8,Craftable smoke bomb
+recipe-flash-bomb,Flash Bomb,consumable,utility,purchasable,,,150,T1-T8,Craftable flash bomb
+recipe-caltrops,Caltrops,consumable,utility,purchasable,,,80,T1-T8,Craftable caltrops
+recipe-turret-kit,Turret Kit,consumable,utility,skillTree,Automata Master,,,T1-T8,Craftable turret kit
+recipe-repair-kit,Repair Kit,consumable,utility,purchasable,,,100,T1-T8,Craftable repair kit
+recipe-ammo-crate,Ammo Crate,consumable,utility,purchasable,,,150,T1-T8,Craftable ammo crate
+recipe-siege-kit,Siege Kit,consumable,utility,skillTree,Siege Master,,,T1-T8,Craftable siege kit
+recipe-flying-drone,Flying Drone,consumable,utility,dropOnly,,Tech dungeons,,T1-T8,Craftable flying drone
+recipe-emp-grenade,EMP Grenade,consumable,utility,skillTree,Tech Specialist,,,T1-T8,Craftable emp grenade
+recipe-healing-drone,Healing Drone,consumable,utility,skillTree,Medical Engineer,,,T1-T8,Craftable healing drone
+recipe-portable-forge,Portable Forge,consumable,utility,skillTree,Field Engineer,,,T1-T8,Craftable portable forge
+recipe-mechanical-mount,Mechanical Mount,consumable,utility,dropOnly,,Mech dungeons,,T1-T8,Craftable mechanical mount

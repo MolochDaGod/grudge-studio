@@ -1,0 +1,102 @@
+id,name,category,sprite_path,storage_url,status
+copper-ore,Copper Ore,ore,client/public/2dassets/sprites/ore/copper-ore.png,/2dassets/sprites/ore/copper-ore.png,success
+iron-ore,Iron Ore,ore,client/public/2dassets/sprites/ore/iron-ore.png,/2dassets/sprites/ore/iron-ore.png,success
+steel-ore,Steel Ore,ore,client/public/2dassets/sprites/ore/steel-ore.png,/2dassets/sprites/ore/steel-ore.png,success
+mithril-ore,Mithril Ore,ore,client/public/2dassets/sprites/ore/mithril-ore.png,/2dassets/sprites/ore/mithril-ore.png,success
+adamantine-ore,Adamantine Ore,ore,client/public/2dassets/sprites/ore/adamantine-ore.png,/2dassets/sprites/ore/adamantine-ore.png,success
+orichalcum-ore,Orichalcum Ore,ore,client/public/2dassets/sprites/ore/orichalcum-ore.png,/2dassets/sprites/ore/orichalcum-ore.png,success
+starmetal-ore,Starmetal Ore,ore,client/public/2dassets/sprites/ore/starmetal-ore.png,/2dassets/sprites/ore/starmetal-ore.png,success
+divine-ore,Divine Ore,ore,client/public/2dassets/sprites/ore/divine-ore.png,/2dassets/sprites/ore/divine-ore.png,success
+copper-ingot,Copper Ingot,component,client/public/2dassets/sprites/component/copper-ingot.png,/2dassets/sprites/component/copper-ingot.png,success
+iron-ingot,Iron Ingot,component,client/public/2dassets/sprites/component/iron-ingot.png,/2dassets/sprites/component/iron-ingot.png,success
+steel-ingot,Steel Ingot,component,client/public/2dassets/sprites/component/steel-ingot.png,/2dassets/sprites/component/steel-ingot.png,success
+mithril-ingot,Mithril Ingot,component,client/public/2dassets/sprites/component/mithril-ingot.png,/2dassets/sprites/component/mithril-ingot.png,success
+adamantine-ingot,Adamantine Ingot,component,client/public/2dassets/sprites/component/adamantine-ingot.png,/2dassets/sprites/component/adamantine-ingot.png,success
+orichalcum-ingot,Orichalcum Ingot,component,client/public/2dassets/sprites/component/orichalcum-ingot.png,/2dassets/sprites/component/orichalcum-ingot.png,success
+starmetal-ingot,Starmetal Ingot,component,client/public/2dassets/sprites/component/starmetal-ingot.png,/2dassets/sprites/component/starmetal-ingot.png,success
+divine-ingot,Divine Ingot,component,client/public/2dassets/sprites/component/divine-ingot.png,/2dassets/sprites/component/divine-ingot.png,success
+pine-log,Pine Log,wood,client/public/2dassets/sprites/wood/pine-log.png,/2dassets/sprites/wood/pine-log.png,success
+oak-log,Oak Log,wood,client/public/2dassets/sprites/wood/oak-log.png,/2dassets/sprites/wood/oak-log.png,success
+maple-log,Maple Log,wood,client/public/2dassets/sprites/wood/maple-log.png,/2dassets/sprites/wood/maple-log.png,success
+ash-log,Ash Log,wood,client/public/2dassets/sprites/wood/ash-log.png,/2dassets/sprites/wood/ash-log.png,success
+ironwood-log,Ironwood Log,wood,client/public/2dassets/sprites/wood/ironwood-log.png,/2dassets/sprites/wood/ironwood-log.png,success
+ebony-log,Ebony Log,wood,client/public/2dassets/sprites/wood/ebony-log.png,/2dassets/sprites/wood/ebony-log.png,success
+wyrmwood-log,Wyrmwood Log,wood,client/public/2dassets/sprites/wood/wyrmwood-log.png,/2dassets/sprites/wood/wyrmwood-log.png,success
+worldtree-log,Worldtree Log,wood,client/public/2dassets/sprites/wood/worldtree-log.png,/2dassets/sprites/wood/worldtree-log.png,success
+minor-essence,Minor Essence,essence,client/public/2dassets/sprites/essence/minor-essence.png,/2dassets/sprites/essence/minor-essence.png,success
+lesser-essence,Lesser Essence,essence,client/public/2dassets/sprites/essence/lesser-essence.png,/2dassets/sprites/essence/lesser-essence.png,success
+greater-essence,Greater Essence,essence,client/public/2dassets/sprites/essence/greater-essence.png,/2dassets/sprites/essence/greater-essence.png,success
+superior-essence,Superior Essence,essence,client/public/2dassets/sprites/essence/superior-essence.png,/2dassets/sprites/essence/superior-essence.png,success
+refined-essence,Refined Essence,essence,client/public/2dassets/sprites/essence/refined-essence.png,/2dassets/sprites/essence/refined-essence.png,success
+perfect-essence,Perfect Essence,essence,client/public/2dassets/sprites/essence/perfect-essence.png,/2dassets/sprites/essence/perfect-essence.png,success
+ancient-essence,Ancient Essence,essence,client/public/2dassets/sprites/essence/ancient-essence.png,/2dassets/sprites/essence/ancient-essence.png,success
+divine-essence,Divine Essence,essence,client/public/2dassets/sprites/essence/divine-essence.png,/2dassets/sprites/essence/divine-essence.png,success
+rough-gem,Rough Gem,gem,client/public/2dassets/sprites/gem/rough-gem.png,/2dassets/sprites/gem/rough-gem.png,success
+flawed-gem,Flawed Gem,gem,client/public/2dassets/sprites/gem/flawed-gem.png,/2dassets/sprites/gem/flawed-gem.png,success
+standard-gem,Standard Gem,gem,client/public/2dassets/sprites/gem/standard-gem.png,/2dassets/sprites/gem/standard-gem.png,success
+fine-gem,Fine Gem,gem,client/public/2dassets/sprites/gem/fine-gem.png,/2dassets/sprites/gem/fine-gem.png,success
+pristine-gem,Pristine Gem,gem,client/public/2dassets/sprites/gem/pristine-gem.png,/2dassets/sprites/gem/pristine-gem.png,success
+flawless-gem,Flawless Gem,gem,client/public/2dassets/sprites/gem/flawless-gem.png,/2dassets/sprites/gem/flawless-gem.png,success
+radiant-gem,Radiant Gem,gem,client/public/2dassets/sprites/gem/radiant-gem.png,/2dassets/sprites/gem/radiant-gem.png,success
+divine-gem,Divine Gem,gem,client/public/2dassets/sprites/gem/divine-gem.png,/2dassets/sprites/gem/divine-gem.png,success
+rawhide,Rawhide,leather,client/public/2dassets/sprites/leather/rawhide.png,/2dassets/sprites/leather/rawhide.png,success
+thick-hide,Thick Hide,leather,client/public/2dassets/sprites/leather/thick-hide.png,/2dassets/sprites/leather/thick-hide.png,success
+rugged-leather,Rugged Leather,leather,client/public/2dassets/sprites/leather/rugged-leather.png,/2dassets/sprites/leather/rugged-leather.png,success
+hardened-leather,Hardened Leather,leather,client/public/2dassets/sprites/leather/hardened-leather.png,/2dassets/sprites/leather/hardened-leather.png,success
+salt,Salt,ingredient,client/public/2dassets/sprites/ingredient/salt.png,/2dassets/sprites/ingredient/salt.png,success
+spice,Spice,ingredient,client/public/2dassets/sprites/ingredient/spice.png,/2dassets/sprites/ingredient/spice.png,success
+herb,Herb,ingredient,client/public/2dassets/sprites/ingredient/herb.png,/2dassets/sprites/ingredient/herb.png,success
+mushroom,Mushroom,ingredient,client/public/2dassets/sprites/ingredient/mushroom.png,/2dassets/sprites/ingredient/mushroom.png,success
+raw-meat,Raw Meat,ingredient,client/public/2dassets/sprites/ingredient/raw-meat.png,/2dassets/sprites/ingredient/raw-meat.png,success
+raw-fish,Raw Fish,ingredient,client/public/2dassets/sprites/ingredient/raw-fish.png,/2dassets/sprites/ingredient/raw-fish.png,success
+bloodfeud-blade,Bloodfeud Blade,sword,client/public/2dassets/sprites/sword/bloodfeud-blade.png,/2dassets/sprites/sword/bloodfeud-blade.png,success
+wraithfang,Wraithfang,sword,client/public/2dassets/sprites/sword/wraithfang.png,/2dassets/sprites/sword/wraithfang.png,success
+oathbreaker,Oathbreaker,sword,client/public/2dassets/sprites/sword/oathbreaker.png,/2dassets/sprites/sword/oathbreaker.png,success
+kinrend,Kinrend,sword,client/public/2dassets/sprites/sword/kinrend.png,/2dassets/sprites/sword/kinrend.png,success
+dusksinger,Dusksinger,sword,client/public/2dassets/sprites/sword/dusksinger.png,/2dassets/sprites/sword/dusksinger.png,success
+emberclad,Emberclad,sword,client/public/2dassets/sprites/sword/emberclad.png,/2dassets/sprites/sword/emberclad.png,success
+soulreaver,Soulreaver,sword,client/public/2dassets/sprites/sword/soulreaver.png,/2dassets/sprites/sword/soulreaver.png,success
+grimshard,Grimshard,sword,client/public/2dassets/sprites/sword/grimshard.png,/2dassets/sprites/sword/grimshard.png,success
+bloodfeud-cleaver,Bloodfeud Cleaver,axe,client/public/2dassets/sprites/axe/bloodfeud-cleaver.png,/2dassets/sprites/axe/bloodfeud-cleaver.png,success
+wraithfang-cleaver,Wraithfang Cleaver,axe,client/public/2dassets/sprites/axe/wraithfang-cleaver.png,/2dassets/sprites/axe/wraithfang-cleaver.png,success
+oathbreaker-cleaver,Oathbreaker Cleaver,axe,client/public/2dassets/sprites/axe/oathbreaker-cleaver.png,/2dassets/sprites/axe/oathbreaker-cleaver.png,success
+kinrend-cleaver,Kinrend Cleaver,axe,client/public/2dassets/sprites/axe/kinrend-cleaver.png,/2dassets/sprites/axe/kinrend-cleaver.png,success
+dusksinger-cleaver,Dusksinger Cleaver,axe,client/public/2dassets/sprites/axe/dusksinger-cleaver.png,/2dassets/sprites/axe/dusksinger-cleaver.png,success
+emberclad-cleaver,Emberclad Cleaver,axe,client/public/2dassets/sprites/axe/emberclad-cleaver.png,/2dassets/sprites/axe/emberclad-cleaver.png,success
+soulreaver-cleaver,Soulreaver Cleaver,axe,client/public/2dassets/sprites/axe/soulreaver-cleaver.png,/2dassets/sprites/axe/soulreaver-cleaver.png,success
+grimshard-cleaver,Grimshard Cleaver,axe,client/public/2dassets/sprites/axe/grimshard-cleaver.png,/2dassets/sprites/axe/grimshard-cleaver.png,success
+bloodfeud-bow,Bloodfeud Bow,bow,client/public/2dassets/sprites/bow/bloodfeud-bow.png,/2dassets/sprites/bow/bloodfeud-bow.png,success
+wraithfang-bow,Wraithfang Bow,bow,client/public/2dassets/sprites/bow/wraithfang-bow.png,/2dassets/sprites/bow/wraithfang-bow.png,success
+oathbreaker-bow,Oathbreaker Bow,bow,client/public/2dassets/sprites/bow/oathbreaker-bow.png,/2dassets/sprites/bow/oathbreaker-bow.png,success
+kinrend-bow,Kinrend Bow,bow,client/public/2dassets/sprites/bow/kinrend-bow.png,/2dassets/sprites/bow/kinrend-bow.png,success
+bloodfeud-staff,Bloodfeud Staff,staff,client/public/2dassets/sprites/staff/bloodfeud-staff.png,/2dassets/sprites/staff/bloodfeud-staff.png,success
+wraithfang-staff,Wraithfang Staff,staff,client/public/2dassets/sprites/staff/wraithfang-staff.png,/2dassets/sprites/staff/wraithfang-staff.png,success
+oathbreaker-staff,Oathbreaker Staff,staff,client/public/2dassets/sprites/staff/oathbreaker-staff.png,/2dassets/sprites/staff/oathbreaker-staff.png,success
+kinrend-staff,Kinrend Staff,staff,client/public/2dassets/sprites/staff/kinrend-staff.png,/2dassets/sprites/staff/kinrend-staff.png,success
+nightfang,Nightfang,dagger,client/public/2dassets/sprites/dagger/nightfang.png,/2dassets/sprites/dagger/nightfang.png,success
+shadowpiercer,Shadowpiercer,dagger,client/public/2dassets/sprites/dagger/shadowpiercer.png,/2dassets/sprites/dagger/shadowpiercer.png,success
+venombite,Venombite,dagger,client/public/2dassets/sprites/dagger/venombite.png,/2dassets/sprites/dagger/venombite.png,success
+whisperwind,Whisperwind,dagger,client/public/2dassets/sprites/dagger/whisperwind.png,/2dassets/sprites/dagger/whisperwind.png,success
+bloodfeud-hammer,Bloodfeud Hammer,hammer,client/public/2dassets/sprites/hammer/bloodfeud-hammer.png,/2dassets/sprites/hammer/bloodfeud-hammer.png,success
+wraithfang-mace,Wraithfang Mace,hammer,client/public/2dassets/sprites/hammer/wraithfang-mace.png,/2dassets/sprites/hammer/wraithfang-mace.png,success
+oathbreaker-maul,Oathbreaker Maul,hammer,client/public/2dassets/sprites/hammer/oathbreaker-maul.png,/2dassets/sprites/hammer/oathbreaker-maul.png,success
+kinrend-crusher,Kinrend Crusher,hammer,client/public/2dassets/sprites/hammer/kinrend-crusher.png,/2dassets/sprites/hammer/kinrend-crusher.png,success
+pine-plank,Pine Plank,plank,client/public/2dassets/sprites/plank/pine-plank.png,/2dassets/sprites/plank/pine-plank.png,success
+oak-plank,Oak Plank,plank,client/public/2dassets/sprites/plank/oak-plank.png,/2dassets/sprites/plank/oak-plank.png,success
+bronze-gear,Bronze Gear,gear,client/public/2dassets/sprites/gear/bronze-gear.png,/2dassets/sprites/gear/bronze-gear.png,success
+fire-tome,Fire Tome,tome,client/public/2dassets/sprites/tome/fire-tome.png,/2dassets/sprites/tome/fire-tome.png,success
+frost-tome,Frost Tome,tome,client/public/2dassets/sprites/tome/frost-tome.png,/2dassets/sprites/tome/frost-tome.png,success
+nature-tome,Nature Tome,tome,client/public/2dassets/sprites/tome/nature-tome.png,/2dassets/sprites/tome/nature-tome.png,success
+holy-tome,Holy Tome,tome,client/public/2dassets/sprites/tome/holy-tome.png,/2dassets/sprites/tome/holy-tome.png,success
+arcane-tome,Arcane Tome,tome,client/public/2dassets/sprites/tome/arcane-tome.png,/2dassets/sprites/tome/arcane-tome.png,success
+lightning-tome,Lightning Tome,tome,client/public/2dassets/sprites/tome/lightning-tome.png,/2dassets/sprites/tome/lightning-tome.png,success
+linen-cloth,Linen Cloth,cloth,client/public/2dassets/sprites/cloth/linen-cloth.png,/2dassets/sprites/cloth/linen-cloth.png,success
+coal,Coal,component,client/public/2dassets/sprites/component/coal.png,/2dassets/sprites/component/coal.png,success
+gunpowder,Gunpowder,component,client/public/2dassets/sprites/component/gunpowder.png,/2dassets/sprites/component/gunpowder.png,success
+doomspire,Doomspire,greatsword,client/public/2dassets/sprites/greatsword/doomspire.png,/2dassets/sprites/greatsword/doomspire.png,success
+baldric-walk,Baldric Walk Sheet,character,client/public/2dassets/sprites/characters/baldric/walk.png,/2dassets/sprites/characters/baldric/walk.png,success
+baldric-fall,Baldric Fall Sheet,character,client/public/2dassets/sprites/characters/baldric/fall.png,/2dassets/sprites/characters/baldric/fall.png,success
+baldric-spell,Baldric Spell Sheet,character,client/public/2dassets/sprites/characters/baldric/spell.png,/2dassets/sprites/characters/baldric/spell.png,success
+mage-walk,Mage Walk Sheet,character,client/public/2dassets/sprites/characters/mage/walk.png,/2dassets/sprites/characters/mage/walk.png,success
+mage-fall,Mage Fall Sheet,character,client/public/2dassets/sprites/characters/mage/fall.png,/2dassets/sprites/characters/mage/fall.png,success
+mage-spell,Mage Spell Sheet,character,client/public/2dassets/sprites/characters/mage/spell.png,/2dassets/sprites/characters/mage/spell.png,success

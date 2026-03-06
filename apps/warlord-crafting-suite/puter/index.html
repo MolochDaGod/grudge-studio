@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, user-scalable=yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="GRUDGE Warlords" />
+  <meta name="theme-color" content="#d4af37" />
+  <meta name="application-name" content="GRUDGE Warlords" />
+  
+  <meta property="og:title" content="GRUDGE Warlords - Crafting Suite" />
+  <meta property="og:description" content="Master professions, craft epic gear, and forge your legend on GRUDACHAIN" />
+  <meta property="og:type" content="website" />
+  
+  <title>GRUDGE Warlords - Crafting Suite</title>
+  
+  <!-- Puter SDK -->
+  <script src="https://js.puter.com/v2/"></script>
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    #app-container {
+      width: 100%;
+      max-width: 1400px;
+      padding: 20px;
+    }
+    
+    .loading-screen {
+      text-align: center;
+      padding: 40px;
+    }
+    
+    .loading-screen h1 {
+      font-size: 2.5rem;
+      color: #d4af37;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+    
+    .loading-screen p {
+      font-size: 1.1rem;
+      color: #a0a0a0;
+      margin-bottom: 30px;
+    }
+    
+    .spinner {
+      border: 4px solid rgba(212, 175, 55, 0.1);
+      border-top: 4px solid #d4af37;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .error-screen {
+      background: rgba(220, 38, 38, 0.1);
+      border: 2px solid rgba(220, 38, 38, 0.3);
+      border-radius: 8px;
+      padding: 30px;
+      text-align: center;
+    }
+    
+    .error-screen h2 {
+      color: #ef4444;
+      margin-bottom: 15px;
+    }
+    
+    .config-panel {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    
+    .config-panel input {
+      width: 100%;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 4px;
+      color: #e0e0e0;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .config-panel button {
+      background: #d4af37;
+      color: #0f1419;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+    
+    .config-panel button:hover {
+      background: #e5c158;
+    }
+    
+    #app-frame {
+      width: 100%;
+      height: calc(100vh - 40px);
+      border: none;
+      border-radius: 8px;
+      background: white;
+    }
+  </style>
+</head>
+<body>
+  <div id="app-container">
+    <div class="loading-screen" id="loading">
+      <h1>⚔️ GRUDGE Warlords</h1>
+      <p>Initializing Crafting Suite...</p>
+      <div class="spinner"></div>
+    </div>
+    
+    <div id="config" style="display: none;">
+      <div class="config-panel">
+        <h2 style="color: #d4af37; margin-bottom: 15px;">Backend Configuration</h2>
+        <p style="margin-bottom: 15px;">Enter your backend URL to connect to the GRUDGE Warlords server:</p>
+        <input type="url" id="backend-url" placeholder="https://your-backend.replit.app" />
+        <button onclick="saveBackendUrl()">Save & Launch</button>
+      </div>
+    </div>
+    
+    <iframe id="app-frame" style="display: none;"></iframe>
+  </div>
+
+  <script>
+    // Configuration
+    const PUTER_KV_KEY = 'grudge_backend_url';
+    const DEFAULT_BACKEND = 'https://grudge-crafting.replit.app';
+    
+    let backendUrl = '';
+    
+    // Initialize Puter and load app
+    async function init() {
+      try {
+        console.log('Initializing Puter SDK...');
+        
+        // Check if backend URL is stored in Puter KV
+        try {
+          const stored = await puter.kv.get(PUTER_KV_KEY);
+          if (stored) {
+            backendUrl = stored;
+            console.log('Loaded backend URL from Puter KV:', backendUrl);
+          }
+        } catch (e) {
+          console.log('No stored backend URL, using default');
+        }
+        
+        // If no backend URL, show config
+        if (!backendUrl) {
+          backendUrl = DEFAULT_BACKEND;
+          document.getElementById('loading').style.display = 'none';
+          document.getElementById('config').style.display = 'block';
+          document.getElementById('backend-url').value = backendUrl;
+          return;
+        }
+        
+        // Launch the app
+        launchApp();
+        
+      } catch (error) {
+        console.error('Initialization error:', error);
+        showError('Failed to initialize Puter SDK: ' + error.message);
+      }
+    }
+    
+    function launchApp() {
+      console.log('Launching app with backend:', backendUrl);
+      
+      // Build the app URL with backend configuration
+      const appUrl = `${backendUrl}?puter=true&backend=${encodeURIComponent(backendUrl)}`;
+      
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('config').style.display = 'none';
+      
+      const iframe = document.getElementById('app-frame');
+      iframe.src = appUrl;
+      iframe.style.display = 'block';
+      
+      // Handle iframe load
+      iframe.onload = () => {
+        console.log('App loaded successfully');
+      };
+      
+      iframe.onerror = () => {
+        showError('Failed to load the application. Please check your backend URL.');
+      };
+    }
+    
+    async function saveBackendUrl() {
+      const input = document.getElementById('backend-url');
+      backendUrl = input.value.trim();
+      
+      if (!backendUrl) {
+        alert('Please enter a backend URL');
+        return;
+      }
+      
+      try {
+        // Save to Puter KV
+        await puter.kv.set(PUTER_KV_KEY, backendUrl);
+        console.log('Saved backend URL to Puter KV');
+        
+        // Launch the app
+        launchApp();
+      } catch (error) {
+        console.error('Failed to save backend URL:', error);
+        alert('Failed to save configuration: ' + error.message);
+      }
+    }
+    
+    function showError(message) {
+      document.getElementById('loading').innerHTML = `
+        <div class="error-screen">
+          <h2>⚠️ Error</h2>
+          <p>${message}</p>
+          <button onclick="location.reload()" style="margin-top: 20px; padding: 10px 20px; background: #d4af37; border: none; border-radius: 4px; cursor: pointer;">Retry</button>
+        </div>
+      `;
+    }
+    
+    // Start initialization when page loads
+    window.addEventListener('load', init);
+  </script>
+</body>
+</html>

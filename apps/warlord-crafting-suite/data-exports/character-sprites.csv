@@ -1,0 +1,7 @@
+grudge_uuid,character,animation,sprite_path,storage_url,frame_width,frame_height,frames_per_row,total_frames,directions,fps,status
+CHAR-T0-BALD-WALK-001,Baldric,walk,client/public/2dassets/sprites/characters/baldric/walk.png,/2dassets/sprites/characters/baldric/walk.png,64,64,6,36,4,8,ready
+CHAR-T0-BALD-FALL-002,Baldric,fall,client/public/2dassets/sprites/characters/baldric/fall.png,/2dassets/sprites/characters/baldric/fall.png,64,64,6,6,1,10,ready
+CHAR-T0-BALD-SPELL-003,Baldric,spell,client/public/2dassets/sprites/characters/baldric/spell.png,/2dassets/sprites/characters/baldric/spell.png,64,64,6,30,4,10,ready
+CHAR-T0-MAGE-WALK-004,Mage,walk,client/public/2dassets/sprites/characters/mage/walk.png,/2dassets/sprites/characters/mage/walk.png,64,64,8,56,4,8,ready
+CHAR-T0-MAGE-FALL-005,Mage,fall,client/public/2dassets/sprites/characters/mage/fall.png,/2dassets/sprites/characters/mage/fall.png,64,64,6,6,1,10,ready
+CHAR-T0-MAGE-SPELL-006,Mage,spell,client/public/2dassets/sprites/characters/mage/spell.png,/2dassets/sprites/characters/mage/spell.png,64,64,8,48,4,10,ready

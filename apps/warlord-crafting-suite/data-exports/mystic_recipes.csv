@@ -1,0 +1,38 @@
+ID,Name,Category,SubCategory,Acquisition,UnlockNode,DropSource,PurchaseCost,TierRange,Description
+recipe-emberwrath,Emberwrath Staff,weapon,fireStaves,skillTree,Mystic Master Crafter,,,T1-T8,Staff of burning ember
+recipe-sunfire,Sunfire Staff,weapon,fireStaves,skillTree,Mystic Master Crafter,,,T1-T8,Staff of solar flames
+recipe-inferno-spire,Inferno Spire Staff,weapon,fireStaves,skillTree,Mystic Master Crafter,,,T1-T8,Spire of infernal fire
+recipe-frostbite,Frostbite Staff,weapon,frostStaves,skillTree,Mystic Master Crafter,,,T1-T8,Staff of biting frost
+recipe-winter-grudge,Winter Grudge Staff,weapon,frostStaves,skillTree,Mystic Master Crafter,,,T1-T8,Grudge of eternal winter
+recipe-glacialspire,Glacial Spire Staff,weapon,frostStaves,dropOnly,,"Boss chests, Elite dungeons",,T1-T8,Spire of glacial power
+recipe-dawnspire,Dawnspire Staff,weapon,holyStaves,skillTree,Mystic Master Crafter,,,T1-T8,Staff of dawn's light
+recipe-redemption,Redemption Staff,weapon,holyStaves,skillTree,Mystic Master Crafter,,,T1-T8,Staff of divine redemption
+recipe-sacred-light,Sacred Light Staff,weapon,holyStaves,skillTree,Mystic Master Crafter,,,T1-T8,Staff of sacred illumination
+recipe-divine-judgment,Divine Judgment Staff,weapon,holyStaves,dropOnly,,"Boss chests, World events",,T1-T8,Staff of divine judgment
+recipe-stormwrath,Stormwrath Staff,weapon,lightningStaves,skillTree,Mystic Master Crafter,,,T1-T8,Staff of storm fury
+recipe-tempest-spire,Tempest Spire Staff,weapon,lightningStaves,skillTree,Mystic Master Crafter,,,T1-T8,Spire of the tempest
+recipe-arcane-fury,Arcane Fury Staff,weapon,arcaneStaves,skillTree,Mystic Master Crafter,,,T1-T8,Staff of arcane power
+recipe-mystic-grudge,Mystic Grudge Staff,weapon,arcaneStaves,skillTree,Mystic Master Crafter,,,T1-T8,Grudge of mystic arts
+recipe-ether-heart,Ether Heart Staff,weapon,arcaneStaves,skillTree,Mystic Master Crafter,,,T1-T8,Staff of ethereal energy
+recipe-voidspire,Void Spire Staff,weapon,arcaneStaves,dropOnly,,"Boss chests, Elite dungeons",,T1-T8,Spire of the void
+recipe-chaos-spire,Chaos Spire Staff,weapon,arcaneStaves,dropOnly,,"Boss chests, World events",,T1-T8,Spire of chaotic power
+recipe-bloodfeud-cloth-helm,Bloodfeud Cloth Helm,armor,cloth-helm,dropOnly,,"Raid bosses, World events",,T1-T8,Bloodfeud set helm made of cloth
+recipe-bloodfeud-cloth-shoulder,Bloodfeud Cloth Shoulder,armor,cloth-shoulder,skillTree,Mystic Armorsmith,,,T1-T8,Bloodfeud set shoulder made of cloth
+recipe-bloodfeud-cloth-chest,Bloodfeud Cloth Chest,armor,cloth-chest,purchasable,,,350,T1-T8,Bloodfeud set chest made of cloth
+recipe-bloodfeud-cloth-hands,Bloodfeud Cloth Hands,armor,cloth-hands,skillTree,Mystic Armorsmith,,,T1-T8,Bloodfeud set hands made of cloth
+recipe-bloodfeud-cloth-feet,Bloodfeud Cloth Feet,armor,cloth-feet,purchasable,,,400,T1-T8,Bloodfeud set feet made of cloth
+recipe-enhancement-crystal,Enhancement Crystal,consumable,material,skillTree,Crystal Weaver,,,T1-T8,Craftable enhancement crystal
+recipe-divine-crystal,Divine Crystal,consumable,material,dropOnly,,Arcane dungeons,,T1-T8,Craftable divine crystal
+recipe-minor-essence,Minor Essence,consumable,material,purchasable,,,50,T1-T8,Craftable minor essence
+recipe-greater-essence,Greater Essence,consumable,material,purchasable,,,150,T1-T8,Craftable greater essence
+recipe-refined-essence,Refined Essence,consumable,material,skillTree,Essence Refiner,,,T1-T8,Craftable refined essence
+recipe-ancient-essence,Ancient Essence,consumable,material,dropOnly,,Ancient ruins,,T1-T8,Craftable ancient essence
+recipe-strength-enchant,Strength Enchant,consumable,enchant,purchasable,,,200,T1-T8,Craftable strength enchant
+recipe-intellect-enchant,Intellect Enchant,consumable,enchant,purchasable,,,200,T1-T8,Craftable intellect enchant
+recipe-speed-enchant,Speed Enchant,consumable,enchant,skillTree,Glyph Mastery,,,T1-T8,Craftable speed enchant
+recipe-lifesteal-enchant,Lifesteal Enchant,consumable,enchant,skillTree,Blood Magic,,,T1-T8,Craftable lifesteal enchant
+recipe-fire-enchant,Fire Enchant,consumable,enchant,purchasable,,,250,T1-T8,Craftable fire enchant
+recipe-frost-enchant,Frost Enchant,consumable,enchant,purchasable,,,250,T1-T8,Craftable frost enchant
+recipe-arcane-enchant,Arcane Enchant,consumable,enchant,skillTree,Arcane Mastery,,,T1-T8,Craftable arcane enchant
+recipe-divine-enchant,Divine Enchant,consumable,enchant,dropOnly,,Holy temples,,T1-T8,Craftable divine enchant
+recipe-void-enchant,Void Enchant,consumable,enchant,dropOnly,,Void rifts,,T1-T8,Craftable void enchant

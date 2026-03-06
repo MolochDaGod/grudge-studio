@@ -1,0 +1,61 @@
+{
+  "name": "grudge-warlords",
+  "version": "2.5.0",
+  "description": "GRUDGE Warlords - Cloud Auth, AI Tools, Storage & Cross-App Services",
+  "main": "index.html",
+  "type": "web",
+  "runtime": "static",
+  "env": {
+    "BACKEND_URL": {
+      "required": false,
+      "description": "GRUDGE Warlords backend URL (e.g., https://grudge-crafting.replit.app)"
+    },
+    "PUTER_CLOUD_URL": {
+      "required": false,
+      "description": "Puter cloud URL from environment"
+    },
+    "PUTER_CLOUD_INDEX": {
+      "required": false,
+      "description": "Path to main index file"
+    },
+    "PUTER_APP_ID": {
+      "required": false,
+      "description": "Puter app identifier"
+    }
+  },
+  "pages": {
+    "index.html": "Centralized Authentication & Dashboard",
+    "sprite-analyzer.html": "AI Sprite Sheet Analyzer"
+  },
+  "routes": [
+    {
+      "path": "/*",
+      "handler": "static"
+    }
+  ],
+  "features": {
+    "database": "external-postgresql",
+    "storage": ["puter-kv", "puter-fs", "replit-object-storage"],
+    "auth": ["puter-id", "grudge-account"],
+    "ai": "puter-ai",
+    "hosting": "puter-hosting",
+    "networking": "puter-net"
+  },
+  "puter": {
+    "sdk": "https://js.puter.com/v2/",
+    "apis": ["auth", "kv", "fs", "ai", "hosting", "workers", "net", "ui", "apps"]
+  },
+  "integrations": {
+    "replit": {
+      "backend": true,
+      "objectStorage": true,
+      "postgres": true
+    },
+    "googleSheets": {
+      "weapons": true,
+      "armor": true,
+      "recipes": true,
+      "accounts": true
+    }
+  }
+}

@@ -1,0 +1,66 @@
+ID,Name,Tier,Type,Profession,DropRate,DropSource,DropNode,DropActivity,Guaranteed100,MinHeroLevel,Notes
+gladius,Gladius,1,1H Sword,Miner,15.0,"Goblins, Bandits, Skeletons",Forest Clearing|Bandit Camp|Crypts,Combat|Quest Reward,false,1,Common sword drop
+falchion,Falchion,2,1H Sword,Miner,8.0,"Orc Warriors, Undead Knights",Orc Encampment|Haunted Ruins,Combat|Dungeon Chest,false,1,Uncommon curved blade
+scimitar,Scimitar,3,1H Sword,Miner,5.0,"Desert Raiders, Djinn",Desert Oasis|Sand Temple,Combat|Boss Drop,false,6,Rare desert blade
+rapier,Rapier,4,1H Sword,Miner,4.0,"Noble Duelists, Phantom Knights",Noble Quarter|Ghost Castle,Combat|Elite Kill,false,11,Elegant thrusting sword
+katana,Katana,5,1H Sword,Miner,3.0,"Ronin, Shadow Samurai",Eastern Shrine|Shadow Dojo,Combat|Boss Drop,false,16,Eastern folded steel
+soulblade,Soulblade,6,1H Sword,Miner,2.5,"Soul Reapers, Lich Lords",Soul Forge|Lich Tower,Raid Boss|Legendary Chest,false,20,Spirit-bound edge
+starfall-edge,Starfall Edge,7,1H Sword,Miner,2.0,"Celestial Guardians, Star Dragons",Astral Plane|Celestial Temple,World Boss|Mythic Chest,false,20,Celestial meteor blade
+excalibur,Excalibur,8,1H Sword,Miner,1.0,"Divine Champion, God of War",Divine Arena|Holy Sanctum,Divine Boss|Divine Chest,false,20,Legendary holy sword
+bronze-claymore,Bronze Claymore,1,2H Sword,Miner,15.0,"Ogres, Trolls",Swamp|Mountain Pass,Combat|Quest Reward,false,1,Heavy two-handed blade
+bastard-sword,Bastard Sword,2,2H Sword,Miner,8.0,"Orc Berserkers, Armored Trolls",Orc Fortress|Troll Cave,Combat|Dungeon Chest,false,1,Versatile great sword
+zweihander,Zweihander,3,2H Sword,Miner,5.0,"Giant Knights, Cyclops",Giant Castle|Cyclops Den,Combat|Boss Drop,false,6,Massive German blade
+nodachi,Nodachi,4,2H Sword,Miner,4.0,"Demon Samurai, Oni",Demon Gate|Oni Temple,Combat|Elite Kill,false,11,Long Japanese sword
+flamberge,Flamberge,5,2H Sword,Miner,3.0,"Flame Giants, Fire Demons",Volcano|Fire Plane,Combat|Boss Drop,false,16,Wavy flame blade
+soul-reaver,Soul Reaver,6,2H Sword,Miner,2.5,"Death Knights, Soul Devourers",Death Realm|Soul Prison,Raid Boss|Legendary Chest,false,20,Soul-stealing blade
+cosmos-cleaver,Cosmos Cleaver,7,2H Sword,Miner,2.0,"Cosmic Titans, Star Destroyers",Void Space|Cosmic Rift,World Boss|Mythic Chest,false,20,Reality-cutting blade
+worldender,Worldender,8,2H Sword,Miner,1.0,"World Serpent, Apocalypse Beast",End of World|Ragnarok Field,Divine Boss|Divine Chest,false,20,Apocalyptic blade
+stiletto,Stiletto,1,Dagger,Miner,15.0,"Thieves, Assassins",Thieves Guild|Dark Alley,Combat|Pickpocket,false,1,Thin stabbing blade
+dirk,Dirk,2,Dagger,Miner,8.0,"Highland Raiders, Smugglers",Highland|Port Town,Combat|Smuggler Cache,false,1,Scottish fighting knife
+kris,Kris,3,Dagger,Miner,5.0,"Jungle Cultists, Snake Priests",Jungle Temple|Serpent Shrine,Combat|Ritual Drop,false,6,Wavy ritual dagger
+tanto,Tanto,4,Dagger,Miner,4.0,"Ninja, Shadow Assassins",Ninja Clan|Shadow Market,Combat|Assassination,false,11,Japanese short blade
+assassins-fang,Assassin's Fang,5,Dagger,Miner,3.0,"Master Assassins, Poison Masters",Assassin HQ|Poison Garden,Combat|Contract Kill,false,16,Poison-grooved blade
+shadow-kiss,Shadow Kiss,6,Dagger,Miner,2.5,"Shadow Lords, Void Stalkers",Shadow Realm|Void Edge,Raid Boss|Legendary Chest,false,20,Darkness-touched blade
+starlight-piercer,Starlight Piercer,7,Dagger,Miner,2.0,"Light Assassins, Star Wraiths",Celestial Shadow|Star Void,World Boss|Mythic Chest,false,20,Light-bending blade
+deaths-whisper,Death's Whisper,8,Dagger,Miner,1.0,"Death Incarnate, Grim Reaper",Death's Door|Final Rest,Divine Boss|Divine Chest,false,20,Silent killing edge
+mace,Copper Mace,1,1H Mace,Miner,15.0,"Orcs, Hobgoblins",Orc Camp|Goblin Warren,Combat|Quest Reward,false,1,Basic bludgeon
+morning-star,Morning Star,2,1H Mace,Miner,8.0,"Armored Orcs, Temple Guards",Temple|Armory,Combat|Guard Drop,false,1,Spiked mace
+flanged-mace,Flanged Mace,3,1H Mace,Miner,5.0,"Heavy Infantry, Champions",Battlefield|Arena,Combat|Champion Kill,false,6,Armor-piercing mace
+crusader-mace,Crusader Mace,4,1H Mace,Miner,4.0,"Holy Knights, Crusaders",Holy Land|Crusader Fort,Combat|Holy Quest,false,11,Blessed war mace
+justice-bringer,Justice Bringer,5,1H Mace,Miner,3.0,"Paladins, Divine Champions",Divine Court|Justice Hall,Combat|Divine Trial,false,16,Paladin's weapon
+soulcrusher,Soulcrusher,6,1H Mace,Miner,2.5,"Demon Lords, Soul Wardens",Demon Pit|Soul Vault,Raid Boss|Legendary Chest,false,20,Soul-shattering mace
+starfall-crusher,Starfall Crusher,7,1H Mace,Miner,2.0,"Celestial Wardens, Star Giants",Celestial Gate|Star Forge,World Boss|Mythic Chest,false,20,Celestial bludgeon
+godsbane,Godsbane,8,1H Mace,Miner,1.0,"Titan King, God Slayer",Titan Throne|Divine War,Divine Boss|Divine Chest,false,20,God-killing mace
+hunting-bow,Hunting Bow,1,Bow,Forester,15.0,"Wolf Packs, Bears",Forest|Hunting Ground,Combat|Hunting,false,1,Simple hunting weapon
+shortbow,Shortbow,2,Bow,Forester,8.0,"Rangers, Scouts",Outpost|Watchtower,Combat|Scout Drop,false,1,Compact ranged weapon
+composite-bow,Composite Bow,3,Bow,Forester,5.0,"Centaurs, Wood Elves",Centaur Plains|Elven Forest,Combat|Rare Hunt,false,6,Layered material bow
+recurve-bow,Recurve Bow,4,Bow,Forester,4.0,"Master Hunters, Beastmasters",Beast Den|Hunter Lodge,Combat|Master Hunt,false,11,Curved power bow
+elven-longbow,Elven Longbow,5,Bow,Forester,3.0,"Elven Archers, Forest Guardians",Ancient Grove|Elven City,Combat|Elven Quest,false,16,Ancient elven design
+dragonbone-bow,Dragonbone Bow,6,Bow,Forester,2.5,"Dragon Hunters, Wyrm Slayers",Dragon Graveyard|Wyrm Nest,Raid Boss|Legendary Chest,false,20,Wyrm skeleton bow
+phoenix-bow,Phoenix Bow,7,Bow,Forester,2.0,"Phoenix Riders, Flame Archers",Eternal Flame|Phoenix Nest,World Boss|Mythic Chest,false,20,Fire-reborn weapon
+yggdrasil-bow,Yggdrasil Bow,8,Bow,Forester,1.0,"World Tree Guardian, Nature God",Yggdrasil Root|Divine Grove,Divine Boss|Divine Chest,false,20,World tree weapon
+flintlock-pistol,Flintlock Pistol,1,Pistol,Engineer,15.0,"Pirates, Highwaymen",Port|Road Ambush,Combat|Loot,false,1,Single-shot firearm
+dueling-pistol,Dueling Pistol,2,Pistol,Engineer,8.0,"Nobles, Duelists",Noble District|Arena,Combat|Duel,false,1,Accurate handgun
+revolver,Revolver,3,Pistol,Engineer,5.0,"Gunslingers, Outlaws",Frontier|Saloon,Combat|Showdown,false,6,Six-shooter pistol
+repeater-pistol,Repeater Pistol,4,Pistol,Engineer,4.0,"Elite Guards, Mech Troopers",Mech Factory|Guard HQ,Combat|Tech Drop,false,11,Semi-auto handgun
+clockwork-pistol,Clockwork Pistol,5,Pistol,Engineer,3.0,"Clockwork Knights, Gear Masters",Clockwork City|Gear Tower,Combat|Mech Boss,false,16,Mechanical marvel
+plasma-pistol,Plasma Pistol,6,Pistol,Engineer,2.5,"Tech Lords, Plasma Troopers",Tech Fortress|Plasma Lab,Raid Boss|Legendary Chest,false,20,Energy handgun
+void-pistol,Void Pistol,7,Pistol,Engineer,2.0,"Void Engineers, Dark Scientists",Void Lab|Dark Tech,World Boss|Mythic Chest,false,20,Dimension-piercing gun
+divine-pistol,Divine Pistol,8,Pistol,Engineer,1.0,"Divine Engineer, Tech God",Divine Factory|Holy Tech,Divine Boss|Divine Chest,false,20,Holy handcannon
+pine-wand,Pine Wand,1,Wand,Mystic,15.0,"Apprentice Mages, Cultists",Mage Tower|Dark Cult,Combat|Magic Drop,false,1,Basic channeling wand
+oak-wand,Oak Wand,2,Wand,Mystic,8.0,"Journeyman Mages, Witches",Magic Academy|Witch Coven,Combat|Arcane Drop,false,1,Sturdy focus wand
+willow-wand,Willow Wand,3,Wand,Mystic,5.0,"Druids, Nature Mages",Sacred Grove|Druid Circle,Combat|Nature Magic,false,6,Flexible magic focus
+elder-wand,Elder Wand,4,Wand,Mystic,4.0,"Archmages, Elder Wizards",Grand Library|Elder Tower,Combat|Arcane Boss,false,11,Ancient power focus
+moon-wand,Moon Wand,5,Wand,Mystic,3.0,"Moon Priestesses, Lunar Mages",Moon Temple|Lunar Sanctum,Combat|Lunar Event,false,16,Lunar-infused focus
+star-wand,Star Wand,6,Wand,Mystic,2.5,"Star Mages, Celestial Sorcerers",Star Tower|Celestial Rift,Raid Boss|Legendary Chest,false,20,Celestial focus
+void-wand,Void Wand,7,Wand,Mystic,2.0,"Void Mages, Dark Sorcerers",Void Sanctum|Dark Dimension,World Boss|Mythic Chest,false,20,Dimension-bending focus
+divine-wand,Divine Wand,8,Wand,Mystic,1.0,"Divine Archmage, Magic God",Divine Academy|Holy Sanctum,Divine Boss|Divine Chest,false,20,Holy power focus
+cracked-rod,Cracked Rod,0,Staff,Mystic,20.0,"Weak Mages, Cultists",Ruins|Abandoned Tower,Combat|Scavenge,false,1,Crude salvage staff
+apprentice-staff,Apprentice Staff,1,Staff,Mystic,15.0,"Mage Apprentices, Minor Demons",Mage School|Minor Portal,Combat|Training,false,1,Basic magic staff
+journeyman-staff,Journeyman Staff,2,Staff,Mystic,8.0,"Elemental Mages, Medium Demons",Elemental Shrine|Demon Gate,Combat|Elemental,false,1,Elemental focus staff
+master-staff,Master Staff,3,Staff,Mystic,5.0,"Master Mages, Greater Demons",Master Tower|Demon Realm,Combat|Boss Drop,false,6,Powerful focus staff
+archmage-staff,Archmage Staff,4,Staff,Mystic,4.0,"Archmages, Demon Lords",Arcane Spire|Demon Throne,Combat|Elite Kill,false,11,Supreme magic focus
+lich-staff,Lich Staff,5,Staff,Mystic,3.0,"Liches, Death Mages",Lich Tower|Necropolis,Combat|Undead Boss,false,16,Death magic focus
+cosmic-staff,Cosmic Staff,6,Staff,Mystic,2.5,"Cosmic Mages, Star Liches",Cosmic Void|Star Grave,Raid Boss|Legendary Chest,false,20,Reality-warping staff
+void-staff,Void Staff,7,Staff,Mystic,2.0,"Void Lords, Dark Gods",Void Heart|Dark Throne,World Boss|Mythic Chest,false,20,Dimension-rending staff
+divine-staff,Divine Staff,8,Staff,Mystic,1.0,"Divine Mage, God of Magic",Divine Sanctum|Magic Throne,Divine Boss|Divine Chest,false,20,Holy divine staff

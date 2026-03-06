@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GRUDGE Cloud Admin - Asset management and cloud storage administration for GRUDGE Warlords">
+  <meta name="theme-color" content="#7c3aed">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <meta property="og:title" content="GRUDGE Cloud Admin">
+  <meta property="og:description" content="Asset management and cloud storage administration for GRUDGE Warlords">
+  <meta property="og:type" content="website">
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="GRUDGE Cloud Admin">
+  <meta name="twitter:description" content="Cloud storage administration for GRUDGE Warlords">
+  
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E☁️%3C/text%3E%3C/svg%3E">
+  
+  <title>GRUDGE Cloud Admin</title>
+  <script src="https://js.puter.com/v2/"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=JetBrains+Mono&display=swap');
+    .font-heading { font-family: 'Cinzel', serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900">
+  <div id="app">
+    <div class="flex items-center justify-center min-h-screen">
+      <div class="animate-spin w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    const APP_CONFIG = {
+      SESSION_PREFIX: 'grudge_session_',
+      ASSET_DIR: '/grudge-warlords/assets',
+      ALLOWED_ROLES: ['admin', 'developer'],
+      AUTH_URL: 'https://grudge-auth-73v97.puter.site',
+      SERVER_URL: 'https://grudge-crafting.replit.app',
+      BACKEND_URL: 'https://grudge-crafting.replit.app',
+      CLOUD_URL: 'https://grudgecloud-85c9p.puter.site',
+      STUDIO_URL: 'https://grudge-crafting.puter.site',
+      NEXUS_URL: 'https://grudgeplatform.puter.site',
+      CRAFTING_URL: 'https://grudge-crafting.puter.site',
+      ADMIN_USERS: ['admin', 'grudgewarlord', 'outapps', 'dev', 'developer']
+    };
+    
+    console.log('GRUDGE Cloud initialized');
+
+    let currentUser = null;
+    let currentPath = '/grudge-warlords';
+
+    function isRunningInPuterApp() {
+      const params = new URLSearchParams(window.location.search);
+      return params.has('puter.app_instance_id') || params.has('puter.auth.token');
+    }
+
+    function getUserRole(username) {
+      const lower = (username || '').toLowerCase();
+      if (['admin', 'grudgewarlord', 'outapps'].includes(lower)) return 'admin';
+      if (['dev', 'developer'].includes(lower)) return 'developer';
+      return 'premium';
+    }
+
+    async function verifySession(code) {
+      try {
+        const data = await puter.kv.get(APP_CONFIG.SESSION_PREFIX + code);
+        if (!data) return null;
+        const session = JSON.parse(data);
+        if (session.expiresAt < Date.now()) return null;
+        return session;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    async function checkAuth() {
+      if (isRunningInPuterApp()) {
+        try {
+          const user = await puter.auth.getUser();
+          if (user) {
+            const role = getUserRole(user.username);
+            if (APP_CONFIG.ALLOWED_ROLES.includes(role)) {
+              currentUser = {
+                userId: user.uuid,
+                username: user.username,
+                role: role,
+                source: 'puter_app'
+              };
+              return true;
+            }
+          }
+        } catch (e) {
+          console.log('Puter auth check failed:', e.message);
+        }
+      }
+      
+      const params = new URLSearchParams(window.location.search);
+      const authCode = params.get('auth_code');
+      
+      if (authCode) {
+        const session = await verifySession(authCode);
+        if (session && APP_CONFIG.ALLOWED_ROLES.includes(session.role)) {
+          currentUser = session;
+          localStorage.setItem('grudge_cloud_auth', authCode);
+          return true;
+        }
+      }
+      
+      const storedCode = localStorage.getItem('grudge_cloud_auth');
+      if (storedCode) {
+        const session = await verifySession(storedCode);
+        if (session && APP_CONFIG.ALLOWED_ROLES.includes(session.role)) {
+          currentUser = session;
+          return true;
+        }
+      }
+      
+      return false;
+    }
+
+    function renderAccessDenied() {
+      document.getElementById('app').innerHTML = `
+        <div class="min-h-screen flex items-center justify-center">
+          <div class="bg-slate-800/80 backdrop-blur-sm p-8 rounded-2xl border border-red-500/30 max-w-md text-center">
+            <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-red-500/20 flex items-center justify-center">
+              <span class="text-4xl">🔒</span>
+            </div>
+            <h1 class="font-heading text-2xl text-red-400 mb-4">Access Denied</h1>
+            <p class="text-slate-400 mb-6">This admin tool requires admin or developer privileges.</p>
+            <a href="${APP_CONFIG.AUTH_URL}?returnUrl=${encodeURIComponent(window.location.href)}" 
+               class="inline-block px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition">
+              Sign In
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderDashboard() {
+      document.getElementById('app').innerHTML = `
+        <div class="min-h-screen">
+          <header class="bg-slate-800/80 backdrop-blur-sm border-b border-purple-500/30 px-6 py-4">
+            <div class="flex items-center justify-between max-w-7xl mx-auto">
+              <div class="flex items-center gap-4">
+                <span class="text-3xl">☁️</span>
+                <h1 class="font-heading text-2xl text-purple-400">GRUDGE Cloud</h1>
+              </div>
+              <div class="flex items-center gap-4">
+                <span class="text-slate-400">
+                  <span class="text-purple-400 font-semibold">${currentUser.username}</span>
+                  <span class="ml-2 px-2 py-1 text-xs bg-purple-500/20 text-purple-400 rounded">${currentUser.role}</span>
+                </span>
+                <button onclick="logout()" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm">
+                  Sign Out
+                </button>
+              </div>
+            </div>
+          </header>
+
+          <main class="max-w-7xl mx-auto p-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div class="bg-slate-800/60 rounded-xl p-6 border border-purple-500/20">
+                <div class="flex items-center gap-3 mb-4">
+                  <span class="text-2xl">📁</span>
+                  <h2 class="font-heading text-lg text-white">Storage</h2>
+                </div>
+                <p class="text-slate-400 text-sm mb-4">Manage cloud files and assets</p>
+                <button onclick="showStorage()" class="w-full py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-sm">
+                  Browse Files
+                </button>
+              </div>
+
+              <div class="bg-slate-800/60 rounded-xl p-6 border border-purple-500/20">
+                <div class="flex items-center gap-3 mb-4">
+                  <span class="text-2xl">🗄️</span>
+                  <h2 class="font-heading text-lg text-white">Key-Value Store</h2>
+                </div>
+                <p class="text-slate-400 text-sm mb-4">View and edit KV data</p>
+                <button onclick="showKV()" class="w-full py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-sm">
+                  Manage KV
+                </button>
+              </div>
+
+              <div class="bg-slate-800/60 rounded-xl p-6 border border-purple-500/20">
+                <div class="flex items-center gap-3 mb-4">
+                  <span class="text-2xl">🎨</span>
+                  <h2 class="font-heading text-lg text-white">Assets</h2>
+                </div>
+                <p class="text-slate-400 text-sm mb-4">Sprite library and images</p>
+                <button onclick="showAssets()" class="w-full py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg text-sm">
+                  View Assets
+                </button>
+              </div>
+            </div>
+
+            <div id="content" class="bg-slate-800/60 rounded-xl p-6 border border-purple-500/20 min-h-[400px]">
+              <p class="text-slate-400 text-center py-12">Select a section to manage</p>
+            </div>
+          </main>
+        </div>
+      `;
+    }
+
+    async function showStorage() {
+      const content = document.getElementById('content');
+      content.innerHTML = '<div class="text-center py-8"><div class="animate-spin w-8 h-8 border-4 border-purple-500 border-t-transparent rounded-full mx-auto"></div></div>';
+      
+      try {
+        const files = await puter.fs.readdir(currentPath);
+        
+        content.innerHTML = `
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <button onclick="navigateUp()" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 text-white rounded text-sm ${currentPath === '/' ? 'opacity-50 cursor-not-allowed' : ''}">
+                ↑ Up
+              </button>
+              <span class="text-slate-400 font-mono text-sm">${currentPath}</span>
+            </div>
+            <button onclick="createFolder()" class="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded text-sm">
+              + New Folder
+            </button>
+          </div>
+          <div class="space-y-2">
+            ${files.map(f => `
+              <div class="flex items-center justify-between p-3 bg-slate-700/50 rounded-lg hover:bg-slate-700 group">
+                <div class="flex items-center gap-3 cursor-pointer" onclick="navigateTo('${currentPath}/${f.name}', ${f.is_dir})">
+                  <span class="text-xl">${f.is_dir ? '📁' : '📄'}</span>
+                  <span class="text-white">${f.name}</span>
+                </div>
+                <div class="opacity-0 group-hover:opacity-100 transition flex gap-2">
+                  ${!f.is_dir ? `<button onclick="downloadFile('${currentPath}/${f.name}')" class="px-2 py-1 bg-green-600 hover:bg-green-500 text-white rounded text-xs">Download</button>` : ''}
+                  <button onclick="deleteItem('${currentPath}/${f.name}')" class="px-2 py-1 bg-red-600 hover:bg-red-500 text-white rounded text-xs">Delete</button>
+                </div>
+              </div>
+            `).join('')}
+            ${files.length === 0 ? '<p class="text-slate-500 text-center py-8">Empty folder</p>' : ''}
+          </div>
+        `;
+      } catch (error) {
+        content.innerHTML = `<p class="text-red-400 text-center py-8">Error: ${error.message}</p>`;
+      }
+    }
+
+    async function showKV() {
+      const content = document.getElementById('content');
+      content.innerHTML = '<div class="text-center py-8"><div class="animate-spin w-8 h-8 border-4 border-purple-500 border-t-transparent rounded-full mx-auto"></div></div>';
+      
+      try {
+        const indexData = await puter.kv.get('grudge_kv_index') || '[]';
+        const keys = JSON.parse(indexData);
+        
+        content.innerHTML = `
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-heading text-lg text-white">Key-Value Store</h3>
+            <button onclick="addKVEntry()" class="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded text-sm">
+              + Add Entry
+            </button>
+          </div>
+          <div class="space-y-2">
+            ${keys.map(k => `
+              <div class="flex items-center justify-between p-3 bg-slate-700/50 rounded-lg hover:bg-slate-700 group">
+                <div class="flex items-center gap-3 cursor-pointer font-mono text-sm" onclick="viewKVEntry('${k}')">
+                  <span class="text-xl">🔑</span>
+                  <span class="text-amber-400">${k}</span>
+                </div>
+                <div class="opacity-0 group-hover:opacity-100 transition flex gap-2">
+                  <button onclick="editKVEntry('${k}')" class="px-2 py-1 bg-blue-600 hover:bg-blue-500 text-white rounded text-xs">Edit</button>
+                  <button onclick="deleteKVEntry('${k}')" class="px-2 py-1 bg-red-600 hover:bg-red-500 text-white rounded text-xs">Delete</button>
+                </div>
+              </div>
+            `).join('')}
+            ${keys.length === 0 ? '<p class="text-slate-500 text-center py-8">No entries in index. Add keys to grudge_kv_index to track them.</p>' : ''}
+          </div>
+        `;
+      } catch (error) {
+        content.innerHTML = `<p class="text-red-400 text-center py-8">Error: ${error.message}</p>`;
+      }
+    }
+
+    async function showAssets() {
+      const content = document.getElementById('content');
+      content.innerHTML = '<div class="text-center py-8"><div class="animate-spin w-8 h-8 border-4 border-purple-500 border-t-transparent rounded-full mx-auto"></div></div>';
+      
+      try {
+        const assetsPath = '/grudge-warlords/assets/sprites';
+        let files = [];
+        try {
+          files = await puter.fs.readdir(assetsPath);
+        } catch (e) {
+          await puter.fs.mkdir(assetsPath, { recursive: true });
+        }
+        
+        const imageFiles = files.filter(f => !f.is_dir && /\.(png|jpg|jpeg|gif|webp)$/i.test(f.name));
+        
+        content.innerHTML = `
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-heading text-lg text-white">Sprite Library (${imageFiles.length} sprites)</h3>
+            <div class="flex gap-2">
+              <input type="file" id="uploadSprite" accept="image/*" class="hidden" onchange="uploadSprite(this)">
+              <button onclick="document.getElementById('uploadSprite').click()" class="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded text-sm">
+                Upload Sprite
+              </button>
+            </div>
+          </div>
+          <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
+            ${imageFiles.map(f => `
+              <div class="aspect-square bg-slate-700/50 rounded-lg p-2 group relative cursor-pointer hover:bg-slate-700" onclick="previewSprite('${assetsPath}/${f.name}')">
+                <img src="https://puter.com/api/fs/open?path=${encodeURIComponent(assetsPath + '/' + f.name)}" 
+                     alt="${f.name}" 
+                     class="w-full h-full object-contain"
+                     style="image-rendering: pixelated;">
+                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                  <span class="text-xs text-white text-center px-1 break-all">${f.name}</span>
+                </div>
+              </div>
+            `).join('')}
+            ${imageFiles.length === 0 ? '<p class="text-slate-500 text-center py-8 col-span-full">No sprites found. Upload or generate sprites to populate this library.</p>' : ''}
+          </div>
+        `;
+      } catch (error) {
+        content.innerHTML = `<p class="text-red-400 text-center py-8">Error: ${error.message}</p>`;
+      }
+    }
+
+    window.navigateTo = async (path, isDir) => {
+      if (isDir) {
+        currentPath = path;
+        await showStorage();
+      }
+    };
+
+    window.navigateUp = async () => {
+      if (currentPath !== '/') {
+        currentPath = currentPath.split('/').slice(0, -1).join('/') || '/';
+        await showStorage();
+      }
+    };
+
+    window.logout = () => {
+      localStorage.removeItem('grudge_cloud_auth');
+      window.location.href = APP_CONFIG.AUTH_URL + '?logout=1&returnUrl=' + encodeURIComponent(window.location.origin);
+    };
+
+    window.showStorage = showStorage;
+    window.showKV = showKV;
+    window.showAssets = showAssets;
+
+    async function init() {
+      const authenticated = await checkAuth();
+      if (authenticated) {
+        renderDashboard();
+      } else {
+        renderAccessDenied();
+      }
+    }
+
+    init();
+  </script>
+</body>
+</html>

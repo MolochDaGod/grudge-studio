@@ -1,0 +1,20 @@
+id,name,output_item_id,output_quantity,tier,profession,station,craft_time,materials,unlocks_recipes
+recipe-t0-health-potion,Minor Health Potion Recipe,t0-health-potion,1,0,Chef,campfire,3,wild-herbs:2;raw-meat-t0:1,recipe-t1-health-potion
+recipe-t0-mana-potion,Minor Mana Potion Recipe,t0-mana-potion,1,0,Mystic,arcane-circle,3,wild-herbs:3,recipe-t1-mana-potion
+recipe-t0-cooked-meat,Charred Meat Recipe,t0-cooked-meat,1,0,Chef,campfire,2,raw-meat-t0:2,recipe-t1-roasted-meat
+recipe-t0-cooked-fish,Grilled Fish Recipe,t0-cooked-fish,1,0,Chef,campfire,2,raw-fish-t0:2,recipe-t1-baked-fish
+recipe-t0-herb-salad,Wild Herb Salad Recipe,t0-herb-salad,1,0,Chef,campfire,1,wild-herbs:5,recipe-t1-herbal-stew
+recipe-t0-cloth-hood,Tattered Hood Recipe,t0-cloth-hood,1,0,Forester,workbench,5,tattered-cloth:3;string:1,recipe-t1-cloth-hood
+recipe-t0-cloth-robe,Tattered Robe Recipe,t0-cloth-robe,1,0,Forester,workbench,8,tattered-cloth:6;string:2,recipe-t1-cloth-robe
+recipe-t0-leather-vest,Worn Leather Vest Recipe,t0-leather-vest,1,0,Forester,workbench,8,scrap-leather:6;string:2,recipe-t1-leather-chest
+recipe-t0-metal-breastplate,Rusted Breastplate Recipe,t0-metal-breastplate,1,0,Miner,forge,10,scrap-metal:8;scrap-leather:2,recipe-t1-metal-chest
+recipe-t0-shield,Splintered Wooden Shield Recipe,t0-shield-wooden,1,0,Forester,workbench,6,wood-stick:5;scrap-metal:2,recipe-t1-wooden-shield
+recipe-t0-ring,Tarnished Copper Ring Recipe,t0-ring-copper,1,0,Miner,forge,4,scrap-metal:3,recipe-t1-copper-ring
+recipe-t0-necklace,Bone Tooth Necklace Recipe,t0-necklace-bone,1,0,Chef,campfire,4,raw-meat-t0:3;string:1,recipe-t1-bone-necklace
+recipe-t0-cape,Ragged Cape Recipe,t0-cape-ragged,1,0,Forester,workbench,5,tattered-cloth:4;string:2,recipe-t1-cloth-cape
+recipe-t0-torch,Makeshift Torch Recipe,t0-torch,1,0,Forester,campfire,2,wood-stick:2;tattered-cloth:1,
+recipe-t0-spellbook,Novice Spellbook Recipe,t0-spellbook,1,0,Mystic,arcane-circle,8,tattered-cloth:4;string:2,recipe-t1-spellbook
+recipe-t0-sword,Rusty Sword Recipe,t0-sword-rusty,1,0,Miner,forge,5,scrap-metal:2;wood-stick:1,recipe-t1-sword-bloodfeud
+recipe-t0-axe,Chipped Axe Recipe,t0-axe-chipped,1,0,Miner,forge,5,scrap-metal:3;wood-stick:1,recipe-t1-axe-gorehowl
+recipe-t0-bow,Simple Bow Recipe,t0-bow-simple,1,0,Forester,workbench,5,wood-stick:3;string:2,recipe-t1-bow-wraithbone
+recipe-t0-staff,Apprentice Staff Recipe,t0-staff-apprentice,1,0,Mystic,arcane-circle,8,wood-stick:3,recipe-t1-staff-fire;recipe-t1-staff-frost;recipe-t1-staff-nature;recipe-t1-staff-holy;recipe-t1-staff-arcane;recipe-t1-staff-lightning

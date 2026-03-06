@@ -1,0 +1,589 @@
+/**
+ * GRUDGE Server - Node.js API with AI Agents
+ * 
+ * Puter Worker Runtime Globals:
+ * - `router` - Express-like router for defining endpoints
+ * - `me` - Developer context with `me.puter` for KV, FS, AI
+ * - `user` - User context when authenticated (optional)
+ * - `Response` - Fetch API Response constructor
+ * 
+ * Best Practices:
+ * - Use me.puter for developer-owned resources
+ * - Use user.puter for user-owned resources (when authenticated)
+ * - Always JSON.stringify objects before KV storage
+ * - Always JSON.parse when reading from KV
+ * - Namespace all keys with grudge_ prefix
+ * 
+ * @runtime Puter Worker
+ * @version 2.5.0
+ */
+
+/* global router, me, user, Response, crypto, console */
+
+const APP_CONFIG = {
+  AUTH_APP_ID: 'app-78a6cac4-afb0-45a2-8074-90d687b41770',
+  SERVER_APP_ID: 'app-f9ad7ff9-1a2e-4bb0-a20a-8db9db03a620',
+  CLOUD_APP_ID: 'app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0',
+  
+  SESSION_PREFIX: 'grudge_session_',
+  JOB_PREFIX: 'grudge_job_',
+  NPC_PREFIX: 'grudge_npc_',
+  DATA_PREFIX: 'grudge_data_',
+  
+  ASSET_DIR: '/grudge-warlords/assets',
+  SPRITES_DIR: '/grudge-warlords/assets/sprites',
+  
+  ROLES: {
+    ADMIN: ['admin', 'developer'],
+    PREMIUM: ['admin', 'developer', 'premium'],
+    USER: ['admin', 'developer', 'premium', 'user']
+  }
+};
+
+async function verifySession(code) {
+  try {
+    const data = await me.puter.kv.get(APP_CONFIG.SESSION_PREFIX + code);
+    if (!data) return null;
+    
+    const session = JSON.parse(data);
+    if (session.expiresAt < Date.now()) {
+      await me.puter.kv.del(APP_CONFIG.SESSION_PREFIX + code);
+      return null;
+    }
+    return session;
+  } catch (e) {
+    console.error('Session verification error:', e);
+    return null;
+  }
+}
+
+function getAuthCode(request) {
+  const authHeader = request.headers.get('Authorization');
+  if (authHeader?.startsWith('Bearer ')) {
+    return authHeader.slice(7);
+  }
+  const url = new URL(request.url);
+  return url.searchParams.get('auth_code');
+}
+
+async function requireAuth(request) {
+  const code = getAuthCode(request);
+  
+  if (!code) {
+    return { 
+      error: 'Authorization required', 
+      status: 401 
+    };
+  }
+  
+  const session = await verifySession(code);
+  if (!session) {
+    return { 
+      error: 'Invalid or expired session', 
+      status: 401 
+    };
+  }
+  
+  return { session, code };
+}
+
+async function requireRole(request, allowedRoles) {
+  const auth = await requireAuth(request);
+  if (auth.error) return auth;
+  
+  if (!allowedRoles.includes(auth.session.role)) {
+    return { 
+      error: 'Insufficient permissions', 
+      status: 403 
+    };
+  }
+  
+  return auth;
+}
+
+function errorResponse(message, status = 400) {
+  return new Response(JSON.stringify({ error: message }), {
+    status,
+    headers: { 'Content-Type': 'application/json' }
+  });
+}
+
+router.get("/api/health", async () => {
+  let kvStatus = 'unknown';
+  let aiStatus = 'unknown';
+  
+  try {
+    await me.puter.kv.set('_health_check', Date.now().toString());
+    await me.puter.kv.del('_health_check');
+    kvStatus = 'operational';
+  } catch (e) {
+    kvStatus = 'error: ' + e.message;
+  }
+  
+  try {
+    aiStatus = 'operational';
+  } catch (e) {
+    aiStatus = 'error: ' + e.message;
+  }
+  
+  return {
+    status: 'healthy',
+    app: 'grudge-server',
+    version: '2.5.0',
+    timestamp: new Date().toISOString(),
+    services: {
+      kv: kvStatus,
+      ai: aiStatus
+    }
+  };
+});
+
+router.post("/api/auth/consume", async ({ request }) => {
+  try {
+    const body = await request.json();
+    const { code } = body;
+    
+    if (!code) {
+      return errorResponse('Auth code required', 400);
+    }
+    
+    const session = await verifySession(code);
+    if (!session) {
+      return errorResponse('Invalid or expired auth code', 401);
+    }
+    
+    return {
+      success: true,
+      user: {
+        id: session.userId,
+        username: session.username,
+        role: session.role
+      },
+      expiresAt: session.expiresAt
+    };
+  } catch (e) {
+    return errorResponse('Failed to consume auth code: ' + e.message, 500);
+  }
+});
+
+router.get("/api/auth/verify", async ({ request }) => {
+  const auth = await requireAuth(request);
+  
+  if (auth.error) {
+    return { valid: false, error: auth.error };
+  }
+  
+  return {
+    valid: true,
+    user: {
+      id: auth.session.userId,
+      username: auth.session.username,
+      role: auth.session.role
+    }
+  };
+});
+
+router.post("/api/ai/chat", async ({ request }) => {
+  const auth = await requireAuth(request);
+  if (auth.error) return errorResponse(auth.error, auth.status);
+  
+  try {
+    const body = await request.json();
+    const { message, context = 'general', conversationId } = body;
+    
+    if (!message) {
+      return errorResponse('Message required', 400);
+    }
+    
+    const systemPrompts = {
+      general: `You are a helpful assistant for GRUDGE Warlords, a fantasy crafting and progression game.
+        You help players understand crafting, professions, and game mechanics.`,
+      
+      command: `You are GRUDGE Command AI, the intelligent control system for GRUDGE Warlords.
+        You can:
+        - Generate sprites using AI
+        - Manage game data and assets
+        - Control Puter workers
+        - Analyze images and assets
+        Respond with clear, actionable commands when appropriate.`,
+      
+      npc: `You are an NPC in GRUDGE Warlords. Stay in character as a medieval fantasy character.
+        Be immersive and provide helpful hints about the game world.`
+    };
+    
+    const response = await me.puter.ai.chat(message, {
+      system: systemPrompts[context] || systemPrompts.general
+    });
+    
+    if (conversationId) {
+      const historyKey = `grudge_chat_${conversationId}`;
+      const existingData = await me.puter.kv.get(historyKey);
+      const history = existingData ? JSON.parse(existingData) : [];
+      history.push({
+        role: 'user',
+        content: message,
+        timestamp: Date.now()
+      });
+      history.push({
+        role: 'assistant',
+        content: response,
+        timestamp: Date.now()
+      });
+      
+      const last20 = history.slice(-20);
+      await me.puter.kv.set(historyKey, JSON.stringify(last20));
+    }
+    
+    return { 
+      response, 
+      context,
+      user: auth.session.username 
+    };
+  } catch (e) {
+    return errorResponse('AI chat failed: ' + e.message, 500);
+  }
+});
+
+router.post("/api/ai/vision", async ({ request }) => {
+  const auth = await requireRole(request, APP_CONFIG.ROLES.PREMIUM);
+  if (auth.error) return errorResponse(auth.error, auth.status);
+  
+  try {
+    const body = await request.json();
+    const { imageUrl, question = 'Describe this image in detail.' } = body;
+    
+    if (!imageUrl) {
+      return errorResponse('Image URL required', 400);
+    }
+    
+    const response = await me.puter.ai.chat(question, {
+      vision: { url: imageUrl }
+    });
+    
+    return { 
+      analysis: response,
+      imageUrl,
+      analyzedBy: auth.session.username
+    };
+  } catch (e) {
+    return errorResponse('Vision analysis failed: ' + e.message, 500);
+  }
+});
+
+router.post("/api/sprites/generate", async ({ request }) => {
+  const auth = await requireRole(request, APP_CONFIG.ROLES.ADMIN);
+  if (auth.error) return errorResponse(auth.error, auth.status);
+  
+  try {
+    const body = await request.json();
+    const { 
+      prompt, 
+      style = 'pixel-art', 
+      size = '64x64',
+      category = 'general'
+    } = body;
+    
+    if (!prompt) {
+      return errorResponse('Prompt required', 400);
+    }
+    
+    const jobId = 'job_' + crypto.randomUUID().replace(/-/g, '').slice(0, 16);
+    
+    const job = {
+      id: jobId,
+      type: 'sprite_generation',
+      status: 'queued',
+      prompt,
+      style,
+      size,
+      category,
+      createdBy: auth.session.username,
+      createdAt: Date.now(),
+      updatedAt: Date.now()
+    };
+    
+    await me.puter.kv.set(APP_CONFIG.JOB_PREFIX + jobId, JSON.stringify(job));
+    
+    const indexData = await me.puter.kv.get('grudge_job_index') || '[]';
+    const jobIndex = JSON.parse(indexData);
+    jobIndex.push({ id: jobId, createdAt: job.createdAt, type: job.type });
+    
+    const recentJobs = jobIndex.slice(-100);
+    await me.puter.kv.set('grudge_job_index', JSON.stringify(recentJobs));
+    
+    processSpritejob(jobId, prompt, style, size, category);
+    
+    return { 
+      jobId, 
+      status: 'queued',
+      message: 'Sprite generation job created'
+    };
+  } catch (e) {
+    return errorResponse('Failed to create sprite job: ' + e.message, 500);
+  }
+});
+
+async function processSpritejob(jobId, prompt, style, size, category) {
+  const jobKey = APP_CONFIG.JOB_PREFIX + jobId;
+  
+  try {
+    await me.puter.kv.set(jobKey, JSON.stringify({
+      status: 'processing',
+      startedAt: Date.now(),
+      updatedAt: Date.now()
+    }));
+    
+    const fullPrompt = `Create a ${size} ${style} game sprite: ${prompt}.
+Requirements:
+- Transparent background (PNG with alpha channel)
+- Hard outlines only, no soft shadows
+- Crisp, clean edges suitable for pixel art scaling
+- Fantasy RPG game style
+- Professional game asset quality`;
+    
+    const result = await me.puter.ai.txt2img(fullPrompt, {
+      size: size === '64x64' ? 512 : 1024
+    });
+    
+    const safeName = prompt.toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .slice(0, 30);
+    const filename = `${category}/${safeName}_${jobId.slice(4, 12)}.png`;
+    const fullPath = `${APP_CONFIG.SPRITES_DIR}/${filename}`;
+    
+    await me.puter.fs.mkdir(`${APP_CONFIG.SPRITES_DIR}/${category}`, { 
+      createMissingParents: true 
+    });
+    await me.puter.fs.write(fullPath, result);
+    
+    await me.puter.kv.set(jobKey, JSON.stringify({
+      status: 'completed',
+      result: fullPath,
+      filename,
+      completedAt: Date.now(),
+      updatedAt: Date.now()
+    }));
+    
+  } catch (error) {
+    await me.puter.kv.set(jobKey, JSON.stringify({
+      status: 'failed',
+      error: error.message,
+      failedAt: Date.now(),
+      updatedAt: Date.now()
+    }));
+  }
+}
+
+router.get("/api/jobs/:jobId", async ({ request, params }) => {
+  const auth = await requireAuth(request);
+  if (auth.error) return errorResponse(auth.error, auth.status);
+  
+  try {
+    const jobData = await me.puter.kv.get(APP_CONFIG.JOB_PREFIX + params.jobId);
+    
+    if (!jobData) {
+      return errorResponse('Job not found', 404);
+    }
+    
+    return JSON.parse(jobData);
+  } catch (e) {
+    return errorResponse('Failed to get job: ' + e.message, 500);
+  }
+});
+
+router.get("/api/jobs", async ({ request }) => {
+  const auth = await requireAuth(request);
+  if (auth.error) return errorResponse(auth.error, auth.status);
+  
+  try {
+    const indexData = await me.puter.kv.get('grudge_job_index') || '[]';
+    const jobIndex = JSON.parse(indexData);
+    
+    const recentJobs = jobIndex.slice(-20).reverse();
+    
+    return { jobs: recentJobs };
+  } catch (e) {
+    return errorResponse('Failed to list jobs: ' + e.message, 500);
+  }
+});
+
+router.get("/api/data/game", async () => {
+  return {
+    professions: ['Miner', 'Forester', 'Mystic', 'Chef', 'Engineer'],
+    classes: ['Warrior', 'Worg', 'Mage', 'Ranger'],
+    tiers: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'T8'],
+    recipeCount: 518,
+    version: '2.5.0'
+  };
+});
+
+router.post("/api/data/sync", async ({ request }) => {
+  const auth = await requireRole(request, APP_CONFIG.ROLES.ADMIN);
+  if (auth.error) return errorResponse(auth.error, auth.status);
+  
+  try {
+    const body = await request.json();
+    const { dataType, data } = body;
+    
+    if (!dataType || data === undefined) {
+      return errorResponse('dataType and data required', 400);
+    }
+    
+    const key = APP_CONFIG.DATA_PREFIX + dataType;
+    await me.puter.kv.set(key, JSON.stringify({
+      data,
+      updatedBy: auth.session.username,
+      updatedAt: Date.now()
+    }));
+    
+    return { 
+      success: true, 
+      dataType, 
+      timestamp: Date.now() 
+    };
+  } catch (e) {
+    return errorResponse('Data sync failed: ' + e.message, 500);
+  }
+});
+
+router.get("/api/data/:dataType", async ({ request, params }) => {
+  try {
+    const key = APP_CONFIG.DATA_PREFIX + params.dataType;
+    const data = await me.puter.kv.get(key);
+    
+    if (!data) {
+      return errorResponse('Data not found', 404);
+    }
+    
+    return JSON.parse(data);
+  } catch (e) {
+    return errorResponse('Failed to get data: ' + e.message, 500);
+  }
+});
+
+router.post("/api/npc/chat", async ({ request }) => {
+  const auth = await requireAuth(request);
+  if (auth.error) return errorResponse(auth.error, auth.status);
+  
+  try {
+    const body = await request.json();
+    const { npcId, message } = body;
+    
+    if (!npcId || !message) {
+      return errorResponse('npcId and message required', 400);
+    }
+    
+    const memoryKey = APP_CONFIG.NPC_PREFIX + npcId + '_memory';
+    const memoryData = await me.puter.kv.get(memoryKey);
+    const memory = memoryData ? JSON.parse(memoryData) : {
+      conversations: [],
+      facts: [],
+      relationships: {}
+    };
+    
+    const npcPersonalities = {
+      blacksmith: `You are Grimjaw the Blacksmith in GRUDGE Warlords.
+        You are gruff but kind, and love talking about metalwork.
+        You give hints about weapon crafting and the Engineer profession.`,
+      
+      herbalist: `You are Willowmere the Herbalist in GRUDGE Warlords.
+        You are gentle and wise, knowledgeable about potions and plants.
+        You give hints about the Mystic and Chef professions.`,
+      
+      merchant: `You are Goldfinger the Merchant in GRUDGE Warlords.
+        You are shrewd but fair, always looking for a good deal.
+        You give hints about the Shop and trading system.`
+    };
+    
+    const systemPrompt = npcPersonalities[npcId] || 
+      `You are an NPC in GRUDGE Warlords. Be helpful and stay in character.`;
+    
+    const context = memory.conversations.slice(-5).map(c => 
+      `Player: ${c.player}\nYou: ${c.npc}`
+    ).join('\n');
+    
+    const fullPrompt = context 
+      ? `Previous conversation:\n${context}\n\nPlayer now says: ${message}`
+      : message;
+    
+    const response = await me.puter.ai.chat(fullPrompt, {
+      system: systemPrompt
+    });
+    
+    memory.conversations.push({
+      player: message,
+      npc: response,
+      timestamp: Date.now()
+    });
+    
+    const recentMemory = {
+      ...memory,
+      conversations: memory.conversations.slice(-20)
+    };
+    await me.puter.kv.set(memoryKey, JSON.stringify(recentMemory));
+    
+    return {
+      npcId,
+      response,
+      hasMemory: memory.conversations.length > 1
+    };
+  } catch (e) {
+    return errorResponse('NPC chat failed: ' + e.message, 500);
+  }
+});
+
+router.get("/", async () => {
+  return new Response(JSON.stringify({
+    app: 'GRUDGE Server',
+    version: '2.5.0',
+    status: 'online',
+    endpoints: [
+      'GET  /api/health',
+      'POST /api/auth/consume',
+      'GET  /api/auth/verify',
+      'POST /api/ai/chat',
+      'POST /api/ai/vision',
+      'POST /api/sprites/generate',
+      'GET  /api/jobs/:jobId',
+      'GET  /api/jobs',
+      'GET  /api/data/game',
+      'POST /api/data/sync',
+      'GET  /api/data/:dataType',
+      'POST /api/npc/chat'
+    ]
+  }), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json' }
+  });
+});
+
+router.get("/favicon.ico", async () => {
+  return new Response(null, { status: 204 });
+});
+
+router.get("/*page", async ({ params }) => {
+  return new Response(JSON.stringify({
+    error: 'Endpoint not found',
+    path: '/' + (params.page || ''),
+    availableEndpoints: [
+      'GET  /api/health',
+      'POST /api/auth/consume',
+      'GET  /api/auth/verify',
+      'POST /api/ai/chat',
+      'POST /api/ai/vision',
+      'POST /api/sprites/generate',
+      'GET  /api/jobs/:jobId',
+      'GET  /api/jobs',
+      'GET  /api/data/game',
+      'POST /api/data/sync',
+      'GET  /api/data/:dataType',
+      'POST /api/npc/chat'
+    ]
+  }), {
+    status: 404,
+    headers: { 'Content-Type': 'application/json' }
+  });
+});
+
+console.log('GRUDGE Server v2.5.0 initialized');
+console.log('Using me.puter for developer resources');

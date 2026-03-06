@@ -1,0 +1,96 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grudge-backend
+  namespace: grudge-warlords
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: grudge-backend
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: grudge-backend
+    spec:
+      containers:
+      - name: grudge-backend
+        image: yourusername/grudge-warlords:latest  # Change to your Docker Hub username
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+          name: http
+        env:
+        - name: NODE_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: grudge-config
+              key: NODE_ENV
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: grudge-config
+              key: PORT
+        - name: BACKEND_URL
+          valueFrom:
+            configMapKeyRef:
+              name: grudge-config
+              key: BACKEND_URL
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: grudge-secrets
+              key: DATABASE_URL
+        - name: SESSION_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: grudge-secrets
+              key: SESSION_SECRET
+        - name: REDIS_URL
+          valueFrom:
+            secretKeyRef:
+              name: grudge-secrets
+              key: REDIS_URL
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grudge-backend-service
+  namespace: grudge-warlords
+spec:
+  selector:
+    app: grudge-backend
+  ports:
+  - port: 80
+    targetPort: 5000
+    name: http
+  type: ClusterIP
+

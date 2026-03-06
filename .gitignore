@@ -1,0 +1,32 @@
+# Secrets
+.env
+.env.local
+.env.production
+
+# Large binary assets
+*.zip
+*.mpq
+*.MPQ
+*.psd
+*.exe
+
+# Node / Python environments
+node_modules/
+.conda/
+.venv/
+__pycache__/
+
+# Build artifacts
+dist/
+build/
+
+# IDE / editor
+.history/
+.ipynb_checkpoints/
+
+# Reference assets (194K+ files, tracked separately)
+apps/warlord-crafting-suite/grudge-builder/Grudge-Builder-refrences/
+
+# Local config
+.local/
+

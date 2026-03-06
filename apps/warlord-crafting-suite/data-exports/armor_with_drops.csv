@@ -1,0 +1,89 @@
+ID,Name,Tier,Slot,ArmorType,Profession,DropRate,DropSource,DropNode,DropActivity,Guaranteed100,MinHeroLevel,Notes
+copper-helm,Copper Helm,1,Head,Plate,Miner,15.0,"Goblins, Bandits",Bandit Camp|Goblin Cave,Combat,false,1,Basic metal helm
+iron-helm,Iron Helm,2,Head,Plate,Miner,8.0,"Orc Warriors, Knights",Orc Fort|Castle,Combat,false,1,Sturdy iron helm
+steel-helm,Steel Helm,3,Head,Plate,Miner,5.0,"Elite Guards, Champions",Fortress|Arena,Combat|Boss,false,6,Heavy steel helm
+mithril-helm,Mithril Helm,4,Head,Plate,Miner,4.0,"Enchanted Knights, Mithril Golems",Magic Castle|Mithril Mine,Combat|Boss,false,11,Magical helm
+adamantine-helm,Adamantine Helm,5,Head,Plate,Miner,3.0,"Adamantine Guards, Dragon Knights",Deep Fortress|Dragon Gate,Combat|Boss,false,16,Legendary helm
+orichalcum-helm,Orichalcum Helm,6,Head,Plate,Miner,2.5,"Titan Guards, Ancient Warriors",Titan Hall|Ancient Ruins,Raid Boss,false,20,Ancient helm
+starmetal-helm,Starmetal Helm,7,Head,Plate,Miner,2.0,"Celestial Knights, Star Guards",Star Temple|Celestial Gate,World Boss,false,20,Celestial helm
+divine-helm,Divine Helm,8,Head,Plate,Miner,1.0,"Divine Warrior, God's Champion",Divine Arena|Holy Sanctum,Divine Boss,false,20,Holy helm
+copper-chestplate,Copper Chestplate,1,Chest,Plate,Miner,15.0,"Armored Goblins, Bandit Leaders",Bandit Hideout|Goblin King,Combat,false,1,Basic chest armor
+iron-chestplate,Iron Chestplate,2,Chest,Plate,Miner,8.0,"Orc Chiefs, Knight Captains",Orc Stronghold|Knight Barracks,Combat,false,1,Sturdy chest armor
+steel-chestplate,Steel Chestplate,3,Chest,Plate,Miner,5.0,"Elite Commanders, Arena Champions",War Room|Grand Arena,Combat|Boss,false,6,Heavy chest armor
+mithril-chestplate,Mithril Chestplate,4,Chest,Plate,Miner,4.0,"Mithril Knights, Enchanted Guardians",Crystal Palace|Magic Vault,Combat|Boss,false,11,Magical chest armor
+adamantine-chestplate,Adamantine Chestplate,5,Chest,Plate,Miner,3.0,"Legendary Knights, Dragon Riders",Dragon Roost|Legend Hall,Combat|Boss,false,16,Legendary chest armor
+orichalcum-chestplate,Orichalcum Chestplate,6,Chest,Plate,Miner,2.5,"Titan Warriors, Ancient Champions",Titan Throne|Ancient Arena,Raid Boss,false,20,Ancient chest armor
+starmetal-chestplate,Starmetal Chestplate,7,Chest,Plate,Miner,2.0,"Star Knights, Celestial Champions",Celestial Arena|Star Forge,World Boss,false,20,Celestial chest armor
+divine-chestplate,Divine Chestplate,8,Chest,Plate,Miner,1.0,"Divine Champion, War God",Divine Forge|Holy War,Divine Boss,false,20,Holy chest armor
+leather-cap,Leather Cap,1,Head,Leather,Forester,15.0,"Scouts, Hunters",Forest|Hunting Ground,Combat,false,1,Basic leather helm
+thick-leather-cap,Thick Leather Cap,2,Head,Leather,Forester,8.0,"Rangers, Beast Tamers",Ranger Post|Beast Den,Combat,false,1,Sturdy leather helm
+rugged-leather-cap,Rugged Leather Cap,3,Head,Leather,Forester,5.0,"Master Hunters, Beastmasters",Hunter Lodge|Wild Zone,Combat|Boss,false,6,Heavy leather helm
+hardened-leather-cap,Hardened Leather Cap,4,Head,Leather,Forester,4.0,"Elite Rangers, War Scouts",War Camp|Ranger HQ,Combat|Boss,false,11,Reinforced leather helm
+wyrm-leather-cap,Wyrm Leather Cap,5,Head,Leather,Forester,3.0,"Dragon Hunters, Wyrm Riders",Dragon Territory|Wyrm Nest,Combat|Boss,false,16,Dragon leather helm
+infernal-leather-cap,Infernal Leather Cap,6,Head,Leather,Forester,2.5,"Demon Hunters, Hell Scouts",Hell Gate|Demon Territory,Raid Boss,false,20,Demon leather helm
+titan-leather-cap,Titan Leather Cap,7,Head,Leather,Forester,2.0,"Giant Hunters, Titan Scouts",Titan Land|Giant Territory,World Boss,false,20,Titan leather helm
+divine-leather-cap,Divine Leather Cap,8,Head,Leather,Forester,1.0,"Divine Hunter, Nature God",Divine Hunt|Holy Forest,Divine Boss,false,20,Holy leather helm
+leather-vest,Leather Vest,1,Chest,Leather,Forester,15.0,"Bandits, Rogues",Road|Thieves Guild,Combat,false,1,Basic leather chest
+thick-leather-vest,Thick Leather Vest,2,Chest,Leather,Forester,8.0,"Highwaymen, Smugglers",Mountain Pass|Port,Combat,false,1,Sturdy leather chest
+rugged-leather-vest,Rugged Leather Vest,3,Chest,Leather,Forester,5.0,"Master Thieves, Guild Leaders",Thieves HQ|Black Market,Combat|Boss,false,6,Heavy leather chest
+hardened-leather-vest,Hardened Leather Vest,4,Chest,Leather,Forester,4.0,"Elite Rogues, Assassin Masters",Shadow Guild|Dark Alley,Combat|Boss,false,11,Reinforced leather chest
+wyrm-leather-vest,Wyrm Leather Vest,5,Chest,Leather,Forester,3.0,"Shadow Dragons, Dark Riders",Shadow Realm|Dragon Shadow,Combat|Boss,false,16,Dragon leather chest
+infernal-leather-vest,Infernal Leather Vest,6,Chest,Leather,Forester,2.5,"Demon Rogues, Hell Assassins",Hell Shadows|Demon Thieves,Raid Boss,false,20,Demon leather chest
+titan-leather-vest,Titan Leather Vest,7,Chest,Leather,Forester,2.0,"Giant Rogues, Titan Assassins",Titan Shadows|Giant Thieves,World Boss,false,20,Titan leather chest
+divine-leather-vest,Divine Leather Vest,8,Chest,Leather,Forester,1.0,"Divine Rogue, Shadow God",Divine Shadows|Holy Thieves,Divine Boss,false,20,Holy leather chest
+linen-hood,Linen Hood,1,Head,Cloth,Mystic,15.0,"Apprentice Mages, Cultists",Mage Tower|Cult Lair,Combat,false,1,Basic cloth helm
+wool-hood,Wool Hood,2,Head,Cloth,Mystic,8.0,"Journeyman Mages, Witches",Academy|Coven,Combat,false,1,Warm cloth helm
+cotton-hood,Cotton Hood,3,Head,Cloth,Mystic,5.0,"Master Mages, Warlocks",Magic Spire|Warlock Tower,Combat|Boss,false,6,Quality cloth helm
+silk-hood,Silk Hood,4,Head,Cloth,Mystic,4.0,"Archmages, High Priests",Grand Temple|Arcane Library,Combat|Boss,false,11,Luxury cloth helm
+moonweave-hood,Moonweave Hood,5,Head,Cloth,Mystic,3.0,"Moon Mages, Lunar Priests",Moon Temple|Lunar Altar,Combat|Boss,false,16,Lunar cloth helm
+starweave-hood,Starweave Hood,6,Head,Cloth,Mystic,2.5,"Star Mages, Celestial Priests",Star Temple|Celestial Altar,Raid Boss,false,20,Celestial cloth helm
+voidweave-hood,Voidweave Hood,7,Head,Cloth,Mystic,2.0,"Void Mages, Dark Priests",Void Temple|Dark Altar,World Boss,false,20,Void cloth helm
+divine-hood,Divine Hood,8,Head,Cloth,Mystic,1.0,"Divine Mage, Magic God",Divine Temple|Holy Altar,Divine Boss,false,20,Holy cloth helm
+linen-robe,Linen Robe,1,Chest,Cloth,Mystic,15.0,"Mages, Priests",Temple|Magic School,Combat,false,1,Basic cloth chest
+wool-robe,Wool Robe,2,Chest,Cloth,Mystic,8.0,"Shamans, Druids",Sacred Grove|Shaman Hut,Combat,false,1,Warm cloth chest
+cotton-robe,Cotton Robe,3,Chest,Cloth,Mystic,5.0,"High Mages, High Priests",Cathedral|Magic Tower,Combat|Boss,false,6,Quality cloth chest
+silk-robe,Silk Robe,4,Chest,Cloth,Mystic,4.0,"Grand Mages, Arch Priests",Grand Cathedral|Magic Castle,Combat|Boss,false,11,Luxury cloth chest
+moonweave-robe,Moonweave Robe,5,Chest,Cloth,Mystic,3.0,"Lunar Mages, Moon Priests",Lunar Palace|Moon Sanctum,Combat|Boss,false,16,Lunar cloth chest
+starweave-robe,Starweave Robe,6,Chest,Cloth,Mystic,2.5,"Celestial Mages, Star Priests",Celestial Palace|Star Sanctum,Raid Boss,false,20,Celestial cloth chest
+voidweave-robe,Voidweave Robe,7,Chest,Cloth,Mystic,2.0,"Void Lords, Dark High Priests",Void Palace|Dark Sanctum,World Boss,false,20,Void cloth chest
+divine-robe,Divine Robe,8,Chest,Cloth,Mystic,1.0,"Divine High Mage, God of Wisdom",Divine Palace|Holy Sanctum,Divine Boss,false,20,Holy cloth chest
+copper-greaves,Copper Greaves,1,Legs,Plate,Miner,15.0,"Goblins, Bandits",Bandit Camp|Goblin Cave,Combat,false,1,Basic leg armor
+iron-greaves,Iron Greaves,2,Legs,Plate,Miner,8.0,"Orc Warriors, Knights",Orc Fort|Castle,Combat,false,1,Sturdy leg armor
+steel-greaves,Steel Greaves,3,Legs,Plate,Miner,5.0,"Elite Guards, Champions",Fortress|Arena,Combat|Boss,false,6,Heavy leg armor
+mithril-greaves,Mithril Greaves,4,Legs,Plate,Miner,4.0,"Enchanted Knights, Mithril Golems",Magic Castle|Mithril Mine,Combat|Boss,false,11,Magical leg armor
+adamantine-greaves,Adamantine Greaves,5,Legs,Plate,Miner,3.0,"Adamantine Guards, Dragon Knights",Deep Fortress|Dragon Gate,Combat|Boss,false,16,Legendary leg armor
+orichalcum-greaves,Orichalcum Greaves,6,Legs,Plate,Miner,2.5,"Titan Guards, Ancient Warriors",Titan Hall|Ancient Ruins,Raid Boss,false,20,Ancient leg armor
+starmetal-greaves,Starmetal Greaves,7,Legs,Plate,Miner,2.0,"Celestial Knights, Star Guards",Star Temple|Celestial Gate,World Boss,false,20,Celestial leg armor
+divine-greaves,Divine Greaves,8,Legs,Plate,Miner,1.0,"Divine Warrior, God's Champion",Divine Arena|Holy Sanctum,Divine Boss,false,20,Holy leg armor
+copper-boots,Copper Boots,1,Feet,Plate,Miner,15.0,"Goblins, Bandits",Bandit Camp|Goblin Cave,Combat,false,1,Basic foot armor
+iron-boots,Iron Boots,2,Feet,Plate,Miner,8.0,"Orc Warriors, Knights",Orc Fort|Castle,Combat,false,1,Sturdy foot armor
+steel-boots,Steel Boots,3,Feet,Plate,Miner,5.0,"Elite Guards, Champions",Fortress|Arena,Combat|Boss,false,6,Heavy foot armor
+mithril-boots,Mithril Boots,4,Feet,Plate,Miner,4.0,"Enchanted Knights, Mithril Golems",Magic Castle|Mithril Mine,Combat|Boss,false,11,Magical foot armor
+adamantine-boots,Adamantine Boots,5,Feet,Plate,Miner,3.0,"Adamantine Guards, Dragon Knights",Deep Fortress|Dragon Gate,Combat|Boss,false,16,Legendary foot armor
+orichalcum-boots,Orichalcum Boots,6,Feet,Plate,Miner,2.5,"Titan Guards, Ancient Warriors",Titan Hall|Ancient Ruins,Raid Boss,false,20,Ancient foot armor
+starmetal-boots,Starmetal Boots,7,Feet,Plate,Miner,2.0,"Celestial Knights, Star Guards",Star Temple|Celestial Gate,World Boss,false,20,Celestial foot armor
+divine-boots,Divine Boots,8,Feet,Plate,Miner,1.0,"Divine Warrior, God's Champion",Divine Arena|Holy Sanctum,Divine Boss,false,20,Holy foot armor
+copper-gauntlets,Copper Gauntlets,1,Hands,Plate,Miner,15.0,"Goblins, Bandits",Bandit Camp|Goblin Cave,Combat,false,1,Basic hand armor
+iron-gauntlets,Iron Gauntlets,2,Hands,Plate,Miner,8.0,"Orc Warriors, Knights",Orc Fort|Castle,Combat,false,1,Sturdy hand armor
+steel-gauntlets,Steel Gauntlets,3,Hands,Plate,Miner,5.0,"Elite Guards, Champions",Fortress|Arena,Combat|Boss,false,6,Heavy hand armor
+mithril-gauntlets,Mithril Gauntlets,4,Hands,Plate,Miner,4.0,"Enchanted Knights, Mithril Golems",Magic Castle|Mithril Mine,Combat|Boss,false,11,Magical hand armor
+adamantine-gauntlets,Adamantine Gauntlets,5,Hands,Plate,Miner,3.0,"Adamantine Guards, Dragon Knights",Deep Fortress|Dragon Gate,Combat|Boss,false,16,Legendary hand armor
+orichalcum-gauntlets,Orichalcum Gauntlets,6,Hands,Plate,Miner,2.5,"Titan Guards, Ancient Warriors",Titan Hall|Ancient Ruins,Raid Boss,false,20,Ancient hand armor
+starmetal-gauntlets,Starmetal Gauntlets,7,Hands,Plate,Miner,2.0,"Celestial Knights, Star Guards",Star Temple|Celestial Gate,World Boss,false,20,Celestial hand armor
+divine-gauntlets,Divine Gauntlets,8,Hands,Plate,Miner,1.0,"Divine Warrior, God's Champion",Divine Arena|Holy Sanctum,Divine Boss,false,20,Holy hand armor
+copper-pauldrons,Copper Pauldrons,1,Shoulders,Plate,Miner,15.0,"Goblins, Bandits",Bandit Camp|Goblin Cave,Combat,false,1,Basic shoulder armor
+iron-pauldrons,Iron Pauldrons,2,Shoulders,Plate,Miner,8.0,"Orc Warriors, Knights",Orc Fort|Castle,Combat,false,1,Sturdy shoulder armor
+steel-pauldrons,Steel Pauldrons,3,Shoulders,Plate,Miner,5.0,"Elite Guards, Champions",Fortress|Arena,Combat|Boss,false,6,Heavy shoulder armor
+mithril-pauldrons,Mithril Pauldrons,4,Shoulders,Plate,Miner,4.0,"Enchanted Knights, Mithril Golems",Magic Castle|Mithril Mine,Combat|Boss,false,11,Magical shoulder armor
+adamantine-pauldrons,Adamantine Pauldrons,5,Shoulders,Plate,Miner,3.0,"Adamantine Guards, Dragon Knights",Deep Fortress|Dragon Gate,Combat|Boss,false,16,Legendary shoulder armor
+orichalcum-pauldrons,Orichalcum Pauldrons,6,Shoulders,Plate,Miner,2.5,"Titan Guards, Ancient Warriors",Titan Hall|Ancient Ruins,Raid Boss,false,20,Ancient shoulder armor
+starmetal-pauldrons,Starmetal Pauldrons,7,Shoulders,Plate,Miner,2.0,"Celestial Knights, Star Guards",Star Temple|Celestial Gate,World Boss,false,20,Celestial shoulder armor
+divine-pauldrons,Divine Pauldrons,8,Shoulders,Plate,Miner,1.0,"Divine Warrior, God's Champion",Divine Arena|Holy Sanctum,Divine Boss,false,20,Holy shoulder armor
+copper-shield,Copper Shield,1,OffHand,Shield,Miner,15.0,"Goblin Shieldbearers, Bandit Guards",Bandit Camp|Goblin Fort,Combat,false,1,Basic shield
+iron-shield,Iron Shield,2,OffHand,Shield,Miner,8.0,"Orc Defenders, Knight Guards",Orc Fort|Castle Guard,Combat,false,1,Sturdy shield
+steel-shield,Steel Shield,3,OffHand,Shield,Miner,5.0,"Elite Defenders, Arena Guards",Fortress|Arena,Combat|Boss,false,6,Heavy shield
+mithril-shield,Mithril Shield,4,OffHand,Shield,Miner,4.0,"Mithril Guards, Enchanted Defenders",Magic Castle|Mithril Hall,Combat|Boss,false,11,Magical shield
+adamantine-shield,Adamantine Shield,5,OffHand,Shield,Miner,3.0,"Legendary Defenders, Dragon Guards",Deep Fortress|Dragon Hall,Combat|Boss,false,16,Legendary shield
+orichalcum-shield,Orichalcum Shield,6,OffHand,Shield,Miner,2.5,"Titan Defenders, Ancient Guards",Titan Hall|Ancient Gate,Raid Boss,false,20,Ancient shield
+starmetal-shield,Starmetal Shield,7,OffHand,Shield,Miner,2.0,"Celestial Defenders, Star Guards",Star Temple|Celestial Hall,World Boss,false,20,Celestial shield
+divine-shield,Divine Shield,8,OffHand,Shield,Miner,1.0,"Divine Defender, Shield of Gods",Divine Gate|Holy Hall,Divine Boss,false,20,Holy shield

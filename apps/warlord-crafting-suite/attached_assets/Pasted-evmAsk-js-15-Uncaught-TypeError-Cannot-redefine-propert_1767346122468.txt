@@ -1,0 +1,211 @@
+evmAsk.js:15 Uncaught TypeError: Cannot redefine property: ethereum
+    at Object.defineProperty (<anonymous>)
+    at r.inject (evmAsk.js:15:5093)
+    at PI.window.addEventListener.once (evmAsk.js:15:9013)
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The source list for the Content Security Policy directive 'default-src' contains an invalid source: ''unsafe-dynamic''. It will be ignored.
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The Content-Security-Policy directive 'default-src' contains 'report-uri' as a source expression. Did you want to add it as a directive and forget a semicolon?
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+The source list for Content Security Policy directive 'default-src' contains a source with an invalid path: '/api/4509669501698048/security/?sentry_key=7eb3d90eb4660416caf507087367e67e'. The query component, including the '?', will be ignored.
+evmAsk.js:15 Uncaught TypeError: Cannot redefine property: ethereum
+    at Object.defineProperty (<anonymous>)
+    at r.inject (evmAsk.js:15:5093)
+    at PI.window.addEventListener.once (evmAsk.js:15:9013)
+dotdevproxy.picard.repl.co/__reachability:1  Failed to load resource: net::ERR_SSL_PROTOCOL_ERROR
+dotdevproxy.picard.repl.co/__reachability:1  Failed to load resource: net::ERR_SSL_PROTOCOL_ERROR
+dotdevproxy.picard.repl.co/__reachability:1  Failed to load resource: net::ERR_SSL_PROTOCOL_ERROR
+dotdevproxy.worf.repl.co/__reachability:1  Failed to load resource: net::ERR_SSL_PROTOCOL_ERROR
+dotdevproxy.worf.repl.co/__reachability:1  Failed to load resource: net::ERR_SSL_PROTOCOL_ERROR
+evmAsk.js:15 Uncaught TypeError: Cannot redefine property: ethereum
+    at Object.defineProperty (<anonymous>)
+    at r.inject (evmAsk.js:15:5093)
+    at PI.window.addEventListener.once (evmAsk.js:15:9013)
+chrome-extension://b…koljpa/evmAsk.js:15 Uncaught TypeError: Cannot redefine property: ethereum
+    at Object.defineProperty (<anonymous>)
+    at r.inject (evmAsk.js:15:5093)
+    at PI.window.addEventListener.once (evmAsk.js:15:9013)
+Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension 7429c16f-3b87-492e-a0d0-cd9aa93313df Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+chrome-extension://b…koljpa/evmAsk.js:15 Uncaught TypeError: Cannot redefine property: ethereum
+    at Object.defineProperty (<anonymous>)
+    at r.inject (evmAsk.js:15:5093)
+    at PI.window.addEventListener.once (evmAsk.js:15:9013)
+dotdevproxy.worf.repl.co/__reachability:1  Failed to load resource: net::ERR_SSL_PROTOCOL_ERROR
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension adccbcd2-c9d6-4778-b0cb-20e1bf289634 Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension 3a43c2a4-dbc3-4bb7-8792-eed3c6c3cc7d Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension d526fa49-4249-4a76-99b8-6a8e548e485f Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension 857b2e2f-2c57-42be-8033-400c06d95624 Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension 0749a275-ca72-4284-b752-e8e5d438c460 Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension caec5af5-d3ae-4976-b8e2-9f3738b0b021 Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+Error while parsing the 'sandbox' attribute: 'allow-downloads-without-user-activation' is an invalid sandbox flag.
+Error while parsing the 'sandbox' attribute: 'allow-downloads-without-user-activation' is an invalid sandbox flag.
+Error while parsing the 'sandbox' attribute: 'allow-downloads-without-user-activation' is an invalid sandbox flag.
+Error while parsing the 'sandbox' attribute: 'allow-downloads-without-user-activation' is an invalid sandbox flag.
+Error while parsing the 'sandbox' attribute: 'allow-downloads-without-user-activation' is an invalid sandbox flag.
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension 3d28c542-4e39-4490-ae8d-b1af85e3affb Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension 6493d527-24ed-4062-9cc6-254ccb66da53 Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension bf6b2a14-13c8-44fa-b5ae-3386848c45c8 Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension 2de857a3-68f1-4435-8c51-eda9d5ffe3a4 Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension f69cae31-eabd-4d70-8feb-546b81e35e1a Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension 8c8858d3-0111-4878-bbf5-9f203f9d5e0a Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension 18327322-d236-4f51-93dd-bd22e040e5e3 Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension be99dc60-03cc-4c29-ad1c-fe025be1a33a Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension 88d1957f-e5f9-4bbe-8b56-60edc458561a Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension 7636883a-2637-421c-aa98-27ffc46d202b Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension 64d9f8f8-0c0c-46cb-8245-193024f271c7 Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension 71b9e9dd-9e9b-4615-8d28-3187422a5ba7 Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension dd982728-9c3f-41ed-ae69-33c51a7fec20 Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension 9d8280fb-1a5f-495b-9624-aba982c42205 Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension cb610a4e-e11a-4432-a603-20cbfeeb4da2 Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension ce79e410-37c7-48d9-88ee-d28b6a4efcd9 Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension e2df0c28-20a7-468f-96bb-aec04c9c8ed7 Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension 80d95f9d-da16-441f-90c4-d40e5f9f3a7a Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension 1f5ce3c0-6f99-4d79-8354-ef5cbc8dd034 Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension 33a91a8f-b3df-4337-a084-d5efdb39049d Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+11fa10d4d51c9bc2.js:2 Extension Error: An error occurred while loading the extension manifest: Manifest does not exist for extension 929d2f2e-70e3-407b-b5c7-9b5d4c8e7e20 Object
+(anonymous) @ 11fa10d4d51c9bc2.js:2
+content-all.js:1 Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
+    at y (content-all.js:1:57697)
+content-all.js:1 Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
+    at y (content-all.js:1:57697)
+content-all.js:1 Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
+    at y (content-all.js:1:57697)
+content-all.js:1 Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
+    at y (content-all.js:1:57697)
+content-all.js:1 Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
+    at y (content-all.js:1:57697)
+t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://indec.ht/&size=32:1  Failed to load resource: the server responded with a status of 404 ()
+t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://indec.ht&size=32:1  Failed to load resource: the server responded with a status of 404 ()
+t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://index.ht&size=32:1  Failed to load resource: the server responded with a status of 404 ()
+t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://index.ht/&size=32:1  Failed to load resource: the server responded with a status of 404 ()
+t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://puter.site&size=32:1  Failed to load resource: the server responded with a status of 404 ()
+t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://puter.site/&size=32:1  Failed to load resource: the server responded with a status of 404 ()
+t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://grudge-authputer.site&size=32:1  Failed to load resource: the server responded with a status of 404 ()
+t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://grudge-authputer.site/&size=32:1  Failed to load resource: the server responded with a status of 404 ()
+Warlord-Crafting-Suite:1 Access to fetch at 'https://c.adora-cdn.com/sessions/019b7dee-486b-7d73-bd60-a27faa8ba3dd/events/token' from origin 'https://replit.com' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+c.adora-cdn.com/sessions/019b7dee-486b-7d73-bd60-a27faa8ba3dd/events/token:1  Failed to load resource: net::ERR_FAILED
+t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://grudge-auth.puter.site&size=32:1  Failed to load resource: the server responded with a status of 404 ()
+t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://grudge-auth.puter.site/&size=32:1  Failed to load resource: the server responded with a status of 404 ()
+Warlord-Crafting-Suite:1 Uncaught (in promise) Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+Warlord-Crafting-Suite:1 Uncaught (in promise) Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+content-all.js:1 Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
+    at y (content-all.js:1:57697)
+Warlord-Crafting-Suite:1 Uncaught (in promise) Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+Warlord-Crafting-Suite:1 Uncaught (in promise) Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+api.puter.com/whoami:1  Failed to load resource: the server responded with a status of 401 ()
+all-frames.js:15 Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
+    at b (all-frames.js:15:15619)
+all-frames.js:15 Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
+all-frames.js:15 Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
+    at b (all-frames.js:15:15619)
+api.puter.com/whoami:1  Failed to load resource: the server responded with a status of 401 ()
+injected.js:37 Web3Auth error: ReferenceError: Buffer is not defined
+    at chunk-2NNKIY3J.js?v=2b563a1d:11090:22
+(anonymous) @ injected.js:37
+injected.js:37 Web3Auth error: ReferenceError: Buffer is not defined
+    at chunk-2NNKIY3J.js?v=2b563a1d:11090:22
+(anonymous) @ injected.js:37
+injected.js:37 Web3Auth error: ReferenceError: Buffer is not defined
+    at chunk-2NNKIY3J.js?v=2b563a1d:11090:22
+(anonymous) @ injected.js:37

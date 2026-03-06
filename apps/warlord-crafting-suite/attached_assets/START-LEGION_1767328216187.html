@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏴‍☠️ GRUDA Legion - Auto Deployment System</title>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/bGd5QJ0.png">
+    <script src="https://js.puter.com/v2/"></script>
+    <script src="gruda-wallet-backend.js"></script>
+    <script src="gruda-wallet-frontend.js"></script>
+    <script src="gruda-node-api.js"></script>
+    <script src="ale-enhanced-voice-system.js"></script>
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(45deg, #000428, #004e92);
+            color: #00ff88;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #00ff88;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            text-shadow: 0 0 20px #00ff88;
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 20px #00ff88; }
+            to { text-shadow: 0 0 30px #00ff88, 0 0 40px #00ff88; }
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #00ccff;
+            margin-bottom: 20px;
+        }
+        
+        .user-info {
+            background: rgba(0, 78, 146, 0.3);
+            border: 1px solid #00ccff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .user-info h3 {
+            color: #00ccff;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .user-info p {
+            margin: 8px 0;
+            font-size: 1.1em;
+        }
+        
+        .wallet-onboarding {
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid #00ff88;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .wallet-onboarding h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            text-shadow: 0 0 10px #00ff88;
+        }
+        
+        .wallet-option {
+            background: rgba(0, 78, 146, 0.5);
+            border: 1px solid #00ccff;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .wallet-option:hover {
+            background: rgba(0, 204, 255, 0.2);
+            border-color: #00ff88;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+        
+        .wallet-option h4 {
+            color: #00ff88;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .email-form {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #00ff88;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .email-form h4 {
+            color: #00ff88;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .email-form input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: rgba(0, 78, 146, 0.3);
+            border: 1px solid #00ccff;
+            border-radius: 5px;
+            color: #00ff88;
+            font-family: 'Courier New', monospace;
+            font-size: 1em;
+        }
+        
+        .email-form input::placeholder {
+            color: #00ccff;
+            opacity: 0.7;
+        }
+        
+        .auto-deploy-btn {
+            background: linear-gradient(45deg, #004e92, #00ff88);
+            border: none;
+            color: #000;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .auto-deploy-btn:hover {
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.4);
+        }
+        
+        .wallet-info {
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid #00ff88;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .wallet-info h4 {
+            color: #00ff88;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.3em;
+        }
+        
+        .wallet-address {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 5px 10px;
+            border-radius: 4px;
+            word-break: break-all;
+            color: #00ccff;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: rgba(0, 78, 146, 0.3);
+            border: 1px solid #00ccff;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            border-color: #00ff88;
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.2);
+        }
+          .feature-card h4 {
+            color: #00ff88;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        /* AI Showcase Styles */
+        .ai-showcase {
+            background: linear-gradient(135deg, rgba(0, 78, 146, 0.2), rgba(0, 255, 136, 0.1));
+            border: 2px solid #00ff88;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .ai-showcase h3 {
+            color: #00ff88;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            animation: pulse 2s infinite;
+        }
+        
+        .ai-models {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .ai-model {
+            background: rgba(0, 204, 255, 0.1);
+            border: 1px solid #00ccff;
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .ai-model:hover {
+            transform: translateY(-5px);
+            border-color: #00ff88;
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.3);
+        }
+        
+        .ai-model h4 {
+            color: #00ccff;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        
+        .ai-model p {
+            color: #ffffff;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .test-btn {
+            background: linear-gradient(45deg, #004e92, #00ff88);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+        
+        .test-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
+        }
+        
+        .ai-status {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+            border-radius: 8px;
+            padding: 10px;
+            color: #00ff88;
+            font-weight: bold;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+        
+        .status-online { background: #00ff88; }
+        .status-offline { background: #ff4444; }
+        .status-connecting { background: #ffaa00; }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #00ccff;
+            color: #00ccff;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏴‍☠️ GRUDA Legion</h1>
+            <div class="subtitle">
+                <span class="status-indicator status-connecting"></span>
+                Auto-Deployment System | Free AI Access | Resource Sharing Network
+            </div>
+        </div>
+        
+        <div class="user-info">
+            <h3>🔗 GRUDA Node Configuration</h3>
+            <p><strong>User:</strong> <span id="userName">Detecting...</span></p>
+            <p><strong>Email:</strong> <span id="userEmail">Detecting...</span></p>
+            <p><strong>Node ID:</strong> <span id="nodeId">Generating...</span></p>
+            <p><strong>Network:</strong> <span id="networkStatus">Initializing...</span></p>
+        </div>
+        
+        <!-- Wallet Onboarding Section -->
+        <div class="wallet-onboarding" id="walletOnboarding">
+            <h3>🏴‍☠️ GRUDA Wallet Setup Required</h3>
+            <p>Choose your onboarding method to join the GRUDA Legion Network:</p>
+            
+            <div class="wallet-option" onclick="connectExistingWallet()">
+                <h4>🔗 Connect Existing Wallet</h4>
+                <p>MetaMask, Phantom, or other Web3 wallet</p>
+            </div>
+            
+            <div class="wallet-option" onclick="showEmailForm()">
+                <h4>📧 Create New GRUDA Wallet</h4>
+                <p>Register with email - we'll create SOL/POLY/GRUDA addresses</p>
+            </div>
+            
+            <div class="email-form" id="emailForm" style="display: none;">
+                <h4>Create Your GRUDA Wallet</h4>
+                <input type="email" id="emailInput" placeholder="Enter your email address" required>
+                <input type="text" id="nameInput" placeholder="Enter your name (optional)">
+                <button class="auto-deploy-btn" onclick="createWalletWithEmail()">
+                    🎯 Create GRUDA Wallet
+                </button>
+            </div>
+        </div>
+        
+        <!-- Wallet Info Display -->
+        <div class="wallet-info" id="walletInfo" style="display: none;">
+            <h4>✅ GRUDA Wallet Connected</h4>
+            <div><strong>GRUDA Address:</strong> <span class="wallet-address" id="grudaAddress"></span></div>
+            <div><strong>Solana (SOL):</strong> <span class="wallet-address" id="solAddress"></span></div>
+            <div><strong>Polygon (POLY):</strong> <span class="wallet-address" id="polyAddress"></span></div>
+            <button class="auto-deploy-btn" onclick="exportWalletData()" style="margin-top: 15px;">
+                💾 Export Wallet Info
+            </button>
+        </div>        
+        <!-- Free AI Showcase -->
+        <div class="ai-showcase">
+            <h3>🧠 FREE AI FEATURES - NO API KEYS REQUIRED</h3>
+            <div class="ai-models">
+                <div class="ai-model">
+                    <h4>🎭 Claude 3.5 Sonnet</h4>
+                    <p>Advanced reasoning & creative writing</p>
+                    <button onclick="testAI('claude')" class="test-btn">Test Now</button>
+                </div>
+                <div class="ai-model">
+                    <h4>⚡ GPT-4o</h4>
+                    <p>Latest OpenAI model for all tasks</p>
+                    <button onclick="testAI('gpt4o')" class="test-btn">Test Now</button>
+                </div>
+                <div class="ai-model">
+                    <h4>🚀 O3-mini</h4>
+                    <p>Fast & efficient reasoning model</p>
+                    <button onclick="testAI('o3mini')" class="test-btn">Test Now</button>
+                </div>
+                <div class="ai-model">
+                    <h4>🌐 600+ Models</h4>
+                    <p>Via OpenRouter integration</p>
+                    <button onclick="openAIInterface()" class="test-btn">Explore</button>
+                </div>
+            </div>
+            <div class="ai-status">
+                <p>✅ Zero cost to developers | ✅ User-pays model | ✅ Unlimited usage</p>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <h4>🤖 Free AI Access</h4>
+                <p>Unlimited Claude, GPT-4o, O3-mini</p>
+                <div>Status: <span id="aiStatus">Ready</span></div>
+            </div>
+            
+            <div class="feature-card">
+                <h4>🌐 Resource Sharing</h4>
+                <p>Share idle resources, earn GRUDA tokens</p>
+                <div>Status: <span id="sharingStatus">Pending Wallet</span></div>
+            </div>
+            
+            <div class="feature-card">
+                <h4>🎤 Voice Control</h4>
+                <p>Voice commands and natural language</p>
+                <div>Status: <span id="voiceStatus">Ready</span></div>
+            </div>
+            
+            <div class="feature-card">
+                <h4>☁️ Cloud Deploy</h4>
+                <p>6 free deployment platforms</p>
+                <div>Status: <span id="deployStatus">Ready</span></div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>🏴‍☠️ Created by Racalvin The Pirate King</p>
+            <p>Wallet: 98jzgFFkPhrw9sfr5YyttTpCBiJyid6tzxxJjXrj7xXK</p>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let userWallet = null;
+        let grudaNodeAPI = null;
+        let walletIntegration = null;
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            initializeGrudaLegion();
+        });
+
+        async function initializeGrudaLegion() {
+            try {
+                // Initialize GRUDA Node API
+                if (typeof GrudaNodeAPI !== 'undefined') {
+                    grudaNodeAPI = new GrudaNodeAPI();
+                    await grudaNodeAPI.initialize();
+                }
+
+                // Initialize Wallet Integration
+                if (typeof GrudaWalletIntegration !== 'undefined') {
+                    walletIntegration = new GrudaWalletIntegration();
+                    await walletIntegration.initialize();
+                }
+
+                // Generate node ID
+                generateNodeId();
+                
+                // Check for existing wallet
+                checkExistingWallet();
+                
+                // Update network status
+                updateNetworkStatus();
+                
+                console.log('🏴‍☠️ GRUDA Legion initialized successfully!');
+            } catch (error) {
+                console.error('Initialization error:', error);
+                updateStatus('networkStatus', 'Error');
+            }
+        }
+
+        function generateNodeId() {
+            const nodeId = 'gruda_' + Math.random().toString(36).substr(2, 12);
+            document.getElementById('nodeId').textContent = nodeId;
+        }
+
+        function updateNetworkStatus() {
+            const status = grudaNodeAPI ? 'Connected' : 'Offline';
+            document.getElementById('networkStatus').textContent = status;
+        }
+
+        function updateStatus(elementId, status) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = status;
+            }
+        }
+
+        async function checkExistingWallet() {
+            try {
+                if (walletIntegration) {
+                    const existingWallet = await walletIntegration.checkExistingWallet();
+                    if (existingWallet) {
+                        displayWalletInfo(existingWallet);
+                        hideWalletOnboarding();
+                    }
+                }
+            } catch (error) {
+                console.log('No existing wallet found:', error);
+            }
+        }
+
+        async function connectExistingWallet() {
+            try {
+                if (!walletIntegration) {
+                    alert('Wallet integration not available');
+                    return;
+                }
+
+                const wallet = await walletIntegration.connectExistingWallet();
+                if (wallet) {
+                    userWallet = wallet;
+                    displayWalletInfo(wallet);
+                    hideWalletOnboarding();
+                    updateSharingStatus();
+                }
+            } catch (error) {
+                console.error('Wallet connection error:', error);
+                alert('Failed to connect wallet: ' + error.message);
+            }
+        }
+
+        function showEmailForm() {
+            const emailForm = document.getElementById('emailForm');
+            emailForm.style.display = 'block';
+        }
+
+        async function createWalletWithEmail() {
+            const email = document.getElementById('emailInput').value.trim();
+            const name = document.getElementById('nameInput').value.trim();
+
+            if (!email) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            try {
+                if (!walletIntegration) {
+                    alert('Wallet integration not available');
+                    return;
+                }
+
+                updateStatus('userName', name || 'GRUDA User');
+                updateStatus('userEmail', email);
+
+                const wallet = await walletIntegration.createWalletWithEmail(email, name);
+                if (wallet) {
+                    userWallet = wallet;
+                    displayWalletInfo(wallet);
+                    hideWalletOnboarding();
+                    updateSharingStatus();
+                }
+            } catch (error) {
+                console.error('Wallet creation error:', error);
+                alert('Failed to create wallet: ' + error.message);
+            }
+        }
+
+        function displayWalletInfo(wallet) {
+            document.getElementById('grudaAddress').textContent = wallet.grudaAddress || 'Generating...';
+            document.getElementById('solAddress').textContent = wallet.solAddress || 'Generating...';
+            document.getElementById('polyAddress').textContent = wallet.polyAddress || 'Generating...';
+            document.getElementById('walletInfo').style.display = 'block';
+        }
+
+        function hideWalletOnboarding() {
+            document.getElementById('walletOnboarding').style.display = 'none';
+        }
+
+        function updateSharingStatus() {
+            updateStatus('sharingStatus', 'Active');
+        }
+
+        function exportWalletData() {
+            if (!userWallet) {
+                alert('No wallet data to export');
+                return;
+            }
+
+            const walletData = {
+                grudaAddress: userWallet.grudaAddress,
+                solAddress: userWallet.solAddress,
+                polyAddress: userWallet.polyAddress,
+                email: document.getElementById('userEmail').textContent,
+                name: document.getElementById('userName').textContent,
+                nodeId: document.getElementById('nodeId').textContent,
+                created: new Date().toISOString()
+            };
+
+            const dataStr = JSON.stringify(walletData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(dataBlob);
+            link.download = 'gruda-wallet-backup.json';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);        }
+
+        // AI Showcase Functions
+        async function testAI(model) {
+            const testPrompts = {
+                'claude': 'Hello Claude! Can you tell me about your capabilities in one sentence?',
+                'gpt4o': 'Hello GPT-4o! What makes you special compared to other AI models?',
+                'o3mini': 'Hello O3-mini! Show me your reasoning abilities with a simple example.'
+            };
+
+            const prompt = testPrompts[model] || 'Hello! Please introduce yourself.';
+            
+            try {
+                let modelConfig = {};
+                switch(model) {
+                    case 'claude':
+                        modelConfig = { model: 'claude-3-5-sonnet-20241022' };
+                        break;
+                    case 'gpt4o':
+                        modelConfig = { model: 'gpt-4o-mini' };
+                        break;
+                    case 'o3mini':
+                        modelConfig = { model: 'o3-mini' };
+                        break;
+                }
+
+                // Show loading state
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = 'Testing...';
+                btn.disabled = true;
+
+                const response = await puter.ai.chat(prompt, modelConfig);
+                const aiMessage = response.message?.content || response.content || response;
+                
+                // Show result in alert for now (could be improved with a modal)
+                alert(`${model.toUpperCase()} Response:\n\n${aiMessage}`);
+                
+                // Restore button
+                btn.textContent = originalText;
+                btn.disabled = false;
+                
+            } catch (error) {
+                console.error('AI test error:', error);
+                alert(`❌ AI test failed: ${error.message}`);
+                
+                // Restore button
+                const btn = event.target;
+                btn.textContent = 'Test Now';
+                btn.disabled = false;
+            }
+        }
+
+        function openAIInterface() {
+            // Open ALE-LEGION-PRO.html which has the full AI interface
+            window.open('ALE-LEGION-PRO.html', '_blank');
+        }
+
+        // Voice command functionality (if available)
+        if (typeof initializeVoiceSystem === 'function') {
+            initializeVoiceSystem();
+        }
+    </script>
+</body>
+</html>

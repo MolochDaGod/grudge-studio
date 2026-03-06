@@ -1,0 +1,311 @@
+
+import Phaser from 'phaser';
+
+class RTSScene extends Phaser.Scene {
+  constructor() {
+    super('RTSScene');
+    
+    // World Configuration
+    this.WORLD_WIDTH = 4000;
+    this.WORLD_HEIGHT = 4000;
+    this.WORLD_DEPTH = 1500;
+    this.GRID_SIZE = 32;
+    
+    // Camera Configuration
+    this.CAMERA_CENTER = { x: 2000, y: 2000 };
+    this.CAMERA_ZOOM_MIN = 0.5;
+    this.CAMERA_ZOOM_MAX = 3;
+    this.CAMERA_ZOOM_SPEED = 0.1;
+    
+    // RTS Building System
+    this.buildings = [];
+    this.selectedBuilding = null;
+    this.buildingPreview = null;
+  }
+
+  preload() {
+    // Load tileset and assets
+    // this.load.image('tiles', 'path/to/tileset.png');
+    // this.load.tilemapTiledJSON('map', 'path/to/map.json');
+  }
+
+  create() {
+    // Initialize world bounds
+    this.physics.world.setBounds(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT);
+    
+    // Create tilemap (32x32 tiles)
+    this.createIslandTerrain();
+    
+    // Setup camera
+    this.setupCamera();
+    
+    // Setup input handlers
+    this.setupInput();
+    
+    // Create HUD
+    this.createHUD();
+    
+    console.log(`✓ World initialized: ${this.WORLD_WIDTH}x${this.WORLD_HEIGHT}`);
+    console.log(`✓ Grid size: ${this.GRID_SIZE}px | Total cells: ${this.WORLD_WIDTH / this.GRID_SIZE}x${this.WORLD_HEIGHT / this.GRID_SIZE}`);
+    console.log(`✓ Camera center: (${this.CAMERA_CENTER.x}, ${this.CAMERA_CENTER.y})`);
+  }
+
+  createIslandTerrain() {
+    // Create graphics for island visualization (replace with tilemap in production)
+    const graphics = this.make.graphics({ x: 0, y: 0, add: false });
+    graphics.fillStyle(0x4a9eff, 1); // Water blue
+    graphics.fillRect(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT);
+    
+    // Island centered at (2000, 2000) with 800px radius
+    graphics.fillStyle(0x8b7355, 1); // Sand
+    graphics.fillCircle(2000, 2000, 600);
+    
+    graphics.fillStyle(0x2d5016, 1); // Forest green
+    graphics.fillCircle(2000, 2000, 500);
+    
+    graphics.generateTexture('islandTerrain', this.WORLD_WIDTH, this.WORLD_HEIGHT);
+    graphics.destroy();
+    
+    this.add.image(this.WORLD_WIDTH / 2, this.WORLD_HEIGHT / 2, 'islandTerrain')
+      .setOrigin(0.5)
+      .setDepth(0);
+  }
+
+  setupCamera() {
+    const camera = this.cameras.main;
+    
+    // Center camera at world center
+    camera.centerOn(this.CAMERA_CENTER.x, this.CAMERA_CENTER.y);
+    camera.setZoom(1);
+    
+    // Set camera bounds
+    camera.setBounds(0, 0, this.WORLD_WIDTH, this.WORLD_HEIGHT);
+  }
+
+  setupInput() {
+    // Wheel zoom at camera center
+    this.input.on('wheel', (pointer, gameObjects, deltaY) => {
+      const camera = this.cameras.main;
+      const direction = deltaY > 0 ? -1 : 1;
+      const newZoom = Phaser.Math.Clamp(
+        camera.zoom + (direction * this.CAMERA_ZOOM_SPEED),
+        this.CAMERA_ZOOM_MIN,
+        this.CAMERA_ZOOM_MAX
+      );
+      
+      // Zoom towards camera center point (0, 0, 1000)
+      camera.setZoom(newZoom);
+    });
+
+    // Middle mouse drag pan
+    this.input.on('pointermove', (pointer) => {
+      if (pointer.middleButtonDown()) {
+        const camera = this.cameras.main;
+        const dx = pointer.prevPosition.x - pointer.position.x;
+        const dy = pointer.prevPosition.y - pointer.position.y;
+        
+        camera.scrollX += dx / camera.zoom;
+        camera.scrollY += dy / camera.zoom;
+      }
+      
+      // Building placement preview
+      this.updateBuildingPreview(pointer);
+    });
+
+    // Left click to place building
+    this.input.on('pointerdown', (pointer) => {
+      if (pointer.leftButtonDown()) {
+        this.placeBuildingAtPointer(pointer);
+      }
+    });
+
+    // Right click to cancel building preview
+    this.input.on('pointerup', (pointer) => {
+      if (pointer.rightButtonDown()) {
+        this.clearBuildingPreview();
+      }
+    });
+
+    // Keyboard controls
+    this.input.keyboard.on('keydown-R', () => this.resetCamera());
+    this.input.keyboard.on('keydown-C', () => this.clearAllBuildings());
+  }
+
+  createHUD() {
+    const hudText = this.add.text(10, 10, '', {
+      fontSize: '14px',
+      fill: '#ffffff',
+      backgroundColor: '#000000aa',
+      padding: { x: 8, y: 6 }
+    }).setScrollFactor(0).setDepth(100);
+
+    this.events.on('update', () => {
+      const camera = this.cameras.main;
+      const worldCoords = this.screenToWorld(this.input.x, this.input.y);
+      const gridCoords = this.worldToGridCoords(worldCoords.x, worldCoords.y);
+      
+      hudText.setText([
+        `Zoom: ${camera.zoom.toFixed(2)}x`,
+        `Camera: (${camera.centerX.toFixed(0)}, ${camera.centerY.toFixed(0)})`,
+        `World: (${worldCoords.x.toFixed(0)}, ${worldCoords.y.toFixed(0)})`,
+        `Grid: (${gridCoords.x}, ${gridCoords.y})`,
+        `Buildings: ${this.buildings.length}`,
+        '',
+        'Controls: Wheel=Zoom | Middle=Pan | R=Reset | C=Clear'
+      ]);
+    });
+  }
+
+  // Grid Utility Functions
+  worldToGridCoords(worldX, worldY) {
+    return {
+      x: Math.floor(worldX / this.GRID_SIZE),
+      y: Math.floor(worldY / this.GRID_SIZE)
+    };
+  }
+
+  gridToWorldCoords(gridX, gridY) {
+    return {
+      x: gridX * this.GRID_SIZE + this.GRID_SIZE / 2,
+      y: gridY * this.GRID_SIZE + this.GRID_SIZE / 2
+    };
+  }
+
+  snapToGrid(worldX, worldY) {
+    const gridCoords = this.worldToGridCoords(worldX, worldY);
+    return this.gridToWorldCoords(gridCoords.x, gridCoords.y);
+  }
+
+  screenToWorld(screenX, screenY) {
+    const camera = this.cameras.main;
+    return {
+      x: (screenX / camera.zoom) + camera.scrollX,
+      y: (screenY / camera.zoom) + camera.scrollY
+    };
+  }
+
+  // Building System
+  updateBuildingPreview(pointer) {
+    if (!this.selectedBuilding) return;
+
+    const worldCoords = this.screenToWorld(pointer.x, pointer.y);
+    const snappedCoords = this.snapToGrid(worldCoords.x, worldCoords.y);
+
+    if (!this.buildingPreview) {
+      this.buildingPreview = this.add.rectangle(
+        snappedCoords.x,
+        snappedCoords.y,
+        this.GRID_SIZE,
+        this.GRID_SIZE,
+        0xffff00,
+        0.3
+      ).setDepth(50);
+    }
+
+    this.buildingPreview.setPosition(snappedCoords.x, snappedCoords.y);
+
+    // Check if placement is valid
+    const isValid = this.isValidBuildingPlacement(snappedCoords.x, snappedCoords.y);
+    this.buildingPreview.setFillStyle(isValid ? 0x00ff00 : 0xff0000, 0.3);
+  }
+
+  placeBuildingAtPointer(pointer) {
+    if (!this.selectedBuilding) return;
+
+    const worldCoords = this.screenToWorld(pointer.x, pointer.y);
+    const snappedCoords = this.snapToGrid(worldCoords.x, worldCoords.y);
+
+    if (this.isValidBuildingPlacement(snappedCoords.x, snappedCoords.y)) {
+      const building = this.add.rectangle(
+        snappedCoords.x,
+        snappedCoords.y,
+        this.GRID_SIZE,
+        this.GRID_SIZE,
+        0x0088ff,
+        0.8
+      ).setDepth(10);
+
+      building.data = {
+        type: this.selectedBuilding,
+        worldX: snappedCoords.x,
+        worldY: snappedCoords.y,
+        gridX: this.worldToGridCoords(snappedCoords.x, snappedCoords.y).x,
+        gridY: this.worldToGridCoords(snappedCoords.x, snappedCoords.y).y
+      };
+
+      this.buildings.push(building);
+      console.log(`✓ Building placed: ${this.selectedBuilding} at grid (${building.data.gridX}, ${building.data.gridY})`);
+    }
+  }
+
+  isValidBuildingPlacement(worldX, worldY) {
+    // Check bounds
+    if (worldX < this.GRID_SIZE || worldX > this.WORLD_WIDTH - this.GRID_SIZE ||
+        worldY < this.GRID_SIZE || worldY > this.WORLD_HEIGHT - this.GRID_SIZE) {
+      return false;
+    }
+
+    // Check distance from island center
+    const distToCenter = Phaser.Math.Distance.Between(worldX, worldY, 2000, 2000);
+    if (distToCenter > 450) return false; // Outside island
+
+    // Check collision with other buildings
+    for (let building of this.buildings) {
+      const dist = Phaser.Math.Distance.Between(worldX, worldY, building.x, building.y);
+      if (dist < this.GRID_SIZE * 1.5) return false;
+    }
+
+    return true;
+  }
+
+  clearBuildingPreview() {
+    if (this.buildingPreview) {
+      this.buildingPreview.destroy();
+      this.buildingPreview = null;
+    }
+    this.selectedBuilding = null;
+  }
+
+  clearAllBuildings() {
+    this.buildings.forEach(b => b.destroy());
+    this.buildings = [];
+    console.log('✓ All buildings cleared');
+  }
+
+  resetCamera() {
+    this.cameras.main.centerOn(this.CAMERA_CENTER.x, this.CAMERA_CENTER.y);
+    this.cameras.main.setZoom(1);
+    console.log('✓ Camera reset');
+  }
+
+  update() {
+    // Keyboard building selection
+    if (this.input.keyboard.checkDown(Phaser.Input.Keyboard.Keys.ONE)) {
+      this.selectedBuilding = 'house';
+    } else if (this.input.keyboard.checkDown(Phaser.Input.Keyboard.Keys.TWO)) {
+      this.selectedBuilding = 'tower';
+    } else if (this.input.keyboard.checkDown(Phaser.Input.Keyboard.Keys.THREE)) {
+      this.selectedBuilding = 'farm';
+    }
+  }
+}
+
+// Phaser Config
+const config = {
+  type: Phaser.AUTO,
+  width: 1280,
+  height: 720,
+  physics: {
+    default: 'arcade',
+    arcade: { debug: false }
+  },
+  scene: RTSScene,
+  render: {
+    pixelArt: false,
+    antialias: true
+  }
+};
+
+const game = new Phaser.Game(config);
+
+export default RTSScene;

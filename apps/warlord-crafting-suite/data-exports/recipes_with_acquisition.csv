@@ -1,0 +1,162 @@
+ID,Name,Tier,Profession,Category,Source,SkillNode,HarvestLevel,DropSource,PurchaseCost,BaseRecipeXP,DismantleReturn,Station,Ingredients,Description
+parchment,Parchment,0,All,Refining,starter,,,,,5,30,workbench,plant-fiber:3,Thin writing surface made from plant fibers
+ink,Ink,0,All,Refining,starter,,,,,5,30,workbench,charcoal:1|water:1,Dark writing fluid for inscriptions
+simple-thread,Simple Thread,0,All,Refining,starter,,,,,10,30,workbench,plant-fiber:5,Basic thread spun from plant fibers
+wooden-club,Wooden Club,0,All,Weapons,starter,,,,,10,40,workbench,rotted-wood:3,A crude bludgeon carved from wood
+stone-knife,Stone Knife,0,All,Weapons,starter,,,,,10,40,workbench,stone:2|simple-thread:1,A sharp stone lashed to a handle
+minor-health-potion,Minor Health Potion,0,All,Consumable,starter,,,,,15,20,campfire,herb:2|water:1,Restores 25 HP instantly
+minor-mana-potion,Minor Mana Potion,0,All,Consumable,starter,,,,,15,20,campfire,arcane-dust:1|water:2,Restores 25 Mana instantly
+scrap-metal,Scrap Metal,0,Miner,Refining,starter,,,,,10,30,furnace,junk-ore:3,Salvage metal from junk
+copper-ingot,Copper Ingot,1,Miner,Refining,starter,,,,,25,30,forge,copper-ore:2|coal:1,Smelt copper ore into usable ingots
+iron-ingot,Iron Ingot,2,Miner,Refining,harvesting,,10,,,50,30,forge,iron-ore:2|coal:2,Smelt iron ore into ingots
+steel-ingot,Steel Ingot,3,Miner,Refining,harvesting,,20,,,100,30,forge,steel-ore:2|coal:3|flux:1,Smelt steel from refined ore
+mithril-ingot,Mithril Ingot,4,Miner,Refining,skillTree,Rare Metals,,,,200,25,forge,mithril-ore:3|refined-coal:2|refined-flux:1,Smelt magical mithril ore
+adamantine-ingot,Adamantine Ingot,5,Miner,Refining,skillTree,Master Smelter,,,,400,25,forge,adamantine-ore:3|refined-coal:3|refined-flux:2,Smelt legendary adamantine
+orichalcum-ingot,Orichalcum Ingot,6,Miner,Refining,drop,,"Elemental Forges, Titan dungeons",,800,20,forge,orichalcum-ore:4|refined-coal:4|refined-flux:2,Smelt ancient orichalcum
+starmetal-ingot,Starmetal Ingot,7,Miner,Refining,drop,,"Meteor sites, Astral rifts",,1600,20,forge,starmetal-ore:4|refined-coal:5|refined-flux:3,Smelt celestial starmetal
+divine-ingot,Divine Ingot,8,Miner,Refining,drop,,"Divine temples, God bosses",,3200,15,divine-forge,divine-ore:5|refined-coal:6|refined-flux:4|divine-essence:1,Smelt holy divine metal
+gladius,Gladius,1,Miner,Weapons,starter,,,,,25,50,forge,copper-ingot:2|rawhide:1,Short Roman blade
+falchion,Falchion,2,Miner,Weapons,harvesting,,10,,,50,50,forge,iron-ingot:3|thick-hide:1,Curved single-edge blade
+scimitar,Scimitar,3,Miner,Weapons,harvesting,,20,,,100,50,forge,steel-ingot:3|rugged-leather:1,Crescent moon blade
+rapier,Rapier,4,Miner,Weapons,skillTree,Bladesmith,,,,200,45,forge,mithril-ingot:3|hardened-leather:1,Elegant thrusting sword
+katana,Katana,5,Miner,Weapons,skillTree,Master Bladesmith,,,,400,45,forge,adamantine-ingot:4|wyrm-leather:1,Eastern folded steel
+soulblade,Soulblade,6,Miner,Weapons,drop,,"Boss chests, Elite dungeons",,800,40,forge,orichalcum-ingot:4|infernal-leather:1|flawless-gem:1,Spirit-bound edge
+starfall-edge,Starfall Edge,7,Miner,Weapons,drop,,"World bosses, Raid chests",,1600,35,forge,starmetal-ingot:5|titan-leather:1|radiant-gem:1,Celestial meteor blade
+excalibur,Excalibur,8,Miner,Weapons,drop,,"Divine temples, Legendary chests",,3200,30,divine-forge,divine-ingot:5|divine-leather:2|divine-gem:1,Legendary holy sword
+stiletto,Stiletto,1,Miner,Weapons,starter,,,,,25,50,forge,copper-ingot:1|rawhide:1,Thin stabbing blade
+dirk,Dirk,2,Miner,Weapons,harvesting,,10,,,50,50,forge,iron-ingot:2|thick-hide:1,Scottish fighting knife
+kris,Kris,3,Miner,Weapons,harvesting,,20,,,100,50,forge,steel-ingot:2|rugged-leather:1,Wavy ritual dagger
+tanto,Tanto,4,Miner,Weapons,skillTree,Assassin Blades,,,,200,45,forge,mithril-ingot:2|hardened-leather:1,Japanese short blade
+assassins-fang,Assassin's Fang,5,Miner,Weapons,skillTree,Shadow Blades,,,,400,45,forge,adamantine-ingot:3|wyrm-leather:1,Poison-grooved blade
+shadow-kiss,Shadow Kiss,6,Miner,Weapons,drop,,"Assassin guild, Shadow dungeons",,800,40,forge,orichalcum-ingot:3|infernal-leather:1|void-rune:1,Darkness-touched blade
+starlight-piercer,Starlight Piercer,7,Miner,Weapons,drop,,"Celestial dungeons, Star bosses",,1600,35,forge,starmetal-ingot:4|titan-leather:1|radiant-gem:1,Light-bending blade
+deaths-whisper,Death's Whisper,8,Miner,Weapons,drop,,"Death god temple, Legendary chests",,3200,30,divine-forge,divine-ingot:4|divine-leather:1|divine-gem:1,Silent killing edge
+copper-shield,Copper Shield,1,Miner,Armor,starter,,,,,25,50,forge,copper-ingot:3|rawhide:2,Basic metal shield
+iron-shield,Iron Shield,2,Miner,Armor,harvesting,,10,,,50,50,forge,iron-ingot:4|thick-hide:2,Sturdy iron shield
+steel-shield,Steel Shield,3,Miner,Armor,harvesting,,20,,,100,50,forge,steel-ingot:4|rugged-leather:2,Heavy steel shield
+mithril-shield,Mithril Shield,4,Miner,Armor,skillTree,Shield Smith,,,,200,45,forge,mithril-ingot:4|hardened-leather:2,Magical mithril shield
+adamantine-shield,Adamantine Shield,5,Miner,Armor,skillTree,Master Smith,,,,400,45,forge,adamantine-ingot:5|wyrm-leather:2,Legendary adamantine shield
+orichalcum-shield,Orichalcum Shield,6,Miner,Armor,drop,,"Titan bosses, Elite forges",,800,40,forge,orichalcum-ingot:5|infernal-leather:2|flawless-gem:1,Ancient orichalcum shield
+starmetal-shield,Starmetal Shield,7,Miner,Armor,drop,,"Astral guardians, Star dungeons",,1600,35,forge,starmetal-ingot:6|titan-leather:2|radiant-gem:1,Celestial starmetal shield
+divine-shield,Divine Shield,8,Miner,Armor,drop,,"Divine temples, God bosses",,3200,30,divine-forge,divine-ingot:6|divine-leather:3|divine-gem:1,Holy divine shield
+rotted-wood,Rotted Wood,0,Forester,Refining,starter,,,,,10,30,workbench,wood-scraps:3,Salvage usable wood from debris
+pine-plank,Pine Plank,1,Forester,Refining,starter,,,,,25,30,sawmill,pine-log:1,Process pine logs into smooth planks
+oak-plank,Oak Plank,2,Forester,Refining,harvesting,,10,,,50,30,sawmill,oak-log:1,Process oak logs into planks
+maple-plank,Maple Plank,3,Forester,Refining,harvesting,,20,,,100,30,sawmill,maple-log:1,Process maple logs into planks
+ash-plank,Ash Plank,4,Forester,Refining,skillTree,Exotic Woods,,,,200,25,sawmill,ash-log:1,Process ash logs into planks
+ironwood-plank,Ironwood Plank,5,Forester,Refining,skillTree,Rare Woods,,,,400,25,sawmill,ironwood-log:1,Process ironwood logs into planks
+ebony-plank,Ebony Plank,6,Forester,Refining,drop,,"Ancient forests, Treant bosses",,800,20,sawmill,ebony-log:1,Process ebony logs into planks
+wyrmwood-plank,Wyrmwood Plank,7,Forester,Refining,drop,,"Dragon lairs, Wyrm groves",,1600,20,sawmill,wyrmwood-log:1,Process wyrmwood logs into planks
+worldtree-plank,Worldtree Plank,8,Forester,Refining,drop,,"Yggdrasil, Divine groves",,3200,15,divine-sawmill,worldtree-log:1,Process worldtree logs into planks
+rawhide,Rawhide,1,Forester,Refining,starter,,,,,25,30,tanning-rack,raw-hide:2,Tan raw hide into leather
+thick-hide,Thick Hide,2,Forester,Refining,harvesting,,10,,,50,30,tanning-rack,rawhide:2|salt:1,Tan thick animal hide
+rugged-leather,Rugged Leather,3,Forester,Refining,harvesting,,20,,,100,30,tanning-rack,thick-hide:2|salt:2,Tan into rugged leather
+hardened-leather,Hardened Leather,4,Forester,Refining,skillTree,Advanced Tanning,,,,200,25,tanning-rack,rugged-leather:2|iron-ingot:1,Tan and harden leather
+wyrm-leather,Wyrm Leather,5,Forester,Refining,skillTree,Monster Hides,,,,400,25,tanning-rack,dragon-hide:2|adamantine-ingot:1,Tan dragon hide
+infernal-leather,Infernal Leather,6,Forester,Refining,drop,,"Demon bosses, Infernal pits",,800,20,tanning-rack,demon-hide:2|orichalcum-ingot:1,Tan demon hide
+titan-leather,Titan Leather,7,Forester,Refining,drop,,"Giant bosses, Titan realms",,1600,20,tanning-rack,giant-hide:2|starmetal-ingot:1,Tan titan hide
+divine-leather,Divine Leather,8,Forester,Refining,drop,,"Celestial beasts, Divine hunts",,3200,15,divine-tanning,celestial-hide:2|divine-ingot:1,Tan celestial hide
+hunting-bow,Hunting Bow,1,Forester,Weapons,starter,,,,,25,50,workbench,pine-plank:2|string:2,Simple hunting weapon
+shortbow,Shortbow,2,Forester,Weapons,harvesting,,10,,,50,50,workbench,oak-plank:3|bowstring:1,Compact ranged weapon
+composite-bow,Composite Bow,3,Forester,Weapons,harvesting,,20,,,100,50,workbench,maple-plank:3|bowstring:1|rugged-leather:1,Layered material bow
+recurve-bow,Recurve Bow,4,Forester,Weapons,skillTree,Master Fletcher,,,,200,45,workbench,ash-plank:4|silk-string:1|hardened-leather:1,Curved power bow
+elven-longbow,Elven Longbow,5,Forester,Weapons,skillTree,Elven Crafts,,,,400,45,workbench,ironwood-plank:4|silk-string:2|wyrm-leather:1,Ancient elven design
+dragonbone-bow,Dragonbone Bow,6,Forester,Weapons,drop,,"Dragon lairs, Elite dungeons",,800,40,workbench,ebony-plank:5|dragon-sinew:2|infernal-leather:1,Wyrm skeleton bow
+phoenix-bow,Phoenix Bow,7,Forester,Weapons,drop,,"Phoenix nest, Fire temples",,1600,35,workbench,wyrmwood-plank:5|dragon-sinew:2|phoenix-feathers:3,Fire-reborn weapon
+yggdrasil-bow,Yggdrasil Bow,8,Forester,Weapons,drop,,"World Tree, Divine groves",,3200,30,divine-workbench,worldtree-plank:6|dragon-sinew:3|divine-leather:1,World tree weapon
+horse,Horse,2,Forester,Mount,purchase,,,750,,50,0,stable,thick-hide:5|carrot:5|honey:2,Standard riding mount
+war-horse,War Horse,3,Forester,Mount,skillTree,Beast Master,,,1500,100,0,stable,rugged-leather:8|apple:10|steel-ingot:3,Armored battle mount
+destrier,Destrier,4,Forester,Mount,skillTree,Elite Cavalry,,,3000,200,0,stable,hardened-leather:8|honey:5|mithril-ingot:2,Heavy cavalry mount
+nightmare,Nightmare,5,Forester,Mount,drop,,"Demon stables, Nightmare realm",,400,0,arcane-stable,wyrm-leather:10|fire-essence:3|adamantine-ingot:3,Flame-maned demonic horse
+unicorn,Unicorn,6,Forester,Mount,drop,,"Sacred groves, Pure springs",,800,0,arcane-stable,infernal-leather:10|light-essence:3|orichalcum-ingot:3,Magical horned steed
+wolf,Wolf,2,Forester,Mount,purchase,,,600,,50,0,stable,thick-hide:6|beef:5|rugged-leather:2,Fast predator mount
+dire-wolf,Dire Wolf,3,Forester,Mount,harvesting,,25,,,100,0,stable,rugged-leather:8|venison:8|steel-ingot:2,Large wolf mount
+bear,Bear,3,Forester,Mount,harvesting,,30,,,100,0,stable,rugged-leather:10|honey:10|salmon:8,Strong bear mount
+giant-eagle,Giant Eagle,4,Forester,Mount,skillTree,Avian Bond,,,4000,200,0,aviary,hardened-leather:8|hawk-feathers:20|mithril-ingot:4,Large raptor mount
+griffon,Griffon,5,Forester,Mount,drop,,"Griffon peaks, Mountain aeries",,400,0,aviary,wyrm-leather:10|hawk-feathers:15|adamantine-ingot:5|fine-gem:2,Lion-eagle hybrid
+phoenix,Phoenix,7,Forester,Mount,drop,,"Phoenix nest, Eternal flames",,1600,0,divine-aviary,titan-leather:15|phoenix-feathers:20|fire-essence:5|radiant-gem:3,Immortal fire bird
+dragon,Dragon,7,Forester,Mount,drop,,"Dragon lairs, Wyrm lords",,1600,0,dragon-lair,titan-leather:20|dragon-sinew:10|starmetal-ingot:8|radiant-gem:4,True dragon mount
+torn-rag,Torn Rag,0,Mystic,Refining,starter,,,,,10,30,workbench,cloth-scraps:3,Salvage usable cloth from scraps
+linen-cloth,Linen Cloth,1,Mystic,Refining,starter,,,,,25,30,loom,linen-thread:3,Weave linen thread into cloth
+wool-cloth,Wool Cloth,2,Mystic,Refining,harvesting,,10,,,50,30,loom,wool-thread:3,Weave wool thread into cloth
+cotton-cloth,Cotton Cloth,3,Mystic,Refining,harvesting,,20,,,100,30,loom,cotton-thread:3,Weave cotton thread into cloth
+silk-cloth,Silk Cloth,4,Mystic,Refining,skillTree,Fine Weaving,,,,200,25,loom,silk-thread:3,Weave silk thread into cloth
+moonweave-cloth,Moonweave Cloth,5,Mystic,Refining,skillTree,Magical Weaving,,,,400,25,magic-loom,moonweave-thread:3|refined-essence:1,Weave moonweave into cloth
+starweave-cloth,Starweave Cloth,6,Mystic,Refining,drop,,"Celestial temples, Star weavers",,800,20,magic-loom,starweave-thread:3|perfect-essence:1,Weave starweave into cloth
+voidweave-cloth,Voidweave Cloth,7,Mystic,Refining,drop,,"Void rifts, Dark weavers",,1600,20,magic-loom,voidweave-thread:3|ancient-essence:1,Weave voidweave into cloth
+divine-cloth,Divine Cloth,8,Mystic,Refining,drop,,"Divine temples, Holy weavers",,3200,15,divine-loom,divine-thread:3|divine-essence:1,Weave divine thread into cloth
+minor-essence,Minor Essence,1,Mystic,Refining,starter,,,,,25,30,alchemy-table,herbs:5|water:1,Distill essence from herbs
+lesser-essence,Lesser Essence,2,Mystic,Refining,harvesting,,10,,,50,30,alchemy-table,minor-essence:2|herbs:5,Concentrate essence
+greater-essence,Greater Essence,3,Mystic,Refining,harvesting,,20,,,100,30,alchemy-table,lesser-essence:2|rare-herbs:3,Refine essence further
+superior-essence,Superior Essence,4,Mystic,Refining,skillTree,Essence Mastery,,,,200,25,alchemy-table,greater-essence:2|rare-herbs:5,Purify essence
+refined-essence,Refined Essence,5,Mystic,Refining,skillTree,Master Alchemist,,,,400,25,alchemy-table,superior-essence:2|exotic-herbs:3,Perfect essence
+perfect-essence,Perfect Essence,6,Mystic,Refining,drop,,"Arcane dungeons, Essence nodes",,800,20,alchemy-table,refined-essence:2|exotic-herbs:5,Flawless essence
+ancient-essence,Ancient Essence,7,Mystic,Refining,drop,,"Ancient ruins, Relic sites",,1600,20,arcane-altar,perfect-essence:2|divine-herbs:3,Ancient power essence
+divine-essence,Divine Essence,8,Mystic,Refining,drop,,"Divine temples, God altars",,3200,15,divine-altar,ancient-essence:2|divine-herbs:5,Holy divine essence
+pine-wand,Pine Wand,1,Mystic,Weapons,starter,,,,,25,50,enchanting-table,pine-plank:1|minor-essence:2,Basic channeling wand
+oak-wand,Oak Wand,2,Mystic,Weapons,harvesting,,10,,,50,50,enchanting-table,oak-plank:2|lesser-essence:2,Sturdy focus wand
+willow-wand,Willow Wand,3,Mystic,Weapons,harvesting,,20,,,100,50,enchanting-table,maple-plank:2|greater-essence:2,Flexible magic focus
+elder-wand,Elder Wand,4,Mystic,Weapons,skillTree,Wand Mastery,,,,200,45,enchanting-table,ash-plank:3|superior-essence:2,Ancient power focus
+moon-wand,Moon Wand,5,Mystic,Weapons,skillTree,Lunar Magic,,,,400,45,enchanting-table,ironwood-plank:3|refined-essence:2|moonweave-cloth:1,Lunar-infused focus
+star-wand,Star Wand,6,Mystic,Weapons,drop,,"Star temples, Celestial mages",,800,40,enchanting-table,ebony-plank:3|perfect-essence:2|starweave-cloth:1,Celestial focus
+void-wand,Void Wand,7,Mystic,Weapons,drop,,"Void rifts, Dark mages",,1600,35,arcane-altar,wyrmwood-plank:4|ancient-essence:2|voidweave-cloth:1,Dimension-bending focus
+divine-wand,Divine Wand,8,Mystic,Weapons,drop,,"Divine temples, Holy mages",,3200,30,divine-altar,worldtree-plank:4|divine-essence:3|divine-cloth:1,Holy power focus
+magic-carpet,Magic Carpet,3,Mystic,Mount,purchase,,,2000,,100,0,enchanting-table,cotton-cloth:8|greater-essence:4|standard-gem:2,Flying rug
+cloud-mount,Cloud Mount,4,Mystic,Mount,skillTree,Sky Magic,,,4000,200,0,enchanting-table,silk-cloth:10|superior-essence:4|fine-gem:2,Riding cloud
+spectral-steed,Spectral Steed,5,Mystic,Mount,drop,,"Ghost realm, Spirit shrines",,400,0,arcane-altar,moonweave-cloth:10|refined-essence:5|pristine-gem:2,Ghost horse
+arcane-wyrm,Arcane Wyrm,6,Mystic,Mount,drop,,"Arcane dungeons, Mage towers",,800,0,arcane-altar,starweave-cloth:12|perfect-essence:5|flawless-gem:3,Magic dragon
+charcoal,Charcoal,0,Chef,Refining,starter,,,,,10,30,campfire,wood-scraps:5,Burn wood scraps into fuel
+salt,Salt,0,Chef,Refining,starter,,,,,10,30,campfire,seawater:3,Evaporate seawater to extract salt
+flour,Flour,1,Chef,Refining,starter,,,,,25,30,kitchen,wheat:3,Grind wheat into flour
+grilled-fish,Grilled Fish,0,Chef,Consumable,starter,,,,,15,20,campfire,raw-fish:1|charcoal:1,Simple restorative meal
+roasted-meat,Roasted Meat,0,Chef,Consumable,starter,,,,,15,20,campfire,raw-meat:1|charcoal:1,Cooked meat for energy
+simple-bread,Simple Bread,0,Chef,Consumable,starter,,,,,15,20,campfire,flour:2|water:1,Basic stamina food
+salted-jerky,Salted Jerky,1,Chef,Consumable,starter,,,,,25,25,kitchen,raw-meat:2|salt:1,Preserved meat
+meat-pie,Meat Pie,2,Chef,Consumable,harvesting,,10,,,50,25,kitchen,beef:3|flour:3|butter:1,Hearty meat pie
+feast-platter,Feast Platter,4,Chef,Consumable,skillTree,Master Chef,,,2000,200,25,kitchen,beef:5|fish:3|potato:4|spice-blend:2,Grand feast
+lesser-health-potion,Lesser Health Potion,1,Chef,Consumable,starter,,,,,25,20,cauldron,herbs:5|berry:3|water:2,Restores 50 HP
+health-potion,Health Potion,2,Chef,Consumable,harvesting,,10,,,50,20,cauldron,rare-herbs:3|berry:5|honey:1,Restores 100 HP
+greater-health-potion,Greater Health Potion,3,Chef,Consumable,harvesting,,20,,,100,20,cauldron,rare-herbs:5|honey:3|minor-essence:1,Restores 200 HP
+superior-health-potion,Superior Health Potion,4,Chef,Consumable,skillTree,Potion Master,,,,200,15,alchemy-lab,exotic-herbs:3|honey:5|lesser-essence:1,Restores 400 HP
+mega-health-potion,Mega Health Potion,5,Chef,Consumable,skillTree,Grand Alchemist,,,,400,15,alchemy-lab,exotic-herbs:5|divine-fruit:1|greater-essence:1,Restores 800 HP
+ultra-health-potion,Ultra Health Potion,6,Chef,Consumable,drop,,"Alchemy dungeons, Potion masters",,800,10,alchemy-lab,divine-herbs:3|divine-fruit:2|superior-essence:1,Restores 1600 HP
+divine-health-potion,Divine Health Potion,8,Chef,Consumable,drop,,"Divine temples, Holy alchemists",,3200,10,divine-kitchen,divine-herbs:5|divine-fruit:5|divine-essence:1,Full HP restore
+strength-elixir,Strength Elixir,3,Chef,Consumable,skillTree,Elixir Craft,,,,100,15,alchemy-lab,rare-herbs:5|beef:3|greater-essence:1,+20% Strength for 30min
+speed-elixir,Speed Elixir,3,Chef,Consumable,skillTree,Elixir Craft,,,,100,15,alchemy-lab,rare-herbs:5|hawk-feathers:3|greater-essence:1,+20% Speed for 30min
+defense-elixir,Defense Elixir,3,Chef,Consumable,skillTree,Elixir Craft,,,,100,15,alchemy-lab,rare-herbs:5|iron-ingot:2|greater-essence:1,+20% Defense for 30min
+xp-elixir,XP Elixir,5,Chef,Consumable,drop,,"Scholar dungeons, Libraries",,400,10,alchemy-lab,exotic-herbs:8|ancient-essence:1|pristine-gem:1,+50% XP for 1 hour
+scrap-parts,Scrap Parts,0,Engineer,Refining,starter,,,,,10,30,tinker-bench,junk-ore:2|scrap-metal:1,Salvage mechanical bits from junk
+bronze-gear,Bronze Gear,1,Engineer,Refining,starter,,,,,25,30,workbench,copper-ingot:1|coal:1,Basic mechanical gear
+iron-gear,Iron Gear,2,Engineer,Refining,harvesting,,10,,,50,30,workbench,iron-ingot:1|coal:2,Standard gear
+steel-gear,Steel Gear,3,Engineer,Refining,harvesting,,20,,,100,30,workbench,steel-ingot:1|coal:3,Precision gear
+precision-gear,Precision Gear,4,Engineer,Refining,skillTree,Precision Engineering,,,,200,25,engineering-bench,mithril-ingot:2|spring:2,High-precision gear
+clockwork-core,Clockwork Core,5,Engineer,Refining,skillTree,Clockwork Master,,,,400,25,engineering-bench,precision-gear:4|spring:4|lens:2,Clockwork mechanism core
+arcane-gear,Arcane Gear,6,Engineer,Refining,drop,,"Mech dungeons, Gear foundries",,800,20,engineering-bench,orichalcum-ingot:2|refined-essence:1,Magic-infused gear
+void-gear,Void Gear,7,Engineer,Refining,drop,,"Void forges, Dark engineers",,1600,20,engineering-bench,starmetal-ingot:2|ancient-essence:1,Void-touched gear
+divine-gear,Divine Gear,8,Engineer,Refining,drop,,"Divine foundries, Holy engineers",,3200,15,divine-engineering,divine-ingot:2|divine-essence:1,Holy divine gear
+flintlock-pistol,Flintlock Pistol,1,Engineer,Weapons,starter,,,,,25,50,engineering-bench,copper-ingot:2|gunpowder:2|lens:1,Single-shot firearm
+dueling-pistol,Dueling Pistol,2,Engineer,Weapons,harvesting,,10,,,50,50,engineering-bench,iron-ingot:3|refined-gunpowder:2|lens:1,Accurate handgun
+revolver,Revolver,3,Engineer,Weapons,harvesting,,20,,,100,50,engineering-bench,steel-ingot:4|black-powder:3|spring:2,Six-shooter pistol
+repeater-pistol,Repeater Pistol,4,Engineer,Weapons,skillTree,Advanced Firearms,,,,200,45,engineering-bench,mithril-ingot:4|flash-powder:3|precision-gear:1,Semi-auto handgun
+clockwork-pistol,Clockwork Pistol,5,Engineer,Weapons,skillTree,Clockwork Arms,,,,400,45,engineering-bench,adamantine-ingot:5|thunder-powder:3|clockwork-core:1,Mechanical marvel
+plasma-pistol,Plasma Pistol,6,Engineer,Weapons,drop,,"Tech dungeons, Mech bosses",,800,40,engineering-bench,orichalcum-ingot:5|arcane-powder:4|circuit:2,Energy handgun
+void-pistol,Void Pistol,7,Engineer,Weapons,drop,,"Void forges, Dark engineers",,1600,35,engineering-bench,starmetal-ingot:6|void-powder:4|quantum-circuit:1,Dimension-piercing gun
+divine-pistol,Divine Pistol,8,Engineer,Weapons,drop,,"Divine foundries, Holy engineers",,3200,30,divine-engineering,divine-ingot:6|divine-powder:5|quantum-circuit:2,Holy handcannon
+mallet,Mallet,1,Engineer,Weapons,starter,,,,,25,50,workbench,copper-ingot:2|pine-plank:1,Light work hammer
+claw-hammer,Claw Hammer,2,Engineer,Weapons,harvesting,,10,,,50,50,workbench,iron-ingot:2|oak-plank:1,Dual-purpose hammer
+ball-peen,Ball Peen Hammer,3,Engineer,Weapons,harvesting,,20,,,100,50,workbench,steel-ingot:3|maple-plank:1,Metalworking hammer
+engineers-hammer,Engineer's Hammer,4,Engineer,Weapons,skillTree,Tool Mastery,,,,200,45,engineering-bench,mithril-ingot:3|ash-plank:1|precision-gear:1,Precision tool
+steamhammer,Steam Hammer,5,Engineer,Weapons,skillTree,Steam Power,,,,400,45,engineering-bench,adamantine-ingot:4|ironwood-plank:1|clockwork-core:1,Power-assisted hammer
+thunder-mallet,Thunder Mallet,6,Engineer,Weapons,drop,,"Storm forges, Thunder giants",,800,40,engineering-bench,orichalcum-ingot:4|ebony-plank:1|arcane-gear:1,Lightning-charged hammer
+void-hammer,Void Hammer,7,Engineer,Weapons,drop,,"Void forges, Dark engineers",,1600,35,engineering-bench,starmetal-ingot:5|wyrmwood-plank:1|void-gear:1,Reality-bending hammer
+mjolnir,Mjolnir,8,Engineer,Weapons,drop,,"Thor's temple, Divine forge",,3200,30,divine-engineering,divine-ingot:5|worldtree-plank:1|divine-gear:1,Thor's divine hammer
+spike-trap,Spike Trap,1,Engineer,Utility,starter,,,,,25,40,workbench,copper-ingot:2|pine-plank:2,Basic spike trap
+bear-trap,Bear Trap,2,Engineer,Utility,harvesting,,10,,,50,40,workbench,iron-ingot:3|spring:2,Standard bear trap
+explosive-trap,Explosive Trap,4,Engineer,Utility,skillTree,Explosives Expert,,,,200,35,engineering-bench,mithril-ingot:4|dynamite:2|precision-gear:2,Explosive trap
+grenade,Grenade,2,Engineer,Utility,starter,,,,,50,30,workbench,iron-ingot:1|gunpowder:3,Basic explosive
+dynamite,Dynamite,3,Engineer,Utility,harvesting,,20,,,100,30,engineering-bench,steel-ingot:2|black-powder:5,Powerful explosive
+mechanical-horse,Mechanical Horse,3,Engineer,Mount,purchase,,,2500,,100,0,engineering-bench,steel-ingot:10|steel-gear:5|spring:8|coal:20,Steam-powered steed
+clockwork-spider,Clockwork Spider,4,Engineer,Mount,skillTree,Mech Builder,,,5000,200,0,engineering-bench,mithril-ingot:12|precision-gear:6|spring:10|circuit:3,Eight-legged construct
+steam-tank,Steam Tank,5,Engineer,Mount,drop,,"Mech dungeons, War factories",,400,0,engineering-bench,adamantine-ingot:20|clockwork-core:3|spring:15|coal:50,Armored vehicle
+gyrocopter,Gyrocopter,4,Engineer,Mount,skillTree,Flight Engineering,,,6000,200,0,engineering-bench,mithril-ingot:10|precision-gear:6|spring:12|lens:3,Basic flying machine
+clockwork-dragon,Clockwork Dragon,6,Engineer,Mount,drop,,"Mech dungeons, Master engineers",,800,0,engineering-bench,orichalcum-ingot:20|arcane-gear:8|circuit:12|arcane-powder:15,Mechanical wyrm

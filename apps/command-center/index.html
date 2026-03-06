@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrudaChain Control Center</title>
+    <script src="https://js.puter.com/v2/"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>🎮 GrudaChain Control Center</h1>
+                <p class="subtitle">Autonomous Worker & Resource Management</p>
+            </div>
+            <div class="status-indicator">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">Connecting...</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <nav class="nav-menu">
+                    <button class="nav-item active" data-view="dashboard">
+                        <span class="icon">📊</span>
+                        Dashboard
+                    </button>
+                    <button class="nav-item" data-view="workers">
+                        <span class="icon">⚙️</span>
+                        Workers
+                    </button>
+                    <button class="nav-item" data-view="apps">
+                        <span class="icon">📱</span>
+                        Apps
+                    </button>
+                    <button class="nav-item" data-view="sites">
+                        <span class="icon">🌐</span>
+                        Sites
+                    </button>
+                    <button class="nav-item" data-view="kv">
+                        <span class="icon">💾</span>
+                        KV Storage
+                    </button>
+                    <button class="nav-item" data-view="chat">
+                        <span class="icon">💬</span>
+                        AI Chat
+                    </button>
+                </nav>
+            </aside>
+
+            <!-- Content Area -->
+            <main class="content-area">
+                <!-- Dashboard View -->
+                <div class="view active" id="dashboard">
+                    <h2>System Overview</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">⚙️</div>
+                            <div class="stat-info">
+                                <h3 id="workerCount">0</h3>
+                                <p>Active Workers</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📱</div>
+                            <div class="stat-info">
+                                <h3 id="appCount">0</h3>
+                                <p>Deployed Apps</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🌐</div>
+                            <div class="stat-info">
+                                <h3 id="siteCount">0</h3>
+                                <p>Active Sites</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">💾</div>
+                            <div class="stat-info">
+                                <h3 id="kvCount">0</h3>
+                                <p>KV Entries</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Network Services -->
+                    <div class="recent-activity">
+                        <h3>🌐 Network Services</h3>
+                        <div id="servicesGrid" class="stats-grid" style="margin-bottom:1.5rem"></div>
+                    </div>
+                    <div class="recent-activity">
+                        <h3>Recent Activity</h3>
+                        <div id="activityLog" class="activity-log"></div>
+                    </div>
+                </div>
+
+                <!-- Workers View -->
+                <div class="view" id="workers">
+                    <div class="view-header">
+                        <h2>Worker Management</h2>
+                        <button class="btn btn-primary" id="addWorkerBtn">+ Add Worker</button>
+                    </div>
+                    <div class="filter-bar">
+                        <input type="text" id="workerSearch" placeholder="Search workers..." class="search-input">
+                        <select id="workerFilter" class="filter-select">
+                            <option value="all">All Categories</option>
+                            <option value="core">Core</option>
+                            <option value="ai">AI</option>
+                            <option value="game">Game</option>
+                            <option value="graphics">Graphics</option>
+                            <option value="server">Server</option>
+                            <option value="api">API</option>
+                        </select>
+                    </div>
+                    <div id="workersList" class="items-list"></div>
+                </div>
+
+                <!-- Apps View -->
+                <div class="view" id="apps">
+                    <div class="view-header">
+                        <h2>Application Management</h2>
+                        <button class="btn btn-primary" id="addAppBtn">+ Add App</button>
+                    </div>
+                    <div id="appsList" class="items-list"></div>
+                </div>
+
+                <!-- Sites View -->
+                <div class="view" id="sites">
+                    <div class="view-header">
+                        <h2>Site Management</h2>
+                        <button class="btn btn-primary" id="addSiteBtn">+ Add Site</button>
+                    </div>
+                    <div id="sitesList" class="items-list"></div>
+                </div>
+
+                <!-- KV Storage View -->
+                <div class="view" id="kv">
+                    <div class="view-header">
+                        <h2>Key-Value Storage</h2>
+                        <button class="btn btn-primary" id="addKvBtn">+ Add Entry</button>
+                    </div>
+                    <div class="kv-interface">
+                        <div class="kv-input-group">
+                            <input type="text" id="kvKey" placeholder="Key" class="input">
+                            <textarea id="kvValue" placeholder="Value (JSON supported)" class="textarea"></textarea>
+                            <div class="btn-group">
+                                <button class="btn btn-primary" id="kvSetBtn">Set</button>
+                                <button class="btn btn-secondary" id="kvGetBtn">Get</button>
+                            </div>
+                        </div>
+                        <div id="kvResult" class="kv-result"></div>
+                    </div>
+                </div>
+
+                <!-- Chat View -->
+                <div class="view" id="chat">
+                    <h2>AI Assistant</h2>
+                    <div class="chat-container">
+                        <div id="chatMessages" class="chat-messages"></div>
+                        <div class="chat-input-container">
+                            <textarea id="chatInput" placeholder="Ask me anything about your workers, apps, or sites..." class="chat-input"></textarea>
+                            <button class="btn btn-primary" id="chatSendBtn">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal for Adding/Editing Items -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 id="modalTitle">Add Item</h2>
+            <form id="modalForm">
+                <div id="modalFields"></div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

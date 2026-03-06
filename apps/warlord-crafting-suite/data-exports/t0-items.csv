@@ -1,0 +1,35 @@
+id,name,type,sub_type,tier,description,effect,duration,crafted_by,sprite,stackable,max_stack,stats
+t0-health-potion,Minor Health Potion,consumable,potion,0,A weak healing concoction. Restores a small amount of health.,Restores 50 HP over 5 seconds,5,Chef,/2dassets/sprites/consumable/minor-health-potion.png,true,20,
+t0-mana-potion,Minor Mana Potion,consumable,potion,0,A diluted mana restorative. Provides a small mana boost.,Restores 30 Mana instantly,,Mystic,/2dassets/sprites/consumable/minor-mana-potion.png,true,20,
+t0-cooked-meat,Charred Meat,consumable,food,0,Barely edible but provides sustenance.,+5 HP regen/min for 10 minutes,600,Chef,/2dassets/sprites/consumable/charred-meat.png,true,10,hpRegen:5
+t0-cooked-fish,Grilled Fish,consumable,food,0,A simple grilled fish. Slightly bitter but nutritious.,+3 Mana regen/min for 10 minutes,600,Chef,/2dassets/sprites/consumable/grilled-fish.png,true,10,manaRegen:3
+t0-herb-salad,Wild Herb Salad,consumable,food,0,Foraged herbs tossed together. Provides minor buffs.,+2% all stats for 5 minutes,300,Chef,/2dassets/sprites/consumable/herb-salad.png,true,10,
+t0-cloth-hood,Tattered Hood,armor,head,0,A worn cloth hood offering minimal protection.,,,Forester,/2dassets/sprites/armor/tattered-hood.png,false,1,defense:2;mana:5
+t0-cloth-robe,Tattered Robe,armor,chest,0,A patched robe with many holes.,,,Forester,/2dassets/sprites/armor/tattered-robe.png,false,1,defense:4;mana:10
+t0-cloth-gloves,Worn Cloth Gloves,armor,hands,0,Threadbare gloves that barely keep hands warm.,,,Forester,/2dassets/sprites/armor/worn-cloth-gloves.png,false,1,defense:1;mana:3
+t0-cloth-pants,Patched Cloth Pants,armor,legs,0,Pants held together by patches and hope.,,,Forester,/2dassets/sprites/armor/patched-cloth-pants.png,false,1,defense:3;mana:6
+t0-cloth-shoes,Worn Cloth Shoes,armor,feet,0,Thin-soled shoes with holes forming.,,,Forester,/2dassets/sprites/armor/worn-cloth-shoes.png,false,1,defense:1;mana:3;speed:2
+t0-leather-cap,Cracked Leather Cap,armor,head,0,A leather cap with visible cracks.,,,Forester,/2dassets/sprites/armor/cracked-leather-cap.png,false,1,defense:4;stamina:5
+t0-leather-vest,Worn Leather Vest,armor,chest,0,A stiff leather vest past its prime.,,,Forester,/2dassets/sprites/armor/worn-leather-vest.png,false,1,defense:8;stamina:10
+t0-leather-bracers,Frayed Leather Bracers,armor,hands,0,Bracers with fraying edges.,,,Forester,/2dassets/sprites/armor/frayed-leather-bracers.png,false,1,defense:3;stamina:3
+t0-leather-pants,Scuffed Leather Pants,armor,legs,0,Well-worn leather pants with many scuffs.,,,Forester,/2dassets/sprites/armor/scuffed-leather-pants.png,false,1,defense:6;stamina:6
+t0-leather-boots,Worn Leather Boots,armor,feet,0,Boots that have seen many miles.,,,Forester,/2dassets/sprites/armor/worn-leather-boots.png,false,1,defense:3;stamina:4;speed:3
+t0-metal-helm,Dented Iron Helm,armor,head,0,A heavily dented iron helmet.,,,Miner,/2dassets/sprites/armor/dented-iron-helm.png,false,1,defense:8;health:10
+t0-metal-breastplate,Rusted Breastplate,armor,chest,0,A breastplate covered in rust patches.,,,Miner,/2dassets/sprites/armor/rusted-breastplate.png,false,1,defense:15;health:20
+t0-metal-gauntlets,Battered Gauntlets,armor,hands,0,Gauntlets with many battle scars.,,,Miner,/2dassets/sprites/armor/battered-gauntlets.png,false,1,defense:5;health:5
+t0-metal-greaves,Worn Iron Greaves,armor,legs,0,Iron leg armor with visible wear.,,,Miner,/2dassets/sprites/armor/worn-iron-greaves.png,false,1,defense:10;health:12
+t0-metal-boots,Heavy Iron Boots,armor,feet,0,Clunky iron boots that slow movement slightly.,,,Miner,/2dassets/sprites/armor/heavy-iron-boots.png,false,1,defense:6;health:8;speed:-2
+t0-shield-wooden,Splintered Wooden Shield,accessory,shield,0,A wooden shield with many splinters.,,,Forester,/2dassets/sprites/accessory/splintered-wooden-shield.png,false,1,block:10;defense:5
+t0-ring-copper,Tarnished Copper Ring,accessory,ring,0,A simple copper ring losing its luster.,,,Miner,/2dassets/sprites/accessory/tarnished-copper-ring.png,false,1,allStats:1
+t0-necklace-bone,Bone Tooth Necklace,accessory,necklace,0,A crude necklace made from animal teeth.,,,Chef,/2dassets/sprites/accessory/bone-tooth-necklace.png,false,1,health:5;crit:1
+t0-cape-ragged,Ragged Cape,accessory,back,0,A tattered cape barely hanging together.,,,Forester,/2dassets/sprites/accessory/ragged-cape.png,false,1,defense:2;speed:1
+t0-torch,Makeshift Torch,accessory,torch,0,A branch wrapped in oil-soaked rags.,Illuminates a 5m radius around the player,,Forester,/2dassets/sprites/accessory/makeshift-torch.png,false,1,lightRadius:5
+t0-spellbook,Novice Spellbook,accessory,spellbook,0,A basic spellbook with a few simple incantations.,,,Mystic,/2dassets/sprites/accessory/novice-spellbook.png,false,1,mana:10;spellPower:3
+scrap-metal,Scrap Metal,material,metal,0,Bits of rusted metal salvaged from old equipment.,,,Miner,/2dassets/sprites/material/scrap-metal.png,true,100,
+wood-stick,Wood Stick,material,wood,0,A sturdy wooden stick useful for handles.,,,Forester,/2dassets/sprites/material/wood-stick.png,true,100,
+string,Crude String,material,cloth,0,Fibrous string made from plant materials.,,,Forester,/2dassets/sprites/material/crude-string.png,true,100,
+raw-meat-t0,Tough Meat,material,ingredient,0,Tough meat from common beasts.,,,Chef,/2dassets/sprites/ingredient/tough-meat.png,true,50,
+raw-fish-t0,Small Fish,material,ingredient,0,Tiny fish caught from shallow waters.,,,Chef,/2dassets/sprites/ingredient/small-fish.png,true,50,
+wild-herbs,Wild Herbs,material,ingredient,0,Common herbs found in the wild.,,,Chef,/2dassets/sprites/ingredient/wild-herbs.png,true,50,
+tattered-cloth,Tattered Cloth,material,cloth,0,Scraps of old cloth salvaged from ruined garments.,,,Forester,/2dassets/sprites/material/tattered-cloth.png,true,100,
+scrap-leather,Scrap Leather,material,leather,0,Pieces of old leather cut from worn items.,,,Forester,/2dassets/sprites/material/scrap-leather.png,true,100,

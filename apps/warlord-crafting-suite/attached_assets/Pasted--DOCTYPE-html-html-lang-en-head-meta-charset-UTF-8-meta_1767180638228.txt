@@ -1,0 +1,1160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTS Island Game - Puter.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1a1a1a;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        #header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        #header h1 {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        #header-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .header-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .header-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        #game-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0a0a0a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal.visible {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #222;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            color: #ddd;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        #game-info {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background: rgba(0,0,0,0.9);
+            color: #0f0;
+            padding: 15px;
+            border-radius: 4px;
+            border: 2px solid #0f0;
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            max-width: 300px;
+            z-index: 50;
+            display: none;
+            box-shadow: 0 0 20px rgba(0,255,0,0.2);
+        }
+
+        #game-info.visible {
+            display: block;
+        }
+
+        .info-section {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #0f0;
+        }
+
+        .info-section:last-child {
+            border-bottom: none;
+        }
+
+        .info-section-title {
+            color: #0f0;
+            font-weight: bold;
+            font-size: 10px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .info-row {
+            margin: 3px 0;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .info-label {
+            color: #0f0;
+            min-width: 100px;
+        }
+
+        .info-value {
+            color: #0ff;
+            font-weight: bold;
+        }
+
+        #minimap {
+            position: absolute;
+            bottom: 70px;
+            left: 20px;
+            width: 150px;
+            height: 150px;
+            background: rgba(0,0,0,0.7);
+            border: 2px solid #667eea;
+            border-radius: 4px;
+            z-index: 45;
+        }
+
+        #minimap canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        #footer {
+            background: #222;
+            color: #888;
+            padding: 10px 20px;
+            font-size: 11px;
+            border-top: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 2s infinite;
+        }
+
+        .status-indicator.online {
+            background: #0f0;
+            box-shadow: 0 0 5px #0f0;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .save-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .save-slot {
+            background: rgba(102,126,234,0.1);
+            border: 1px solid #667eea;
+            padding: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #ddd;
+            transition: all 0.2s;
+        }
+
+        .save-slot:hover {
+            background: rgba(102,126,234,0.3);
+        }
+
+        .controls-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .control-item {
+            background: rgba(102,126,234,0.1);
+            padding: 8px;
+            border-radius: 3px;
+            border-left: 2px solid #667eea;
+        }
+
+        .control-key {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .control-desc {
+            color: #888;
+            font-size: 11px;
+            margin-top: 2px;
+        }
+
+        .spinner {
+            border: 3px solid #333;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background: rgba(102,126,234,0.9);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 4px;
+            z-index: 999;
+            animation: slideInUp 0.3s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            #header h1 {
+                font-size: 16px;
+            }
+            .header-btn {
+                font-size: 10px;
+                padding: 4px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div id="header">
+        <h1>🏝️ RTS Island Game - Puter.js</h1>
+        <div id="header-controls">
+            <button class="header-btn" onclick="showGameInfo()">ℹ️ Info</button>
+            <button class="header-btn" onclick="toggleSaves()">💾 Saves</button>
+            <button class="header-btn" onclick="showControls()">⌨️ Controls</button>
+        </div>
+    </div>
+
+    <!-- Game Container -->
+    <div id="game-container">
+        <!-- Minimap -->
+        <div id="minimap">
+            <canvas id="minimap-canvas"></canvas>
+        </div>
+
+        <!-- Game Info Panel -->
+        <div id="game-info">
+            <div class="info-section">
+                <div class="info-section-title">World</div>
+                <div class="info-row">
+                    <span class="info-label">Island:</span>
+                    <span class="info-value" id="info-island">Loading...</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Seed:</span>
+                    <span class="info-value" id="info-seed">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Zoom:</span>
+                    <span class="info-value" id="info-zoom">1.00x</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Pos:</span>
+                    <span class="info-value" id="info-pos">0, 0</span>
+                </div>
+            </div>
+            <div class="info-section">
+                <div class="info-section-title">Buildings</div>
+                <div class="info-row">
+                    <span class="info-label">Total:</span>
+                    <span class="info-value" id="info-buildings">0/100</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Selected:</span>
+                    <span class="info-value" id="info-selected">None</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer">
+        <span><span class="status-indicator online"></span><span id="status-text">Online</span></span>
+        <span id="footer-info">Right-click drag to pan • Scroll to zoom • WASD/Arrow keys to move • 1/2/3/4 to select building</span>
+        <span id="fps-counter">FPS: 60</span>
+    </div>
+
+    <!-- Saves Modal -->
+    <div id="saves-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>💾 Saved Games</span>
+                <button class="modal-close" onclick="toggleSaves()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div id="saves-list" class="save-list">
+                    <p style="color: #888; text-align: center;">Saves stored locally</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls Modal -->
+    <div id="controls-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span>⌨️ RTS Controls</span>
+                <button class="modal-close" onclick="showControls(false)">✕</button>
+            </div>
+            <div class="modal-body">
+                <div style="margin-bottom: 20px;">
+                    <div style="color: #667eea; font-weight: bold; margin-bottom: 10px;">Camera Movement:</div>
+                    <div class="controls-list">
+                        <div class="control-item">
+                            <div class="control-key">Right-Click Drag</div>
+                            <div class="control-desc">Pan camera</div>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">Scroll Wheel</div>
+                            <div class="control-desc">Zoom in/out</div>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">W / ↑</div>
+                            <div class="control-desc">Move up</div>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">A / ←</div>
+                            <div class="control-desc">Move left</div>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">S / ↓</div>
+                            <div class="control-desc">Move down</div>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">D / →</div>
+                            <div class="control-desc">Move right</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 20px; padding-top: 20px; border-top: 1px solid #333;">
+                    <div style="color: #667eea; font-weight: bold; margin-bottom: 10px;">Building Placement:</div>
+                    <div class="controls-list">
+                        <div class="control-item">
+                            <div class="control-key">1</div>
+                            <div class="control-desc">House</div>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">2</div>
+                            <div class="control-desc">Tower</div>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">3</div>
+                            <div class="control-desc">Farm</div>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">4</div>
+                            <div class="control-desc">Market</div>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">Left Click</div>
+                            <div class="control-desc">Place building</div>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">ESC</div>
+                            <div class="control-desc">Deselect</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="padding-top: 20px; border-top: 1px solid #333;">
+                    <div style="color: #667eea; font-weight: bold; margin-bottom: 10px;">Game:</div>
+                    <div class="controls-list">
+                        <div class="control-item">
+                            <div class="control-key">S</div>
+                            <div class="control-desc">Save game</div>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">R</div>
+                            <div class="control-desc">Reset camera</div>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">I</div>
+                            <div class="control-desc">Toggle info panel</div>
+                        </div>
+                        <div class="control-item">
+                            <div class="control-key">M</div>
+                            <div class="control-desc">Toggle minimap</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+    <script>
+        // ============================================
+        // COMPLETE EMBEDDED GAME CODE
+        // ============================================
+
+        // ============================================
+        // 1. Storage Manager
+        // ============================================
+        
+        class PuterStorageManager {
+            constructor() {
+                this.appFolder = '/rts-island-game';
+                this.initialized = false;
+            }
+
+            async init() {
+                try {
+                    this.initialized = true;
+                    console.log('✓ Storage initialized');
+                } catch (error) {
+                    console.error('Storage init error:', error);
+                }
+            }
+
+            async saveGameState(gameState) {
+                try {
+                    const key = `game-state-${Date.now()}`;
+                    localStorage.setItem(key, JSON.stringify(gameState));
+                    console.log(`✓ Game saved: ${key}`);
+                    return { success: true, filename: key };
+                } catch (error) {
+                    console.error('Save error:', error);
+                    return { success: false, error: error.message };
+                }
+            }
+
+            async loadLatestGameState() {
+                try {
+                    const keys = Object.keys(localStorage).filter(k => k.startsWith('game-state-'));
+                    if (keys.length === 0) return null;
+                    
+                    const latestKey = keys.sort().reverse()[0];
+                    const data = localStorage.getItem(latestKey);
+                    return JSON.parse(data);
+                } catch (error) {
+                    console.error('Load error:', error);
+                    return null;
+                }
+            }
+
+            async listSavedGames() {
+                try {
+                    const keys = Object.keys(localStorage).filter(k => k.startsWith('game-state-'));
+                    return keys.map(k => ({
+                        name: k,
+                        size: localStorage.getItem(k).length,
+                        modified: new Date().toISOString()
+                    })).reverse();
+                } catch (error) {
+                    return [];
+                }
+            }
+        }
+
+        // ============================================
+        // 2. API Client
+        // ============================================
+
+        class PuterAPIClient {
+            constructor() {
+                this.storage = new PuterStorageManager();
+            }
+
+            async init() {
+                await this.storage.init();
+            }
+
+            async generateIsland(seed = null) {
+                const islandData = {
+                    id: this.generateUUID(),
+                    seed: seed || Math.random(),
+                    terrain: this.generateTerrain(130, 105, seed),
+                    created: new Date().toISOString(),
+                    buildings: []
+                };
+                console.log(`✓ Island generated: ${islandData.id}`);
+                return islandData;
+            }
+
+            generateTerrain(width, height, seed) {
+                const terrain = Array(height).fill(null).map(() => Array(width).fill(0));
+                const centerX = width / 2;
+                const centerY = height / 2;
+                const islandRadius = Math.min(centerX, centerY) * 0.7;
+
+                for (let y = 0; y < height; y++) {
+                    for (let x = 0; x < width; x++) {
+                        const dx = x - centerX;
+                        const dy = y - centerY;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        const noise = this.seededNoise(x, y, seed);
+                        const falloff = 1 - (distance / islandRadius);
+                        const value = falloff + (noise - 0.5) * 0.4;
+
+                        if (value < 0) {
+                            terrain[y][x] = 0;
+                        } else if (value < 0.15) {
+                            terrain[y][x] = 1;
+                        } else if (value < 0.4) {
+                            terrain[y][x] = 2;
+                        } else {
+                            terrain[y][x] = 3;
+                        }
+                    }
+                }
+                return terrain;
+            }
+
+            seededNoise(x, y, seed) {
+                const n = Math.sin(x * 12.9898 + y * 78.233 + (seed || 0)) * 43758.5453;
+                return n - Math.floor(n);
+            }
+
+            async placeBuilding(islandId, buildingData) {
+                const building = {
+                    id: this.generateUUID(),
+                    islandId,
+                    ...buildingData,
+                    deployed: new Date().toISOString()
+                };
+                console.log(`✓ Building placed: ${building.id}`);
+                return building;
+            }
+
+            generateUUID() {
+                return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                    const r = Math.random() * 16 | 0;
+                    const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                    return v.toString(16);
+                });
+            }
+        }
+
+        // ============================================
+        // 3. Phaser Game Scene (RTS IMPROVED)
+        // ============================================
+
+        class PuterIslandScene extends Phaser.Scene {
+            constructor() {
+                super('PuterIslandScene');
+                this.api = new PuterAPIClient();
+                this.storage = this.api.storage;
+                
+                this.islandData = null;
+                this.islandId = null;
+                this.buildings = [];
+                this.selectedBuilding = null;
+                this.buildingPreview = null;
+                this.isLoading = false;
+
+                this.GRID_SIZE = 32;
+                this.ISLAND_WIDTH = 130;
+                this.ISLAND_HEIGHT = 105;
+
+                // RTS Camera Control
+                this.cameraSpeed = 400;
+                this.keys = {};
+                this.isRightMouseDown = false;
+                this.rightMouseStartX = 0;
+                this.rightMouseStartY = 0;
+                this.cameraStartX = 0;
+                this.cameraStartY = 0;
+            }
+
+            async preload() {
+                await this.api.init();
+            }
+
+            async create() {
+                try {
+                    this.isLoading = true;
+                    
+                    const savedState = await this.storage.loadLatestGameState();
+                    
+                    if (savedState && savedState.islandId) {
+                        this.islandId = savedState.islandId;
+                        this.islandData = savedState.islandData;
+                        this.buildings = savedState.buildings || [];
+                    } else {
+                        this.islandData = await this.api.generateIsland();
+                        this.islandId = this.islandData.id;
+                    }
+
+                    this.setupPhysics();
+                    this.createTerrainDisplay();
+                    this.setupCamera();
+                    this.setupRTSInput();
+                    this.setupMinimap();
+
+                    // Store reference for UI updates
+                    window.gameScene = this;
+                    updateGameUI();
+
+                    this.isLoading = false;
+                    console.log('✓ Game scene ready with RTS controls');
+                } catch (error) {
+                    console.error('Scene error:', error);
+                }
+            }
+
+            setupPhysics() {
+                this.physics.world.setBounds(
+                    0, 0,
+                    this.ISLAND_WIDTH * this.GRID_SIZE,
+                    this.ISLAND_HEIGHT * this.GRID_SIZE
+                );
+            }
+
+            createTerrainDisplay() {
+                const graphics = this.make.graphics({ x: 0, y: 0, add: false });
+                const colors = [0x1a4d7a, 0xc2b280, 0x5fa354, 0x2d5016];
+
+                for (let y = 0; y < this.ISLAND_HEIGHT; y++) {
+                    for (let x = 0; x < this.ISLAND_WIDTH; x++) {
+                        const terrainType = this.islandData.terrain[y][x];
+                        const color = colors[terrainType] || 0xffffff;
+                        
+                        graphics.fillStyle(color, 1);
+                        graphics.fillRect(x * this.GRID_SIZE, y * this.GRID_SIZE, this.GRID_SIZE, this.GRID_SIZE);
+
+                        if (x >= 60 && x <= 70 && y >= 50 && y <= 60) {
+                            graphics.lineStyle(1, 0x00ff00, 0.3);
+                            graphics.strokeRect(x * this.GRID_SIZE, y * this.GRID_SIZE, this.GRID_SIZE, this.GRID_SIZE);
+                        }
+                    }
+                }
+
+                const worldWidth = this.ISLAND_WIDTH * this.GRID_SIZE;
+                const worldHeight = this.ISLAND_HEIGHT * this.GRID_SIZE;
+                graphics.generateTexture('islandTexture', worldWidth, worldHeight);
+                graphics.destroy();
+
+                this.add.image(0, 0, 'islandTexture').setOrigin(0).setDepth(0);
+
+                this.buildings.forEach(b => this.renderBuilding(b));
+            }
+
+            renderBuilding(building) {
+                const colors = {
+                    'house': 0x0088ff,
+                    'tower': 0xff3333,
+                    'farm': 0xffdd00,
+                    'market': 0xff8800
+                };
+
+                this.add.rectangle(
+                    building.worldX,
+                    building.worldY,
+                    this.GRID_SIZE - 4,
+                    this.GRID_SIZE - 4,
+                    colors[building.type] || 0xffffff,
+                    0.9
+                ).setDepth(15);
+            }
+
+            setupCamera() {
+                const camera = this.cameras.main;
+                const centerX = (this.ISLAND_WIDTH / 2) * this.GRID_SIZE;
+                const centerY = (this.ISLAND_HEIGHT / 2) * this.GRID_SIZE;
+                
+                camera.centerOn(centerX, centerY);
+                camera.setZoom(1);
+                camera.setBounds(0, 0,
+                    this.ISLAND_WIDTH * this.GRID_SIZE,
+                    this.ISLAND_HEIGHT * this.GRID_SIZE
+                );
+            }
+
+            setupRTSInput() {
+                // WASD Keys
+                this.input.keyboard.on('keydown-W', () => this.keys['W'] = true);
+                this.input.keyboard.on('keyup-W', () => this.keys['W'] = false);
+                this.input.keyboard.on('keydown-A', () => this.keys['A'] = true);
+                this.input.keyboard.on('keyup-A', () => this.keys['A'] = false);
+                this.input.keyboard.on('keydown-S', () => {
+                    if (event.ctrlKey || event.metaKey) return;
+                    this.keys['S'] = true;
+                });
+                this.input.keyboard.on('keyup-S', () => this.keys['S'] = false);
+                this.input.keyboard.on('keydown-D', () => this.keys['D'] = true);
+                this.input.keyboard.on('keyup-D', () => this.keys['D'] = false);
+
+                // Arrow Keys
+                this.input.keyboard.on('keydown-UP', () => this.keys['UP'] = true);
+                this.input.keyboard.on('keyup-UP', () => this.keys['UP'] = false);
+                this.input.keyboard.on('keydown-LEFT', () => this.keys['LEFT'] = true);
+                this.input.keyboard.on('keyup-LEFT', () => this.keys['LEFT'] = false);
+                this.input.keyboard.on('keydown-DOWN', () => this.keys['DOWN'] = true);
+                this.input.keyboard.on('keyup-DOWN', () => this.keys['DOWN'] = false);
+                this.input.keyboard.on('keydown-RIGHT', () => this.keys['RIGHT'] = true);
+                this.input.keyboard.on('keyup-RIGHT', () => this.keys['RIGHT'] = false);
+
+                // Building Selection
+                this.input.keyboard.on('keydown-1', () => this.selectedBuilding = 'house');
+                this.input.keyboard.on('keydown-2', () => this.selectedBuilding = 'tower');
+                this.input.keyboard.on('keydown-3', () => this.selectedBuilding = 'farm');
+                this.input.keyboard.on('keydown-4', () => this.selectedBuilding = 'market');
+
+                // Game Controls
+                this.input.keyboard.on('keydown-R', () => this.resetCamera());
+                this.input.keyboard.on('keydown-ESC', () => this.clearBuildingPreview());
+                this.input.keyboard.on('keydown-I', () => this.toggleInfoPanel());
+                this.input.keyboard.on('keydown-M', () => this.toggleMinimap());
+
+                // Zoom with Scroll (FIXED - only on scroll direction)
+                this.input.on('wheel', (pointer, gameObjects, deltaY) => {
+                    const camera = this.cameras.main;
+                    const zoomFactor = deltaY > 0 ? 0.9 : 1.1; // Zoom out or in
+                    const newZoom = Phaser.Math.Clamp(
+                        camera.zoom * zoomFactor,
+                        0.5, 3
+                    );
+                    camera.setZoom(newZoom);
+                }, this);
+
+                // Right-Click Drag for camera pan (RTS style)
+                this.input.on('pointerdown', (pointer) => {
+                    if (pointer.rightButtonDown()) {
+                        this.isRightMouseDown = true;
+                        this.rightMouseStartX = pointer.x;
+                        this.rightMouseStartY = pointer.y;
+                        const camera = this.cameras.main;
+                        this.cameraStartX = camera.scrollX;
+                        this.cameraStartY = camera.scrollY;
+                    }
+                });
+
+                this.input.on('pointerup', (pointer) => {
+                    if (!pointer.rightButtonDown()) {
+                        this.isRightMouseDown = false;
+                    }
+                });
+
+                this.input.on('pointermove', (pointer) => {
+                    // Right-click drag pan
+                    if (this.isRightMouseDown) {
+                        const camera = this.cameras.main;
+                        const dx = (this.rightMouseStartX - pointer.x) / camera.zoom;
+                        const dy = (this.rightMouseStartY - pointer.y) / camera.zoom;
+                        camera.scrollX = this.cameraStartX + dx;
+                        camera.scrollY = this.cameraStartY + dy;
+                    }
+
+                    // Building preview
+                    this.updateBuildingPreview(pointer);
+                });
+
+                // Left-click placement
+                this.input.on('pointerdown', (pointer) => {
+                    if (pointer.leftButtonDown() && !this.isLoading) {
+                        this.placeBuildingAtPointer(pointer);
+                    }
+                });
+
+                // Save game on S key (with guard for text inputs)
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 's' || e.key === 'S') {
+                        if (!(e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement)) {
+                            if (!e.ctrlKey && !e.metaKey) {
+                                this.saveGame();
+                                e.preventDefault();
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Update camera position from keyboard input in update loop
+            update() {
+                const camera = this.cameras.main;
+                const dt = this.sys.game.loop.delta / 1000; // Delta time in seconds
+                const moveDistance = this.cameraSpeed * dt;
+
+                // Move based on WASD or Arrow keys
+                if (this.keys['W'] || this.keys['UP']) {
+                    camera.scrollY -= moveDistance;
+                }
+                if (this.keys['S'] || this.keys['DOWN']) {
+                    camera.scrollY += moveDistance;
+                }
+                if (this.keys['A'] || this.keys['LEFT']) {
+                    camera.scrollX -= moveDistance;
+                }
+                if (this.keys['D'] || this.keys['RIGHT']) {
+                    camera.scrollX += moveDistance;
+                }
+
+                // Clamp camera to bounds
+                const bounds = this.physics.world.bounds;
+                const width = this.cameras.main.displayWidth / camera.zoom;
+                const height = this.cameras.main.displayHeight / camera.zoom;
+                
+                camera.scrollX = Phaser.Math.Clamp(
+                    camera.scrollX,
+                    0,
+                    Math.max(0, bounds.width - width)
+                );
+                camera.scrollY = Phaser.Math.Clamp(
+                    camera.scrollY,
+                    0,
+                    Math.max(0, bounds.height - height)
+                );
+            }
+
+            updateBuildingPreview(pointer) {
+                if (!this.selectedBuilding) return;
+
+                const camera = this.cameras.main;
+                const worldX = (pointer.x / camera.zoom) + camera.scrollX;
+                const worldY = (pointer.y / camera.zoom) + camera.scrollY;
+                const snappedX = Math.round(worldX / this.GRID_SIZE) * this.GRID_SIZE - this.GRID_SIZE / 2;
+                const snappedY = Math.round(worldY / this.GRID_SIZE) * this.GRID_SIZE - this.GRID_SIZE / 2;
+
+                if (!this.buildingPreview) {
+                    this.buildingPreview = this.add.rectangle(
+                        snappedX, snappedY,
+                        this.GRID_SIZE - 2,
+                        this.GRID_SIZE - 2,
+                        0xffff00, 0.4
+                    ).setDepth(50);
+                }
+
+                this.buildingPreview.setPosition(snappedX, snappedY);
+
+                const gridX = Math.floor(snappedX / this.GRID_SIZE);
+                const gridY = Math.floor(snappedY / this.GRID_SIZE);
+                const isValid = this.isValidPlacement(gridX, gridY);
+
+                this.buildingPreview.setFillStyle(isValid ? 0x00ff00 : 0xff0000, 0.4);
+            }
+
+            async placeBuildingAtPointer(pointer) {
+                if (!this.selectedBuilding) return;
+
+                const camera = this.cameras.main;
+                const worldX = (pointer.x / camera.zoom) + camera.scrollX;
+                const worldY = (pointer.y / camera.zoom) + camera.scrollY;
+                const snappedX = Math.round(worldX / this.GRID_SIZE) * this.GRID_SIZE - this.GRID_SIZE / 2;
+                const snappedY = Math.round(worldY / this.GRID_SIZE) * this.GRID_SIZE - this.GRID_SIZE / 2;
+
+                const gridX = Math.floor(snappedX / this.GRID_SIZE);
+                const gridY = Math.floor(snappedY / this.GRID_SIZE);
+
+                if (!this.isValidPlacement(gridX, gridY)) {
+                    showNotification('Cannot place building here!');
+                    return;
+                }
+
+                const building = await this.api.placeBuilding(this.islandId, {
+                    type: this.selectedBuilding,
+                    gridX,
+                    gridY,
+                    worldX: snappedX + this.GRID_SIZE / 2,
+                    worldY: snappedY + this.GRID_SIZE / 2
+                });
+
+                this.buildings.push(building);
+                this.renderBuilding(building);
+                showNotification(`${building.type.toUpperCase()} placed! (${gridX}, ${gridY})`);
+            }
+
+            isValidPlacement(gridX, gridY) {
+                if (gridX < 60 || gridX > 70 || gridY < 50 || gridY > 60) {
+                    return false;
+                }
+
+                for (let building of this.buildings) {
+                    const dist = Math.hypot(gridX - building.gridX, gridY - building.gridY);
+                    if (dist < 1.5) return false;
+                }
+
+                return true;
+            }
+
+            async saveGame() {
+                const gameState = {
+                    islandId: this.islandId,
+                    islandData: this.islandData,
+                    buildings: this.buildings,
+                    timestamp: new Date().toISOString()
+                };
+
+                const result = await this.storage.saveGameState(gameState);
+                if (result.success) {
+                    showNotification('✓ Game Saved!');
+                }
+            }
+
+            clearBuildingPreview() {
+                if (this.buildingPreview) {
+                    this.buildingPreview.destroy();
+                    this.buildingPreview = null;
+                }
+                this.selectedBuilding = null;
+                showNotification('Building deselected');
+            }
+
+            resetCamera() {
+                const centerX = (this.ISLAND_WIDTH / 2) * this.GRID_SIZE;
+                const centerY = (this.ISLAND_HEIGHT / 2) * this.GRID_SIZE;
+                this.cameras.main.centerOn(centerX, centerY);
+                this.cameras.main.setZoom(1);
+            }
+
+            toggleInfoPanel() {
+                const panel = document.getElementById('game-info');
+                panel.classList.toggle('visible');
+            }
+
+            toggleMinimap() {
+                const minimap = document.getElementById('minimap');
+                minimap.style.display = minimap.style.display === 'none' ? 'block' : 'none';
+            }
+
+            setupMinimap() {
+                const canvas = document.getElementById('minimap-canvas');
+                const ctx = canvas.getContext('2d');
+                
+                // Set canvas size
+                canvas.width = 150;
+                canvas.height = 150;
+
+                // Render minimap
+                const scale = 150 / Math.max(this.ISLAND_WIDTH, this.ISLAND_HEIGHT);
+                const colors = ['#1a4d7a', '#c2b280', '#5fa354', '#2d5016'];
+
+                for (let y = 0; y < this.ISLAND_HEIGHT; y++) {
+                    for (let x = 0; x < this.ISLAND_WIDTH; x++) {
+                        const terrainType = this.islandData.terrain[y][x];
+                        ctx.fillStyle = colors[terrainType] || '#ffffff';
+                        ctx.fillRect(x * scale, y * scale, scale, scale);
+                    }
+                }
+
+                // Draw buildings on minimap
+                this.buildings.forEach(b => {
+                    ctx.fillStyle = '#ff0000';
+                    ctx.fillRect(b.gridX * scale, b.gridY * scale, scale * 1.5, scale * 1.5);
+                });
+            }
+        }
+
+        // ============================================
+        // UI FUNCTIONS
+        // ============================================
+
+        function showGameInfo(show = true) {
+            const el = document.getElementById('game-info');
+            if (show) {
+                el.classList.add('visible');
+            } else {
+                el.classList.remove('visible');
+            }
+        }
+
+        function toggleSaves() {
+            const modal = document.getElementById('saves-modal');
+            modal.classList.toggle('visible');
+        }
+
+        function showControls(show = true) {
+            const modal = document.getElementById('controls-modal');
+            if (show) {
+                modal.classList.add('visible');
+            } else {
+                modal.classList.remove('visible');
+            }
+        }
+
+        function showNotification(message) {
+            const notif = document.createElement('div');
+            notif.className = 'notification';
+            notif.textContent = message;
+            document.body.appendChild(notif);
+            setTimeout(() => notif.remove(), 3000);
+        }
+
+        function updateGameUI() {
+            setInterval(() => {
+                if (window.gameScene && window.gameScene.islandData) {
+                    const gs = window.gameScene;
+                    const camera = gs.cameras.main;
+                    
+                    document.getElementById('info-island').textContent = 
+                        gs.islandId.substring(0, 12) + '...';
+                    document.getElementById('info-seed').textContent = 
+                        gs.islandData.seed.toFixed(6);
+                    document.getElementById('info-zoom').textContent = 
+                        camera.zoom.toFixed(2) + 'x';
+                    document.getElementById('info-buildings').textContent = 
+                        gs.buildings.length + '/100';
+                    document.getElementById('info-selected').textContent = 
+                        gs.selectedBuilding || 'None';
+                    document.getElementById('info-pos').textContent =
+                        Math.round(camera.scrollX / 32) + ', ' + Math.round(camera.scrollY / 32);
+                }
+            }, 100);
+        }
+
+        let frameCount = 0;
+        let lastTime = Date.now();
+
+        function updateFPS() {
+            frameCount++;
+            const now = Date.now();
+            if (now - lastTime >= 1000) {
+                document.getElementById('fps-counter').textContent = 'FPS: ' + frameCount;
+                frameCount = 0;
+                lastTime = now;
+            }
+            requestAnimationFrame(updateFPS);
+        }
+
+        // ============================================
+        // Initialize Game
+        // ============================================
+
+        const phaserConfig = {
+            type: Phaser.AUTO,
+            width: window.innerWidth,
+            height: window.innerHeight - 80,
+            parent: 'game-container',
+            physics: {
+                default: 'arcade',
+                arcade: { debug: false }
+            },
+            scene: PuterIslandScene,
+            render: {
+                pixelArt: false,
+                antialias: true
+            },
+            scale: {
+                mode: Phaser.Scale.RESIZE
+            }
+        };
+
+        window.addEventListener('load', () => {
+            console.log('✓ Initializing Phaser with RTS controls...');
+            const game = new Phaser.Game(phaserConfig);
+            updateFPS();
+        });
+    </script>
+</body>
+</html>

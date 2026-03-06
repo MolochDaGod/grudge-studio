@@ -1,0 +1,106 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Puter: Deploy Auth",
+      "type": "shell",
+      "command": "puter",
+      "args": ["app:update", "grudge-auth", "puter-deploy/grudge-auth"],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new",
+        "showReuseMessage": false
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Puter: Deploy Cloud",
+      "type": "shell",
+      "command": "puter",
+      "args": ["app:update", "grudge-cloud", "puter-deploy/grudge-cloud"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Puter: Deploy Worker (grudge-api)",
+      "type": "shell",
+      "command": "npx",
+      "args": ["tsx", "scripts/deploy-worker.ts", "grudge-api"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Puter: Deploy Worker (sprite-generator)",
+      "type": "shell",
+      "command": "npx",
+      "args": ["tsx", "scripts/deploy-worker.ts", "sprite-generator"],
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Puter: Open Shell",
+      "type": "shell",
+      "command": "puter",
+      "args": ["shell"],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "focus": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Puter: List Apps",
+      "type": "shell",
+      "command": "puter",
+      "args": ["shell", "-c", "apps"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Puter: Check Status",
+      "type": "shell",
+      "command": "puter",
+      "args": ["whoami"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Deploy All to Puter",
+      "dependsOn": [
+        "Puter: Deploy Auth",
+        "Puter: Deploy Cloud"
+      ],
+      "dependsOrder": "sequence",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
+

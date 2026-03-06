@@ -1,0 +1,29 @@
+{
+  "buildCommand": "pnpm build",
+  "devCommand": "pnpm dev",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "framework": "other",
+  "functions": {
+    "api/**/*.ts": {
+      "memory": 1024,
+      "maxDuration": 60
+    }
+  },
+  "env": [
+    {
+      "key": "DATABASE_URL",
+      "value": "@database_url"
+    },
+    {
+      "key": "NODE_ENV",
+      "value": "production"
+    },
+    {
+      "key": "SESSION_SECRET",
+      "value": "@session_secret"
+    }
+  ],
+  "git": {
+    "deploymentEnabled": true
+  }
+}

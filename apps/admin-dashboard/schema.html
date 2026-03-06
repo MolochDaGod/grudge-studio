@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Schema - GRUDGE Warlords Admin</title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-title">⚔️ GRUDGE Warlords Admin</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Architecture</a></li>
+                <li><a href="schema.html" class="active">Database Schema</a></li>
+                <li><a href="api.html">API Docs</a></li>
+                <li><a href="storage.html">Object Storage</a></li>
+                <li><a href="metrics.html">Metrics</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="page-header">
+            <h1>Database Schema</h1>
+            <p class="subtitle">Neon PostgreSQL — all tables in <code>public</code> schema</p>
+        </header>
+
+        <section class="schema-overview">
+            <h2>Live Tables</h2>
+            <p>The database uses a single <code>public</code> schema with 4 tables currently in production. The auth-gateway connects via postgres.js with raw SQL queries (no ORM).</p>
+
+            <div class="schema-grid">
+                <div class="schema-card">
+                    <h3>👤 users</h3>
+                    <p class="schema-purpose">User accounts — all auth methods converge here</p>
+                    <ul class="table-list">
+                        <li><code>id</code> — UUID primary key</li>
+                        <li><code>username</code> — unique, NOT NULL</li>
+                        <li><code>password_hash</code> — bcryptjs hash</li>
+                        <li><code>email</code> — nullable</li>
+                        <li><code>display_name</code></li>
+                        <li><code>grudge_id</code> — GRUDGE-{timestamp}-{hex} format</li>
+                        <li><code>wallet_address</code> — Solana address (Crossmint)</li>
+                        <li><code>puter_id</code> — Puter SSO ID</li>
+                        <li><code>discord_id</code> — VARCHAR(100), indexed</li>
+                        <li><code>github_id</code> — VARCHAR(100), indexed</li>
+                        <li><code>google_id</code> — VARCHAR(100), indexed</li>
+                        <li><code>avatar_url</code></li>
+                        <li><code>is_premium</code> — BOOLEAN default false</li>
+                        <li><code>premium_until</code> — BIGINT timestamp</li>
+                        <li><code>last_login_at</code> — BIGINT ms epoch</li>
+                        <li><code>created_at</code> — BIGINT ms epoch</li>
+                    </ul>
+                </div>
+
+                <div class="schema-card">
+                    <h3>💰 accounts</h3>
+                    <p class="schema-purpose">Economy data — one account per user</p>
+                    <ul class="table-list">
+                        <li><code>id</code> — UUID primary key</li>
+                        <li><code>user_id</code> — references users.id</li>
+                        <li><code>display_name</code></li>
+                        <li><code>gold</code> — starting balance: 1000</li>
+                        <li><code>premium_currency</code> — default 0</li>
+                        <li><code>gbux_balance</code> — default 0</li>
+                        <li><code>account_xp</code> — default 0</li>
+                        <li><code>wallet_address</code></li>
+                        <li><code>wallet_type</code></li>
+                        <li><code>created_at</code> — BIGINT ms epoch</li>
+                    </ul>
+                </div>
+
+                <div class="schema-card">
+                    <h3>🔑 auth_tokens</h3>
+                    <p class="schema-purpose">Session tokens — 7-day expiry</p>
+                    <ul class="table-list">
+                        <li><code>id</code> — UUID primary key</li>
+                        <li><code>user_id</code> — references users.id</li>
+                        <li><code>token</code> — 32-byte random hex string</li>
+                        <li><code>token_type</code> — 'standard', 'discord', 'github', 'puter', 'guest'</li>
+                        <li><code>expires_at</code> — BIGINT (Date.now() + 7 days)</li>
+                        <li><code>created_at</code> — BIGINT ms epoch</li>
+                    </ul>
+                </div>
+
+                <div class="schema-card">
+                    <h3>🔗 linked_accounts</h3>
+                    <p class="schema-purpose">OAuth provider links — multiple providers per user</p>
+                    <ul class="table-list">
+                        <li><code>id</code> — UUID primary key (gen_random_uuid)</li>
+                        <li><code>user_id</code> — UUID NOT NULL</li>
+                        <li><code>provider</code> — VARCHAR(30) ('discord', 'github')</li>
+                        <li><code>provider_id</code> — VARCHAR(100) NOT NULL</li>
+                        <li><code>provider_email</code> — VARCHAR(255)</li>
+                        <li><code>provider_username</code> — VARCHAR(100)</li>
+                        <li><code>provider_avatar</code> — TEXT</li>
+                        <li><code>access_token</code> — TEXT</li>
+                        <li><code>refresh_token</code> — TEXT</li>
+                        <li><code>token_expires_at</code> — BIGINT</li>
+                        <li><code>linked_at</code> — BIGINT NOT NULL</li>
+                        <li><code>last_used_at</code> — BIGINT</li>
+                        <li>UNIQUE(provider, provider_id)</li>
+                        <li>UNIQUE(user_id, provider)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="schema-details">
+            <h2>Actual CREATE Statements</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">Derived from auth-gateway code (login.js, register.js, verify.js, migrate.js, github.js, discord.js)</p>
+
+            <div class="table-detail">
+                <h3>users table (columns confirmed from SELECT/INSERT queries)</h3>
+                <pre><code>-- Core columns (used in register.js INSERT)
+id              UUID PRIMARY KEY
+username        TEXT UNIQUE NOT NULL
+password_hash   TEXT NOT NULL
+email           TEXT
+display_name    TEXT
+grudge_id       TEXT              -- GRUDGE-{timestamp}-{hex}
+wallet_address  TEXT              -- Solana (set by Crossmint on register)
+puter_id        TEXT
+is_premium      BOOLEAN DEFAULT false
+premium_until   BIGINT
+last_login_at   BIGINT
+created_at      BIGINT
+
+-- OAuth columns (added via migrate.js ALTER TABLE)
+discord_id      VARCHAR(100) UNIQUE
+github_id       VARCHAR(100) UNIQUE
+google_id       VARCHAR(100) UNIQUE
+avatar_url      TEXT
+
+-- Indexes
+idx_users_discord  ON users(discord_id)
+idx_users_github   ON users(github_id)
+idx_users_google   ON users(google_id)</code></pre>
+            </div>
+
+            <div class="table-detail">
+                <h3>accounts table (from register.js INSERT)</h3>
+                <pre><code>id                UUID PRIMARY KEY
+user_id           UUID NOT NULL          -- FK to users.id
+display_name      TEXT
+gold              INTEGER DEFAULT 1000   -- starting gold
+premium_currency  INTEGER DEFAULT 0
+gbux_balance      INTEGER DEFAULT 0
+account_xp        INTEGER DEFAULT 0
+wallet_address    TEXT                   -- also on accounts (verify.js reads it)
+wallet_type       TEXT
+created_at        BIGINT</code></pre>
+            </div>
+
+            <div class="table-detail">
+                <h3>auth_tokens table (from login.js INSERT)</h3>
+                <pre><code>id          UUID PRIMARY KEY
+user_id     UUID NOT NULL
+token       TEXT NOT NULL          -- crypto.randomBytes(32).toString('hex')
+token_type  VARCHAR                -- 'standard', 'discord', 'github', 'puter', 'guest'
+expires_at  BIGINT NOT NULL        -- Date.now() + 7 days in ms
+created_at  BIGINT NOT NULL</code></pre>
+            </div>
+
+            <div class="table-detail">
+                <h3>linked_accounts table (from migrate.js CREATE TABLE)</h3>
+                <pre><code>CREATE TABLE IF NOT EXISTS linked_accounts (
+  id                UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id           UUID NOT NULL,
+  provider          VARCHAR(30) NOT NULL,
+  provider_id       VARCHAR(100) NOT NULL,
+  provider_email    VARCHAR(255),
+  provider_username VARCHAR(100),
+  provider_avatar   TEXT,
+  access_token      TEXT,
+  refresh_token     TEXT,
+  token_expires_at  BIGINT,
+  linked_at         BIGINT NOT NULL,
+  last_used_at      BIGINT,
+  UNIQUE(provider, provider_id),
+  UNIQUE(user_id, provider)
+);
+
+-- Indexes
+CREATE INDEX idx_linked_provider ON linked_accounts(provider, provider_id);
+CREATE INDEX idx_linked_user ON linked_accounts(user_id);</code></pre>
+            </div>
+        </section>
+
+        <section class="relationships">
+            <h2>Table Relationships</h2>
+
+            <div class="relationship-diagram">
+                <pre class="ascii-diagram">
+users (PK: id)
+├── username, password_hash, email, display_name
+├── grudge_id — canonical Grudge Studio identifier
+├── wallet_address — Solana (Crossmint MPC)
+├── puter_id, discord_id, github_id, google_id — provider IDs
+├── avatar_url, is_premium, premium_until
+└── last_login_at, created_at
+
+accounts (PK: id, FK: user_id → users.id)
+├── display_name — "{username}'s Account"
+├── gold (1000), premium_currency (0), gbux_balance (0), account_xp (0)
+└── wallet_address, wallet_type
+
+auth_tokens (PK: id, FK: user_id → users.id)
+├── token — 64-char hex string, checked by /api/verify
+├── token_type — standard | discord | github | puter | guest
+└── expires_at — 7 days from creation
+
+linked_accounts (PK: id, FK: user_id → users.id)
+├── provider + provider_id — UNIQUE (one link per provider globally)
+├── user_id + provider — UNIQUE (one provider per user)
+├── provider_email, provider_username, provider_avatar
+├── access_token, refresh_token, token_expires_at
+└── linked_at, last_used_at — ON CONFLICT DO UPDATE
+                </pre>
+            </div>
+        </section>
+
+        <section class="best-practices">
+            <h2>Planned Tables</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">These tables are designed but not yet created in the database</p>
+
+            <div class="practice-grid">
+                <div class="practice-card" style="opacity: 0.6;">
+                    <h4>🦸 characters</h4>
+                    <p>Player characters with race, class, level, attributes, equipment, inventory, AI personality</p>
+                </div>
+
+                <div class="practice-card" style="opacity: 0.6;">
+                    <h4>🎮 game_sessions / dungeon_runs</h4>
+                    <p>Active sessions, dungeon instances, combat logs, explored tiles</p>
+                </div>
+
+                <div class="practice-card" style="opacity: 0.6;">
+                    <h4>🗺️ items / recipes / abilities</h4>
+                    <p>Global game content catalog — weapons, armor, crafting recipes, skills</p>
+                </div>
+
+                <div class="practice-card" style="opacity: 0.6;">
+                    <h4>📊 analytics_events / daily_stats</h4>
+                    <p>Activity logs, leaderboards, GBUX transactions, mission progress</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="best-practices">
+            <h2>Database Conventions</h2>
+
+            <div class="practice-grid">
+                <div class="practice-card">
+                    <h4>Naming</h4>
+                    <p>snake_case columns (password_hash, display_name, etc.)</p>
+                    <p>UUID primary keys via gen_random_uuid()</p>
+                </div>
+
+                <div class="practice-card">
+                    <h4>Timestamps</h4>
+                    <p>BIGINT milliseconds since epoch (Date.now())</p>
+                    <p>NOT Postgres TIMESTAMP — allows JS-native handling</p>
+                </div>
+
+                <div class="practice-card">
+                    <h4>Driver</h4>
+                    <p>postgres.js (raw tagged template SQL)</p>
+                    <p>No ORM — all queries are explicit</p>
+                </div>
+
+                <div class="practice-card">
+                    <h4>Migrations</h4>
+                    <p>ALTER TABLE via /api/migrate endpoint</p>
+                    <p>Protected by MIGRATION_SECRET or ?setup= param</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 GRUDGE Warlords. Database Schema Documentation.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,49 @@
+GRUDGE STUDIO
+Technical Architecture & Deployment Guide (v2025)
+
+1. Full-Stack Game Dev Best Practices
+Building scalable studio infrastructure requires a focus on security, automation, and modular design.
+
+Separation of Concerns
+Use a modern UI framework (like React or raw HTML/Tailwind) for menus and navigation, while running the core game (Phaser/Three.js) inside an iframe or dedicated canvas container. This isolates game logic from studio UI state.
+Environment Security
+Never hard-code API keys. Use puter.env or Node.js environment variables to store sensitive credentials like Crossmint Client Secrets.
+Modular Codebase
+Implement clean code principles. Break your game logic into modular classes (e.g., PlayerSystem, NetworkManager, EconomyController) to ensure maintainability as your studio tools grow.
+Performance Monitoring
+Use browser profiling tools (Lighthouse, Chrome DevTools Performance tab) to audit rendering bottlenecks, especially when mixing DOM elements with WebGL canvases.
+2. The Grudge Studio Stack (Puter.js Optimized)
+A high-performance, web-native environment optimized for browser-based deployment.
+
+Game Engines
+Phaser 3 for high-speed 2D rendering and Three.js for immersive 3D experiences. Both run natively in the browser without plugins.
+
+Cloud & Backend
+Puter.js provides serverless backend functionality directly from the frontend. Use puter.fs for asset storage and puter.kv for real-time player stats.
+
+Runtime
+Node.js (via Puter Workers) allows you to run secure, server-side logic for economy verification and sensitive API calls.
+
+Auth System
+puter.auth handles user identity management out of the box, eliminating the need for custom login databases.
+
+3. Crossmint Web3 Integration
+Enable "invisible" blockchain features to provide a seamless Web2-like experience for players.
+
+Programmatic Wallet Creation
+Use the Crossmint Server-Side SDK to generate wallets for users automatically upon sign-up.
+Strategy: Link the created wallet address to the user's Puter ID in your Key-Value store.
+Seamless Onboarding
+Allow players to sign up with just an email. Crossmint manages the private keys securely, removing the friction of seed phrases.
+Gasless Transactions
+Sponsor gas fees for your players. This allows them to trade items or save progress on-chain without ever needing to buy cryptocurrency.
+Multi-Chain Support
+Deploy assets across Solana, Polygon, or Base using a single API, giving you the flexibility to choose the best chain for your game economy.
+4. Additional Knowledge
+Asset Optimization
+Serve static assets (textures, spritesheets, models) via Puter's hosting CDN to reduce latency. Compress images using WebP for faster load times.
+Secure Communications
+If running your game in an iframe, use window.postMessage to securely pass data (like "Game Over" events or "Item Found" triggers) between the game loop and your main React/HTML dashboard.
+AI-Enabled Workflows
+Leverage the Puter AI API to generate dynamic quest descriptions, NPC dialogue, or even procedural level layouts on the fly.
+© 2025 Grudge Studio Internal Docs. Built for Puter.com integration.

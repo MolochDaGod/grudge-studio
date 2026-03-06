@@ -1,0 +1,64 @@
+ID,Name,Tier,Category,SubCategory,Profession,Description,Icon,Speed,Ingredients
+donkey,Donkey,1,mount,ground,Forester,Slow but sturdy pack animal,🫏,110%,rawhide:5|apple:3
+mule,Mule,2,mount,ground,Forester,Reliable pack animal,🫏,120%,thick-hide:5|carrot:5|apple:3
+pony,Pony,1,mount,ground,Forester,Small riding horse,🐴,125%,rawhide:3|apple:5|hay:5
+horse,Horse,2,mount,ground,Forester,Standard riding mount,🐴,140%,thick-hide:5|carrot:5|honey:2
+war-horse,War Horse,3,mount,ground,Forester,Armored battle mount,🐎,150%,rugged-leather:8|apple:10|steel-ingot:3
+destrier,Destrier,4,mount,ground,Forester,Heavy cavalry mount,🐎,160%,hardened-leather:8|honey:5|mithril-ingot:2
+nightmare,Nightmare,5,mount,ground,Forester,Flame-maned demonic horse,🔥,175%,wyrm-leather:10|fire-essence:3|adamantine-ingot:3
+unicorn,Unicorn,6,mount,ground,Forester,Magical horned steed,🦄,185%,infernal-leather:10|light-essence:3|orichalcum-ingot:3
+sleipnir,Sleipnir,7,mount,ground,Forester,Eight-legged divine horse,🐴,200%,titan-leather:12|ancient-essence:3|starmetal-ingot:5
+divine-stallion,Divine Stallion,8,mount,ground,Forester,Godly blessed horse,✨,220%,divine-leather:15|divine-essence:3|divine-ingot:5
+wolf,Wolf,2,mount,ground,Forester,Fast predator mount,🐺,145%,thick-hide:6|beef:5|rugged-leather:2
+dire-wolf,Dire Wolf,3,mount,ground,Forester,Large wolf mount,🐺,160%,rugged-leather:8|venison:8|steel-ingot:2
+shadow-wolf,Shadow Wolf,4,mount,ground,Forester,Darkness-touched wolf,🐺,175%,hardened-leather:10|dark-essence:2|mithril-ingot:3
+frost-wolf,Frost Wolf,5,mount,ground,Forester,Ice elemental wolf,❄️,185%,wyrm-leather:10|ice-essence:3|adamantine-ingot:3
+fenrir,Fenrir,6,mount,ground,Forester,Legendary giant wolf,🐺,200%,infernal-leather:12|void-rune:2|orichalcum-ingot:4
+celestial-wolf,Celestial Wolf,7,mount,ground,Forester,Star-blessed wolf,⭐,215%,titan-leather:14|ancient-essence:3|starmetal-ingot:5
+divine-wolf,Divine Wolf,8,mount,ground,Forester,Holy wolf mount,✨,235%,divine-leather:16|divine-essence:4|divine-ingot:6
+bear,Bear,3,mount,ground,Forester,Strong bear mount,🐻,135%,rugged-leather:10|honey:10|salmon:8
+cave-bear,Cave Bear,4,mount,ground,Forester,Massive cave bear,🐻,150%,hardened-leather:12|honey:15|beef:10
+dire-bear,Dire Bear,5,mount,ground,Forester,Giant prehistoric bear,🐻,165%,wyrm-leather:14|dragon-meat:5|adamantine-ingot:4
+spirit-bear,Spirit Bear,6,mount,ground,Forester,Ethereal bear mount,👻,180%,infernal-leather:14|light-essence:3|orichalcum-ingot:4
+arctic-titan-bear,Arctic Titan Bear,7,mount,ground,Forester,Colossal ice bear,❄️,195%,titan-leather:16|ice-essence:4|starmetal-ingot:5
+divine-bear,Divine Bear,8,mount,ground,Forester,Holy bear mount,✨,215%,divine-leather:18|divine-essence:4|divine-ingot:6
+giant-elk,Giant Elk,4,mount,ground,Forester,Majestic antlered mount,🦌,165%,hardened-leather:10|worldroot-staff:1|mithril-ingot:3
+stag-spirit,Stag Spirit,6,mount,ground,Forester,Nature spirit mount,🦌,185%,infernal-leather:12|verdant-infusion:2|orichalcum-ingot:4
+boar,Wild Boar,2,mount,ground,Forester,Aggressive tusked mount,🐗,130%,thick-hide:5|truffle:3|iron-ingot:2
+war-boar,War Boar,4,mount,ground,Forester,Armored battle boar,🐗,155%,hardened-leather:10|truffle:8|mithril-ingot:3
+mammoth,Mammoth,6,mount,ground,Forester,Colossal ancient elephant,🦣,140%,infernal-leather:20|ancient-grain:10|orichalcum-ingot:6
+hawk,Hawk,2,mount,flying,Forester,Small flying mount,🦅,140%,thick-hide:4|hawk-feathers:10|iron-ingot:2
+giant-eagle,Giant Eagle,4,mount,flying,Forester,Large raptor mount,🦅,175%,hardened-leather:8|hawk-feathers:20|mithril-ingot:4
+thunderbird,Thunderbird,6,mount,flying,Forester,Lightning elemental eagle,⚡,210%,infernal-leather:10|lightning-essence:4|orichalcum-ingot:5
+roc,Roc,7,mount,flying,Forester,Legendary giant bird,🦅,230%,titan-leather:12|ancient-essence:4|starmetal-ingot:6
+griffon,Griffon,5,mount,flying,Forester,Lion-eagle hybrid,🦁,190%,wyrm-leather:10|hawk-feathers:15|adamantine-ingot:5|fine-gem:2
+royal-griffon,Royal Griffon,6,mount,flying,Forester,Majestic golden griffon,👑,215%,infernal-leather:12|phoenix-feathers:5|orichalcum-ingot:6|flawless-gem:2
+celestial-griffon,Celestial Griffon,8,mount,flying,Forester,Divine blessed griffon,✨,250%,divine-leather:15|divine-essence:3|divine-ingot:6|divine-gem:2
+hippogryph,Hippogryph,5,mount,flying,Forester,Horse-eagle hybrid,🐴,195%,wyrm-leather:10|hawk-feathers:20|adamantine-ingot:4
+armored-hippogryph,Armored Hippogryph,7,mount,flying,Forester,Battle-ready hippogryph,🛡️,225%,titan-leather:14|phoenix-feathers:8|starmetal-ingot:5
+wyvern,Wyvern,5,mount,flying,Forester,Two-legged dragon,🐉,200%,wyrm-leather:12|dragon-sinew:3|adamantine-ingot:5
+frost-wyvern,Frost Wyvern,6,mount,flying,Forester,Ice wyvern mount,❄️,220%,infernal-leather:14|ice-essence:4|orichalcum-ingot:6
+poison-wyvern,Poison Wyvern,7,mount,flying,Forester,Venomous wyvern,☠️,235%,titan-leather:16|poison-bomb:5|starmetal-ingot:6
+phoenix,Phoenix,7,mount,flying,Forester,Immortal fire bird,🔥,240%,titan-leather:15|phoenix-feathers:20|fire-essence:5|radiant-gem:3
+celestial-phoenix,Celestial Phoenix,8,mount,flying,Forester,Divine reborn bird,✨,265%,divine-leather:18|phoenix-feathers:30|divine-essence:4|divine-gem:3
+dragon,Dragon,7,mount,flying,Forester,True dragon mount,🐉,250%,titan-leather:20|dragon-sinew:10|starmetal-ingot:8|radiant-gem:4
+elder-dragon,Elder Dragon,8,mount,flying,Forester,Ancient wyrm mount,🐲,275%,divine-leather:25|dragon-sinew:15|divine-ingot:10|divine-gem:5
+divine-dragon,Divine Dragon,8,mount,flying,Forester,Holy celestial dragon,✨,300%,divine-leather:30|divine-essence:6|divine-ingot:12|divine-gem:6
+mechanical-horse,Mechanical Horse,3,mount,ground,Engineer,Steam-powered steed,🐴,145%,steel-ingot:10|steel-gear:5|spring:8|coal:20
+clockwork-spider,Clockwork Spider,4,mount,ground,Engineer,Eight-legged construct,🕷️,160%,mithril-ingot:12|precision-gear:6|spring:10|circuit:3
+steam-tank,Steam Tank,5,mount,ground,Engineer,Armored vehicle,🚗,130%,adamantine-ingot:20|clockwork-core:3|spring:15|coal:50
+hover-bike,Hover Bike,6,mount,ground,Engineer,Anti-gravity cycle,🏍️,200%,orichalcum-ingot:15|arcane-gear:5|circuit:8|arcane-powder:10
+mech-walker,Mech Walker,7,mount,ground,Engineer,Bipedal mech suit,🤖,175%,starmetal-ingot:20|void-gear:6|quantum-circuit:3|void-powder:10
+divine-automaton,Divine Automaton,8,mount,ground,Engineer,Holy construct mount,👑,210%,divine-ingot:25|divine-gear:8|quantum-circuit:5|divine-powder:15
+gyrocopter,Gyrocopter,4,mount,flying,Engineer,Basic flying machine,🚁,165%,mithril-ingot:10|precision-gear:6|spring:12|lens:3
+steam-airship,Steam Airship,5,mount,flying,Engineer,Personal airship,🎈,155%,adamantine-ingot:15|clockwork-core:4|spring:20|coal:100
+clockwork-dragon,Clockwork Dragon,6,mount,flying,Engineer,Mechanical wyrm,🐉,210%,orichalcum-ingot:20|arcane-gear:8|circuit:12|arcane-powder:15
+void-glider,Void Glider,7,mount,flying,Engineer,Dimensional flyer,🕳️,235%,starmetal-ingot:25|void-gear:10|quantum-circuit:5|void-powder:20
+divine-wings,Divine Wings,8,mount,flying,Engineer,Holy wing apparatus,👼,260%,divine-ingot:30|divine-gear:12|quantum-circuit:8|divine-powder:25
+floating-disc,Floating Disc,2,mount,flying,Mystic,Magic platform,💿,140%,wool-cloth:5|lesser-essence:3|flawed-gem:2
+magic-carpet,Magic Carpet,3,mount,flying,Mystic,Flying rug,🧙,160%,cotton-cloth:8|greater-essence:4|standard-gem:2
+cloud-mount,Cloud Mount,4,mount,flying,Mystic,Riding cloud,☁️,175%,silk-cloth:10|superior-essence:4|fine-gem:2
+spectral-steed,Spectral Steed,5,mount,flying,Mystic,Ghost horse,👻,195%,moonweave-cloth:10|refined-essence:5|pristine-gem:2
+arcane-wyrm,Arcane Wyrm,6,mount,flying,Mystic,Magic dragon,🐉,220%,starweave-cloth:12|perfect-essence:5|flawless-gem:3
+void-walker,Void Walker Mount,7,mount,flying,Mystic,Dark entity,🌑,245%,voidweave-cloth:14|ancient-essence:6|radiant-gem:3
+celestial-pegasus,Celestial Pegasus,8,mount,flying,Mystic,Divine winged horse,🐴,270%,divine-cloth:18|divine-essence:6|divine-gem:4

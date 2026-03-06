@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "strict": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@shared/*": ["packages/shared/src/*"],
+      "@database/*": ["packages/database/src/*"],
+      "@sheets-sync/*": ["packages/google-sheets-sync/src/*"],
+      "@puter-sync/*": ["packages/puter-sync/src/*"],
+      "@ui/*": ["packages/ui-components/src/*"]
+    }
+  },
+  "include": [
+    "packages/**/*.ts",
+    "packages/**/*.tsx",
+    "apps/**/*.ts",
+    "apps/**/*.tsx"
+  ],
+  "references": [
+    { "path": "./packages/shared" },
+    { "path": "./packages/database" },
+    { "path": "./packages/google-sheets-sync" },
+    { "path": "./packages/puter-sync" },
+    { "path": "./packages/ui-components" },
+    { "path": "./apps/warlord-crafting-suite" }
+  ]
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRUDGE Server API</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+    <script src="https://js.puter.com/v2/"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e4e4e7;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 30px; }
+        header h1 { color: #22c55e; font-size: 2rem; margin-bottom: 8px; }
+        header p { color: #a1a1aa; }
+        .card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .card h2 { color: #f59e0b; margin-bottom: 16px; font-size: 1.2rem; }
+        .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+        .status-item { background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; }
+        .status-item .label { color: #a1a1aa; font-size: 0.8rem; margin-bottom: 4px; }
+        .status-item .value { font-weight: 600; }
+        .status-ok { color: #22c55e; }
+        .status-error { color: #ef4444; }
+        .endpoint { background: rgba(0,0,0,0.3); padding: 12px; border-radius: 8px; margin-bottom: 8px; font-family: monospace; }
+        .endpoint .method { color: #22c55e; font-weight: bold; }
+        .endpoint .path { color: #60a5fa; }
+        .endpoint .desc { color: #a1a1aa; font-size: 0.85rem; margin-top: 4px; }
+        .btn {
+            background: #22c55e;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn:hover { background: #16a34a; }
+        #health-result { margin-top: 16px; padding: 12px; background: rgba(0,0,0,0.3); border-radius: 8px; font-family: monospace; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>GRUDGE Server API</h1>
+            <p>Authentication & Account Management Backend</p>
+        </header>
+
+        <div class="card">
+            <h2>Server Status</h2>
+            <div class="status-grid">
+                <div class="status-item">
+                    <div class="label">Status</div>
+                    <div class="value" id="status-server">Checking...</div>
+                </div>
+                <div class="status-item">
+                    <div class="label">Version</div>
+                    <div class="value" id="status-version">-</div>
+                </div>
+                <div class="status-item">
+                    <div class="label">Accounts</div>
+                    <div class="value" id="status-accounts">-</div>
+                </div>
+                <div class="status-item">
+                    <div class="label">Storage</div>
+                    <div class="value" id="status-storage">-</div>
+                </div>
+            </div>
+            <div style="margin-top: 16px;">
+                <button class="btn" onclick="checkHealth()">Refresh Status</button>
+            </div>
+            <div id="health-result"></div>
+        </div>
+
+        <div class="card">
+            <h2>API Endpoints</h2>
+            <div class="endpoint">
+                <span class="method">GET</span> <span class="path">/api/health</span>
+                <div class="desc">Health check & server status</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">POST</span> <span class="path">/api/auth/register</span>
+                <div class="desc">Create new account (username, password, email?, puterId?)</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">POST</span> <span class="path">/api/auth/login</span>
+                <div class="desc">Login with credentials</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">POST</span> <span class="path">/api/auth/token</span>
+                <div class="desc">Generate SSO token for linked Puter account</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">POST</span> <span class="path">/api/auth/validate</span>
+                <div class="desc">Validate authentication token</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">GET</span> <span class="path">/api/auth/puter/:puterId</span>
+                <div class="desc">Lookup account by Puter UUID</div>
+            </div>
+            <div class="endpoint">
+                <span class="method">GET</span> <span class="path">/api/sync/status</span>
+                <div class="desc">Storage & sync status</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Integration</h2>
+            <p style="color: #a1a1aa; margin-bottom: 12px;">Use this server with grudge-auth:</p>
+            <div class="endpoint">
+                <span class="path">https://grudge-server-o1mq6.puter.site</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Worker backend — static .puter.site cannot serve APIs
+        const API_BASE = 'https://grudge-studio-api.puter.work';
+        
+        async function checkHealth() {
+            const resultEl = document.getElementById('health-result');
+            try {
+                const res = await fetch(`${API_BASE}/api/health`);
+                const data = await res.json();
+                
+                document.getElementById('status-server').textContent = data.status === 'ok' ? 'Online' : 'Error';
+                document.getElementById('status-server').className = 'value ' + (data.status === 'ok' ? 'status-ok' : 'status-error');
+                document.getElementById('status-version').textContent = data.version || '-';
+                document.getElementById('status-accounts').textContent = data.accounts ?? '-';
+                document.getElementById('status-storage').textContent = data.puterKV ? 'Puter KV' : 'In-Memory';
+                
+                resultEl.textContent = JSON.stringify(data, null, 2);
+            } catch (e) {
+                document.getElementById('status-server').textContent = 'Offline';
+                document.getElementById('status-server').className = 'value status-error';
+                resultEl.textContent = 'Error: ' + e.message;
+            }
+        }
+        
+        checkHealth();
+    </script>
+</body>
+</html>

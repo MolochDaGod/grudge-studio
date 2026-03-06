@@ -1,0 +1,785 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Fantasy MMO Color Palette - Blizzard Style */
+  --color-background: hsl(225 30% 8%);
+  --color-foreground: hsl(45 30% 90%);
+  --color-card: hsl(225 25% 12%);
+  --color-card-foreground: hsl(45 30% 90%);
+  --color-popover: hsl(225 30% 10%);
+  --color-popover-foreground: hsl(45 30% 90%);
+  --color-primary: hsl(43 85% 55%);
+  --color-primary-foreground: hsl(225 30% 8%);
+  --color-secondary: hsl(225 25% 15%);
+  --color-secondary-foreground: hsl(45 30% 90%);
+  --color-muted: hsl(225 20% 18%);
+  --color-muted-foreground: hsl(45 15% 60%);
+  --color-accent: hsl(225 25% 20%);
+  --color-accent-foreground: hsl(45 30% 90%);
+  --color-destructive: hsl(0 70% 35%);
+  --color-destructive-foreground: hsl(45 30% 90%);
+  --color-border: hsl(43 60% 30%);
+  --color-input: hsl(225 25% 15%);
+  --color-ring: hsl(43 85% 55%);
+  
+  /* Fantasy MMO Accent Colors */
+  --color-gold: hsl(43 85% 55%);
+  --color-gold-light: hsl(43 90% 70%);
+  --color-gold-dark: hsl(43 70% 35%);
+  --color-bronze: hsl(30 60% 40%);
+  --color-obsidian: hsl(225 30% 8%);
+  --color-parchment: hsl(40 35% 75%);
+  --color-stone: hsl(220 15% 25%);
+  --color-crimson: hsl(0 65% 40%);
+  --color-royal-blue: hsl(220 60% 35%);
+  
+  /* Class/Profession Specific Colors */
+  --color-miner: hsl(43 96% 56%);
+  --color-forester: hsl(142 71% 29%);
+  --color-mystic: hsl(271 91% 65%);
+  --color-chef: hsl(32 95% 44%);
+  --color-engineer: hsl(24 94% 50%);
+
+  /* Fantasy Fonts */
+  --font-sans: 'Spectral SC', 'Inter', serif;
+  --font-heading: 'Cinzel Decorative', 'Cinzel', serif;
+  --font-display: 'MedievalSharp', cursive;
+  --font-uncial: 'Uncial Antiqua', cursive;
+  --font-body: 'IM Fell English SC', serif;
+  
+  --radius: 0.25rem;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-background text-foreground font-sans antialiased;
+  background: 
+    radial-gradient(ellipse at top, hsl(225 30% 12%) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom, hsl(225 25% 6%) 0%, transparent 50%),
+    linear-gradient(180deg, 
+      hsl(225 30% 6%) 0%,
+      hsl(225 28% 10%) 50%,
+      hsl(225 30% 6%) 100%
+    );
+  background-attachment: fixed;
+}
+
+.grudge-bg-pattern {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 75% 75%, rgba(180, 130, 40, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(100, 80, 40, 0.03) 0%, transparent 60%);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-heading tracking-wide;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+h1 {
+  @apply text-3xl md:text-4xl font-bold;
+  background: linear-gradient(180deg, hsl(43 90% 70%) 0%, hsl(43 85% 55%) 50%, hsl(35 70% 45%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+}
+
+h2 {
+  @apply text-xl md:text-2xl font-semibold;
+  color: hsl(43 85% 65%);
+}
+
+.font-uncial {
+  font-family: var(--font-uncial);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-muted rounded-full border-2 border-background;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground;
+}
+
+/* Animations from the prototypes */
+@keyframes gem-glow {
+  0% { box-shadow: 0 0 0px currentColor; border-color: currentColor; }
+  50% { box-shadow: 0 0 15px currentColor; border-color: #fff; }
+  100% { box-shadow: 0 0 0px currentColor; border-color: currentColor; }
+}
+
+.animate-gem-glow {
+  animation: gem-glow 2s infinite;
+}
+
+@keyframes arcane-pulse {
+  0% { box-shadow: 0 0 0px currentColor; border-color: currentColor; }
+  50% { box-shadow: 0 0 20px currentColor; border-color: #fff; transform: rotate(-45deg) scale(1.1); }
+  100% { box-shadow: 0 0 0px currentColor; border-color: currentColor; }
+}
+
+.animate-arcane-pulse {
+  animation: arcane-pulse 3s infinite;
+}
+
+@keyframes simmer {
+  0% { transform: scale(1); box-shadow: 0 0 0px red; }
+  50% { transform: scale(1.05); box-shadow: 0 0 15px currentColor; }
+  100% { transform: scale(1); box-shadow: 0 0 0px red; }
+}
+
+.animate-simmer {
+  animation: simmer 2.5s infinite;
+}
+
+@keyframes gear-spin {
+  0% { box-shadow: 0 0 0px currentColor; }
+  50% { box-shadow: 0 0 15px currentColor; }
+  100% { box-shadow: 0 0 0px currentColor; }
+}
+
+.animate-gear-spin {
+  animation: gear-spin 4s linear infinite;
+}
+
+@keyframes glow-pulse {
+  0% { box-shadow: 0 0 0px currentColor; transform: scale(1); }
+  50% { box-shadow: 0 0 15px currentColor; transform: scale(1.1); }
+  100% { box-shadow: 0 0 0px currentColor; transform: scale(1); }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s infinite;
+}
+
+/* Utility for text shadow */
+.text-shadow-glow {
+  text-shadow: 0 0 10px currentColor;
+}
+
+/* ===== FANTASY MMO UI UTILITIES ===== */
+
+/* Gilded Frame - Gold bordered panel like WoW/Diablo */
+.fantasy-panel {
+  position: relative;
+  background: linear-gradient(180deg, 
+    hsl(225 25% 14%) 0%, 
+    hsl(225 28% 10%) 50%,
+    hsl(225 25% 8%) 100%
+  );
+  border: 2px solid hsl(43 60% 35%);
+  border-radius: 4px;
+  box-shadow: 
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    inset 0 -1px 0 rgba(0,0,0,0.3),
+    0 4px 12px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(0,0,0,0.3);
+}
+
+.fantasy-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+  padding: 1px;
+  background: linear-gradient(180deg, 
+    rgba(212, 175, 55, 0.3) 0%, 
+    rgba(160, 120, 40, 0.1) 50%,
+    rgba(100, 80, 30, 0.2) 100%
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Ornate Frame - Double border with corner decorations feel */
+.ornate-frame {
+  position: relative;
+  background: linear-gradient(180deg, 
+    hsl(225 22% 16%) 0%, 
+    hsl(225 25% 11%) 100%
+  );
+  border: 3px solid transparent;
+  border-image: linear-gradient(180deg, 
+    hsl(43 80% 60%) 0%, 
+    hsl(43 70% 40%) 50%,
+    hsl(35 60% 30%) 100%
+  ) 1;
+  box-shadow: 
+    inset 0 0 20px rgba(0,0,0,0.5),
+    0 0 0 1px hsl(35 50% 25%),
+    0 8px 24px rgba(0,0,0,0.6);
+}
+
+/* Stone Panel - Like inventory backgrounds */
+.stone-panel {
+  background: 
+    linear-gradient(180deg, rgba(40,45,55,0.95) 0%, rgba(30,35,45,0.98) 100%);
+  border: 2px solid hsl(220 15% 30%);
+  border-radius: 2px;
+  box-shadow: 
+    inset 0 2px 4px rgba(0,0,0,0.4),
+    inset 0 -1px 0 rgba(255,255,255,0.03),
+    0 4px 8px rgba(0,0,0,0.4);
+}
+
+/* Parchment Panel - For readable content */
+.parchment-panel {
+  background: linear-gradient(180deg, 
+    hsl(40 30% 22%) 0%, 
+    hsl(38 25% 18%) 50%,
+    hsl(35 20% 15%) 100%
+  );
+  border: 2px solid hsl(40 40% 30%);
+  border-radius: 2px;
+  box-shadow: 
+    inset 0 1px 0 rgba(255,235,180,0.1),
+    0 4px 12px rgba(0,0,0,0.5);
+}
+
+/* Gilded Button - Gold RPG button */
+.gilded-button {
+  position: relative;
+  background: linear-gradient(180deg, 
+    hsl(43 70% 45%) 0%, 
+    hsl(38 65% 35%) 50%,
+    hsl(35 60% 28%) 100%
+  );
+  border: 2px solid hsl(43 50% 50%);
+  border-radius: 4px;
+  color: hsl(225 30% 10%);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+  box-shadow: 
+    inset 0 1px 0 rgba(255,255,255,0.3),
+    inset 0 -2px 4px rgba(0,0,0,0.2),
+    0 2px 4px rgba(0,0,0,0.4);
+  transition: all 0.15s ease;
+}
+
+.gilded-button:hover {
+  background: linear-gradient(180deg, 
+    hsl(43 80% 55%) 0%, 
+    hsl(43 70% 45%) 50%,
+    hsl(38 65% 35%) 100%
+  );
+  border-color: hsl(43 60% 60%);
+  box-shadow: 
+    inset 0 1px 0 rgba(255,255,255,0.4),
+    inset 0 -2px 4px rgba(0,0,0,0.2),
+    0 0 12px rgba(212, 175, 55, 0.4),
+    0 4px 8px rgba(0,0,0,0.4);
+}
+
+.gilded-button:active {
+  background: linear-gradient(180deg, 
+    hsl(35 60% 30%) 0%, 
+    hsl(38 65% 35%) 100%
+  );
+  box-shadow: 
+    inset 0 2px 4px rgba(0,0,0,0.4),
+    0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Dark Button - Secondary action */
+.dark-button {
+  background: linear-gradient(180deg, 
+    hsl(225 25% 22%) 0%, 
+    hsl(225 28% 15%) 100%
+  );
+  border: 2px solid hsl(43 50% 35%);
+  border-radius: 4px;
+  color: hsl(43 70% 65%);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  box-shadow: 
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    inset 0 -1px 0 rgba(0,0,0,0.3),
+    0 2px 4px rgba(0,0,0,0.4);
+  transition: all 0.15s ease;
+}
+
+.dark-button:hover {
+  background: linear-gradient(180deg, 
+    hsl(225 25% 26%) 0%, 
+    hsl(225 28% 18%) 100%
+  );
+  border-color: hsl(43 60% 45%);
+  color: hsl(43 80% 70%);
+  box-shadow: 
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    0 0 8px rgba(212, 175, 55, 0.2),
+    0 4px 8px rgba(0,0,0,0.4);
+}
+
+/* Rune Glow - Magical highlight effect */
+.rune-glow {
+  box-shadow: 
+    0 0 10px currentColor,
+    0 0 20px currentColor,
+    inset 0 0 10px rgba(255,255,255,0.1);
+}
+
+/* Gold Text Gradient */
+.gold-text {
+  background: linear-gradient(180deg, 
+    hsl(43 90% 75%) 0%, 
+    hsl(43 85% 55%) 40%,
+    hsl(35 70% 40%) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Epic Rarity Colors (like WoW) */
+.rarity-common { color: hsl(0 0% 70%); }
+.rarity-uncommon { color: hsl(120 60% 50%); }
+.rarity-rare { color: hsl(220 80% 60%); }
+.rarity-epic { color: hsl(280 70% 60%); }
+.rarity-legendary { color: hsl(35 100% 55%); }
+
+/* Vignette overlay for panels */
+.vignette::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.4) 100%);
+  pointer-events: none;
+}
+
+/* Fantasy scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(225 25% 10%);
+  border-left: 1px solid hsl(43 40% 25%);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(43 50% 35%) 0%, hsl(35 45% 25%) 100%);
+  border: 1px solid hsl(43 40% 40%);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, hsl(43 60% 45%) 0%, hsl(35 50% 30%) 100%);
+}
+
+/* Corner ornament utility */
+.corner-ornaments {
+  position: relative;
+}
+.corner-ornaments::before,
+.corner-ornaments::after {
+  content: '◆';
+  position: absolute;
+  font-size: 12px;
+  color: hsl(43 70% 50%);
+  text-shadow: 0 0 4px rgba(212, 175, 55, 0.5);
+}
+.corner-ornaments::before {
+  top: -6px;
+  left: -6px;
+}
+.corner-ornaments::after {
+  bottom: -6px;
+  right: -6px;
+}
+
+/* Embossed text effect */
+.embossed {
+  text-shadow: 
+    0 1px 0 rgba(255,255,255,0.1),
+    0 -1px 0 rgba(0,0,0,0.5);
+}
+
+/* Inset panel effect */
+.inset-panel {
+  background: hsl(225 28% 8%);
+  border: 1px solid hsl(225 20% 20%);
+  box-shadow: 
+    inset 0 2px 8px rgba(0,0,0,0.5),
+    inset 0 0 0 1px rgba(0,0,0,0.3);
+  border-radius: 2px;
+}
+
+/* ============================================
+   RESPONSIVE MOBILE STYLES
+   Phone/Tablet/Desktop/PWA Optimizations
+   ============================================ */
+
+/* Mobile-first breakpoints */
+@media (max-width: 639px) {
+  .sidebar-desktop {
+    display: none !important;
+  }
+  
+  .mobile-nav {
+    display: flex !important;
+  }
+  
+  .main-content-mobile {
+    padding-left: 0 !important;
+    padding-bottom: 4rem;
+  }
+  
+  h1 {
+    font-size: 1.75rem !important;
+  }
+  
+  h2 {
+    font-size: 1.25rem !important;
+  }
+  
+  .card-grid-mobile {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .stats-mobile {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .sidebar-desktop {
+    width: 200px !important;
+  }
+  
+  .main-content-tablet {
+    padding-left: 200px !important;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .mobile-nav {
+    display: none !important;
+  }
+}
+
+/* Touch-friendly targets */
+@media (pointer: coarse) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  button, a, [role="button"] {
+    min-height: 44px;
+  }
+}
+
+/* PWA standalone mode */
+@media (display-mode: standalone) {
+  .pwa-header {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .pwa-footer {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: env(safe-area-inset-top)) {
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-area-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  
+  .safe-area-right {
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile bottom navigation bar */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: linear-gradient(180deg, hsl(225 28% 12%) 0%, hsl(225 30% 8%) 100%);
+  border-top: 2px solid hsl(43 50% 30%);
+  padding: 0.5rem;
+  padding-bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.4);
+}
+
+.mobile-bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  color: hsl(45 20% 55%);
+  font-size: 0.65rem;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+}
+
+.mobile-bottom-nav-item.active {
+  color: hsl(43 85% 65%);
+}
+
+.mobile-bottom-nav-item:hover {
+  color: hsl(43 85% 70%);
+}
+
+/* Mobile sidebar overlay */
+.mobile-sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 90;
+  backdrop-filter: blur(4px);
+}
+
+.mobile-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 280px;
+  z-index: 95;
+  background: linear-gradient(180deg, hsl(225 28% 12%) 0%, hsl(225 30% 8%) 100%);
+  border-right: 2px solid hsl(43 50% 30%);
+  box-shadow: 4px 0 16px rgba(0,0,0,0.5);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+}
+
+.mobile-sidebar.open {
+  transform: translateX(0);
+}
+
+/* Platform indicator badge */
+.platform-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background: hsl(225 25% 15%);
+  border: 1px solid hsl(43 40% 30%);
+  border-radius: 2px;
+  font-size: 0.65rem;
+  font-family: var(--font-heading);
+  color: hsl(43 60% 55%);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.platform-badge.puter {
+  border-color: hsl(200 70% 50%);
+  color: hsl(200 80% 65%);
+}
+
+.platform-badge.mobile {
+  border-color: hsl(142 60% 40%);
+  color: hsl(142 70% 55%);
+}
+
+/* Offline indicator */
+.offline-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: hsl(0 65% 35%);
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* TOUCH & MOBILE OPTIMIZATIONS                                                  */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Touch manipulation for better scroll/pan */
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+/* Minimum touch target size (44x44 per Apple HIG) */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Prevent text selection on touch */
+.no-select {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Safe area insets for notched devices */
+.safe-area-inset {
+  padding-top: env(safe-area-inset-top);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+}
+
+.safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+/* Prevent overscroll bounce on iOS */
+.overscroll-contain {
+  overscroll-behavior: contain;
+}
+
+/* Gold text shadow for headers */
+.text-shadow-gold {
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.3);
+}
+
+/* Smart scaling for responsive layouts */
+.smart-scale {
+  --scale: var(--scale-factor, 1);
+  transform: scale(var(--scale));
+  transform-origin: top left;
+}
+
+/* Container header styling */
+.grudge-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+/* Mobile-optimized scrolling */
+@media (max-width: 767px) {
+  .grudge-content {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Larger touch targets on mobile */
+  button, a, [role="button"] {
+    min-height: 44px;
+  }
+  
+  /* Reduce motion for performance */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .grudge-content {
+    padding: 1rem;
+  }
+}
+
+/* Active states for touch feedback */
+@media (hover: none) and (pointer: coarse) {
+  .interactive-element:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+  
+  button:active, 
+  a:active, 
+  [role="button"]:active {
+    opacity: 0.85;
+  }
+}
+
+/* Smart frame container */
+.smart-frame {
+  container-type: inline-size;
+}
+
+/* Container queries for responsive components */
+@container (max-width: 400px) {
+  .smart-frame .responsive-text {
+    font-size: 0.875rem;
+  }
+  
+  .smart-frame .responsive-padding {
+    padding: 0.5rem;
+  }
+}
+
+@container (min-width: 401px) and (max-width: 768px) {
+  .smart-frame .responsive-text {
+    font-size: 1rem;
+  }
+  
+  .smart-frame .responsive-padding {
+    padding: 0.75rem;
+  }
+}
+
+@container (min-width: 769px) {
+  .smart-frame .responsive-text {
+    font-size: 1.125rem;
+  }
+  
+  .smart-frame .responsive-padding {
+    padding: 1rem;
+  }
+}

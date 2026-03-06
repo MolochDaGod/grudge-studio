@@ -1,0 +1,28 @@
+ID,Name,Category,SubCategory,Acquisition,UnlockNode,DropSource,PurchaseCost,TierRange,Description
+recipe-wraithbone,Wraithbone Bow,weapon,bows,skillTree,Forester Master Crafter,,,T1-T8,Ghostly bow of the wraithwood
+recipe-bloodstring,Bloodstring Bow,weapon,bows,skillTree,Forester Master Crafter,,,T1-T8,Strung with bloodied sinew
+recipe-shadowflight,Shadowflight Bow,weapon,bows,dropOnly,,"Boss chests, Elite dungeons",,T1-T8,Fires arrows through shadow
+recipe-verdant-wrath,Verdant Wrath Staff,weapon,natureStaves,skillTree,Forester Master Crafter,,,T1-T8,Channel nature's fury
+recipe-thorn-grudge,Thorn Grudge Staff,weapon,natureStaves,skillTree,Forester Master Crafter,,,T1-T8,Grudge of thorns and vines
+recipe-bloodfeud-leather-helm,Bloodfeud Leather Helm,armor,leather-helm,dropOnly,,"Raid bosses, World events",,T1-T8,Bloodfeud set helm made of leather
+recipe-bloodfeud-leather-shoulder,Bloodfeud Leather Shoulder,armor,leather-shoulder,skillTree,Forester Armorsmith,,,T1-T8,Bloodfeud set shoulder made of leather
+recipe-bloodfeud-leather-chest,Bloodfeud Leather Chest,armor,leather-chest,purchasable,,,350,T1-T8,Bloodfeud set chest made of leather
+recipe-bloodfeud-leather-hands,Bloodfeud Leather Hands,armor,leather-hands,skillTree,Forester Armorsmith,,,T1-T8,Bloodfeud set hands made of leather
+recipe-bloodfeud-leather-feet,Bloodfeud Leather Feet,armor,leather-feet,purchasable,,,400,T1-T8,Bloodfeud set feet made of leather
+recipe-bloodfeud-leather-ring,Bloodfeud Leather Ring,armor,leather-ring,purchasable,,,450,T1-T8,Bloodfeud set ring made of leather
+recipe-bloodfeud-leather-necklace,Bloodfeud Leather Necklace,armor,leather-necklace,purchasable,,,500,T1-T8,Bloodfeud set necklace made of leather
+recipe-bloodfeud-leather-relic,Bloodfeud Leather Relic,armor,leather-relic,dropOnly,,"Raid bosses, World events",,T1-T8,Bloodfeud set relic made of leather
+recipe-wraithfang-leather-helm,Wraithfang Leather Helm,armor,leather-helm,purchasable,,,300,T1-T8,Wraithfang set helm made of leather
+recipe-wraithfang-leather-shoulder,Wraithfang Leather Shoulder,armor,leather-shoulder,skillTree,Forester Armorsmith,,,T1-T8,Wraithfang set shoulder made of leather
+recipe-wraithfang-leather-chest,Wraithfang Leather Chest,armor,leather-chest,dropOnly,,"Raid bosses, World events",,T1-T8,Wraithfang set chest made of leather
+recipe-wraithfang-leather-hands,Wraithfang Leather Hands,armor,leather-hands,skillTree,Forester Armorsmith,,,T1-T8,Wraithfang set hands made of leather
+recipe-bandage,Bandage,consumable,utility,purchasable,,,50,T1-T8,Craftable bandage
+recipe-advanced-bandage,Advanced Bandage,consumable,utility,skillTree,Field Medic,,,T1-T8,Craftable advanced bandage
+recipe-master-bandage,Master Bandage,consumable,utility,dropOnly,,Healer dungeons,,T1-T8,Craftable master bandage
+recipe-poison-antidote,Poison Antidote,consumable,utility,purchasable,,,80,T1-T8,Craftable poison antidote
+recipe-herbal-salve,Herbal Salve,consumable,utility,purchasable,,,60,T1-T8,Craftable herbal salve
+recipe-hunters-trap,Hunter's Trap,consumable,utility,purchasable,,,100,T1-T8,Craftable hunter's trap
+recipe-camouflage-kit,Camouflage Kit,consumable,utility,skillTree,Tracker,,,T1-T8,Craftable camouflage kit
+recipe-arrow-bundle,Arrow Bundle,consumable,utility,purchasable,,,40,T1-T8,Craftable arrow bundle
+recipe-fire-arrows,Fire Arrows,consumable,utility,skillTree,Elemental Fletcher,,,T1-T8,Craftable fire arrows
+recipe-poison-arrows,Poison Arrows,consumable,utility,skillTree,Toxicologist,,,T1-T8,Craftable poison arrows

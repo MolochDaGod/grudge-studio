@@ -1,0 +1,19 @@
+{
+  "name": "grudge-auth",
+  "app_id": "app-78a6cac4-afb0-45a2-8074-90d687b41770",
+  "version": "1.0.0",
+  "description": "GRUDGE Warlords Authentication - SSO and session management",
+  "main": "index.html",
+  "type": "web",
+  "puter": {
+    "apis": ["auth", "kv", "ai"],
+    "permissions": ["kv:read", "kv:write", "auth:login"]
+  },
+  "routes": {
+    "/login": "Login with Puter SSO",
+    "/callback": "OAuth callback handler",
+    "/logout": "Session termination",
+    "/verify": "Token verification"
+  },
+  "buildTime": "2025-12-30T00:00:00.000Z"
+}

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRUDGE Multiplayer - Colyseus + Puter</title>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/bGd5QJ0.png">
+    <script src="https://js.puter.com/v2/"></script>
+    <script src="https://unpkg.com/colyseus.js@0.16.22/dist/colyseus.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0f2840 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(20, 20, 40, 0.9);
+            border-bottom: 3px solid #ffd700;
+            border-radius: 16px 16px 0 0;
+            margin-bottom: 0;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            color: #888;
+            margin-top: 8px;
+        }
+        
+        .main-content {
+            background: rgba(20, 20, 40, 0.9);
+            padding: 30px;
+            border-radius: 0 0 16px 16px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 24px;
+        }
+        
+        .panel {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .panel-title {
+            font-size: 1.2rem;
+            color: #ffd700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .status-dot.online { background: #4caf50; }
+        .status-dot.offline { background: #f44336; }
+        .status-dot.connecting { background: #ff9800; animation: pulse 1s infinite; }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #ffd700;
+        }
+        
+        .user-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        .user-status {
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #1a1a2e;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #ffd700;
+            color: #ffd700;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 215, 0, 0.1);
+        }
+        
+        .btn-danger {
+            background: transparent;
+            border: 2px solid #f44336;
+            color: #f44336;
+        }
+        
+        .btn-danger:hover {
+            background: rgba(244, 67, 54, 0.1);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .input-group {
+            margin-bottom: 16px;
+        }
+        
+        .input-group label {
+            display: block;
+            color: #aaa;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+        
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+        }
+        
+        .input-group input:focus, .input-group select:focus {
+            outline: none;
+            border-color: #ffd700;
+        }
+        
+        .players-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .player-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .player-item.self {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .player-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+        
+        .player-name {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .player-ping {
+            font-size: 0.8rem;
+            color: #4caf50;
+        }
+        
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 400px;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .chat-message {
+            margin-bottom: 12px;
+        }
+        
+        .chat-message .sender {
+            color: #ffd700;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+        
+        .chat-message .time {
+            color: #666;
+            font-size: 0.75rem;
+        }
+        
+        .chat-message .text {
+            color: #ddd;
+            margin-top: 4px;
+        }
+        
+        .chat-message.system {
+            color: #888;
+            font-style: italic;
+        }
+        
+        .chat-input-row {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .chat-input-row input {
+            flex: 1;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: #fff;
+        }
+        
+        .chat-input-row button {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #1a1a2e;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .log-panel {
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 0.85rem;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+        }
+        
+        .log-entry {
+            margin-bottom: 4px;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .log-entry.info { color: #2196f3; }
+        .log-entry.success { color: #4caf50; }
+        .log-entry.warning { color: #ff9800; }
+        .log-entry.error { color: #f44336; }
+        
+        .hidden { display: none !important; }
+        
+        @media (max-width: 900px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">GRUDGE Multiplayer</div>
+            <div class="subtitle">Colyseus + Puter Real-time Game Server</div>
+        </header>
+        
+        <main class="main-content">
+            <div id="loginSection">
+                <div class="panel" style="max-width: 500px; margin: 0 auto;">
+                    <h3 class="panel-title">Connect to Play</h3>
+                    <p style="color: #888; margin-bottom: 20px;">Sign in with Puter to join multiplayer rooms</p>
+                    <button class="btn btn-primary" onclick="signIn()">Sign in with Puter</button>
+                    <button class="btn btn-secondary" onclick="playAsGuest()">Play as Guest</button>
+                </div>
+            </div>
+            
+            <div id="gameSection" class="hidden">
+                <div class="user-info">
+                    <img id="userAvatar" class="user-avatar" src="" alt="Avatar">
+                    <div>
+                        <div id="userName" class="user-name">Player</div>
+                        <div id="userStatus" class="user-status">
+                            <span class="status-dot offline" id="connectionDot"></span>
+                            <span id="connectionStatus">Disconnected</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" style="width: auto; margin-left: auto;" onclick="signOut()">Sign Out</button>
+                </div>
+                
+                <div class="grid">
+                    <div>
+                        <div class="panel">
+                            <h3 class="panel-title">Server Connection</h3>
+                            
+                            <div class="input-group">
+                                <label>Server URL</label>
+                                <input type="text" id="serverUrl" value="wss://your-colyseus-server.com" placeholder="wss://server.example.com">
+                            </div>
+                            
+                            <div class="input-group">
+                                <label>Room Name</label>
+                                <select id="roomName">
+                                    <option value="lobby">Lobby</option>
+                                    <option value="arena">Arena</option>
+                                    <option value="crafting">Crafting Hall</option>
+                                    <option value="trading">Trading Post</option>
+                                </select>
+                            </div>
+                            
+                            <button class="btn btn-primary" id="connectBtn" onclick="connectToServer()">Connect to Server</button>
+                            <button class="btn btn-danger hidden" id="disconnectBtn" onclick="disconnectFromServer()">Disconnect</button>
+                        </div>
+                        
+                        <div class="panel" style="margin-top: 16px;">
+                            <h3 class="panel-title">Players Online</h3>
+                            <div id="playersList" class="players-list">
+                                <p style="color: #666;">Connect to see players</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="panel">
+                            <h3 class="panel-title">Room Chat</h3>
+                            <div class="chat-container">
+                                <div id="chatMessages" class="chat-messages">
+                                    <div class="chat-message system">Connect to a room to start chatting...</div>
+                                </div>
+                                <div class="chat-input-row">
+                                    <input type="text" id="chatInput" placeholder="Type a message..." disabled onkeypress="handleChatKeypress(event)">
+                                    <button id="sendBtn" onclick="sendMessage()" disabled>Send</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="panel" style="margin-top: 16px;">
+                            <h3 class="panel-title">Connection Log</h3>
+                            <div id="logPanel" class="log-panel">
+                                <div class="log-entry info">Waiting for connection...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let currentUser = null;
+        let client = null;
+        let room = null;
+        let sessionId = null;
+
+        const KV_KEYS = {
+            sessions: 'grudge_mp_sessions',
+            stats: 'grudge_mp_stats'
+        };
+
+        async function signIn() {
+            try {
+                const user = await puter.auth.signIn();
+                await handleUserLogin(user);
+            } catch (error) {
+                log('Sign in cancelled', 'warning');
+            }
+        }
+
+        async function playAsGuest() {
+            const guestUser = {
+                username: 'Guest_' + Math.random().toString(36).substr(2, 6),
+                uuid: generateUUID(),
+                isGuest: true
+            };
+            await handleUserLogin(guestUser);
+        }
+
+        async function handleUserLogin(user) {
+            currentUser = user;
+            
+            document.getElementById('loginSection').classList.add('hidden');
+            document.getElementById('gameSection').classList.remove('hidden');
+            
+            document.getElementById('userAvatar').src = `https://api.dicebear.com/7.x/adventurer/svg?seed=${user.username}`;
+            document.getElementById('userName').textContent = user.username;
+            
+            log(`Logged in as ${user.username}`, 'success');
+            
+            if (!user.isGuest) {
+                try {
+                    const sessions = await puter.kv.get(KV_KEYS.sessions) || {};
+                    sessions[user.username] = {
+                        lastLogin: new Date().toISOString(),
+                        uuid: user.uuid
+                    };
+                    await puter.kv.set(KV_KEYS.sessions, sessions);
+                } catch (e) {
+                    console.log('KV save deferred');
+                }
+            }
+        }
+
+        async function signOut() {
+            if (room) {
+                await room.leave();
+            }
+            
+            currentUser = null;
+            client = null;
+            room = null;
+            
+            try {
+                await puter.auth.signOut();
+            } catch (e) {}
+            
+            document.getElementById('loginSection').classList.remove('hidden');
+            document.getElementById('gameSection').classList.add('hidden');
+        }
+
+        async function connectToServer() {
+            const serverUrl = document.getElementById('serverUrl').value;
+            const roomName = document.getElementById('roomName').value;
+            
+            if (!serverUrl || !roomName) {
+                log('Please enter server URL and room name', 'error');
+                return;
+            }
+            
+            log(`Connecting to ${serverUrl}...`, 'info');
+            updateConnectionStatus('connecting');
+            
+            try {
+                client = new Colyseus.Client(serverUrl);
+                
+                room = await client.joinOrCreate(roomName, {
+                    username: currentUser.username,
+                    uuid: currentUser.uuid,
+                    isGuest: currentUser.isGuest || false
+                });
+                
+                sessionId = room.sessionId;
+                log(`Connected to room: ${roomName}`, 'success');
+                log(`Session ID: ${sessionId}`, 'info');
+                updateConnectionStatus('online');
+                
+                setupRoomListeners();
+                
+                document.getElementById('connectBtn').classList.add('hidden');
+                document.getElementById('disconnectBtn').classList.remove('hidden');
+                document.getElementById('chatInput').disabled = false;
+                document.getElementById('sendBtn').disabled = false;
+                
+            } catch (error) {
+                log(`Connection failed: ${error.message}`, 'error');
+                updateConnectionStatus('offline');
+            }
+        }
+
+        function setupRoomListeners() {
+            room.onStateChange((state) => {
+                updatePlayersList(state);
+            });
+            
+            room.onMessage('chat', (message) => {
+                addChatMessage(message.sender, message.text, message.time);
+            });
+            
+            room.onMessage('playerJoin', (data) => {
+                addSystemMessage(`${data.username} joined the room`);
+            });
+            
+            room.onMessage('playerLeave', (data) => {
+                addSystemMessage(`${data.username} left the room`);
+            });
+            
+            room.onLeave((code) => {
+                log(`Left room with code: ${code}`, 'warning');
+                handleDisconnect();
+            });
+            
+            room.onError((code, message) => {
+                log(`Room error [${code}]: ${message}`, 'error');
+            });
+        }
+
+        async function disconnectFromServer() {
+            if (room) {
+                await room.leave();
+            }
+            handleDisconnect();
+        }
+
+        function handleDisconnect() {
+            room = null;
+            updateConnectionStatus('offline');
+            
+            document.getElementById('connectBtn').classList.remove('hidden');
+            document.getElementById('disconnectBtn').classList.add('hidden');
+            document.getElementById('chatInput').disabled = true;
+            document.getElementById('sendBtn').disabled = true;
+            
+            document.getElementById('playersList').innerHTML = '<p style="color: #666;">Connect to see players</p>';
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            
+            if (!text || !room) return;
+            
+            room.send('chat', {
+                text: text,
+                sender: currentUser.username,
+                time: new Date().toISOString()
+            });
+            
+            addChatMessage(currentUser.username, text, new Date().toISOString());
+            input.value = '';
+        }
+
+        function handleChatKeypress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function addChatMessage(sender, text, time) {
+            const container = document.getElementById('chatMessages');
+            const timeStr = new Date(time).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+            
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'chat-message';
+            msgDiv.innerHTML = `
+                <span class="sender">${sender}</span>
+                <span class="time">${timeStr}</span>
+                <div class="text">${escapeHtml(text)}</div>
+            `;
+            
+            container.appendChild(msgDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function addSystemMessage(text) {
+            const container = document.getElementById('chatMessages');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'chat-message system';
+            msgDiv.textContent = text;
+            container.appendChild(msgDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function updatePlayersList(state) {
+            const container = document.getElementById('playersList');
+            
+            if (!state || !state.players) {
+                container.innerHTML = '<p style="color: #666;">No players in room</p>';
+                return;
+            }
+            
+            let html = '';
+            state.players.forEach((player, id) => {
+                const isSelf = id === sessionId;
+                html += `
+                    <div class="player-item ${isSelf ? 'self' : ''}">
+                        <img class="player-avatar" src="https://api.dicebear.com/7.x/adventurer/svg?seed=${player.username}" alt="Avatar">
+                        <span class="player-name">${player.username}${isSelf ? ' (You)' : ''}</span>
+                        <span class="player-ping">${player.ping || '--'}ms</span>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html || '<p style="color: #666;">No players in room</p>';
+        }
+
+        function updateConnectionStatus(status) {
+            const dot = document.getElementById('connectionDot');
+            const text = document.getElementById('connectionStatus');
+            
+            dot.className = 'status-dot ' + status;
+            
+            const statusText = {
+                'online': 'Connected',
+                'offline': 'Disconnected',
+                'connecting': 'Connecting...'
+            };
+            
+            text.textContent = statusText[status] || status;
+        }
+
+        function log(message, type = 'info') {
+            const panel = document.getElementById('logPanel');
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            panel.appendChild(entry);
+            panel.scrollTop = panel.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function generateUUID() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        async function init() {
+            try {
+                if (puter.auth.isSignedIn()) {
+                    const user = await puter.auth.getUser();
+                    await handleUserLogin(user);
+                }
+            } catch (error) {
+                console.log('Auto-login check failed');
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "grudge-server",
+  "app_id": "app-f9ad7ff9-1a2e-4bb0-a20a-8db9db03a620",
+  "version": "1.0.0",
+  "description": "GRUDGE Warlords Server - Node.js API with AI agents",
+  "main": "index.js",
+  "type": "nodejs",
+  "puter": {
+    "apis": ["auth", "kv", "fs", "ai", "workers"],
+    "permissions": ["kv:read", "kv:write", "fs:read", "fs:write", "ai:chat", "ai:vision", "workers:execute"]
+  },
+  "endpoints": {
+    "/api/auth/consume": "Exchange auth code for session",
+    "/api/auth/verify": "Verify session token",
+    "/api/ai/chat": "AI chat endpoint",
+    "/api/ai/vision": "AI vision analysis",
+    "/api/sprites/generate": "Generate sprite with AI",
+    "/api/jobs/status": "Check job status",
+    "/api/data/sync": "Sync game data"
+  },
+  "workers": {
+    "sprite-generator": "AI sprite generation worker",
+    "data-organizer": "Data validation and organization worker",
+    "asset-manager": "Asset analysis and import worker"
+  },
+  "buildTime": "2025-12-30T00:00:00.000Z"
+}

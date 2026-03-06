@@ -1,0 +1,43 @@
+Category,Tier,HeroLevelMin,HeroLevelMax,BaseDropRate,DropRateModifier,Notes
+Weapons,1,1,5,15.0,1.0,Common drop from all combat
+Weapons,2,1,5,8.0,1.0,Uncommon early game drop
+Weapons,3,6,10,5.0,1.0,Rare until level 6
+Weapons,3,1,5,0.5,0.1,Extremely rare early
+Weapons,4,11,15,4.0,1.0,Uncommon mid-game
+Weapons,4,6,10,1.0,0.25,Rare before level 11
+Weapons,4,1,5,0.1,0.02,Nearly impossible early
+Weapons,5,16,19,3.0,1.0,Available late game
+Weapons,5,11,15,0.8,0.2,Rare before level 16
+Weapons,5,1,10,0.05,0.01,Nearly impossible early
+Weapons,6,20,100,2.5,1.0,Endgame content
+Weapons,6,16,19,0.5,0.15,Very rare before 20
+Weapons,6,1,15,0.02,0.005,Legendary luck only
+Weapons,7,20,100,2.0,1.0,Very rare endgame
+Weapons,7,1,19,0.1,0.02,Extremely rare before 20
+Weapons,8,20,100,1.0,1.0,Ultra rare endgame
+Weapons,8,1,19,0.01,0.001,Nearly impossible before 20
+Armor,1,1,5,15.0,1.0,Common drop from all combat
+Armor,2,1,5,8.0,1.0,Uncommon early game drop
+Armor,3,6,10,5.0,1.0,Rare until level 6
+Armor,3,1,5,0.5,0.1,Extremely rare early
+Armor,4,11,15,4.0,1.0,Uncommon mid-game
+Armor,4,6,10,1.0,0.25,Rare before level 11
+Armor,4,1,5,0.1,0.02,Nearly impossible early
+Armor,5,16,19,3.0,1.0,Available late game
+Armor,5,11,15,0.8,0.2,Rare before level 16
+Armor,5,1,10,0.05,0.01,Nearly impossible early
+Armor,6,20,100,2.5,1.0,Endgame content
+Armor,6,16,19,0.5,0.15,Very rare before 20
+Armor,6,1,15,0.02,0.005,Legendary luck only
+Armor,7,20,100,2.0,1.0,Very rare endgame
+Armor,7,1,19,0.1,0.02,Extremely rare before 20
+Armor,8,20,100,1.0,1.0,Ultra rare endgame
+Armor,8,1,19,0.01,0.001,Nearly impossible before 20
+Materials,1,1,100,25.0,1.0,Common from gathering
+Materials,2,1,100,15.0,1.0,Uncommon gathering
+Materials,3,1,100,8.0,1.0,Rare gathering
+Materials,4,1,100,4.0,1.0,Very rare gathering
+Materials,5,1,100,2.0,1.0,Epic gathering
+Materials,6,1,100,1.0,1.0,Legendary gathering
+Materials,7,1,100,0.3,1.0,Mythic gathering
+Materials,8,1,100,0.1,1.0,Divine gathering

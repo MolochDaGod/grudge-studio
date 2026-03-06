@@ -1,0 +1,126 @@
+ID,Name,Tier,Category,SubCategory,Profession,Description,Icon,BaseStats,Ingredients
+wooden-club,Wooden Club,0,weapon,blunt-1h,Universal,Crude bludgeon,🪵,ATK:5,pine-log:2
+rusty-shortsword,Rusty Shortsword,0,weapon,sword-1h,Universal,Dull blade,⚔️,ATK:8,stone:2|string:1
+training-bow,Training Bow,0,weapon,bow,Universal,Basic practice bow,🏹,ATK:6,pine-log:2|string:1
+apprentice-wand,Apprentice Wand,0,weapon,wand,Universal,Novice focus,🪄,MAG:5,pine-log:1|minor-essence:1
+stone-knife,Stone Knife,0,weapon,dagger,Universal,Primitive blade,🗡️,ATK:4,stone:2
+gladius,Gladius,1,weapon,sword-1h,Miner,Short Roman blade,⚔️,ATK:15,copper-ingot:2|rawhide:1
+falchion,Falchion,2,weapon,sword-1h,Miner,Curved single-edge blade,⚔️,ATK:28,iron-ingot:3|thick-hide:1
+scimitar,Scimitar,3,weapon,sword-1h,Miner,Crescent moon blade,⚔️,ATK:45,steel-ingot:3|rugged-leather:1
+rapier,Rapier,4,weapon,sword-1h,Miner,Elegant thrusting sword,⚔️,ATK:68,mithril-ingot:3|hardened-leather:1
+katana,Katana,5,weapon,sword-1h,Miner,Eastern folded steel,⚔️,ATK:95,adamantine-ingot:4|wyrm-leather:1
+soulblade,Soulblade,6,weapon,sword-1h,Miner,Spirit-bound edge,⚔️,ATK:130,orichalcum-ingot:4|infernal-leather:1|flawless-gem:1
+starfall-edge,Starfall Edge,7,weapon,sword-1h,Miner,Celestial meteor blade,⚔️,ATK:175,starmetal-ingot:5|titan-leather:1|radiant-gem:1
+excalibur,Excalibur,8,weapon,sword-1h,Miner,Legendary holy sword,⚔️,ATK:250,divine-ingot:5|divine-leather:2|divine-gem:1
+bronze-claymore,Bronze Claymore,1,weapon,sword-2h,Miner,Heavy two-hand blade,🗡️,ATK:22,copper-ingot:4|oak-plank:1
+bastard-sword,Bastard Sword,2,weapon,sword-2h,Miner,Hand-and-a-half sword,🗡️,ATK:40,iron-ingot:5|oak-plank:2
+zweihander,Zweihander,3,weapon,sword-2h,Miner,German great sword,🗡️,ATK:65,steel-ingot:5|maple-plank:2
+nodachi,Nodachi,4,weapon,sword-2h,Miner,Japanese field sword,🗡️,ATK:95,mithril-ingot:5|ash-plank:2
+flamberge,Flamberge,5,weapon,sword-2h,Miner,Wavy flame blade,🗡️,ATK:135,adamantine-ingot:6|ironwood-plank:2
+soul-reaver,Soul Reaver,6,weapon,sword-2h,Miner,Life-draining blade,🗡️,ATK:185,orichalcum-ingot:6|ebony-plank:2|flawless-gem:1
+cosmos-cleaver,Cosmos Cleaver,7,weapon,sword-2h,Miner,Reality-splitting blade,🗡️,ATK:250,starmetal-ingot:7|wyrmwood-plank:2|radiant-gem:1
+worldender,Worldender,8,weapon,sword-2h,Miner,Apocalyptic blade,🗡️,ATK:350,divine-ingot:8|worldtree-plank:2|divine-gem:2
+hatchet,Hatchet,1,weapon,axe-1h,Miner,Light throwing axe,🪓,ATK:18,copper-ingot:2|pine-plank:1
+tomahawk,Tomahawk,2,weapon,axe-1h,Miner,Balanced throwing axe,🪓,ATK:32,iron-ingot:3|oak-plank:1
+cleaver,Cleaver,3,weapon,axe-1h,Miner,Butcher's heavy blade,🪓,ATK:52,steel-ingot:3|maple-plank:1
+francisca,Francisca,4,weapon,axe-1h,Miner,Frankish war axe,🪓,ATK:75,mithril-ingot:4|ash-plank:1
+berserker-axe,Berserker Axe,5,weapon,axe-1h,Miner,Rage-infused axe,🪓,ATK:105,adamantine-ingot:4|ironwood-plank:1|refined-essence:1
+soul-cleaver,Soul Cleaver,6,weapon,axe-1h,Miner,Spirit-rending axe,🪓,ATK:145,orichalcum-ingot:5|ebony-plank:1|flawless-gem:1
+astral-hatchet,Astral Hatchet,7,weapon,axe-1h,Miner,Dimensional throwing axe,🪓,ATK:195,starmetal-ingot:5|wyrmwood-plank:1|radiant-gem:1
+godslayer,Godslayer,8,weapon,axe-1h,Miner,Divine executioner,🪓,ATK:275,divine-ingot:6|worldtree-plank:1|divine-gem:1
+stiletto,Stiletto,1,weapon,dagger,Miner,Thin stabbing blade,🗡️,ATK:12,copper-ingot:1|rawhide:1
+dirk,Dirk,2,weapon,dagger,Miner,Scottish fighting knife,🗡️,ATK:22,iron-ingot:2|thick-hide:1
+kris,Kris,3,weapon,dagger,Miner,Wavy ritual dagger,🗡️,ATK:36,steel-ingot:2|rugged-leather:1
+tanto,Tanto,4,weapon,dagger,Miner,Japanese short blade,🗡️,ATK:52,mithril-ingot:2|hardened-leather:1
+assassins-fang,Assassin's Fang,5,weapon,dagger,Miner,Poison-grooved blade,🗡️,ATK:75,adamantine-ingot:3|wyrm-leather:1
+shadow-kiss,Shadow Kiss,6,weapon,dagger,Miner,Darkness-touched blade,🗡️,ATK:105,orichalcum-ingot:3|infernal-leather:1|void-rune:1
+starlight-piercer,Starlight Piercer,7,weapon,dagger,Miner,Light-bending blade,🗡️,ATK:145,starmetal-ingot:4|titan-leather:1|radiant-gem:1
+deaths-whisper,Death's Whisper,8,weapon,dagger,Miner,Silent killing edge,🗡️,ATK:200,divine-ingot:4|divine-leather:1|divine-gem:1
+hunting-bow,Hunting Bow,1,weapon,bow,Forester,Simple hunting weapon,🏹,ATK:14,pine-plank:2|string:2
+shortbow,Shortbow,2,weapon,bow,Forester,Compact ranged weapon,🏹,ATK:26,oak-plank:3|bowstring:1
+composite-bow,Composite Bow,3,weapon,bow,Forester,Layered material bow,🏹,ATK:42,maple-plank:3|bowstring:1|rugged-leather:1
+recurve-bow,Recurve Bow,4,weapon,bow,Forester,Curved power bow,🏹,ATK:62,ash-plank:4|silk-string:1|hardened-leather:1
+elven-longbow,Elven Longbow,5,weapon,bow,Forester,Ancient elven design,🏹,ATK:88,ironwood-plank:4|silk-string:2|wyrm-leather:1
+dragonbone-bow,Dragonbone Bow,6,weapon,bow,Forester,Wyrm skeleton bow,🏹,ATK:120,ebony-plank:5|dragon-sinew:2|infernal-leather:1
+phoenix-bow,Phoenix Bow,7,weapon,bow,Forester,Fire-reborn weapon,🏹,ATK:165,wyrmwood-plank:5|dragon-sinew:2|phoenix-feathers:3
+yggdrasil-bow,Yggdrasil Bow,8,weapon,bow,Forester,World tree weapon,🏹,ATK:230,worldtree-plank:6|dragon-sinew:3|divine-leather:1
+light-crossbow,Light Crossbow,1,weapon,crossbow,Forester,Simple mechanical bow,🎯,ATK:16,pine-plank:3|bronze-gear:1|string:2
+hand-crossbow,Hand Crossbow,2,weapon,crossbow,Forester,One-hand crossbow,🎯,ATK:30,oak-plank:3|iron-gear:1|bowstring:1
+arbalest,Arbalest,3,weapon,crossbow,Forester,Heavy siege crossbow,🎯,ATK:48,maple-plank:4|steel-gear:2|bowstring:2
+repeating-crossbow,Repeating Crossbow,4,weapon,crossbow,Forester,Multi-shot mechanism,🎯,ATK:70,ash-plank:4|precision-gear:2|silk-string:1
+siege-crossbow,Siege Crossbow,5,weapon,crossbow,Forester,Fortress destroyer,🎯,ATK:100,ironwood-plank:5|clockwork-core:1|silk-string:2
+dragonslayer-bow,Dragonslayer Bow,6,weapon,crossbow,Forester,Wyrm-killing weapon,🎯,ATK:140,ebony-plank:5|arcane-gear:2|dragon-sinew:2
+starshot-arbalest,Starshot Arbalest,7,weapon,crossbow,Forester,Celestial crossbow,🎯,ATK:190,wyrmwood-plank:6|void-gear:2|dragon-sinew:2
+divine-arbalest,Divine Arbalest,8,weapon,crossbow,Forester,Holy crossbow,🎯,ATK:265,worldtree-plank:6|divine-gear:2|divine-leather:2
+quarterstaff,Quarterstaff,1,weapon,staff,Forester,Wooden fighting staff,🪄,ATK:12|MAG:8,pine-plank:3|string:1
+bo-staff,Bo Staff,2,weapon,staff,Forester,Japanese long staff,🪄,ATK:22|MAG:15,oak-plank:4|bowstring:1
+druid-staff,Druid Staff,3,weapon,staff,Forester,Nature-touched staff,🪄,ATK:35|MAG:25,maple-plank:4|greater-essence:1
+spirit-staff,Spirit Staff,4,weapon,staff,Forester,Ghost-bound weapon,🪄,ATK:50|MAG:38,ash-plank:5|superior-essence:1
+treant-staff,Treant Staff,5,weapon,staff,Forester,Living wood staff,🪄,ATK:72|MAG:55,ironwood-plank:5|refined-essence:2
+worldroot-staff,Worldroot Staff,6,weapon,staff,Forester,Ancient root staff,🪄,ATK:100|MAG:78,ebony-plank:6|perfect-essence:2
+wyrmwood-staff,Wyrmwood Staff,7,weapon,staff,Forester,Dragon-touched staff,🪄,ATK:138|MAG:108,wyrmwood-plank:6|ancient-essence:2
+yggdrasil-staff,Yggdrasil Staff,8,weapon,staff,Forester,World tree staff,🪄,ATK:190|MAG:150,worldtree-plank:7|divine-essence:2
+javelin,Javelin,1,weapon,spear,Forester,Throwing spear,🔱,ATK:16,pine-plank:2|copper-ingot:1
+pilum,Pilum,2,weapon,spear,Forester,Roman war spear,🔱,ATK:30,oak-plank:3|iron-ingot:1
+partisan,Partisan,3,weapon,spear,Forester,Bladed spear,🔱,ATK:48,maple-plank:3|steel-ingot:2
+halberd,Halberd,4,weapon,spear,Forester,Axe-spear hybrid,🔱,ATK:70,ash-plank:4|mithril-ingot:2
+naginata,Naginata,5,weapon,spear,Forester,Japanese pole weapon,🔱,ATK:98,ironwood-plank:4|adamantine-ingot:2
+dragon-lance,Dragon Lance,6,weapon,spear,Forester,Wyrm-slaying spear,🔱,ATK:135,ebony-plank:5|orichalcum-ingot:2|dragon-sinew:1
+starfall-lance,Starfall Lance,7,weapon,spear,Forester,Celestial spear,🔱,ATK:185,wyrmwood-plank:5|starmetal-ingot:3|phoenix-feathers:2
+gungnir,Gungnir,8,weapon,spear,Forester,Odin's divine spear,🔱,ATK:260,worldtree-plank:6|divine-ingot:3|divine-essence:1
+pine-wand,Pine Wand,1,weapon,wand,Mystic,Basic channeling wand,🪄,MAG:15,pine-plank:1|minor-essence:2
+oak-wand,Oak Wand,2,weapon,wand,Mystic,Sturdy focus wand,🪄,MAG:28,oak-plank:2|lesser-essence:2
+willow-wand,Willow Wand,3,weapon,wand,Mystic,Flexible magic focus,🪄,MAG:45,maple-plank:2|greater-essence:2
+elder-wand,Elder Wand,4,weapon,wand,Mystic,Ancient power focus,🪄,MAG:68,ash-plank:3|superior-essence:2
+moon-wand,Moon Wand,5,weapon,wand,Mystic,Lunar-infused focus,🪄,MAG:95,ironwood-plank:3|refined-essence:2|moonweave-cloth:1
+star-wand,Star Wand,6,weapon,wand,Mystic,Celestial focus,🪄,MAG:130,ebony-plank:3|perfect-essence:2|starweave-cloth:1
+void-wand,Void Wand,7,weapon,wand,Mystic,Dimension-bending focus,🪄,MAG:175,wyrmwood-plank:4|ancient-essence:2|voidweave-cloth:1
+divine-wand,Divine Wand,8,weapon,wand,Mystic,Holy power focus,🪄,MAG:245,worldtree-plank:4|divine-essence:3|divine-cloth:1
+glass-orb,Glass Orb,1,weapon,orb,Mystic,Clear focus sphere,🔮,MAG:12,rough-gem:1|linen-cloth:1
+crystal-ball,Crystal Ball,2,weapon,orb,Mystic,Scrying sphere,🔮,MAG:24,flawed-gem:2|wool-cloth:1
+amethyst-focus,Amethyst Focus,3,weapon,orb,Mystic,Purple power orb,🔮,MAG:40,standard-gem:2|cotton-cloth:1
+moonstone-orb,Moonstone Orb,4,weapon,orb,Mystic,Lunar focus orb,🔮,MAG:60,fine-gem:2|silk-cloth:1
+starlight-sphere,Starlight Sphere,5,weapon,orb,Mystic,Celestial orb,🔮,MAG:85,pristine-gem:2|moonweave-cloth:1
+void-sphere,Void Sphere,6,weapon,orb,Mystic,Dark dimension orb,🔮,MAG:120,flawless-gem:2|starweave-cloth:1
+cosmos-orb,Cosmos Orb,7,weapon,orb,Mystic,Universe-reflecting orb,🔮,MAG:165,radiant-gem:2|voidweave-cloth:1
+divine-sphere,Divine Sphere,8,weapon,orb,Mystic,Holy power sphere,🔮,MAG:230,divine-gem:2|divine-cloth:1
+mallet,Mallet,1,weapon,hammer-1h,Engineer,Light work hammer,🔨,ATK:14,copper-ingot:2|pine-plank:1
+claw-hammer,Claw Hammer,2,weapon,hammer-1h,Engineer,Dual-purpose hammer,🔨,ATK:26,iron-ingot:2|oak-plank:1
+ball-peen,Ball Peen Hammer,3,weapon,hammer-1h,Engineer,Metalworking hammer,🔨,ATK:42,steel-ingot:3|maple-plank:1
+engineers-hammer,Engineer's Hammer,4,weapon,hammer-1h,Engineer,Precision tool,🔨,ATK:62,mithril-ingot:3|ash-plank:1|precision-gear:1
+steamhammer,Steam Hammer,5,weapon,hammer-1h,Engineer,Power-assisted hammer,🔨,ATK:88,adamantine-ingot:4|ironwood-plank:1|clockwork-core:1
+thunder-mallet,Thunder Mallet,6,weapon,hammer-1h,Engineer,Lightning-charged hammer,🔨,ATK:120,orichalcum-ingot:4|ebony-plank:1|arcane-gear:1
+void-hammer,Void Hammer,7,weapon,hammer-1h,Engineer,Reality-bending hammer,🔨,ATK:165,starmetal-ingot:5|wyrmwood-plank:1|void-gear:1
+mjolnir,Mjolnir,8,weapon,hammer-1h,Engineer,Thor's divine hammer,🔨,ATK:230,divine-ingot:5|worldtree-plank:1|divine-gear:1
+sledgehammer,Sledgehammer,1,weapon,hammer-2h,Engineer,Heavy demolition hammer,⚒️,ATK:20,copper-ingot:4|pine-plank:2
+maul,Maul,2,weapon,hammer-2h,Engineer,Crushing war hammer,⚒️,ATK:38,iron-ingot:5|oak-plank:2
+great-maul,Great Maul,3,weapon,hammer-2h,Engineer,Massive war hammer,⚒️,ATK:62,steel-ingot:6|maple-plank:2
+earthshaker,Earthshaker,4,weapon,hammer-2h,Engineer,Ground-pounding hammer,⚒️,ATK:92,mithril-ingot:6|ash-plank:2|precision-gear:2
+titan-hammer,Titan Hammer,5,weapon,hammer-2h,Engineer,Giant's weapon,⚒️,ATK:130,adamantine-ingot:7|ironwood-plank:2|clockwork-core:1
+worldbreaker,Worldbreaker,6,weapon,hammer-2h,Engineer,Reality-cracking hammer,⚒️,ATK:180,orichalcum-ingot:7|ebony-plank:2|arcane-gear:2
+starcrusher,Starcrusher,7,weapon,hammer-2h,Engineer,Celestial demolisher,⚒️,ATK:248,starmetal-ingot:8|wyrmwood-plank:2|void-gear:2
+godforge-hammer,Godforge Hammer,8,weapon,hammer-2h,Engineer,Divine smith's hammer,⚒️,ATK:345,divine-ingot:9|worldtree-plank:2|divine-gear:2
+flintlock-pistol,Flintlock Pistol,1,weapon,gun-pistol,Engineer,Single-shot firearm,🔫,ATK:18,copper-ingot:2|gunpowder:2|lens:1
+dueling-pistol,Dueling Pistol,2,weapon,gun-pistol,Engineer,Accurate handgun,🔫,ATK:34,iron-ingot:3|refined-gunpowder:2|lens:1
+revolver,Revolver,3,weapon,gun-pistol,Engineer,Six-shooter pistol,🔫,ATK:55,steel-ingot:4|black-powder:3|spring:2
+repeater-pistol,Repeater Pistol,4,weapon,gun-pistol,Engineer,Semi-auto handgun,🔫,ATK:82,mithril-ingot:4|flash-powder:3|precision-gear:1
+clockwork-pistol,Clockwork Pistol,5,weapon,gun-pistol,Engineer,Mechanical marvel,🔫,ATK:115,adamantine-ingot:5|thunder-powder:3|clockwork-core:1
+plasma-pistol,Plasma Pistol,6,weapon,gun-pistol,Engineer,Energy handgun,🔫,ATK:160,orichalcum-ingot:5|arcane-powder:4|circuit:2
+void-pistol,Void Pistol,7,weapon,gun-pistol,Engineer,Dimension-piercing gun,🔫,ATK:220,starmetal-ingot:6|void-powder:4|quantum-circuit:1
+divine-pistol,Divine Pistol,8,weapon,gun-pistol,Engineer,Holy handcannon,🔫,ATK:305,divine-ingot:6|divine-powder:5|quantum-circuit:2
+musket,Musket,1,weapon,gun-rifle,Engineer,Basic long gun,🎯,ATK:22,copper-ingot:3|gunpowder:3|oak-plank:2
+hunting-rifle,Hunting Rifle,2,weapon,gun-rifle,Engineer,Accurate rifle,🎯,ATK:42,iron-ingot:4|refined-gunpowder:3|oak-plank:2
+military-rifle,Military Rifle,3,weapon,gun-rifle,Engineer,Standard issue rifle,🎯,ATK:68,steel-ingot:5|black-powder:4|maple-plank:2
+lever-action,Lever Action Rifle,4,weapon,gun-rifle,Engineer,Rapid-fire rifle,🎯,ATK:100,mithril-ingot:5|flash-powder:4|ash-plank:2
+bolt-action,Bolt Action Rifle,5,weapon,gun-rifle,Engineer,Precision rifle,🎯,ATK:140,adamantine-ingot:6|thunder-powder:4|ironwood-plank:2
+energy-rifle,Energy Rifle,6,weapon,gun-rifle,Engineer,Beam weapon,🎯,ATK:195,orichalcum-ingot:6|arcane-powder:5|precision-lens:2
+antimatter-rifle,Antimatter Rifle,7,weapon,gun-rifle,Engineer,Reality-bending rifle,🎯,ATK:270,starmetal-ingot:7|void-powder:5|arcane-lens:2
+divine-rifle,Divine Rifle,8,weapon,gun-rifle,Engineer,Holy long rifle,🎯,ATK:375,divine-ingot:8|divine-powder:6|arcane-lens:3
+blunderbuss,Blunderbuss,1,weapon,gun-shotgun,Engineer,Spread-shot firearm,💥,ATK:24,copper-ingot:3|gunpowder:4|spring:1
+double-barrel,Double Barrel,2,weapon,gun-shotgun,Engineer,Twin-barrel shotgun,💥,ATK:45,iron-ingot:5|refined-gunpowder:4|iron-gear:1
+pump-shotgun,Pump Shotgun,3,weapon,gun-shotgun,Engineer,Pump-action shotgun,💥,ATK:72,steel-ingot:6|black-powder:5|steel-gear:2
+auto-shotgun,Auto Shotgun,4,weapon,gun-shotgun,Engineer,Semi-auto shotgun,💥,ATK:108,mithril-ingot:6|flash-powder:5|precision-gear:2
+combat-shotgun,Combat Shotgun,5,weapon,gun-shotgun,Engineer,Military shotgun,💥,ATK:150,adamantine-ingot:7|thunder-powder:5|clockwork-core:1
+plasma-shotgun,Plasma Shotgun,6,weapon,gun-shotgun,Engineer,Energy scatter gun,💥,ATK:210,orichalcum-ingot:7|arcane-powder:6|circuit:3
+void-shotgun,Void Shotgun,7,weapon,gun-shotgun,Engineer,Dimension-rending shotgun,💥,ATK:290,starmetal-ingot:8|void-powder:6|quantum-circuit:2
+divine-shotgun,Divine Shotgun,8,weapon,gun-shotgun,Engineer,Holy scattergun,💥,ATK:400,divine-ingot:9|divine-powder:7|quantum-circuit:3

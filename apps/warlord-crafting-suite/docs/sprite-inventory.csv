@@ -1,0 +1,443 @@
+ID,Name,Category,Type,Status,File Path,Notes
+copper-ore,Copper Ore,ore,material,complete,client/public/2dassets/sprites/ore/copper-ore.png,T1 ore
+iron-ore,Iron Ore,ore,material,complete,client/public/2dassets/sprites/ore/iron-ore.png,T2 ore
+steel-ore,Steel Ore,ore,material,complete,client/public/2dassets/sprites/ore/steel-ore.png,T3 ore
+mithril-ore,Mithril Ore,ore,material,complete,client/public/2dassets/sprites/ore/mithril-ore.png,T4 ore
+adamantine-ore,Adamantine Ore,ore,material,complete,client/public/2dassets/sprites/ore/adamantine-ore.png,T5 ore
+orichalcum-ore,Orichalcum Ore,ore,material,complete,client/public/2dassets/sprites/ore/orichalcum-ore.png,T6 ore
+starmetal-ore,Starmetal Ore,ore,material,complete,client/public/2dassets/sprites/ore/starmetal-ore.png,T7 ore
+divine-ore,Divine Ore,ore,material,complete,client/public/2dassets/sprites/ore/divine-ore.png,T8 ore
+copper-ingot,Copper Ingot,component,material,complete,client/public/2dassets/sprites/component/copper-ingot.png,T1 ingot
+iron-ingot,Iron Ingot,component,material,complete,client/public/2dassets/sprites/component/iron-ingot.png,T2 ingot
+steel-ingot,Steel Ingot,component,material,complete,client/public/2dassets/sprites/component/steel-ingot.png,T3 ingot
+mithril-ingot,Mithril Ingot,component,material,complete,client/public/2dassets/sprites/component/mithril-ingot.png,T4 ingot
+adamantine-ingot,Adamantine Ingot,component,material,complete,client/public/2dassets/sprites/component/adamantine-ingot.png,T5 ingot
+orichalcum-ingot,Orichalcum Ingot,component,material,complete,client/public/2dassets/sprites/component/orichalcum-ingot.png,T6 ingot
+starmetal-ingot,Starmetal Ingot,component,material,complete,client/public/2dassets/sprites/component/starmetal-ingot.png,T7 ingot
+divine-ingot,Divine Ingot,component,material,complete,client/public/2dassets/sprites/component/divine-ingot.png,T8 ingot
+pine-log,Pine Log,wood,material,complete,client/public/2dassets/sprites/wood/pine-log.png,T1 wood
+oak-log,Oak Log,wood,material,complete,client/public/2dassets/sprites/wood/oak-log.png,T2 wood
+maple-log,Maple Log,wood,material,complete,client/public/2dassets/sprites/wood/maple-log.png,T3 wood
+ash-log,Ash Log,wood,material,complete,client/public/2dassets/sprites/wood/ash-log.png,T4 wood
+ironwood-log,Ironwood Log,wood,material,complete,client/public/2dassets/sprites/wood/ironwood-log.png,T5 wood
+ebony-log,Ebony Log,wood,material,complete,client/public/2dassets/sprites/wood/ebony-log.png,T6 wood
+wyrmwood-log,Wyrmwood Log,wood,material,complete,client/public/2dassets/sprites/wood/wyrmwood-log.png,T7 wood
+worldtree-log,Worldtree Log,wood,material,complete,client/public/2dassets/sprites/wood/worldtree-log.png,T8 wood
+pine-plank,Pine Plank,plank,material,complete,client/public/2dassets/sprites/plank/pine-plank.png,T1 plank
+oak-plank,Oak Plank,plank,material,complete,client/public/2dassets/sprites/plank/oak-plank.png,T2 plank
+maple-plank,Maple Plank,plank,material,complete,client/public/2dassets/sprites/plank/maple-plank.png,T3 plank
+ash-plank,Ash Plank,plank,material,complete,client/public/2dassets/sprites/plank/ash-plank.png,T4 plank
+ironwood-plank,Ironwood Plank,plank,material,complete,client/public/2dassets/sprites/plank/ironwood-plank.png,T5 plank
+ebony-plank,Ebony Plank,plank,material,complete,client/public/2dassets/sprites/plank/ebony-plank.png,T6 plank
+wyrmwood-plank,Wyrmwood Plank,plank,material,complete,client/public/2dassets/sprites/plank/wyrmwood-plank.png,T7 plank
+worldtree-plank,Worldtree Plank,plank,material,complete,client/public/2dassets/sprites/plank/worldtree-plank.png,T8 plank
+minor-essence,Minor Essence,essence,material,complete,client/public/2dassets/sprites/essence/minor-essence.png,T1 essence
+lesser-essence,Lesser Essence,essence,material,complete,client/public/2dassets/sprites/essence/lesser-essence.png,T2 essence
+greater-essence,Greater Essence,essence,material,complete,client/public/2dassets/sprites/essence/greater-essence.png,T3 essence
+superior-essence,Superior Essence,essence,material,complete,client/public/2dassets/sprites/essence/superior-essence.png,T4 essence
+refined-essence,Refined Essence,essence,material,complete,client/public/2dassets/sprites/essence/refined-essence.png,T5 essence
+perfect-essence,Perfect Essence,essence,material,complete,client/public/2dassets/sprites/essence/perfect-essence.png,T6 essence
+ancient-essence,Ancient Essence,essence,material,complete,client/public/2dassets/sprites/essence/ancient-essence.png,T7 essence
+divine-essence,Divine Essence,essence,material,complete,client/public/2dassets/sprites/essence/divine-essence.png,T8 essence
+rough-gem,Rough Gem,gem,material,complete,client/public/2dassets/sprites/gem/rough-gem.png,T1 gem
+flawed-gem,Flawed Gem,gem,material,complete,client/public/2dassets/sprites/gem/flawed-gem.png,T2 gem
+standard-gem,Standard Gem,gem,material,complete,client/public/2dassets/sprites/gem/standard-gem.png,T3 gem
+fine-gem,Fine Gem,gem,material,complete,client/public/2dassets/sprites/gem/fine-gem.png,T4 gem
+pristine-gem,Pristine Gem,gem,material,complete,client/public/2dassets/sprites/gem/pristine-gem.png,T5 gem
+flawless-gem,Flawless Gem,gem,material,complete,client/public/2dassets/sprites/gem/flawless-gem.png,T6 gem
+radiant-gem,Radiant Gem,gem,material,complete,client/public/2dassets/sprites/gem/radiant-gem.png,T7 gem
+divine-gem,Divine Gem,gem,material,complete,client/public/2dassets/sprites/gem/divine-gem.png,T8 gem
+rawhide,Rawhide,leather,material,complete,client/public/2dassets/sprites/leather/rawhide.png,T1 leather
+thick-hide,Thick Hide,leather,material,complete,client/public/2dassets/sprites/leather/thick-hide.png,T2 leather
+rugged-leather,Rugged Leather,leather,material,complete,client/public/2dassets/sprites/leather/rugged-leather.png,T3 leather
+hardened-leather,Hardened Leather,leather,material,complete,client/public/2dassets/sprites/leather/hardened-leather.png,T4 leather
+wyrm-leather,Wyrm Leather,leather,material,missing,,T5 leather
+infernal-leather,Infernal Leather,leather,material,missing,,T6 leather
+titan-leather,Titan Leather,leather,material,missing,,T7 leather
+divine-leather,Divine Leather,leather,material,missing,,T8 leather
+linen-thread,Linen Thread,thread,material,complete,client/public/2dassets/sprites/thread/linen-thread.png,T1 thread
+cotton-thread,Cotton Thread,thread,material,complete,client/public/2dassets/sprites/thread/cotton-thread.png,T2 thread
+wool-thread,Wool Thread,thread,material,complete,client/public/2dassets/sprites/thread/wool-thread.png,T3 thread
+silk-thread,Silk Thread,thread,material,complete,client/public/2dassets/sprites/thread/silk-thread.png,T4 thread
+enchanted-thread,Enchanted Thread,thread,material,complete,client/public/2dassets/sprites/thread/enchanted-thread.png,T5 thread
+arcane-thread,Arcane Thread,thread,material,complete,client/public/2dassets/sprites/thread/arcane-thread.png,T6 thread
+celestial-thread,Celestial Thread,thread,material,complete,client/public/2dassets/sprites/thread/celestial-thread.png,T7 thread
+divine-thread,Divine Thread,thread,material,complete,client/public/2dassets/sprites/thread/divine-thread.png,T8 thread
+linen-cloth,Linen Cloth,cloth,material,complete,client/public/2dassets/sprites/cloth/linen-cloth.png,T1 cloth
+cotton-cloth,Cotton Cloth,cloth,material,complete,client/public/2dassets/sprites/cloth/cotton-cloth.png,T2 cloth
+wool-cloth,Wool Cloth,cloth,material,complete,client/public/2dassets/sprites/cloth/wool-cloth.png,T3 cloth
+silk-cloth,Silk Cloth,cloth,material,complete,client/public/2dassets/sprites/cloth/silk-cloth.png,T4 cloth
+enchanted-cloth,Enchanted Cloth,cloth,material,complete,client/public/2dassets/sprites/cloth/enchanted-cloth.png,T5 cloth
+arcane-cloth,Arcane Cloth,cloth,material,complete,client/public/2dassets/sprites/cloth/arcane-cloth.png,T6 cloth
+celestial-cloth,Celestial Cloth,cloth,material,complete,client/public/2dassets/sprites/cloth/celestial-cloth.png,T7 cloth
+divine-cloth,Divine Cloth,cloth,material,complete,client/public/2dassets/sprites/cloth/divine-cloth.png,T8 cloth
+bronze-gear,Bronze Gear,gear,material,complete,client/public/2dassets/sprites/gear/bronze-gear.png,T1 gear
+iron-gear,Iron Gear,gear,material,complete,client/public/2dassets/sprites/gear/iron-gear.png,T2 gear
+steel-gear,Steel Gear,gear,material,complete,client/public/2dassets/sprites/gear/steel-gear.png,T3 gear
+mithril-gear,Mithril Gear,gear,material,complete,client/public/2dassets/sprites/gear/mithril-gear.png,T4 gear
+adamantine-gear,Adamantine Gear,gear,material,complete,client/public/2dassets/sprites/gear/adamantine-gear.png,T5 gear
+orichalcum-gear,Orichalcum Gear,gear,material,complete,client/public/2dassets/sprites/gear/orichalcum-gear.png,T6 gear
+starmetal-gear,Starmetal Gear,gear,material,complete,client/public/2dassets/sprites/gear/starmetal-gear.png,T7 gear
+divine-gear,Divine Gear,gear,material,complete,client/public/2dassets/sprites/gear/divine-gear.png,T8 gear
+scrap-metal,Scrap Metal,component,t0-material,missing,,T0 ingot
+rotted-wood,Rotted Wood,plank,t0-material,missing,,T0 plank
+torn-rag,Torn Rag,cloth,t0-material,missing,,T0 cloth
+scraps,Scraps,leather,t0-material,missing,,T0 leather
+pebble,Pebble,gem,t0-material,missing,,T0 gem
+coal,Coal,component,material,complete,client/public/2dassets/sprites/component/coal.png,Engineering
+flux,Flux,component,material,complete,client/public/2dassets/sprites/component/flux.png,Engineering
+string,String,component,material,complete,client/public/2dassets/sprites/component/string.png,Engineering
+bowstring,Bowstring,component,material,complete,client/public/2dassets/sprites/component/bowstring.png,Engineering
+gunpowder,Gunpowder,component,material,complete,client/public/2dassets/sprites/component/gunpowder.png,Engineering
+circuit,Circuit,component,material,complete,client/public/2dassets/sprites/component/circuit.png,Engineering
+lens,Lens,component,material,complete,client/public/2dassets/sprites/component/lens.png,Engineering
+spring,Spring,component,material,complete,client/public/2dassets/sprites/component/spring.png,Engineering
+blade-core,Blade Core,component,weapon-part,missing,,Sword component
+axe-head,Axe Head,component,weapon-part,missing,,Axe component
+knife-blade,Knife Blade,component,weapon-part,missing,,Dagger component
+hammer-head,Hammer Head,component,weapon-part,missing,,Hammer component
+great-blade,Great Blade,component,weapon-part,missing,,Greatsword component
+great-head,Great Head,component,weapon-part,missing,,Greataxe component
+great-maul,Great Maul,component,weapon-part,missing,,Greathammer component
+bow-limb,Bow Limb,component,weapon-part,missing,,Bow component
+crossbow-frame,Crossbow Frame,component,weapon-part,missing,,Crossbow component
+gun-barrel,Gun Barrel,component,weapon-part,missing,,Gun component
+staff-core,Staff Core,component,weapon-part,missing,,Staff component
+tome-binding,Tome Binding,component,weapon-part,missing,,Tome component
+shield-frame,Shield Frame,component,weapon-part,missing,,Shield component
+focus-lens,Focus Lens,component,weapon-part,missing,,Focus component
+helm-frame,Helm Frame,component,armor-part,missing,,Helm component
+chest-plate,Chest Plate,component,armor-part,missing,,Chest component
+leg-guards,Leg Guards,component,armor-part,missing,,Legs component
+boot-sole,Boot Sole,component,armor-part,missing,,Feet component
+glove-lining,Glove Lining,component,armor-part,missing,,Hands component
+pauldron-base,Pauldron Base,component,armor-part,missing,,Shoulders component
+ring-setting,Ring Setting,component,accessory-part,missing,,Ring component
+chain-link,Chain Link,component,accessory-part,missing,,Necklace component
+cape-clasp,Cape Clasp,component,accessory-part,missing,,Cape component
+t0-sword,Broken Blade,weapon,t0-weapon,missing,,T0 sword
+t0-axe,Chipped Hatchet,weapon,t0-weapon,missing,,T0 axe
+t0-dagger,Rusty Shiv,weapon,t0-weapon,missing,,T0 dagger
+t0-hammer,Cracked Mallet,weapon,t0-weapon,missing,,T0 hammer
+t0-greatsword,Shattered Claymore,weapon,t0-weapon,missing,,T0 greatsword
+t0-greataxe,Splintered Broadaxe,weapon,t0-weapon,missing,,T0 greataxe
+t0-greathammer,Ruined Maul,weapon,t0-weapon,missing,,T0 greathammer
+t0-bow,Warped Bow,weapon,t0-weapon,missing,,T0 bow
+t0-crossbow,Jammed Crossbow,weapon,t0-weapon,missing,,T0 crossbow
+t0-gun,Broken Pistol,weapon,t0-weapon,missing,,T0 gun
+t0-staff,Cracked Rod,weapon,t0-weapon,missing,,T0 staff
+t0-tome,Faded Tome,weapon,t0-weapon,missing,,T0 tome
+t0-shield,Dented Buckler,weapon,t0-weapon,missing,,T0 shield
+t0-focus,Dim Orb,weapon,t0-weapon,missing,,T0 focus
+t0-head,Tattered Cap,armor,t0-armor,missing,,T0 head
+t0-chest,Worn Tunic,armor,t0-armor,missing,,T0 chest
+t0-legs,Patched Trousers,armor,t0-armor,missing,,T0 legs
+t0-feet,Scuffed Boots,armor,t0-armor,missing,,T0 feet
+t0-hands,Frayed Gloves,armor,t0-armor,missing,,T0 hands
+t0-shoulders,Ragged Shawl,armor,t0-armor,missing,,T0 shoulders
+t0-ring,Bent Ring,accessory,t0-accessory,missing,,T0 ring
+t0-necklace,Frayed Cord,accessory,t0-accessory,missing,,T0 necklace
+t0-back,Tattered Cloak,accessory,t0-accessory,missing,,T0 back
+bloodfeud-blade,Bloodfeud Blade,sword,weapon,complete,client/public/2dassets/sprites/sword/bloodfeud-blade.png,1H Sword
+wraithfang,Wraithfang,sword,weapon,complete,client/public/2dassets/sprites/sword/wraithfang.png,1H Sword
+oathbreaker,Oathbreaker,sword,weapon,complete,client/public/2dassets/sprites/sword/oathbreaker.png,1H Sword
+kinrend,Kinrend,sword,weapon,complete,client/public/2dassets/sprites/sword/kinrend.png,1H Sword
+dusksinger,Dusksinger,sword,weapon,complete,client/public/2dassets/sprites/sword/dusksinger.png,1H Sword
+emberclad,Emberclad,sword,weapon,complete,client/public/2dassets/sprites/sword/emberclad.png,1H Sword
+soulreaver,Soulreaver,sword,weapon,complete,client/public/2dassets/sprites/sword/soulreaver.png,1H Sword
+grimshard,Grimshard,sword,weapon,complete,client/public/2dassets/sprites/sword/grimshard.png,1H Sword
+bloodfeud-cleaver,Bloodfeud Cleaver,axe,weapon,complete,client/public/2dassets/sprites/axe/bloodfeud-cleaver.png,1H Axe
+wraithfang-cleaver,Wraithfang Cleaver,axe,weapon,complete,client/public/2dassets/sprites/axe/wraithfang-cleaver.png,1H Axe
+oathbreaker-cleaver,Oathbreaker Cleaver,axe,weapon,complete,client/public/2dassets/sprites/axe/oathbreaker-cleaver.png,1H Axe
+kinrend-cleaver,Kinrend Cleaver,axe,weapon,complete,client/public/2dassets/sprites/axe/kinrend-cleaver.png,1H Axe
+dusksinger-cleaver,Dusksinger Cleaver,axe,weapon,complete,client/public/2dassets/sprites/axe/dusksinger-cleaver.png,1H Axe
+emberclad-cleaver,Emberclad Cleaver,axe,weapon,complete,client/public/2dassets/sprites/axe/emberclad-cleaver.png,1H Axe
+soulreaver-cleaver,Soulreaver Cleaver,axe,weapon,complete,client/public/2dassets/sprites/axe/soulreaver-cleaver.png,1H Axe
+grimshard-cleaver,Grimshard Cleaver,axe,weapon,complete,client/public/2dassets/sprites/axe/grimshard-cleaver.png,1H Axe
+greatsword-doomspire,Doomspire Greatsword,greatsword,weapon,complete,client/public/2dassets/sprites/greatsword/doomspire.png,2H Greatsword
+greatsword-bloodspire,Bloodspire Greatsword,greatsword,weapon,complete,client/public/2dassets/sprites/greatsword/bloodspire.png,2H Greatsword
+greatsword-wraithblade,Wraithblade Greatsword,greatsword,weapon,complete,client/public/2dassets/sprites/greatsword/wraithblade.png,2H Greatsword
+greatsword-emberbrand,Emberbrand Greatsword,greatsword,weapon,complete,client/public/2dassets/sprites/greatsword/emberbrand.png,2H Greatsword
+greatsword-ironwrath,Ironwrath Greatsword,greatsword,weapon,complete,client/public/2dassets/sprites/greatsword/ironwrath.png,2H Greatsword
+greatsword-duskreaver,Duskreaver Greatsword,greatsword,weapon,complete,client/public/2dassets/sprites/greatsword/duskreaver.png,2H Greatsword
+greataxe-skullsunder,Skullsunder Greataxe,greataxe,weapon,complete,client/public/2dassets/sprites/greataxe/skullsunder.png,2H Greataxe
+greataxe-bloodreaver,Bloodreaver Greataxe,greataxe,weapon,complete,client/public/2dassets/sprites/greataxe/bloodreaver.png,2H Greataxe
+greataxe-wraithhew,Wraithhew Greataxe,greataxe,weapon,complete,client/public/2dassets/sprites/greataxe/wraithhew.png,2H Greataxe
+greataxe-embermaul,Embermaul Greataxe,greataxe,weapon,complete,client/public/2dassets/sprites/greataxe/embermaul.png,2H Greataxe
+greataxe-ironrend,Ironrend Greataxe,greataxe,weapon,complete,client/public/2dassets/sprites/greataxe/ironrend.png,2H Greataxe
+greataxe-dusksplitter,Dusksplitter Greataxe,greataxe,weapon,complete,client/public/2dassets/sprites/greataxe/dusksplitter.png,2H Greataxe
+bloodfeud-bow,Bloodfeud Bow,bow,weapon,complete,client/public/2dassets/sprites/bow/bloodfeud-bow.png,Bow
+wraithfang-bow,Wraithfang Bow,bow,weapon,complete,client/public/2dassets/sprites/bow/wraithfang-bow.png,Bow
+oathbreaker-bow,Oathbreaker Bow,bow,weapon,complete,client/public/2dassets/sprites/bow/oathbreaker-bow.png,Bow
+kinrend-bow,Kinrend Bow,bow,weapon,complete,client/public/2dassets/sprites/bow/kinrend-bow.png,Bow
+bow-shadowflight,Shadowflight Bow,bow,weapon,complete,client/public/2dassets/sprites/bow/shadowflight.png,Bow
+bow-emberthorn,Emberthorn Bow,bow,weapon,complete,client/public/2dassets/sprites/bow/emberthorn.png,Bow
+crossbow-ironveil,Ironveil Crossbow,crossbow,weapon,complete,client/public/2dassets/sprites/crossbow/ironveil.png,Crossbow
+crossbow-skullpiercer,Skullpiercer Crossbow,crossbow,weapon,complete,client/public/2dassets/sprites/crossbow/skullpiercer.png,Crossbow
+crossbow-bloodreaver,Bloodreaver Crossbow,crossbow,weapon,complete,client/public/2dassets/sprites/crossbow/bloodreaver.png,Crossbow
+crossbow-wraithspike,Wraithspike Crossbow,crossbow,weapon,complete,client/public/2dassets/sprites/crossbow/wraithspike.png,Crossbow
+crossbow-emberbolt,Emberbolt Crossbow,crossbow,weapon,complete,client/public/2dassets/sprites/crossbow/emberbolt.png,Crossbow
+crossbow-ironshard,Ironshard Crossbow,crossbow,weapon,complete,client/public/2dassets/sprites/crossbow/ironshard.png,Crossbow
+gun-blackpowder,Blackpowder Pistol,gun,weapon,complete,client/public/2dassets/sprites/gun/blackpowder.png,Gun
+gun-ironstorm,Ironstorm Rifle,gun,weapon,complete,client/public/2dassets/sprites/gun/ironstorm.png,Gun
+gun-bloodcannon,Bloodcannon,gun,weapon,complete,client/public/2dassets/sprites/gun/bloodcannon.png,Gun
+gun-wraithbarrel,Wraithbarrel,gun,weapon,complete,client/public/2dassets/sprites/gun/wraithbarrel.png,Gun
+gun-emberrifle,Emberrifle,gun,weapon,complete,client/public/2dassets/sprites/gun/emberrifle.png,Gun
+gun-duskblaster,Duskblaster,gun,weapon,complete,client/public/2dassets/sprites/gun/duskblaster.png,Gun
+bloodfeud-staff,Bloodfeud Staff,staff,weapon,complete,client/public/2dassets/sprites/staff/bloodfeud-staff.png,Staff
+wraithfang-staff,Wraithfang Staff,staff,weapon,complete,client/public/2dassets/sprites/staff/wraithfang-staff.png,Staff
+oathbreaker-staff,Oathbreaker Staff,staff,weapon,complete,client/public/2dassets/sprites/staff/oathbreaker-staff.png,Staff
+kinrend-staff,Kinrend Staff,staff,weapon,complete,client/public/2dassets/sprites/staff/kinrend-staff.png,Staff
+staff-fire-emberwrath,Emberwrath Fire Staff,staff,weapon,complete,client/public/2dassets/sprites/staff/emberwrath.png,Fire Staff
+staff-fire-infernal,Infernal Grudge Staff,staff,weapon,complete,client/public/2dassets/sprites/staff/infernal-grudge.png,Fire Staff
+staff-fire-flameblood,Flameblood Spire,staff,weapon,complete,client/public/2dassets/sprites/staff/flameblood-spire.png,Fire Staff
+staff-fire-hellfire,Hellfire Oathbreaker,staff,weapon,complete,client/public/2dassets/sprites/staff/hellfire-oathbreaker.png,Fire Staff
+staff-frost-glacial,Glacial Spire Staff,staff,weapon,complete,client/public/2dassets/sprites/staff/glacial-spire.png,Frost Staff
+staff-frost-grudge,Frostgrudge Staff,staff,weapon,complete,client/public/2dassets/sprites/staff/frostgrudge.png,Frost Staff
+staff-frost-iceblood,Iceblood Spire,staff,weapon,complete,client/public/2dassets/sprites/staff/iceblood-spire.png,Frost Staff
+staff-frost-frigid,Frigid Oathbreaker,staff,weapon,complete,client/public/2dassets/sprites/staff/frigid-oathbreaker.png,Frost Staff
+nightfang,Nightfang,dagger,weapon,complete,client/public/2dassets/sprites/dagger/nightfang.png,Dagger
+shadowpiercer,Shadowpiercer,dagger,weapon,complete,client/public/2dassets/sprites/dagger/shadowpiercer.png,Dagger
+venombite,Venombite,dagger,weapon,complete,client/public/2dassets/sprites/dagger/venombite.png,Dagger
+whisperwind,Whisperwind,dagger,weapon,complete,client/public/2dassets/sprites/dagger/whisperwind.png,Dagger
+dagger-bloodshiv,Bloodshiv,dagger,weapon,complete,client/public/2dassets/sprites/dagger/bloodshiv.png,Dagger
+dagger-emberfang,Emberfang,dagger,weapon,complete,client/public/2dassets/sprites/dagger/emberfang.png,Dagger
+bloodfeud-hammer,Bloodfeud Hammer,hammer,weapon,complete,client/public/2dassets/sprites/hammer/bloodfeud-hammer.png,1H Hammer
+wraithfang-mace,Wraithfang Mace,hammer,weapon,complete,client/public/2dassets/sprites/hammer/wraithfang-mace.png,1H Hammer
+oathbreaker-maul,Oathbreaker Maul,hammer,weapon,complete,client/public/2dassets/sprites/hammer/oathbreaker-maul.png,1H Hammer
+kinrend-crusher,Kinrend Crusher,hammer,weapon,complete,client/public/2dassets/sprites/hammer/kinrend-crusher.png,1H Hammer
+hammer1h-ironfist,Ironfist Hammer,hammer,weapon,complete,client/public/2dassets/sprites/hammer/ironfist.png,1H Hammer
+hammer1h-embermallet,Embermallet,hammer,weapon,complete,client/public/2dassets/sprites/hammer/embermallet.png,1H Hammer
+hammer2h-titanmaul,Titanmaul,hammer,weapon,complete,client/public/2dassets/sprites/hammer/titanmaul.png,2H Hammer
+hammer2h-bloodcrusher,Bloodcrusher,hammer,weapon,complete,client/public/2dassets/sprites/hammer/bloodcrusher.png,2H Hammer
+hammer2h-wraithmaul,Wraithmaul,hammer,weapon,complete,client/public/2dassets/sprites/hammer/wraithmaul.png,2H Hammer
+hammer2h-emberforge,Emberforge,hammer,weapon,complete,client/public/2dassets/sprites/hammer/emberforge.png,2H Hammer
+hammer2h-ironbreaker,Ironbreaker,hammer,weapon,complete,client/public/2dassets/sprites/hammer/ironbreaker.png,2H Hammer
+hammer2h-duskmallet,Duskmallet,hammer,weapon,complete,client/public/2dassets/sprites/hammer/duskmallet.png,2H Hammer
+tome-fire,Fire Tome,tome,weapon,complete,client/public/2dassets/sprites/tome/fire-tome.png,Tome
+tome-frost,Frost Tome,tome,weapon,complete,client/public/2dassets/sprites/tome/frost-tome.png,Tome
+tome-nature,Nature Tome,tome,weapon,complete,client/public/2dassets/sprites/tome/nature-tome.png,Tome
+tome-holy,Holy Tome,tome,weapon,complete,client/public/2dassets/sprites/tome/holy-tome.png,Tome
+tome-arcane,Arcane Tome,tome,weapon,complete,client/public/2dassets/sprites/tome/arcane-tome.png,Tome
+tome-lightning,Lightning Tome,tome,weapon,complete,client/public/2dassets/sprites/tome/lightning-tome.png,Tome
+shield-copper,Copper Shield,shield,weapon,missing,,T1 Shield
+shield-iron,Iron Shield,shield,weapon,missing,,T2 Shield
+shield-steel,Steel Shield,shield,weapon,missing,,T3 Shield
+shield-mithril,Mithril Shield,shield,weapon,missing,,T4 Shield
+shield-adamantine,Adamantine Shield,shield,weapon,missing,,T5 Shield
+shield-orichalcum,Orichalcum Shield,shield,weapon,missing,,T6 Shield
+shield-starmetal,Starmetal Shield,shield,weapon,missing,,T7 Shield
+shield-divine,Divine Shield,shield,weapon,missing,,T8 Shield
+focus-rough,Rough Focus,focus,weapon,missing,,T1 Focus
+focus-flawed,Flawed Focus,focus,weapon,missing,,T2 Focus
+focus-standard,Standard Focus,focus,weapon,missing,,T3 Focus
+focus-fine,Fine Focus,focus,weapon,missing,,T4 Focus
+focus-pristine,Pristine Focus,focus,weapon,missing,,T5 Focus
+focus-flawless,Flawless Focus,focus,weapon,missing,,T6 Focus
+focus-radiant,Radiant Focus,focus,weapon,missing,,T7 Focus
+focus-divine,Divine Focus,focus,weapon,missing,,T8 Focus
+copper-plate-head,Copper Plate Helm,armor,plate,missing,,T1 Plate Head
+iron-plate-head,Iron Plate Helm,armor,plate,missing,,T2 Plate Head
+steel-plate-head,Steel Plate Helm,armor,plate,missing,,T3 Plate Head
+mithril-plate-head,Mithril Plate Helm,armor,plate,missing,,T4 Plate Head
+adamantine-plate-head,Adamantine Plate Helm,armor,plate,missing,,T5 Plate Head
+orichalcum-plate-head,Orichalcum Plate Helm,armor,plate,missing,,T6 Plate Head
+starmetal-plate-head,Starmetal Plate Helm,armor,plate,missing,,T7 Plate Head
+divine-plate-head,Divine Plate Helm,armor,plate,missing,,T8 Plate Head
+copper-plate-chest,Copper Plate Chest,armor,plate,missing,,T1 Plate Chest
+iron-plate-chest,Iron Plate Chest,armor,plate,missing,,T2 Plate Chest
+steel-plate-chest,Steel Plate Chest,armor,plate,missing,,T3 Plate Chest
+mithril-plate-chest,Mithril Plate Chest,armor,plate,missing,,T4 Plate Chest
+adamantine-plate-chest,Adamantine Plate Chest,armor,plate,missing,,T5 Plate Chest
+orichalcum-plate-chest,Orichalcum Plate Chest,armor,plate,missing,,T6 Plate Chest
+starmetal-plate-chest,Starmetal Plate Chest,armor,plate,missing,,T7 Plate Chest
+divine-plate-chest,Divine Plate Chest,armor,plate,missing,,T8 Plate Chest
+copper-plate-legs,Copper Plate Legs,armor,plate,missing,,T1 Plate Legs
+iron-plate-legs,Iron Plate Legs,armor,plate,missing,,T2 Plate Legs
+steel-plate-legs,Steel Plate Legs,armor,plate,missing,,T3 Plate Legs
+mithril-plate-legs,Mithril Plate Legs,armor,plate,missing,,T4 Plate Legs
+adamantine-plate-legs,Adamantine Plate Legs,armor,plate,missing,,T5 Plate Legs
+orichalcum-plate-legs,Orichalcum Plate Legs,armor,plate,missing,,T6 Plate Legs
+starmetal-plate-legs,Starmetal Plate Legs,armor,plate,missing,,T7 Plate Legs
+divine-plate-legs,Divine Plate Legs,armor,plate,missing,,T8 Plate Legs
+copper-plate-feet,Copper Plate Feet,armor,plate,missing,,T1 Plate Feet
+iron-plate-feet,Iron Plate Feet,armor,plate,missing,,T2 Plate Feet
+steel-plate-feet,Steel Plate Feet,armor,plate,missing,,T3 Plate Feet
+mithril-plate-feet,Mithril Plate Feet,armor,plate,missing,,T4 Plate Feet
+adamantine-plate-feet,Adamantine Plate Feet,armor,plate,missing,,T5 Plate Feet
+orichalcum-plate-feet,Orichalcum Plate Feet,armor,plate,missing,,T6 Plate Feet
+starmetal-plate-feet,Starmetal Plate Feet,armor,plate,missing,,T7 Plate Feet
+divine-plate-feet,Divine Plate Feet,armor,plate,missing,,T8 Plate Feet
+copper-plate-hands,Copper Plate Hands,armor,plate,missing,,T1 Plate Hands
+iron-plate-hands,Iron Plate Hands,armor,plate,missing,,T2 Plate Hands
+steel-plate-hands,Steel Plate Hands,armor,plate,missing,,T3 Plate Hands
+mithril-plate-hands,Mithril Plate Hands,armor,plate,missing,,T4 Plate Hands
+adamantine-plate-hands,Adamantine Plate Hands,armor,plate,missing,,T5 Plate Hands
+orichalcum-plate-hands,Orichalcum Plate Hands,armor,plate,missing,,T6 Plate Hands
+starmetal-plate-hands,Starmetal Plate Hands,armor,plate,missing,,T7 Plate Hands
+divine-plate-hands,Divine Plate Hands,armor,plate,missing,,T8 Plate Hands
+copper-plate-shoulders,Copper Plate Shoulders,armor,plate,missing,,T1 Plate Shoulders
+iron-plate-shoulders,Iron Plate Shoulders,armor,plate,missing,,T2 Plate Shoulders
+steel-plate-shoulders,Steel Plate Shoulders,armor,plate,missing,,T3 Plate Shoulders
+mithril-plate-shoulders,Mithril Plate Shoulders,armor,plate,missing,,T4 Plate Shoulders
+adamantine-plate-shoulders,Adamantine Plate Shoulders,armor,plate,missing,,T5 Plate Shoulders
+orichalcum-plate-shoulders,Orichalcum Plate Shoulders,armor,plate,missing,,T6 Plate Shoulders
+starmetal-plate-shoulders,Starmetal Plate Shoulders,armor,plate,missing,,T7 Plate Shoulders
+divine-plate-shoulders,Divine Plate Shoulders,armor,plate,missing,,T8 Plate Shoulders
+copper-leather-head,Copper Leather Hood,armor,leather-armor,missing,,T1 Leather Head
+iron-leather-head,Iron Leather Hood,armor,leather-armor,missing,,T2 Leather Head
+steel-leather-head,Steel Leather Hood,armor,leather-armor,missing,,T3 Leather Head
+mithril-leather-head,Mithril Leather Hood,armor,leather-armor,missing,,T4 Leather Head
+adamantine-leather-head,Adamantine Leather Hood,armor,leather-armor,missing,,T5 Leather Head
+orichalcum-leather-head,Orichalcum Leather Hood,armor,leather-armor,missing,,T6 Leather Head
+starmetal-leather-head,Starmetal Leather Hood,armor,leather-armor,missing,,T7 Leather Head
+divine-leather-head,Divine Leather Hood,armor,leather-armor,missing,,T8 Leather Head
+copper-leather-chest,Copper Leather Chest,armor,leather-armor,missing,,T1 Leather Chest
+iron-leather-chest,Iron Leather Chest,armor,leather-armor,missing,,T2 Leather Chest
+steel-leather-chest,Steel Leather Chest,armor,leather-armor,missing,,T3 Leather Chest
+mithril-leather-chest,Mithril Leather Chest,armor,leather-armor,missing,,T4 Leather Chest
+adamantine-leather-chest,Adamantine Leather Chest,armor,leather-armor,missing,,T5 Leather Chest
+orichalcum-leather-chest,Orichalcum Leather Chest,armor,leather-armor,missing,,T6 Leather Chest
+starmetal-leather-chest,Starmetal Leather Chest,armor,leather-armor,missing,,T7 Leather Chest
+divine-leather-chest,Divine Leather Chest,armor,leather-armor,missing,,T8 Leather Chest
+copper-leather-legs,Copper Leather Legs,armor,leather-armor,missing,,T1 Leather Legs
+iron-leather-legs,Iron Leather Legs,armor,leather-armor,missing,,T2 Leather Legs
+steel-leather-legs,Steel Leather Legs,armor,leather-armor,missing,,T3 Leather Legs
+mithril-leather-legs,Mithril Leather Legs,armor,leather-armor,missing,,T4 Leather Legs
+adamantine-leather-legs,Adamantine Leather Legs,armor,leather-armor,missing,,T5 Leather Legs
+orichalcum-leather-legs,Orichalcum Leather Legs,armor,leather-armor,missing,,T6 Leather Legs
+starmetal-leather-legs,Starmetal Leather Legs,armor,leather-armor,missing,,T7 Leather Legs
+divine-leather-legs,Divine Leather Legs,armor,leather-armor,missing,,T8 Leather Legs
+copper-leather-feet,Copper Leather Feet,armor,leather-armor,missing,,T1 Leather Feet
+iron-leather-feet,Iron Leather Feet,armor,leather-armor,missing,,T2 Leather Feet
+steel-leather-feet,Steel Leather Feet,armor,leather-armor,missing,,T3 Leather Feet
+mithril-leather-feet,Mithril Leather Feet,armor,leather-armor,missing,,T4 Leather Feet
+adamantine-leather-feet,Adamantine Leather Feet,armor,leather-armor,missing,,T5 Leather Feet
+orichalcum-leather-feet,Orichalcum Leather Feet,armor,leather-armor,missing,,T6 Leather Feet
+starmetal-leather-feet,Starmetal Leather Feet,armor,leather-armor,missing,,T7 Leather Feet
+divine-leather-feet,Divine Leather Feet,armor,leather-armor,missing,,T8 Leather Feet
+copper-leather-hands,Copper Leather Hands,armor,leather-armor,missing,,T1 Leather Hands
+iron-leather-hands,Iron Leather Hands,armor,leather-armor,missing,,T2 Leather Hands
+steel-leather-hands,Steel Leather Hands,armor,leather-armor,missing,,T3 Leather Hands
+mithril-leather-hands,Mithril Leather Hands,armor,leather-armor,missing,,T4 Leather Hands
+adamantine-leather-hands,Adamantine Leather Hands,armor,leather-armor,missing,,T5 Leather Hands
+orichalcum-leather-hands,Orichalcum Leather Hands,armor,leather-armor,missing,,T6 Leather Hands
+starmetal-leather-hands,Starmetal Leather Hands,armor,leather-armor,missing,,T7 Leather Hands
+divine-leather-hands,Divine Leather Hands,armor,leather-armor,missing,,T8 Leather Hands
+copper-leather-shoulders,Copper Leather Shoulders,armor,leather-armor,missing,,T1 Leather Shoulders
+iron-leather-shoulders,Iron Leather Shoulders,armor,leather-armor,missing,,T2 Leather Shoulders
+steel-leather-shoulders,Steel Leather Shoulders,armor,leather-armor,missing,,T3 Leather Shoulders
+mithril-leather-shoulders,Mithril Leather Shoulders,armor,leather-armor,missing,,T4 Leather Shoulders
+adamantine-leather-shoulders,Adamantine Leather Shoulders,armor,leather-armor,missing,,T5 Leather Shoulders
+orichalcum-leather-shoulders,Orichalcum Leather Shoulders,armor,leather-armor,missing,,T6 Leather Shoulders
+starmetal-leather-shoulders,Starmetal Leather Shoulders,armor,leather-armor,missing,,T7 Leather Shoulders
+divine-leather-shoulders,Divine Leather Shoulders,armor,leather-armor,missing,,T8 Leather Shoulders
+copper-cloth-head,Copper Cloth Circlet,armor,cloth-armor,missing,,T1 Cloth Head
+iron-cloth-head,Iron Cloth Circlet,armor,cloth-armor,missing,,T2 Cloth Head
+steel-cloth-head,Steel Cloth Circlet,armor,cloth-armor,missing,,T3 Cloth Head
+mithril-cloth-head,Mithril Cloth Circlet,armor,cloth-armor,missing,,T4 Cloth Head
+adamantine-cloth-head,Adamantine Cloth Circlet,armor,cloth-armor,missing,,T5 Cloth Head
+orichalcum-cloth-head,Orichalcum Cloth Circlet,armor,cloth-armor,missing,,T6 Cloth Head
+starmetal-cloth-head,Starmetal Cloth Circlet,armor,cloth-armor,missing,,T7 Cloth Head
+divine-cloth-head,Divine Cloth Circlet,armor,cloth-armor,missing,,T8 Cloth Head
+copper-cloth-chest,Copper Cloth Robe,armor,cloth-armor,missing,,T1 Cloth Chest
+iron-cloth-chest,Iron Cloth Robe,armor,cloth-armor,missing,,T2 Cloth Chest
+steel-cloth-chest,Steel Cloth Robe,armor,cloth-armor,missing,,T3 Cloth Chest
+mithril-cloth-chest,Mithril Cloth Robe,armor,cloth-armor,missing,,T4 Cloth Chest
+adamantine-cloth-chest,Adamantine Cloth Robe,armor,cloth-armor,missing,,T5 Cloth Chest
+orichalcum-cloth-chest,Orichalcum Cloth Robe,armor,cloth-armor,missing,,T6 Cloth Chest
+starmetal-cloth-chest,Starmetal Cloth Robe,armor,cloth-armor,missing,,T7 Cloth Chest
+divine-cloth-chest,Divine Cloth Robe,armor,cloth-armor,missing,,T8 Cloth Chest
+copper-cloth-legs,Copper Cloth Legs,armor,cloth-armor,missing,,T1 Cloth Legs
+iron-cloth-legs,Iron Cloth Legs,armor,cloth-armor,missing,,T2 Cloth Legs
+steel-cloth-legs,Steel Cloth Legs,armor,cloth-armor,missing,,T3 Cloth Legs
+mithril-cloth-legs,Mithril Cloth Legs,armor,cloth-armor,missing,,T4 Cloth Legs
+adamantine-cloth-legs,Adamantine Cloth Legs,armor,cloth-armor,missing,,T5 Cloth Legs
+orichalcum-cloth-legs,Orichalcum Cloth Legs,armor,cloth-armor,missing,,T6 Cloth Legs
+starmetal-cloth-legs,Starmetal Cloth Legs,armor,cloth-armor,missing,,T7 Cloth Legs
+divine-cloth-legs,Divine Cloth Legs,armor,cloth-armor,missing,,T8 Cloth Legs
+copper-cloth-feet,Copper Cloth Feet,armor,cloth-armor,missing,,T1 Cloth Feet
+iron-cloth-feet,Iron Cloth Feet,armor,cloth-armor,missing,,T2 Cloth Feet
+steel-cloth-feet,Steel Cloth Feet,armor,cloth-armor,missing,,T3 Cloth Feet
+mithril-cloth-feet,Mithril Cloth Feet,armor,cloth-armor,missing,,T4 Cloth Feet
+adamantine-cloth-feet,Adamantine Cloth Feet,armor,cloth-armor,missing,,T5 Cloth Feet
+orichalcum-cloth-feet,Orichalcum Cloth Feet,armor,cloth-armor,missing,,T6 Cloth Feet
+starmetal-cloth-feet,Starmetal Cloth Feet,armor,cloth-armor,missing,,T7 Cloth Feet
+divine-cloth-feet,Divine Cloth Feet,armor,cloth-armor,missing,,T8 Cloth Feet
+copper-cloth-hands,Copper Cloth Hands,armor,cloth-armor,missing,,T1 Cloth Hands
+iron-cloth-hands,Iron Cloth Hands,armor,cloth-armor,missing,,T2 Cloth Hands
+steel-cloth-hands,Steel Cloth Hands,armor,cloth-armor,missing,,T3 Cloth Hands
+mithril-cloth-hands,Mithril Cloth Hands,armor,cloth-armor,missing,,T4 Cloth Hands
+adamantine-cloth-hands,Adamantine Cloth Hands,armor,cloth-armor,missing,,T5 Cloth Hands
+orichalcum-cloth-hands,Orichalcum Cloth Hands,armor,cloth-armor,missing,,T6 Cloth Hands
+starmetal-cloth-hands,Starmetal Cloth Hands,armor,cloth-armor,missing,,T7 Cloth Hands
+divine-cloth-hands,Divine Cloth Hands,armor,cloth-armor,missing,,T8 Cloth Hands
+copper-cloth-shoulders,Copper Cloth Shoulders,armor,cloth-armor,missing,,T1 Cloth Shoulders
+iron-cloth-shoulders,Iron Cloth Shoulders,armor,cloth-armor,missing,,T2 Cloth Shoulders
+steel-cloth-shoulders,Steel Cloth Shoulders,armor,cloth-armor,missing,,T3 Cloth Shoulders
+mithril-cloth-shoulders,Mithril Cloth Shoulders,armor,cloth-armor,missing,,T4 Cloth Shoulders
+adamantine-cloth-shoulders,Adamantine Cloth Shoulders,armor,cloth-armor,missing,,T5 Cloth Shoulders
+orichalcum-cloth-shoulders,Orichalcum Cloth Shoulders,armor,cloth-armor,missing,,T6 Cloth Shoulders
+starmetal-cloth-shoulders,Starmetal Cloth Shoulders,armor,cloth-armor,missing,,T7 Cloth Shoulders
+divine-cloth-shoulders,Divine Cloth Shoulders,armor,cloth-armor,missing,,T8 Cloth Shoulders
+copper-ring,Copper Ring,accessory,ring,missing,,T1 Ring
+iron-ring,Iron Ring,accessory,ring,missing,,T2 Ring
+steel-ring,Steel Ring,accessory,ring,missing,,T3 Ring
+mithril-ring,Mithril Ring,accessory,ring,missing,,T4 Ring
+adamantine-ring,Adamantine Ring,accessory,ring,missing,,T5 Ring
+orichalcum-ring,Orichalcum Ring,accessory,ring,missing,,T6 Ring
+starmetal-ring,Starmetal Ring,accessory,ring,missing,,T7 Ring
+divine-ring,Divine Ring,accessory,ring,missing,,T8 Ring
+copper-necklace,Copper Necklace,accessory,necklace,missing,,T1 Necklace
+iron-necklace,Iron Necklace,accessory,necklace,missing,,T2 Necklace
+steel-necklace,Steel Necklace,accessory,necklace,missing,,T3 Necklace
+mithril-necklace,Mithril Necklace,accessory,necklace,missing,,T4 Necklace
+adamantine-necklace,Adamantine Necklace,accessory,necklace,missing,,T5 Necklace
+orichalcum-necklace,Orichalcum Necklace,accessory,necklace,missing,,T6 Necklace
+starmetal-necklace,Starmetal Necklace,accessory,necklace,missing,,T7 Necklace
+divine-necklace,Divine Necklace,accessory,necklace,missing,,T8 Necklace
+copper-back,Copper Cloak,accessory,back,missing,,T1 Back
+iron-back,Iron Cloak,accessory,back,missing,,T2 Back
+steel-back,Steel Cloak,accessory,back,missing,,T3 Back
+mithril-back,Mithril Cloak,accessory,back,missing,,T4 Back
+adamantine-back,Adamantine Cloak,accessory,back,missing,,T5 Back
+orichalcum-back,Orichalcum Cloak,accessory,back,missing,,T6 Back
+starmetal-back,Starmetal Cloak,accessory,back,missing,,T7 Back
+divine-back,Divine Cloak,accessory,back,missing,,T8 Back
+fire-infusion,Fire Infusion,infusion,material,missing,,Mystic crafting
+frost-infusion,Frost Infusion,infusion,material,missing,,Mystic crafting
+lightning-infusion,Lightning Infusion,infusion,material,missing,,Mystic crafting
+nature-infusion,Nature Infusion,infusion,material,missing,,Mystic crafting
+holy-infusion,Holy Infusion,infusion,material,missing,,Mystic crafting
+shadow-infusion,Shadow Infusion,infusion,material,missing,,Mystic crafting
+arcane-infusion,Arcane Infusion,infusion,material,missing,,Mystic crafting
+divine-infusion,Divine Infusion,infusion,material,missing,,Mystic crafting
+salt,Salt,ingredient,material,complete,client/public/2dassets/sprites/ingredient/salt.png,Chef basic
+spice,Spice,ingredient,material,complete,client/public/2dassets/sprites/ingredient/spice.png,Chef basic
+herb,Herb,ingredient,material,complete,client/public/2dassets/sprites/ingredient/herb.png,Chef basic
+mushroom,Mushroom,ingredient,material,complete,client/public/2dassets/sprites/ingredient/mushroom.png,Chef basic
+raw-meat,Raw Meat,ingredient,material,complete,client/public/2dassets/sprites/ingredient/raw-meat.png,T1 meat
+raw-fish,Raw Fish,ingredient,material,complete,client/public/2dassets/sprites/ingredient/raw-fish.png,T1 fish
+vegetable,Vegetable,ingredient,material,missing,,Chef basic
+grain,Grain,ingredient,material,missing,,Chef basic
+flour,Flour,ingredient,material,missing,,Chef basic
+honey,Honey,ingredient,material,missing,,Chef basic
+quality-meat,Quality Meat,meat,material,missing,,T2 meat
+prime-meat,Prime Meat,meat,material,missing,,T3 meat
+exotic-meat,Exotic Meat,meat,material,missing,,T4 meat
+monster-meat,Monster Meat,meat,material,missing,,T5 meat
+dragon-meat,Dragon Meat,meat,material,missing,,T6 meat
+titan-meat,Titan Meat,meat,material,missing,,T7 meat
+divine-meat,Divine Meat,meat,material,missing,,T8 meat
+river-fish,River Fish,fish,material,missing,,T2 fish
+ocean-fish,Ocean Fish,fish,material,missing,,T3 fish
+deep-fish,Deep Sea Fish,fish,material,missing,,T4 fish
+arcane-fish,Arcane Fish,fish,material,missing,,T5 fish
+leviathan-fish,Leviathan Fish,fish,material,missing,,T6 fish
+kraken-fish,Kraken Fish,fish,material,missing,,T7 fish
+divine-fish,Divine Fish,fish,material,missing,,T8 fish
+rare-spice,Rare Spice,ingredient,material,missing,,Rare ingredient
+mystic-spice,Mystic Spice,ingredient,material,missing,,Rare ingredient
+dragon-pepper,Dragon Pepper,ingredient,material,missing,,Rare ingredient
+celestial-herb,Celestial Herb,ingredient,material,missing,,Rare ingredient
+divine-nectar,Divine Nectar,ingredient,material,missing,,T8 rare ingredient

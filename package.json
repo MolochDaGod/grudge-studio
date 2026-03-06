@@ -1,0 +1,52 @@
+{
+  "name": "grudge-studio",
+  "version": "1.0.0",
+  "description": "Unified Grudge Studio products - Warlord Crafting Suite, items, sprites, and systems sync",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "author": "Grudge Studio Dev",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "dev:warlord": "turbo run dev --filter=warlord-crafting-suite",
+    "dev:api": "turbo run dev --filter=grudge-api-server",
+    "build": "turbo run build",
+    "build:warlord": "turbo run build --filter=warlord-crafting-suite",
+    "build:full": "node build.js",
+    "lint": "turbo run lint",
+    "type-check": "turbo run type-check",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch",
+    "test:coverage": "turbo run test:coverage",
+    "test:server": "turbo run test --filter=warlord-crafting-suite -- --run server",
+    "test:client": "turbo run test --filter=warlord-crafting-suite -- --run client",
+    "db:push": "turbo run db:push",
+    "db:generate": "turbo run db:generate",
+    "db:migrate": "turbo run db:migrate",
+    "sheets:sync": "tsx scripts/sync-sheets.ts",
+    "sheets:refresh": "tsx scripts/sync-sheets.ts --refresh",
+    "clean": "turbo run clean && pnpm recursive exec rm -rf node_modules && rm -rf node_modules",
+    "backup": "node scripts/backup.js",
+    "verify-deployment": "node verify-deployment.js",
+    "deploy:check": "pnpm verify-deployment && pnpm test && pnpm build",
+    "check-drizzle": "node check-drizzle.js"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.0",
+    "@testing-library/react": "^14.0.0",
+    "@vitest/ui": "^4.0.18",
+    "supertest": "^6.3.0",
+    "tsx": "^4.20.5",
+    "turbo": "^2.7.6",
+    "typescript": "^5.6.3",
+    "vitest": "^4.0.18"
+  },
+  "dependencies": {
+    "dep": "^0.18.3",
+    "nodejs": "^0.0.0"
+  }
+}

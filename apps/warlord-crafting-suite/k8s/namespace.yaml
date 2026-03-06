@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: grudge-warlords
+  labels:
+    name: grudge-warlords
+    environment: production
+

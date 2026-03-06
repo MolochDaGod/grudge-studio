@@ -1,0 +1,576 @@
+[
+  {
+    "id": "copper-ore",
+    "name": "Copper Ore",
+    "category": "ore",
+    "path": "client/public/2dassets/sprites/ore/copper-ore.png",
+    "status": "success"
+  },
+  {
+    "id": "iron-ore",
+    "name": "Iron Ore",
+    "category": "ore",
+    "path": "client/public/2dassets/sprites/ore/iron-ore.png",
+    "status": "success"
+  },
+  {
+    "id": "steel-ore",
+    "name": "Steel Ore",
+    "category": "ore",
+    "path": "client/public/2dassets/sprites/ore/steel-ore.png",
+    "status": "success"
+  },
+  {
+    "id": "mithril-ore",
+    "name": "Mithril Ore",
+    "category": "ore",
+    "path": "client/public/2dassets/sprites/ore/mithril-ore.png",
+    "status": "success"
+  },
+  {
+    "id": "adamantine-ore",
+    "name": "Adamantine Ore",
+    "category": "ore",
+    "path": "client/public/2dassets/sprites/ore/adamantine-ore.png",
+    "status": "success"
+  },
+  {
+    "id": "orichalcum-ore",
+    "name": "Orichalcum Ore",
+    "category": "ore",
+    "path": "client/public/2dassets/sprites/ore/orichalcum-ore.png",
+    "status": "success"
+  },
+  {
+    "id": "starmetal-ore",
+    "name": "Starmetal Ore",
+    "category": "ore",
+    "path": "client/public/2dassets/sprites/ore/starmetal-ore.png",
+    "status": "success"
+  },
+  {
+    "id": "divine-ore",
+    "name": "Divine Ore",
+    "category": "ore",
+    "path": "client/public/2dassets/sprites/ore/divine-ore.png",
+    "status": "success"
+  },
+  {
+    "id": "copper-ingot",
+    "name": "Copper Ingot",
+    "category": "component",
+    "path": "client/public/2dassets/sprites/component/copper-ingot.png",
+    "status": "success"
+  },
+  {
+    "id": "iron-ingot",
+    "name": "Iron Ingot",
+    "category": "component",
+    "path": "client/public/2dassets/sprites/component/iron-ingot.png",
+    "status": "success"
+  },
+  {
+    "id": "steel-ingot",
+    "name": "Steel Ingot",
+    "category": "component",
+    "path": "client/public/2dassets/sprites/component/steel-ingot.png",
+    "status": "success"
+  },
+  {
+    "id": "mithril-ingot",
+    "name": "Mithril Ingot",
+    "category": "component",
+    "path": "client/public/2dassets/sprites/component/mithril-ingot.png",
+    "status": "success"
+  },
+  {
+    "id": "adamantine-ingot",
+    "name": "Adamantine Ingot",
+    "category": "component",
+    "path": "client/public/2dassets/sprites/component/adamantine-ingot.png",
+    "status": "success"
+  },
+  {
+    "id": "orichalcum-ingot",
+    "name": "Orichalcum Ingot",
+    "category": "component",
+    "path": "client/public/2dassets/sprites/component/orichalcum-ingot.png",
+    "status": "success"
+  },
+  {
+    "id": "starmetal-ingot",
+    "name": "Starmetal Ingot",
+    "category": "component",
+    "path": "client/public/2dassets/sprites/component/starmetal-ingot.png",
+    "status": "success"
+  },
+  {
+    "id": "divine-ingot",
+    "name": "Divine Ingot",
+    "category": "component",
+    "path": "client/public/2dassets/sprites/component/divine-ingot.png",
+    "status": "success"
+  },
+  {
+    "id": "pine-log",
+    "name": "Pine Log",
+    "category": "wood",
+    "path": "client/public/2dassets/sprites/wood/pine-log.png",
+    "status": "success"
+  },
+  {
+    "id": "oak-log",
+    "name": "Oak Log",
+    "category": "wood",
+    "path": "client/public/2dassets/sprites/wood/oak-log.png",
+    "status": "success"
+  },
+  {
+    "id": "maple-log",
+    "name": "Maple Log",
+    "category": "wood",
+    "path": "client/public/2dassets/sprites/wood/maple-log.png",
+    "status": "success"
+  },
+  {
+    "id": "ash-log",
+    "name": "Ash Log",
+    "category": "wood",
+    "path": "client/public/2dassets/sprites/wood/ash-log.png",
+    "status": "success"
+  },
+  {
+    "id": "ironwood-log",
+    "name": "Ironwood Log",
+    "category": "wood",
+    "path": "client/public/2dassets/sprites/wood/ironwood-log.png",
+    "status": "success"
+  },
+  {
+    "id": "ebony-log",
+    "name": "Ebony Log",
+    "category": "wood",
+    "path": "client/public/2dassets/sprites/wood/ebony-log.png",
+    "status": "success"
+  },
+  {
+    "id": "wyrmwood-log",
+    "name": "Wyrmwood Log",
+    "category": "wood",
+    "path": "client/public/2dassets/sprites/wood/wyrmwood-log.png",
+    "status": "success"
+  },
+  {
+    "id": "worldtree-log",
+    "name": "Worldtree Log",
+    "category": "wood",
+    "path": "client/public/2dassets/sprites/wood/worldtree-log.png",
+    "status": "success"
+  },
+  {
+    "id": "minor-essence",
+    "name": "Minor Essence",
+    "category": "essence",
+    "path": "client/public/2dassets/sprites/essence/minor-essence.png",
+    "status": "success"
+  },
+  {
+    "id": "lesser-essence",
+    "name": "Lesser Essence",
+    "category": "essence",
+    "path": "client/public/2dassets/sprites/essence/lesser-essence.png",
+    "status": "success"
+  },
+  {
+    "id": "greater-essence",
+    "name": "Greater Essence",
+    "category": "essence",
+    "path": "client/public/2dassets/sprites/essence/greater-essence.png",
+    "status": "success"
+  },
+  {
+    "id": "superior-essence",
+    "name": "Superior Essence",
+    "category": "essence",
+    "path": "client/public/2dassets/sprites/essence/superior-essence.png",
+    "status": "success"
+  },
+  {
+    "id": "refined-essence",
+    "name": "Refined Essence",
+    "category": "essence",
+    "path": "client/public/2dassets/sprites/essence/refined-essence.png",
+    "status": "success"
+  },
+  {
+    "id": "perfect-essence",
+    "name": "Perfect Essence",
+    "category": "essence",
+    "path": "client/public/2dassets/sprites/essence/perfect-essence.png",
+    "status": "success"
+  },
+  {
+    "id": "ancient-essence",
+    "name": "Ancient Essence",
+    "category": "essence",
+    "path": "client/public/2dassets/sprites/essence/ancient-essence.png",
+    "status": "success"
+  },
+  {
+    "id": "divine-essence",
+    "name": "Divine Essence",
+    "category": "essence",
+    "path": "client/public/2dassets/sprites/essence/divine-essence.png",
+    "status": "success"
+  },
+  {
+    "id": "rough-gem",
+    "name": "Rough Gem",
+    "category": "gem",
+    "path": "client/public/2dassets/sprites/gem/rough-gem.png",
+    "status": "success"
+  },
+  {
+    "id": "flawed-gem",
+    "name": "Flawed Gem",
+    "category": "gem",
+    "path": "client/public/2dassets/sprites/gem/flawed-gem.png",
+    "status": "success"
+  },
+  {
+    "id": "standard-gem",
+    "name": "Standard Gem",
+    "category": "gem",
+    "path": "client/public/2dassets/sprites/gem/standard-gem.png",
+    "status": "success"
+  },
+  {
+    "id": "fine-gem",
+    "name": "Fine Gem",
+    "category": "gem",
+    "path": "client/public/2dassets/sprites/gem/fine-gem.png",
+    "status": "success"
+  },
+  {
+    "id": "pristine-gem",
+    "name": "Pristine Gem",
+    "category": "gem",
+    "path": "client/public/2dassets/sprites/gem/pristine-gem.png",
+    "status": "success"
+  },
+  {
+    "id": "flawless-gem",
+    "name": "Flawless Gem",
+    "category": "gem",
+    "path": "client/public/2dassets/sprites/gem/flawless-gem.png",
+    "status": "success"
+  },
+  {
+    "id": "radiant-gem",
+    "name": "Radiant Gem",
+    "category": "gem",
+    "path": "client/public/2dassets/sprites/gem/radiant-gem.png",
+    "status": "success"
+  },
+  {
+    "id": "divine-gem",
+    "name": "Divine Gem",
+    "category": "gem",
+    "path": "client/public/2dassets/sprites/gem/divine-gem.png",
+    "status": "success"
+  },
+  {
+    "id": "rawhide",
+    "name": "Rawhide",
+    "category": "leather",
+    "path": "client/public/2dassets/sprites/leather/rawhide.png",
+    "status": "success"
+  },
+  {
+    "id": "thick-hide",
+    "name": "Thick Hide",
+    "category": "leather",
+    "path": "client/public/2dassets/sprites/leather/thick-hide.png",
+    "status": "success"
+  },
+  {
+    "id": "rugged-leather",
+    "name": "Rugged Leather",
+    "category": "leather",
+    "path": "client/public/2dassets/sprites/leather/rugged-leather.png",
+    "status": "success"
+  },
+  {
+    "id": "hardened-leather",
+    "name": "Hardened Leather",
+    "category": "leather",
+    "path": "client/public/2dassets/sprites/leather/hardened-leather.png",
+    "status": "success"
+  },
+  {
+    "id": "salt",
+    "name": "Salt",
+    "category": "ingredient",
+    "path": "client/public/2dassets/sprites/ingredient/salt.png",
+    "status": "success"
+  },
+  {
+    "id": "spice",
+    "name": "Spice",
+    "category": "ingredient",
+    "path": "client/public/2dassets/sprites/ingredient/spice.png",
+    "status": "success"
+  },
+  {
+    "id": "herb",
+    "name": "Herb",
+    "category": "ingredient",
+    "path": "client/public/2dassets/sprites/ingredient/herb.png",
+    "status": "success"
+  },
+  {
+    "id": "mushroom",
+    "name": "Mushroom",
+    "category": "ingredient",
+    "path": "client/public/2dassets/sprites/ingredient/mushroom.png",
+    "status": "success"
+  },
+  {
+    "id": "raw-meat",
+    "name": "Raw Meat",
+    "category": "ingredient",
+    "path": "client/public/2dassets/sprites/ingredient/raw-meat.png",
+    "status": "success"
+  },
+  {
+    "id": "raw-fish",
+    "name": "Raw Fish",
+    "category": "ingredient",
+    "path": "client/public/2dassets/sprites/ingredient/raw-fish.png",
+    "status": "success"
+  },
+  {
+    "id": "bloodfeud-blade",
+    "name": "Bloodfeud Blade",
+    "category": "sword",
+    "path": "client/public/2dassets/sprites/sword/bloodfeud-blade.png",
+    "status": "success"
+  },
+  {
+    "id": "wraithfang",
+    "name": "Wraithfang",
+    "category": "sword",
+    "path": "client/public/2dassets/sprites/sword/wraithfang.png",
+    "status": "success"
+  },
+  {
+    "id": "oathbreaker",
+    "name": "Oathbreaker",
+    "category": "sword",
+    "path": "client/public/2dassets/sprites/sword/oathbreaker.png",
+    "status": "success"
+  },
+  {
+    "id": "kinrend",
+    "name": "Kinrend",
+    "category": "sword",
+    "path": "client/public/2dassets/sprites/sword/kinrend.png",
+    "status": "success"
+  },
+  {
+    "id": "dusksinger",
+    "name": "Dusksinger",
+    "category": "sword",
+    "path": "client/public/2dassets/sprites/sword/dusksinger.png",
+    "status": "success"
+  },
+  {
+    "id": "emberclad",
+    "name": "Emberclad",
+    "category": "sword",
+    "path": "client/public/2dassets/sprites/sword/emberclad.png",
+    "status": "success"
+  },
+  {
+    "id": "soulreaver",
+    "name": "Soulreaver",
+    "category": "sword",
+    "path": "client/public/2dassets/sprites/sword/soulreaver.png",
+    "status": "success"
+  },
+  {
+    "id": "grimshard",
+    "name": "Grimshard",
+    "category": "sword",
+    "path": "client/public/2dassets/sprites/sword/grimshard.png",
+    "status": "success"
+  },
+  {
+    "id": "bloodfeud-cleaver",
+    "name": "Bloodfeud Cleaver",
+    "category": "axe",
+    "path": "client/public/2dassets/sprites/axe/bloodfeud-cleaver.png",
+    "status": "success"
+  },
+  {
+    "id": "wraithfang-cleaver",
+    "name": "Wraithfang Cleaver",
+    "category": "axe",
+    "path": "client/public/2dassets/sprites/axe/wraithfang-cleaver.png",
+    "status": "success"
+  },
+  {
+    "id": "oathbreaker-cleaver",
+    "name": "Oathbreaker Cleaver",
+    "category": "axe",
+    "path": "client/public/2dassets/sprites/axe/oathbreaker-cleaver.png",
+    "status": "success"
+  },
+  {
+    "id": "kinrend-cleaver",
+    "name": "Kinrend Cleaver",
+    "category": "axe",
+    "path": "client/public/2dassets/sprites/axe/kinrend-cleaver.png",
+    "status": "success"
+  },
+  {
+    "id": "dusksinger-cleaver",
+    "name": "Dusksinger Cleaver",
+    "category": "axe",
+    "path": "client/public/2dassets/sprites/axe/dusksinger-cleaver.png",
+    "status": "success"
+  },
+  {
+    "id": "emberclad-cleaver",
+    "name": "Emberclad Cleaver",
+    "category": "axe",
+    "path": "",
+    "status": "failed"
+  },
+  {
+    "id": "soulreaver-cleaver",
+    "name": "Soulreaver Cleaver",
+    "category": "axe",
+    "path": "client/public/2dassets/sprites/axe/soulreaver-cleaver.png",
+    "status": "success"
+  },
+  {
+    "id": "grimshard-cleaver",
+    "name": "Grimshard Cleaver",
+    "category": "axe",
+    "path": "client/public/2dassets/sprites/axe/grimshard-cleaver.png",
+    "status": "success"
+  },
+  {
+    "id": "bloodfeud-bow",
+    "name": "Bloodfeud Bow",
+    "category": "bow",
+    "path": "client/public/2dassets/sprites/bow/bloodfeud-bow.png",
+    "status": "success"
+  },
+  {
+    "id": "wraithfang-bow",
+    "name": "Wraithfang Bow",
+    "category": "bow",
+    "path": "client/public/2dassets/sprites/bow/wraithfang-bow.png",
+    "status": "success"
+  },
+  {
+    "id": "oathbreaker-bow",
+    "name": "Oathbreaker Bow",
+    "category": "bow",
+    "path": "client/public/2dassets/sprites/bow/oathbreaker-bow.png",
+    "status": "success"
+  },
+  {
+    "id": "kinrend-bow",
+    "name": "Kinrend Bow",
+    "category": "bow",
+    "path": "client/public/2dassets/sprites/bow/kinrend-bow.png",
+    "status": "success"
+  },
+  {
+    "id": "bloodfeud-staff",
+    "name": "Bloodfeud Staff",
+    "category": "staff",
+    "path": "client/public/2dassets/sprites/staff/bloodfeud-staff.png",
+    "status": "success"
+  },
+  {
+    "id": "wraithfang-staff",
+    "name": "Wraithfang Staff",
+    "category": "staff",
+    "path": "client/public/2dassets/sprites/staff/wraithfang-staff.png",
+    "status": "success"
+  },
+  {
+    "id": "oathbreaker-staff",
+    "name": "Oathbreaker Staff",
+    "category": "staff",
+    "path": "client/public/2dassets/sprites/staff/oathbreaker-staff.png",
+    "status": "success"
+  },
+  {
+    "id": "kinrend-staff",
+    "name": "Kinrend Staff",
+    "category": "staff",
+    "path": "client/public/2dassets/sprites/staff/kinrend-staff.png",
+    "status": "success"
+  },
+  {
+    "id": "nightfang",
+    "name": "Nightfang",
+    "category": "dagger",
+    "path": "client/public/2dassets/sprites/dagger/nightfang.png",
+    "status": "success"
+  },
+  {
+    "id": "shadowpiercer",
+    "name": "Shadowpiercer",
+    "category": "dagger",
+    "path": "client/public/2dassets/sprites/dagger/shadowpiercer.png",
+    "status": "success"
+  },
+  {
+    "id": "venombite",
+    "name": "Venombite",
+    "category": "dagger",
+    "path": "client/public/2dassets/sprites/dagger/venombite.png",
+    "status": "success"
+  },
+  {
+    "id": "whisperwind",
+    "name": "Whisperwind",
+    "category": "dagger",
+    "path": "client/public/2dassets/sprites/dagger/whisperwind.png",
+    "status": "success"
+  },
+  {
+    "id": "bloodfeud-hammer",
+    "name": "Bloodfeud Hammer",
+    "category": "hammer",
+    "path": "client/public/2dassets/sprites/hammer/bloodfeud-hammer.png",
+    "status": "success"
+  },
+  {
+    "id": "wraithfang-mace",
+    "name": "Wraithfang Mace",
+    "category": "hammer",
+    "path": "client/public/2dassets/sprites/hammer/wraithfang-mace.png",
+    "status": "success"
+  },
+  {
+    "id": "oathbreaker-maul",
+    "name": "Oathbreaker Maul",
+    "category": "hammer",
+    "path": "client/public/2dassets/sprites/hammer/oathbreaker-maul.png",
+    "status": "success"
+  },
+  {
+    "id": "kinrend-crusher",
+    "name": "Kinrend Crusher",
+    "category": "hammer",
+    "path": "client/public/2dassets/sprites/hammer/kinrend-crusher.png",
+    "status": "success"
+  }
+]

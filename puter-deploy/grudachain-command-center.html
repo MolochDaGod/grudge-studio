@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>GRUDACHAIN Command Center</title>
+<link rel="icon" href="https://i.imgur.com/bGd5QJ0.png">
+<script src="https://js.puter.com/v2/"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0a0a10;color:#d0d0d0;min-height:100vh}
+.hdr{background:rgba(10,10,16,.95);border-bottom:1px solid rgba(212,168,67,.2);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.hdr .logo{display:flex;align-items:center;gap:10px}.hdr img{width:36px;height:36px;border-radius:8px}
+.hdr h1{font-family:'Cinzel',serif;font-size:1.1rem;color:#d4a843}.hdr .sub{font-size:.65rem;color:#666}
+.hdr .usr{font-size:.7rem;color:#888;display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:#444;display:inline-block}.dot.on{background:#22c55e}
+.main{display:flex;min-height:calc(100vh - 56px)}
+nav{width:180px;background:rgba(15,15,22,.95);border-right:1px solid rgba(255,255,255,.04);padding:12px 0;flex-shrink:0}
+nav button{width:100%;padding:10px 16px;background:none;border:none;color:#888;font-size:.72rem;text-align:left;cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:8px}
+nav button:hover{background:rgba(212,168,67,.08);color:#d4a843}nav button.ac{background:rgba(212,168,67,.12);color:#d4a843;border-left:2px solid #d4a843}
+.content{flex:1;padding:20px;overflow-y:auto;max-height:calc(100vh - 56px)}
+.view{display:none}.view.ac{display:block}
+.vhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.vhdr h2{font-family:'Cinzel',serif;font-size:1rem;color:#d4a843}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:20px}
+.scard{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:14px}
+.scard h3{font-size:1.4rem;color:#d4a843;font-weight:700}.scard p{font-size:.65rem;color:#888;margin-top:2px}
+.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.gcard{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:14px;transition:all .2s;cursor:pointer;text-decoration:none;color:inherit;display:block}
+.gcard:hover{border-color:rgba(212,168,67,.4);transform:translateY(-2px);box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.gcard h4{color:#d4a843;font-size:.8rem;margin-bottom:4px}.gcard p{font-size:.6rem;color:#888;line-height:1.4}
+.gcard .tag{display:inline-block;padding:2px 6px;border-radius:4px;font-size:.5rem;margin-top:6px}
+.tag.puter{background:rgba(59,130,246,.15);color:#60a5fa}.tag.vercel{background:rgba(255,255,255,.08);color:#999}.tag.render{background:rgba(139,92,246,.15);color:#a78bfa}
+.btn{padding:6px 14px;border:1px solid rgba(212,168,67,.3);background:rgba(212,168,67,.12);color:#d4a843;border-radius:6px;cursor:pointer;font-size:.68rem;font-weight:500;transition:all .15s}
+.btn:hover{background:rgba(212,168,67,.25)}.btn.red{border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.12);color:#f87171}
+.inp{width:100%;padding:8px 12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:6px;color:#ddd;font-size:.72rem;margin-bottom:8px}
+.inp:focus{outline:none;border-color:rgba(212,168,67,.4)}
+textarea.inp{min-height:80px;resize:vertical;font-family:monospace}
+.result{background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.05);border-radius:6px;padding:10px;font-family:monospace;font-size:.65rem;white-space:pre-wrap;max-height:300px;overflow-y:auto;margin-top:8px}
+.flist{display:grid;gap:4px;margin-top:10px}.fitem{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:6px;font-size:.65rem}
+.fitem .fn{color:#d4a843;font-weight:500}.fitem .fs{color:#666}
+.wlist{display:grid;gap:6px;margin-top:10px}.witem{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);border-radius:8px}
+.witem .wn{color:#d4a843;font-weight:600;font-size:.75rem}.witem .wu{color:#60a5fa;font-size:.6rem}
+.act{display:flex;gap:8px;margin-top:12px}
+.log{margin-top:12px;max-height:200px;overflow-y:auto}.log div{padding:3px 0;border-bottom:1px solid rgba(255,255,255,.03);font-size:.6rem;color:#777}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div class="logo"><img src="https://i.imgur.com/bGd5QJ0.png" alt="GRUDACHAIN"><div><h1>GRUDACHAIN Command Center</h1><div class="sub">Cloud Systems Admin &amp; Deployer</div></div></div>
+  <div class="usr"><span class="dot" id="dot"></span><span id="uname">Not signed in</span><button class="btn" id="authBtn" onclick="doAuth()">Sign In</button></div>
+</div>
+<div class="main">
+<nav id="nav"></nav>
+<div class="content" id="cnt"></div>
+</div>
+<script>
+const GAMES=[
+  {name:'Grudge Angler',url:'https://puter.com/app/grudge-angler',desc:'Fishing game in the Grudge universe',tag:'puter'},
+  {name:'Beta GRUDA',url:'https://puter.com/app/betagamegruda',desc:'Core game beta testing environment',tag:'puter'},
+  {name:'Grudge RPG',url:'https://puter.com/app/grudgeRPG',desc:'RPG progression and combat system',tag:'puter'},
+  {name:'Warlords Islands',url:'https://puter.com/app/game-35',desc:'Beta — Island exploration and faction warfare',tag:'puter'},
+  {name:'Starway GRUDA',url:'https://starwaygruda-webclient-as2n.vercel.app/',desc:'Space combat web client',tag:'vercel'},
+  {name:'DiGrudge',url:'https://puter.com/app/DiGrudge',desc:'Digital card/battle game mode',tag:'puter'},
+  {name:'Nexus-3',url:'https://puter.com/app/nexus-3',desc:'Nexus network multiplayer hub',tag:'puter'},
+  {name:'Grudge Network',url:'https://puter.com/app/grudge-network',desc:'Social and multiplayer network layer',tag:'puter'},
+  {name:'Game Editor',url:'https://puter.com/app/Grudge-Game-Editor',desc:'Visual game editor and level design tool',tag:'puter'},
+  {name:'GrudgeOS Zone',url:'https://puter.com/app/grudgesozne',desc:'GrudgeOS deployment on Render + Puter',tag:'render'},
+];
+const SITES=[
+  {name:'Grudge Warlords',url:'https://grudgewarlords.com',desc:'Main game portal'},
+  {name:'GRUDA Legion',url:'https://grudachain-rho.vercel.app',desc:'AI system + Cloud storage'},
+  {name:'Auth Gateway',url:'https://authgrudge.puter.site',desc:'Login / Auth'},
+  {name:'Attack System',url:'https://grudge-attack-system.puter.site',desc:'Combat demo'},
+  {name:'Studio Playground',url:'https://molochthegod.github.io/GrudgeStudioNPM/playground.html',desc:'3D engine playground'},
+];
+const VIEWS=['dashboard','games','sites','storage','kv','workers','ai'];
+const NAV_LABELS={dashboard:'Dashboard',games:'Games',sites:'Sites',storage:'Cloud Storage',kv:'KV Store',workers:'Workers',ai:'AI Chat'};
+let user=null,currentView='dashboard';
+
+// Build nav
+document.getElementById('nav').innerHTML=VIEWS.map(v=>`<button data-v="${v}" onclick="showView('${v}')">${NAV_LABELS[v]}</button>`).join('');
+
+function showView(v){currentView=v;document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('ac',b.dataset.v===v));renderView()}
+
+function renderView(){
+  const c=document.getElementById('cnt');
+  if(currentView==='dashboard')c.innerHTML=renderDashboard();
+  else if(currentView==='games')c.innerHTML=renderGames();
+  else if(currentView==='sites')c.innerHTML=renderSites();
+  else if(currentView==='storage')c.innerHTML=renderStorage();
+  else if(currentView==='kv')c.innerHTML=renderKV();
+  else if(currentView==='workers')c.innerHTML=renderWorkers();
+  else if(currentView==='ai')c.innerHTML=renderAI();
+}
+
+function renderDashboard(){return`<div class="view ac"><div class="vhdr"><h2>System Overview</h2></div>
+<div class="grid4">
+  <div class="scard"><h3>${GAMES.length}</h3><p>Deployed Games</p></div>
+  <div class="scard"><h3>${SITES.length}</h3><p>Active Sites</p></div>
+  <div class="scard"><h3 id="dc-kv">--</h3><p>KV Entries</p></div>
+  <div class="scard"><h3 id="dc-wk">--</h3><p>Workers</p></div>
+</div>
+<h4 style="color:#d4a843;font-family:'Cinzel',serif;margin-bottom:10px">Games</h4>
+<div class="ggrid">${GAMES.slice(0,4).map(g=>`<a class="gcard" href="${g.url}" target="_blank"><h4>${g.name}</h4><p>${g.desc}</p><span class="tag ${g.tag}">${g.tag}</span></a>`).join('')}</div>
+<div style="margin-top:16px"><h4 style="color:#d4a843;font-family:'Cinzel',serif;margin-bottom:10px">Sites</h4>
+<div class="ggrid">${SITES.map(s=>`<a class="gcard" href="${s.url}" target="_blank"><h4>${s.name}</h4><p>${s.desc}</p></a>`).join('')}</div></div>
+<div class="log" id="dash-log"></div></div>`}
+
+function renderGames(){return`<div class="view ac"><div class="vhdr"><h2>Game Deployments</h2></div>
+<div class="ggrid">${GAMES.map(g=>`<a class="gcard" href="${g.url}" target="_blank"><h4>${g.name}</h4><p>${g.desc}</p><span class="tag ${g.tag}">${g.tag}</span></a>`).join('')}</div></div>`}
+
+function renderSites(){return`<div class="view ac"><div class="vhdr"><h2>Sites &amp; Services</h2></div>
+<div class="ggrid">${SITES.map(s=>`<a class="gcard" href="${s.url}" target="_blank"><h4>${s.name}</h4><p>${s.desc}</p></a>`).join('')}</div></div>`}
+
+function renderStorage(){return`<div class="view ac"><div class="vhdr"><h2>Cloud Storage</h2><button class="btn" onclick="refreshFS()">Refresh</button></div>
+<input class="inp" id="fs-path" placeholder="Path (e.g. /grudge-studio)" value="/"><button class="btn" onclick="browseFS()">Browse</button>
+<button class="btn" onclick="mkDir()">New Folder</button>
+<div class="flist" id="fs-list"></div>
+<div class="result" id="fs-result" style="display:none"></div></div>`}
+
+function renderKV(){return`<div class="view ac"><div class="vhdr"><h2>Key-Value Store</h2></div>
+<input class="inp" id="kv-key" placeholder="Key"><textarea class="inp" id="kv-val" placeholder="Value (JSON supported)"></textarea>
+<div class="act"><button class="btn" onclick="kvSet()">Set</button><button class="btn" onclick="kvGet()">Get</button><button class="btn red" onclick="kvDel()">Delete</button><button class="btn" onclick="kvList()">List All</button></div>
+<div class="result" id="kv-result"></div></div>`}
+
+function renderWorkers(){return`<div class="view ac"><div class="vhdr"><h2>Workers</h2><button class="btn" onclick="listWorkers()">Refresh</button></div>
+<div class="wlist" id="wk-list"></div>
+<div style="margin-top:16px"><h4 style="color:#888;font-size:.7rem;margin-bottom:8px">Deploy Worker</h4>
+<input class="inp" id="wk-name" placeholder="Worker name"><input class="inp" id="wk-path" placeholder="File path in Puter FS">
+<button class="btn" onclick="deployWorker()">Deploy</button></div>
+<div class="result" id="wk-result"></div></div>`}
+
+function renderAI(){return`<div class="view ac"><div class="vhdr"><h2>AI Assistant</h2></div>
+<div id="ai-msgs" style="min-height:200px;max-height:400px;overflow-y:auto;margin-bottom:10px;padding:10px;background:rgba(0,0,0,.2);border-radius:8px"></div>
+<textarea class="inp" id="ai-input" placeholder="Ask about Grudge systems, deployments, game data..." rows="2"></textarea>
+<button class="btn" onclick="aiSend()">Send</button></div>`}
+
+// Auth
+async function doAuth(){
+  try{user=await puter.auth.signIn();document.getElementById('uname').textContent=user.username;document.getElementById('dot').classList.add('on');document.getElementById('authBtn').textContent='Signed In';document.getElementById('authBtn').disabled=true;renderView();loadDashCounts()}catch(e){console.error(e)}
+}
+async function checkAuth(){
+  try{user=await puter.auth.getUser();document.getElementById('uname').textContent=user.username;document.getElementById('dot').classList.add('on');document.getElementById('authBtn').textContent='Signed In';document.getElementById('authBtn').disabled=true;loadDashCounts()}catch(e){}
+}
+
+// Dashboard counts
+async function loadDashCounts(){
+  try{const wk=await puter.workers.list();const el=document.getElementById('dc-wk');if(el)el.textContent=wk.length}catch(e){}
+}
+
+// FS
+async function browseFS(){
+  const p=document.getElementById('fs-path').value||'/';const list=document.getElementById('fs-list');
+  try{const items=await puter.fs.readdir(p);list.innerHTML=items.map(i=>`<div class="fitem"><span class="fn">${i.is_dir?'[DIR] ':''}${i.name}</span><span class="fs">${i.is_dir?'':((i.size||0)/1024).toFixed(1)+'KB'}</span></div>`).join('')||'<div style="color:#666;font-size:.65rem">Empty</div>'}
+  catch(e){list.innerHTML=`<div style="color:#f87171;font-size:.65rem">${e.message}</div>`}
+}
+function refreshFS(){browseFS()}
+async function mkDir(){const p=document.getElementById('fs-path').value;const name=prompt('Folder name:');if(!name)return;try{await puter.fs.mkdir(p+'/'+name);browseFS()}catch(e){alert(e.message)}}
+
+// KV
+async function kvSet(){
+  const k=document.getElementById('kv-key').value,v=document.getElementById('kv-val').value;if(!k)return;
+  try{await puter.kv.set(k,v);document.getElementById('kv-result').textContent='Set: '+k+' = '+v}catch(e){document.getElementById('kv-result').textContent='Error: '+e.message}
+}
+async function kvGet(){
+  const k=document.getElementById('kv-key').value;if(!k)return;
+  try{const v=await puter.kv.get(k);document.getElementById('kv-result').textContent='Value: '+JSON.stringify(v,null,2);document.getElementById('kv-val').value=typeof v==='string'?v:JSON.stringify(v,null,2)}catch(e){document.getElementById('kv-result').textContent='Error: '+e.message}
+}
+async function kvDel(){
+  const k=document.getElementById('kv-key').value;if(!k||!confirm('Delete key: '+k+'?'))return;
+  try{await puter.kv.del(k);document.getElementById('kv-result').textContent='Deleted: '+k}catch(e){document.getElementById('kv-result').textContent='Error: '+e.message}
+}
+async function kvList(){
+  try{const keys=await puter.kv.list();document.getElementById('kv-result').textContent=JSON.stringify(keys,null,2);const el=document.getElementById('dc-kv');if(el)el.textContent=Array.isArray(keys)?keys.length:'?'}catch(e){document.getElementById('kv-result').textContent='Error: '+e.message}
+}
+
+// Workers
+async function listWorkers(){
+  try{const wk=await puter.workers.list();const list=document.getElementById('wk-list');list.innerHTML=wk.length?wk.map(w=>`<div class="witem"><div><div class="wn">${w.name}</div><div class="wu">${w.url||'-'}</div></div><button class="btn red" onclick="delWorker('${w.name}')">Delete</button></div>`).join(''):'<div style="color:#666;font-size:.65rem">No workers deployed</div>'}catch(e){document.getElementById('wk-result').textContent='Error: '+e.message}
+}
+async function deployWorker(){
+  const name=document.getElementById('wk-name').value,path=document.getElementById('wk-path').value;if(!name||!path)return;
+  try{const r=await puter.workers.create(name,path);document.getElementById('wk-result').textContent='Deployed: '+JSON.stringify(r,null,2);listWorkers()}catch(e){document.getElementById('wk-result').textContent='Error: '+e.message;if(e.message?.includes('already exists')){if(confirm('Worker exists. Delete and redeploy?')){try{await puter.workers.delete(name);const r=await puter.workers.create(name,path);document.getElementById('wk-result').textContent='Redeployed: '+JSON.stringify(r,null,2);listWorkers()}catch(e2){document.getElementById('wk-result').textContent='Redeploy error: '+e2.message}}}}
+}
+async function delWorker(name){if(!confirm('Delete worker: '+name+'?'))return;try{await puter.workers.delete(name);listWorkers()}catch(e){alert(e.message)}}
+
+// AI
+async function aiSend(){
+  const input=document.getElementById('ai-input'),msgs=document.getElementById('ai-msgs'),msg=input.value.trim();if(!msg)return;
+  msgs.innerHTML+=`<div style="margin-bottom:8px"><b style="color:#d4a843">You:</b> <span style="color:#ddd">${msg}</span></div>`;input.value='';
+  try{
+    const sys='You are the GRUDACHAIN AI assistant. You manage Grudge Warlords game systems including: '+GAMES.map(g=>g.name).join(', ')+'. Backend at grudgewarlords.com/api/studio. ObjectStore at molochthedagod.github.io/ObjectStore. Help with deployment, debugging, game data, and system integration.';
+    const r=await puter.ai.chat(msg,{system:sys});
+    const txt=typeof r==='string'?r:r?.message?.content||JSON.stringify(r);
+    msgs.innerHTML+=`<div style="margin-bottom:8px"><b style="color:#60a5fa">AI:</b> <span style="color:#ccc">${txt}</span></div>`;msgs.scrollTop=msgs.scrollHeight
+  }catch(e){msgs.innerHTML+=`<div style="color:#f87171;margin-bottom:8px">Error: ${e.message}</div>`}
+}
+
+// Init
+showView('dashboard');checkAuth();
+</script>
+</body>
+</html>

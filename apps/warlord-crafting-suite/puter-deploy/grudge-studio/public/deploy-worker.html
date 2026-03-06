@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploy GRUDGE Sprite Worker</title>
+    <script src="https://js.puter.com/v2/"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #1a1a2e;
+            color: #e0e0e0;
+        }
+        .container {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 30px;
+            border: 2px solid #d4a843;
+        }
+        h1 { color: #d4a843; margin-bottom: 10px; }
+        h2 { color: #b8956e; margin-top: 30px; }
+        .status { padding: 15px; border-radius: 8px; margin: 15px 0; }
+        .status.info { background: #1e3a5f; border: 1px solid #3498db; }
+        .status.success { background: #1e5f3a; border: 1px solid #2ecc71; }
+        .status.error { background: #5f1e1e; border: 1px solid #e74c3c; }
+        button {
+            background: linear-gradient(135deg, #d4a843, #b8956e);
+            color: #1a1a2e;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { filter: brightness(1.1); }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
+        pre {
+            background: #0d1421;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .url { color: #3498db; word-break: break-all; }
+        #output { white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>GRUDGE Warlords - Worker Deployment</h1>
+        <p>Deploy the AI Sprite Generator worker to Puter cloud.</p>
+
+        <div id="authStatus" class="status info">
+            Checking authentication...
+        </div>
+
+        <div id="controls" style="display: none;">
+            <h2>Worker Management</h2>
+            <button onclick="deployWorker()">Deploy Sprite Worker</button>
+            <button onclick="listWorkers()">List Workers</button>
+            <button onclick="testWorker()">Test Health</button>
+            <button onclick="deleteWorker()" style="background: #e74c3c;">Delete Worker</button>
+        </div>
+
+        <div id="workerInfo" style="display: none;">
+            <h2>Worker Deployed</h2>
+            <p><strong>Name:</strong> grudge-sprites</p>
+            <p><strong>URL:</strong> <span id="workerUrl" class="url"></span></p>
+        </div>
+
+        <h2>Output</h2>
+        <pre id="output">Ready...</pre>
+    </div>
+
+    <script>
+const WORKER_NAME = 'grudge-sprites';
+const WORKER_FILE_PATH = 'grudge-sprites-worker.js';  // Simple filename in user's Puter account
+
+const WORKER_CODE = `/**
+ * GRUDGE Warlords Sprite Generator Worker
+ * Serverless AI sprite generation using Puter's FLUX model.
+ */
+
+const STYLE_PROMPT = "2D game sprite, pixel art style, 64x64 icon, fantasy RPG item, clean bold dark outline, centered, floating item, NO BACKGROUND COLOR, pure transparent background only, single object, no shadows, no ground, no scenery";
+
+const CATEGORY_PROMPTS = {
+  ore: "rough mineral ore, mining resource, raw gemstone cluster",
+  wood: "natural tree log, lumber wood, forest resource",
+  plank: "refined wooden plank, processed lumber, smooth wood board, carpentry material",
+  component: "refined metal ingot, forged bar, smelted material",
+  essence: "magical essence orb, glowing arcane energy, mystical floating crystal",
+  gem: "precious gemstone, cut jewel, sparkling crystal",
+  leather: "animal hide, tanned leather, crafting material",
+  sword: "fantasy sword blade, one-handed weapon, steel longsword",
+  axe: "fantasy battle axe, one-handed chopping weapon",
+  bow: "wooden longbow, ranged weapon with string",
+  staff: "magical wizard staff, spellcasting weapon with crystal",
+  dagger: "short stabbing blade, assassin knife, throwing dagger",
+  hammer: "war hammer, blunt weapon, heavy mace",
+  potion: "glass potion bottle, magical elixir, colorful liquid",
+};
+
+function buildPrompt(itemName, category) {
+  const categoryPrompt = CATEGORY_PROMPTS[category] || "fantasy RPG game item";
+  return itemName + ", " + categoryPrompt + ", " + STYLE_PROMPT;
+}
+
+// Health check (public)
+router.get('/api/health', async () => {
+  return {
+    status: 'ok',
+    service: 'GRUDGE AI Worker',
+    version: '2.0.0',
+    timestamp: new Date().toISOString(),
+    capabilities: ['txt2img', 'batch-generation', 'cloud-storage', 'ai-chat', 'ai-vision', 'kv-storage']
+  };
+});
+
+// Generate a single sprite
+router.post('/api/generate', async (event) => {
+  try {
+    const body = await event.request.json();
+    const id = body.id;
+    const name = body.name;
+    const category = body.category;
+    
+    if (!id || !name || !category) {
+      return new Response(JSON.stringify({ 
+        error: 'Missing required fields: id, name, category' 
+      }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+    
+    const prompt = buildPrompt(name, category);
+    console.log('Generating sprite: ' + name + ' (' + category + ')');
+    
+    const imageBlob = await me.puter.ai.txt2img(prompt, false, { 
+      model: 'flux-schnell'
+    });
+    
+    const spritePath = '/grudge-warlords/sprites/' + category + '/' + id + '.png';
+    await me.puter.fs.write(spritePath, imageBlob, { createMissingParents: true });
+    
+    return {
+      success: true,
+      id: id,
+      name: name,
+      category: category,
+      path: spritePath,
+      prompt: prompt,
+      timestamp: new Date().toISOString()
+    };
+  } catch (error) {
+    console.error('Generation error:', error);
+    return new Response(JSON.stringify({ 
+      error: String(error),
+      message: 'Failed to generate sprite'
+    }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+});
+
+// List all sprite categories
+router.get('/api/sprites', async () => {
+  try {
+    const basePath = '/grudge-warlords/sprites';
+    const items = await me.puter.fs.readdir(basePath);
+    const categories = items
+      .filter(function(item) { return item.is_dir; })
+      .map(function(item) { return item.name; });
+    
+    return {
+      success: true,
+      categories: categories
+    };
+  } catch (error) {
+    return {
+      success: true,
+      categories: []
+    };
+  }
+});
+
+// List sprites in category
+router.get('/api/sprites/:category', async (event) => {
+  try {
+    const category = event.params.category;
+    const spritePath = '/grudge-warlords/sprites/' + category;
+    
+    const items = await me.puter.fs.readdir(spritePath);
+    const sprites = items
+      .filter(function(item) { return !item.is_dir && item.name.endsWith('.png'); })
+      .map(function(item) { 
+        return {
+          id: item.name.replace('.png', ''),
+          name: item.name,
+          path: spritePath + '/' + item.name
+        };
+      });
+    
+    return {
+      success: true,
+      category: category,
+      count: sprites.length,
+      sprites: sprites
+    };
+  } catch (error) {
+    return {
+      success: true,
+      category: event.params.category,
+      count: 0,
+      sprites: []
+    };
+  }
+});
+
+// Get sprite image
+router.get('/api/sprite/:category/:id', async (event) => {
+  try {
+    const category = event.params.category;
+    const id = event.params.id;
+    const spritePath = '/grudge-warlords/sprites/' + category + '/' + id + '.png';
+    
+    const blob = await me.puter.fs.read(spritePath);
+    
+    return new Response(blob, {
+      headers: {
+        'Content-Type': 'image/png',
+        'Cache-Control': 'public, max-age=86400'
+      }
+    });
+  } catch (error) {
+    return new Response(JSON.stringify({ error: 'Sprite not found' }), {
+      status: 404,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+});
+
+// Get full manifest
+router.get('/api/manifest', async () => {
+  try {
+    const basePath = '/grudge-warlords/sprites';
+    const manifest = {};
+    let totalCount = 0;
+    
+    try {
+      const categories = await me.puter.fs.readdir(basePath);
+      
+      for (let i = 0; i < categories.length; i++) {
+        const cat = categories[i];
+        if (!cat.is_dir) continue;
+        
+        const catPath = basePath + '/' + cat.name;
+        const sprites = await me.puter.fs.readdir(catPath);
+        const spriteList = sprites
+          .filter(function(s) { return !s.is_dir && s.name.endsWith('.png'); })
+          .map(function(s) { return s.name.replace('.png', ''); });
+        
+        manifest[cat.name] = spriteList;
+        totalCount += spriteList.length;
+      }
+    } catch (e) {
+      // Base path doesn't exist yet
+    }
+    
+    return {
+      success: true,
+      totalSprites: totalCount,
+      categories: Object.keys(manifest).length,
+      manifest: manifest,
+      timestamp: new Date().toISOString()
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: String(error),
+      manifest: {}
+    };
+  }
+});
+
+// AI Chat endpoint - for NPC dialogue and command parsing
+router.post('/api/chat', async (event) => {
+  try {
+    const body = await event.request.json();
+    const messages = body.messages || [];
+    const systemPrompt = body.systemPrompt || '';
+    const model = body.model || 'gpt-4o-mini';
+    
+    const chatMessages = systemPrompt 
+      ? [{ role: 'system', content: systemPrompt }, ...messages]
+      : messages;
+    
+    const response = await me.puter.ai.chat(chatMessages, { model: model });
+    
+    return {
+      success: true,
+      response: response,
+      model: model,
+      timestamp: new Date().toISOString()
+    };
+  } catch (error) {
+    return new Response(JSON.stringify({ 
+      error: String(error),
+      message: 'Chat failed'
+    }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+});
+
+// AI Vision endpoint - analyze sprite images for QA
+router.post('/api/vision/analyze', async (event) => {
+  try {
+    const body = await event.request.json();
+    const imageUrl = body.imageUrl;
+    const category = body.category || 'unknown';
+    
+    if (!imageUrl) {
+      return new Response(JSON.stringify({ 
+        error: 'Missing imageUrl' 
+      }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
+    
+    const prompt = 'Analyze this game sprite image. Check: 1) Does it have a transparent background or solid color background? 2) Is the item centered? 3) Does it match category: ' + category + '? 4) Is the outline clean? Respond with JSON: {"hasTransparentBg": bool, "isCentered": bool, "matchesCategory": bool, "outlineQuality": "good|fair|poor", "issues": ["list issues"], "suggestions": ["improvements"]}';
+    
+    const response = await me.puter.ai.chat([
+      { role: 'user', content: [
+        { type: 'text', text: prompt },
+        { type: 'image_url', image_url: { url: imageUrl } }
+      ]}
+    ], { model: 'gpt-4o' });
+    
+    let analysis = {};
+    try {
+      const content = response.message ? response.message.content : String(response);
+      const jsonMatch = content.match(/\\{[\\s\\S]*\\}/);
+      if (jsonMatch) {
+        analysis = JSON.parse(jsonMatch[0]);
+      }
+    } catch (e) {
+      analysis = { raw: response };
+    }
+    
+    return {
+      success: true,
+      analysis: analysis,
+      imageUrl: imageUrl,
+      category: category,
+      timestamp: new Date().toISOString()
+    };
+  } catch (error) {
+    return new Response(JSON.stringify({ 
+      error: String(error),
+      message: 'Vision analysis failed'
+    }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+});
+
+// KV storage endpoints for NPC state
+router.get('/api/kv/:key', async (event) => {
+  try {
+    const key = event.params.key;
+    const value = await me.puter.kv.get(key);
+    return {
+      success: true,
+      key: key,
+      value: value,
+      exists: value !== null
+    };
+  } catch (error) {
+    return { success: false, error: String(error) };
+  }
+});
+
+router.post('/api/kv/:key', async (event) => {
+  try {
+    const key = event.params.key;
+    const body = await event.request.json();
+    await me.puter.kv.set(key, body.value);
+    return {
+      success: true,
+      key: key,
+      value: body.value
+    };
+  } catch (error) {
+    return new Response(JSON.stringify({ 
+      success: false, 
+      error: String(error) 
+    }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+});
+
+router.delete('/api/kv/:key', async (event) => {
+  try {
+    const key = event.params.key;
+    await me.puter.kv.del(key);
+    return { success: true, key: key, deleted: true };
+  } catch (error) {
+    return { success: false, error: String(error) };
+  }
+});
+
+// CORS preflight
+router.options('/*page', function(event) {
+  return new Response(null, {
+    status: 204,
+    headers: { 
+      'Access-Control-Allow-Origin': event.request.headers.get('origin') || '*', 
+      'Access-Control-Allow-Headers': '*', 
+      'Access-Control-Allow-Credentials': 'true', 
+      'Access-Control-Allow-Methods': '*' 
+    }
+  });
+});
+`;
+
+const output = document.getElementById('output');
+const authStatus = document.getElementById('authStatus');
+const controls = document.getElementById('controls');
+const workerInfo = document.getElementById('workerInfo');
+const workerUrlEl = document.getElementById('workerUrl');
+
+function log(msg) {
+    output.textContent += '\n' + new Date().toLocaleTimeString() + ' - ' + msg;
+    output.scrollTop = output.scrollHeight;
+}
+
+async function init() {
+    // Check if user is authenticated
+    const isSignedIn = puter.auth.isSignedIn();
+    
+    if (isSignedIn) {
+        try {
+            const user = await puter.auth.getUser();
+            authStatus.className = 'status success';
+            authStatus.innerHTML = 'Authenticated as: <strong>' + user.username + '</strong>';
+            controls.style.display = 'block';
+            log('Ready! Logged in as ' + user.username);
+            await checkExistingWorker();
+        } catch (e) {
+            log('Auth error: ' + e.message);
+            showSignIn();
+        }
+    } else {
+        showSignIn();
+    }
+}
+
+function showSignIn() {
+    authStatus.className = 'status info';
+    authStatus.innerHTML = 'Not signed in. <button id="sign-in-btn">Sign In to Puter</button>';
+    log('Please sign in to Puter to deploy workers.');
+    
+    // Must attach click handler directly to button for popup to work
+    document.getElementById('sign-in-btn').addEventListener('click', async () => {
+        log('Opening Puter sign in popup...');
+        try {
+            const user = await puter.auth.signIn();
+            log('Signed in as: ' + JSON.stringify(user));
+            authStatus.className = 'status success';
+            authStatus.innerHTML = 'Authenticated as: <strong>' + user.username + '</strong>';
+            controls.style.display = 'block';
+            await checkExistingWorker();
+        } catch (e) {
+            log('Sign in error: ' + JSON.stringify(e));
+        }
+    });
+}
+
+async function checkExistingWorker() {
+    try {
+        const workers = await puter.workers.list();
+        const existing = workers.find(w => w.name === WORKER_NAME);
+        if (existing) {
+            workerInfo.style.display = 'block';
+            workerUrlEl.textContent = existing.url;
+            log('Existing worker found: ' + existing.url);
+        }
+    } catch (e) {
+        log('No existing workers found.');
+    }
+}
+
+async function deployWorker() {
+    log('Starting deployment...');
+    try {
+        // Step 1: Write worker code to file in Puter account
+        log('Writing worker code to ' + WORKER_FILE_PATH + '...');
+        await puter.fs.write(WORKER_FILE_PATH, WORKER_CODE);
+        log('Worker code saved.');
+        
+        // Step 2: Deploy the worker using the file path
+        log('Deploying worker (may take up to 10 seconds)...');
+        const deployment = await puter.workers.create(WORKER_NAME, WORKER_FILE_PATH);
+        
+        log('Worker deployed successfully!');
+        log('URL: ' + deployment.url);
+        workerInfo.style.display = 'block';
+        workerUrlEl.textContent = deployment.url;
+        
+        log('Wait 5 seconds before testing to ensure propagation...');
+    } catch (e) {
+        log('Error: ' + (e.message || JSON.stringify(e)));
+        if (e.message && e.message.includes('already exists')) {
+            log('Worker already exists. Deleting and recreating...');
+            try {
+                await puter.workers.delete(WORKER_NAME);
+                log('Deleted. Recreating...');
+                await puter.fs.write(WORKER_FILE_PATH, WORKER_CODE);
+                const deployment = await puter.workers.create(WORKER_NAME, WORKER_FILE_PATH);
+                log('Worker updated! URL: ' + deployment.url);
+                workerInfo.style.display = 'block';
+                workerUrlEl.textContent = deployment.url;
+            } catch (e2) {
+                log('Update failed: ' + (e2.message || JSON.stringify(e2)));
+            }
+        }
+    }
+}
+
+async function listWorkers() {
+    log('Listing workers...');
+    try {
+        const workers = await puter.workers.list();
+        if (workers.length === 0) {
+            log('No workers found.');
+        } else {
+            workers.forEach(w => {
+                log('  ' + w.name + ': ' + w.url);
+            });
+        }
+    } catch (e) {
+        log('Error: ' + e.message);
+    }
+}
+
+async function testWorker() {
+    const url = workerUrlEl.textContent;
+    if (!url) {
+        log('No worker URL. Deploy first.');
+        return;
+    }
+    log('Testing worker health...');
+    try {
+        const res = await fetch(url + '/api/health');
+        const data = await res.json();
+        log('Health: ' + JSON.stringify(data, null, 2));
+    } catch (e) {
+        log('Health check failed: ' + e.message);
+    }
+}
+
+async function deleteWorker() {
+    if (!confirm('Delete the sprite worker?')) return;
+    log('Deleting worker...');
+    try {
+        await puter.workers.delete(WORKER_NAME);
+        log('Worker deleted.');
+        workerInfo.style.display = 'none';
+    } catch (e) {
+        log('Delete failed: ' + e.message);
+    }
+}
+
+init();
+    </script>
+</body>
+</html>

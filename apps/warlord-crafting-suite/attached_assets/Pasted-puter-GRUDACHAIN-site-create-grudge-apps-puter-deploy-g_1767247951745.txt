@@ -1,0 +1,42 @@
+puter@GRUDACHAIN> site:create grudge-apps puter-deploy/grudge-apps --subdomain=grudge-apps
+Creating site grudge-apps from: /GRUDACHAIN/puter-deploy/grudge-apps...
+
+New generated subdomain: "grudge-apps" will be used if its not already in use.
+Hosting app "grudge-apps" under subdomain "grudge-apps"...
+App grudge-apps created successfully and accessible at:
+https://grudge-apps.puter.site
+puter@GRUDACHAIN> site:create grudge-auth puter-deploy/grudge-auth --subdomain=grudge-auth
+Creating site grudge-auth from: /GRUDACHAIN/puter-deploy/grudge-auth...
+
+The subdomain "grudge-auth" is already in use and owned by: "GRUDACHAIN"
+It's yours, and linked to: /GRUDACHAIN/puter-deploy/grudge-auth
+Which is already the selected directory, and created at:
+https://grudge-auth.puter.site
+puter@GRUDACHAIN> site:create grudge-auth puter-deploy/grudge-auth --subdomain=grudge-auth
+Creating site grudge-auth from: /GRUDACHAIN/puter-deploy/grudge-auth...
+
+site:create grudge-cloud The subdomain "grudge-auth" is already in use and owned by: "GRUDACHAIN"
+It's yours, and linked to: /GRUDACHAIN/puter-deploy/grudge-auth
+Which is already the selected directory, and created at:
+https://grudge-auth.puter.site
+puter@GRUDACHAIN> site:create grudge-cloud 
+Creating site grudge-cloud from: /GRUDACHAIN...
+
+The subdomain "grudge-cloud" is already in use and owned by: "GRUDACHAIN"
+It's yours, and linked to: /GRUDACHAIN/puter-deploy/grudge-cloud
+However, It's linked to different directory at: /GRUDACHAIN/puter-deploy/grudge-cloud
+We'll try to unlink this subdomain from that directory...
+Subdomain ID: "sd-5f3cf5bb-1525-4562-a765-1334dbead16c" not found
+Could not release this subdomain.
+New generated subdomain: "grudge-cloud" will be used if its not already in use.
+Hosting app "grudge-cloud" under subdomain "grudge-cloud"...
+Subdomain already taken!
+Message: The subdomain `grudge-cloud` is already in use.
+Failed to create subdomain: "grudge-cloud"
+puter@GRUDACHAIN> site:create grudge-cloud puter-deploy/grudge-cloud --subdomain=grudge-cloud
+Creating site grudge-cloud from: /GRUDACHAIN/puter-deploy/grudge-cloud...
+
+The subdomain "grudge-cloud" is already in use and owned by: "GRUDACHAIN"
+It's yours, and linked to: /GRUDACHAIN/puter-deploy/grudge-cloud
+Which is already the selected directory, and created at:
+https://grudge-cloud.puter.site

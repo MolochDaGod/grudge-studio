@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRUDGE Warlords Launcher</title>
+    <script src="https://js.puter.com/v2/"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0a1a2e 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+        
+        .header {
+            background: rgba(20, 20, 40, 0.9);
+            border-bottom: 2px solid #ffd700;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .subtitle {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #ffd700;
+        }
+        
+        .user-name {
+            color: #ffd700;
+            font-weight: 600;
+        }
+        
+        .login-btn {
+            padding: 10px 24px;
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            color: #1a1a2e;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .login-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        .logout-btn {
+            padding: 8px 16px;
+            background: transparent;
+            color: #888;
+            border: 1px solid #444;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            border-color: #f44336;
+            color: #f44336;
+        }
+        
+        .main-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: #ffd700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        
+        .app-card {
+            background: rgba(30, 30, 60, 0.8);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd700, #ff6b00);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .app-card:hover {
+            transform: translateY(-4px);
+            border-color: #ffd700;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.2);
+        }
+        
+        .app-card:hover::before {
+            opacity: 1;
+        }
+        
+        .app-card.featured {
+            grid-column: span 2;
+            background: linear-gradient(135deg, rgba(40, 30, 60, 0.9), rgba(60, 40, 80, 0.9));
+        }
+        
+        .app-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ffd700, #ff6b00);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+        
+        .app-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        
+        .app-description {
+            color: #aaa;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        
+        .app-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .status-online {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+        }
+        
+        .status-offline {
+            background: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+        }
+        
+        .status-dev {
+            background: rgba(33, 150, 243, 0.2);
+            color: #2196f3;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+        
+        .launch-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            color: #1a1a2e;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .launch-btn:hover {
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        .stats-panel {
+            background: rgba(30, 30, 60, 0.8);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 24px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffd700;
+        }
+        
+        .stat-label {
+            color: #888;
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+        
+        .activity-log {
+            background: rgba(30, 30, 60, 0.8);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .log-entry {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .log-entry:last-child {
+            border-bottom: none;
+        }
+        
+        .log-time {
+            color: #666;
+            font-size: 0.8rem;
+            min-width: 80px;
+        }
+        
+        .log-user {
+            color: #ffd700;
+            font-weight: 500;
+        }
+        
+        .log-action {
+            color: #aaa;
+        }
+        
+        .hidden { display: none !important; }
+        
+        @media (max-width: 768px) {
+            .header { padding: 16px 20px; flex-wrap: wrap; gap: 16px; }
+            .main-content { padding: 20px; }
+            .app-card.featured { grid-column: span 1; }
+            .apps-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-section">
+            <div class="logo">GRUDGE</div>
+            <span class="subtitle">Warlords Launcher</span>
+        </div>
+        <div class="user-section">
+            <div id="loginArea">
+                <button class="login-btn" onclick="login()">Sign In with Puter</button>
+            </div>
+            <div id="userArea" class="hidden" style="display: flex; align-items: center; gap: 12px;">
+                <img id="userAvatar" class="user-avatar" src="" alt="Avatar">
+                <span id="userName" class="user-name"></span>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="stats-panel">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value" id="onlineCount">0</div>
+                    <div class="stat-label">Players Online</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="totalAccounts">0</div>
+                    <div class="stat-label">Total Accounts</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="appsCount">8</div>
+                    <div class="stat-label">Available Apps</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="serverStatus">Online</div>
+                    <div class="stat-label">Server Status</div>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Featured Apps</h2>
+        <div class="apps-grid">
+            <div class="app-card featured" onclick="launchApp('studio')">
+                <div class="app-icon">⚔️</div>
+                <div class="app-name">GRUDGE Studio</div>
+                <div class="app-description">The main crafting and progression system. Manage professions, craft items, trade at the shop, and progress your character through T1-T8 tiers.</div>
+                <span class="app-status status-online"><span class="status-dot"></span> Online</span>
+                <button class="launch-btn">Launch Game</button>
+            </div>
+            
+            <div class="app-card" onclick="launchApp('auth')">
+                <div class="app-icon">🔐</div>
+                <div class="app-name">Account Portal</div>
+                <div class="app-description">Manage your GRUDGE account, link devices, and configure security settings.</div>
+                <span class="app-status status-online"><span class="status-dot"></span> Online</span>
+                <button class="launch-btn">Open</button>
+            </div>
+            
+            <div class="app-card" onclick="launchApp('cloud')">
+                <div class="app-icon">☁️</div>
+                <div class="app-name">Cloud Admin</div>
+                <div class="app-description">Manage game assets, sprites, and cloud storage for the GRUDGE ecosystem.</div>
+                <span class="app-status status-online"><span class="status-dot"></span> Online</span>
+                <button class="launch-btn">Open</button>
+            </div>
+            
+            <div class="app-card" onclick="launchApp('connection')">
+                <div class="app-icon">🔗</div>
+                <div class="app-name">App Connection</div>
+                <div class="app-description">Connect your Puter account to GRUDGE services and sync across devices.</div>
+                <span class="app-status status-online"><span class="status-dot"></span> Online</span>
+                <button class="launch-btn">Open</button>
+            </div>
+        </div>
+
+        <h2 class="section-title">More Apps</h2>
+        <div class="apps-grid">
+            <div class="app-card" onclick="launchApp('apps')">
+                <div class="app-icon">📱</div>
+                <div class="app-name">Apps Portal</div>
+                <div class="app-description">Browse all available GRUDGE Warlords applications.</div>
+                <span class="app-status status-online"><span class="status-dot"></span> Online</span>
+                <button class="launch-btn">Open</button>
+            </div>
+            
+            <div class="app-card" onclick="launchApp('islands')">
+                <div class="app-icon">🏝️</div>
+                <div class="app-name">Islands</div>
+                <div class="app-description">Explore and manage your personal islands in the GRUDGE world.</div>
+                <span class="app-status status-dev"><span class="status-dot"></span> Beta</span>
+                <button class="launch-btn">Open</button>
+            </div>
+            
+            <div class="app-card" onclick="launchApp('gameEngine')">
+                <div class="app-icon">🎮</div>
+                <div class="app-name">Game Editor</div>
+                <div class="app-description">Create and edit game content with the GRUDGE Game Engine.</div>
+                <span class="app-status status-dev"><span class="status-dot"></span> Beta</span>
+                <button class="launch-btn">Open</button>
+            </div>
+            
+            <div class="app-card" onclick="launchApp('nexus')">
+                <div class="app-icon">🌐</div>
+                <div class="app-name">Nexus Platform</div>
+                <div class="app-description">Central hub for all GRUDGE ecosystem services.</div>
+                <span class="app-status status-dev"><span class="status-dot"></span> Beta</span>
+                <button class="launch-btn">Open</button>
+            </div>
+        </div>
+
+        <h2 class="section-title">Recent Activity</h2>
+        <div class="activity-log" id="activityLog">
+            <div class="log-entry">
+                <span class="log-time">--:--</span>
+                <span class="log-action">Loading activity...</span>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const APP_URLS = {
+            studio: 'https://grudge-crafting.puter.site',
+            auth: 'https://grudge-auth-73v97.puter.site',
+            cloud: 'https://grudgecloud-85c9p.puter.site',
+            connection: 'https://app-connection-4sonvk.puter.site',
+            apps: 'https://grudge-apps.puter.site',
+            islands: 'https://islands-cu83xisb0g.puter.site',
+            gameEngine: 'https://colorful-puppy-4769-zilvf.puter.site',
+            nexus: 'https://grudgeplatform.puter.site',
+            backend: 'https://grudge-crafting.replit.app'
+        };
+
+        const KV_KEYS = {
+            accounts: 'grudge_accounts',
+            onlinePlayers: 'grudge_online_players',
+            activityLog: 'grudge_activity_log'
+        };
+
+        let currentUser = null;
+
+        async function init() {
+            try {
+                if (puter.auth.isSignedIn()) {
+                    const user = await puter.auth.getUser();
+                    await handleLogin(user);
+                }
+                await loadStats();
+                await loadActivity();
+            } catch (error) {
+                console.error('Init error:', error);
+            }
+        }
+
+        async function login() {
+            try {
+                const user = await puter.auth.signIn();
+                await handleLogin(user);
+            } catch (error) {
+                console.error('Login error:', error);
+            }
+        }
+
+        async function handleLogin(user) {
+            currentUser = user;
+            
+            document.getElementById('loginArea').classList.add('hidden');
+            document.getElementById('userArea').classList.remove('hidden');
+            document.getElementById('userName').textContent = user.username;
+            document.getElementById('userAvatar').src = `https://api.dicebear.com/7.x/adventurer/svg?seed=${user.username}`;
+
+            await updateOnlineStatus(user, true);
+            await logActivity(user, 'launcher_open');
+        }
+
+        async function logout() {
+            if (currentUser) {
+                await updateOnlineStatus(currentUser, false);
+            }
+            
+            try {
+                await puter.auth.signOut();
+            } catch (e) {}
+            
+            currentUser = null;
+            document.getElementById('loginArea').classList.remove('hidden');
+            document.getElementById('userArea').classList.add('hidden');
+        }
+
+        async function updateOnlineStatus(user, isOnline) {
+            try {
+                const onlinePlayers = await puter.kv.get(KV_KEYS.onlinePlayers) || {};
+                
+                if (isOnline) {
+                    onlinePlayers[user.username] = {
+                        uuid: user.uuid,
+                        app: 'launcher',
+                        connectedAt: new Date().toISOString()
+                    };
+                } else {
+                    delete onlinePlayers[user.username];
+                }
+                
+                await puter.kv.set(KV_KEYS.onlinePlayers, onlinePlayers);
+            } catch (error) {
+                console.error('Online status error:', error);
+            }
+        }
+
+        async function logActivity(user, action) {
+            try {
+                const logs = await puter.kv.get(KV_KEYS.activityLog) || [];
+                logs.unshift({
+                    timestamp: new Date().toISOString(),
+                    username: user.username,
+                    action: action,
+                    app: 'launcher'
+                });
+                if (logs.length > 100) logs.length = 100;
+                await puter.kv.set(KV_KEYS.activityLog, logs);
+            } catch (error) {
+                console.error('Log activity error:', error);
+            }
+        }
+
+        async function loadStats() {
+            try {
+                const [accounts, onlinePlayers] = await Promise.all([
+                    puter.kv.get(KV_KEYS.accounts),
+                    puter.kv.get(KV_KEYS.onlinePlayers)
+                ]);
+                
+                document.getElementById('onlineCount').textContent = Object.keys(onlinePlayers || {}).length;
+                document.getElementById('totalAccounts').textContent = Object.keys(accounts || {}).length;
+
+                const backendCheck = await fetch(APP_URLS.backend + '/api/health', { method: 'GET' }).catch(() => null);
+                document.getElementById('serverStatus').textContent = backendCheck?.ok ? 'Online' : 'Checking...';
+            } catch (error) {
+                console.error('Load stats error:', error);
+            }
+        }
+
+        async function loadActivity() {
+            try {
+                const logs = await puter.kv.get(KV_KEYS.activityLog) || [];
+                const container = document.getElementById('activityLog');
+                
+                if (logs.length === 0) {
+                    container.innerHTML = '<div class="log-entry"><span class="log-action">No recent activity</span></div>';
+                    return;
+                }
+                
+                container.innerHTML = logs.slice(0, 20).map(log => {
+                    const time = new Date(log.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+                    const actionText = {
+                        'login': 'logged in',
+                        'logout': 'logged out',
+                        'launcher_open': 'opened launcher',
+                        'player_login': 'connected',
+                        'player_logout': 'disconnected'
+                    }[log.action] || log.action;
+                    
+                    return `
+                        <div class="log-entry">
+                            <span class="log-time">${time}</span>
+                            <span class="log-user">${log.username}</span>
+                            <span class="log-action">${actionText}</span>
+                        </div>
+                    `;
+                }).join('');
+            } catch (error) {
+                console.error('Load activity error:', error);
+            }
+        }
+
+        function launchApp(appKey) {
+            const url = APP_URLS[appKey];
+            if (url) {
+                if (currentUser) {
+                    logActivity(currentUser, `launch_${appKey}`);
+                }
+                window.open(url, '_blank');
+            }
+        }
+
+        window.addEventListener('beforeunload', async () => {
+            if (currentUser) {
+                await updateOnlineStatus(currentUser, false);
+            }
+        });
+
+        setInterval(loadStats, 30000);
+        setInterval(loadActivity, 15000);
+
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRUDGE Quick Deploy</title>
+  <script src="https://js.puter.com/v2/"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #e4e4e7;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    h1 { color: #f59e0b; text-align: center; margin-bottom: 10px; }
+    .subtitle { color: #94a3b8; text-align: center; margin-bottom: 30px; }
+    .card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .card h3 {
+      color: #f59e0b;
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+    }
+    .app-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .app-name { color: #f59e0b; font-weight: bold; }
+    .app-url { color: #60a5fa; font-size: 0.85rem; }
+    .app-desc { color: #888; font-size: 0.75rem; margin-top: 4px; }
+    .status { padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; }
+    .status.pending { background: #374151; color: #9ca3af; }
+    .status.deploying { background: #1e40af; color: #93c5fd; }
+    .status.success { background: #065f46; color: #6ee7b7; }
+    .status.error { background: #7f1d1d; color: #fca5a5; }
+    .btn {
+      background: #f59e0b;
+      color: #000;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      width: 100%;
+      margin-top: 16px;
+    }
+    .btn:hover { background: #d97706; }
+    .btn:disabled { background: #666; cursor: not-allowed; }
+    .btn-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid #f59e0b;
+      color: #f59e0b;
+    }
+    .btn-secondary:hover {
+      background: rgba(245, 158, 11, 0.1);
+    }
+    .log {
+      background: rgba(0,0,0,0.4);
+      padding: 16px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      max-height: 300px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .stat-item {
+      background: rgba(255,255,255,0.05);
+      padding: 16px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #f59e0b;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>GRUDGE Quick Deploy</h1>
+    <p class="subtitle">Deploy all GRUDGE Warlords apps to Puter with one click</p>
+    
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-value" id="totalApps">0</div>
+        <div class="stat-label">Total Apps</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="deployedApps">0</div>
+        <div class="stat-label">Deployed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="pendingApps">0</div>
+        <div class="stat-label">Pending</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="failedApps">0</div>
+        <div class="stat-label">Failed</div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3>Core Apps</h3>
+      <div id="core-apps-list"></div>
+    </div>
+    
+    <div class="card">
+      <h3>Game Apps</h3>
+      <div id="game-apps-list"></div>
+    </div>
+    
+    <div class="card">
+      <h3>Services & Workers</h3>
+      <div id="service-apps-list"></div>
+    </div>
+    
+    <div class="btn-row">
+      <button class="btn" id="deploy-btn" onclick="deployAll()">Deploy All Apps</button>
+      <button class="btn btn-secondary" onclick="syncAssets()">Sync Assets to Cloud</button>
+    </div>
+    
+    <div class="card" style="margin-top: 20px;">
+      <h3 style="color: #94a3b8;">Deployment Log</h3>
+      <div class="log" id="log">Ready to deploy...\n</div>
+    </div>
+  </div>
+
+  <script type="module">
+    const APPS = {
+      core: [
+        {
+          name: 'grudge-auth',
+          subdomain: 'grudge-auth-73v97',
+          cloudPath: '/GRUDACHAIN/puter-deploy/grudge-auth',
+          url: 'https://grudge-auth-73v97.puter.site',
+          description: 'Authentication portal with Puter, Email, Web3Auth'
+        },
+        {
+          name: 'grudge-launcher',
+          subdomain: 'grudge-launcher-xu9q5',
+          cloudPath: '/GRUDACHAIN/puter-deploy/grudge-launcher',
+          url: 'https://grudge-launcher-xu9q5.puter.site',
+          description: 'Main launcher with live stats dashboard'
+        },
+        {
+          name: 'grudge-apps',
+          subdomain: 'grudge-apps',
+          cloudPath: '/GRUDACHAIN/puter-deploy/grudge-apps',
+          url: 'https://grudge-apps.puter.site',
+          description: 'Apps portal showing all GRUDGE apps'
+        }
+      ],
+      game: [
+        {
+          name: 'grudge-cloud',
+          subdomain: 'grudgecloud-85c9p',
+          cloudPath: '/GRUDACHAIN/puter-deploy/grudge-cloud',
+          url: 'https://grudgecloud-85c9p.puter.site',
+          description: 'Cloud admin for asset management'
+        },
+        {
+          name: 'grudge-multiplayer',
+          subdomain: 'grudge-multiplayer',
+          cloudPath: '/GRUDACHAIN/puter-deploy/grudge-multiplayer',
+          url: 'https://grudge-multiplayer.puter.site',
+          description: 'Colyseus multiplayer client'
+        },
+        {
+          name: 'app-connection',
+          subdomain: 'app-connection-4sonvk',
+          cloudPath: '/GRUDACHAIN/puter-deploy/app-connection',
+          url: 'https://app-connection-4sonvk.puter.site',
+          description: 'Account connection portal'
+        }
+      ],
+      services: [
+        {
+          name: 'grudge-social',
+          subdomain: 'grudge-social',
+          cloudPath: '/GRUDACHAIN/puter-deploy/grudge-social',
+          url: 'https://grudge-social.puter.site',
+          description: 'Social API (friends, chat, lobbies, PvP)',
+          isWorker: true
+        }
+      ]
+    };
+
+    let deployedCount = 0;
+    let failedCount = 0;
+
+    function log(msg) {
+      const el = document.getElementById('log');
+      el.textContent += `[${new Date().toLocaleTimeString()}] ${msg}\n`;
+      el.scrollTop = el.scrollHeight;
+    }
+
+    function updateStatus(name, status) {
+      const el = document.getElementById(`status-${name}`);
+      if (el) {
+        el.className = `status ${status}`;
+        el.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+      }
+      updateStats();
+    }
+
+    function updateStats() {
+      const allApps = [...APPS.core, ...APPS.game, ...APPS.services];
+      document.getElementById('totalApps').textContent = allApps.length;
+      document.getElementById('deployedApps').textContent = deployedCount;
+      document.getElementById('pendingApps').textContent = allApps.length - deployedCount - failedCount;
+      document.getElementById('failedApps').textContent = failedCount;
+    }
+
+    function renderApps() {
+      const renderList = (apps, containerId) => {
+        const container = document.getElementById(containerId);
+        container.innerHTML = apps.map(app => `
+          <div class="app-row">
+            <div>
+              <div class="app-name">${app.name}${app.isWorker ? ' (Worker)' : ''}</div>
+              <div class="app-url">${app.url}</div>
+              <div class="app-desc">${app.description}</div>
+            </div>
+            <span id="status-${app.name}" class="status pending">Pending</span>
+          </div>
+        `).join('');
+      };
+      
+      renderList(APPS.core, 'core-apps-list');
+      renderList(APPS.game, 'game-apps-list');
+      renderList(APPS.services, 'service-apps-list');
+      updateStats();
+    }
+
+    window.deployAll = async function() {
+      const btn = document.getElementById('deploy-btn');
+      btn.disabled = true;
+      btn.textContent = 'Deploying...';
+      deployedCount = 0;
+      failedCount = 0;
+
+      log('Starting deployment...');
+      
+      const allApps = [...APPS.core, ...APPS.game, ...APPS.services];
+
+      for (const app of allApps) {
+        updateStatus(app.name, 'deploying');
+        log(`Deploying ${app.name}...`);
+
+        try {
+          try {
+            await puter.hosting.get(app.subdomain);
+            log(`Updating existing site: ${app.subdomain}`);
+            await puter.hosting.update(app.subdomain, app.cloudPath);
+          } catch (e) {
+            log(`Creating new site: ${app.subdomain}`);
+            await puter.hosting.create(app.subdomain, app.cloudPath);
+          }
+
+          updateStatus(app.name, 'success');
+          deployedCount++;
+          log(`✓ ${app.name} deployed to ${app.url}`);
+        } catch (error) {
+          updateStatus(app.name, 'error');
+          failedCount++;
+          log(`✗ ${app.name} failed: ${error.message}`);
+        }
+      }
+
+      log('\n=== Deployment complete! ===');
+      log(`Deployed: ${deployedCount} | Failed: ${failedCount}`);
+      
+      btn.disabled = false;
+      btn.textContent = 'Deploy All Apps';
+    };
+
+    window.syncAssets = async function() {
+      log('Syncing assets to cloud storage...');
+      
+      try {
+        const assetCategories = ['sprites', '3d-models', 'textures', 'audio', 'ui'];
+        
+        for (const category of assetCategories) {
+          log(`Syncing ${category}...`);
+          
+          const assetKey = `grudge_assets_${category}`;
+          const existing = await puter.kv.get(assetKey) || '[]';
+          const assets = JSON.parse(existing);
+          
+          log(`  Found ${assets.length} ${category} assets`);
+        }
+        
+        log('Asset sync complete!');
+      } catch (error) {
+        log(`Asset sync failed: ${error.message}`);
+      }
+    };
+
+    async function init() {
+      try {
+        const user = await puter.auth.getUser();
+        log(`Logged in as: ${user.username}`);
+      } catch (e) {
+        log('Not logged in. Signing in...');
+        await puter.auth.signIn();
+        const user = await puter.auth.getUser();
+        log(`Signed in as: ${user.username}`);
+      }
+      renderApps();
+    }
+
+    init();
+  </script>
+</body>
+</html>

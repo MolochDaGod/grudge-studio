@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRUDGE Warlords - Account Activation</title>
+    <link rel="icon" type="image/png" href="https://i.imgur.com/bGd5QJ0.png">
+    <script src="https://js.puter.com/v2/"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 50%, #0f2840 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(20, 20, 40, 0.8);
+            border-bottom: 3px solid #ffd700;
+            border-radius: 20px 20px 0 0;
+            margin-bottom: 0;
+        }
+        
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #888;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #4caf50;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4); }
+            50% { opacity: 0.8; box-shadow: 0 0 0 10px rgba(76, 175, 80, 0); }
+        }
+        
+        .main-content {
+            flex: 1;
+            background: rgba(20, 20, 40, 0.9);
+            padding: 40px;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        
+        .step {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .step.active {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #1a1a2e;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .step.completed {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .step.pending {
+            background: rgba(255, 255, 255, 0.1);
+            color: #666;
+            border: 2px solid #444;
+        }
+        
+        .step-line {
+            width: 60px;
+            height: 3px;
+            background: #333;
+            align-self: center;
+            border-radius: 2px;
+        }
+        
+        .step-line.completed {
+            background: linear-gradient(90deg, #4caf50, #ffd700);
+        }
+        
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        
+        .section-desc {
+            text-align: center;
+            color: #aaa;
+            margin-bottom: 32px;
+            font-size: 1rem;
+        }
+        
+        .auth-options {
+            display: grid;
+            gap: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .auth-btn {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+        
+        .auth-btn:hover {
+            background: rgba(255, 215, 0, 0.1);
+            border-color: #ffd700;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+        
+        .auth-btn.primary {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 140, 0, 0.2));
+            border-color: #ffd700;
+        }
+        
+        .auth-btn-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        
+        .auth-btn-content h3 {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+        
+        .auth-btn-content p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 24px 0;
+            color: #555;
+        }
+        
+        .divider::before, .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #444, transparent);
+        }
+        
+        .divider span {
+            padding: 0 20px;
+            font-size: 0.85rem;
+        }
+        
+        .form-card {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #aaa;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #444;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+        }
+        
+        .form-group input::placeholder {
+            color: #666;
+        }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #1a1a2e;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        }
+        
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn-secondary {
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            color: #ffd700;
+            border: 2px solid #ffd700;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 12px;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 215, 0, 0.1);
+        }
+        
+        .user-card {
+            background: linear-gradient(135deg, rgba(40, 40, 80, 0.8), rgba(30, 30, 60, 0.9));
+            border: 2px solid #ffd700;
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .user-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid #ffd700;
+            margin-bottom: 20px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+        }
+        
+        .user-name {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        
+        .user-uuid {
+            font-size: 0.85rem;
+            color: #888;
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            word-break: break-all;
+        }
+        
+        .user-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        
+        .stat-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 16px;
+            border-radius: 12px;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            color: #ffd700;
+            font-weight: 700;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 4px;
+        }
+        
+        .cloud-access {
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid #4caf50;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+        
+        .cloud-access h4 {
+            color: #4caf50;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .cloud-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        .cloud-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        .cloud-feature::before {
+            content: '✓';
+            color: #4caf50;
+            font-weight: 700;
+        }
+        
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+        
+        .app-tile {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .app-tile:hover {
+            border-color: #ffd700;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .app-tile-icon {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+        
+        .app-tile-name {
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .app-tile-desc {
+            color: #888;
+            font-size: 0.8rem;
+        }
+        
+        .status-message {
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 0.95rem;
+        }
+        
+        .status-message.success {
+            background: rgba(76, 175, 80, 0.15);
+            border: 1px solid #4caf50;
+            color: #4caf50;
+        }
+        
+        .status-message.error {
+            background: rgba(244, 67, 54, 0.15);
+            border: 1px solid #f44336;
+            color: #f44336;
+        }
+        
+        .status-message.info {
+            background: rgba(33, 150, 243, 0.15);
+            border: 1px solid #2196f3;
+            color: #2196f3;
+        }
+        
+        .hidden { display: none !important; }
+        
+        @media (max-width: 600px) {
+            .container { padding: 10px; }
+            .header { padding: 30px 16px; }
+            .logo { font-size: 2.5rem; }
+            .main-content { padding: 24px 16px; }
+            .user-stats { grid-template-columns: 1fr; }
+            .cloud-features { grid-template-columns: 1fr; }
+            .step-line { width: 30px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">GRUDGE</div>
+            <div class="subtitle">
+                <span class="status-dot"></span>
+                Warlords Account Activation
+            </div>
+        </header>
+        
+        <main class="main-content">
+            <div class="step-indicator">
+                <div class="step active" id="step1">1</div>
+                <div class="step-line" id="line1"></div>
+                <div class="step pending" id="step2">2</div>
+                <div class="step-line" id="line2"></div>
+                <div class="step pending" id="step3">3</div>
+            </div>
+            
+            <section id="authSection" class="section active">
+                <h2 class="section-title">Connect Your Account</h2>
+                <p class="section-desc">Sign in with Puter to activate your GRUDGE Warlords account</p>
+                
+                <div class="auth-options">
+                    <button class="auth-btn primary" onclick="signInWithPuter()" id="puterBtn">
+                        <div class="auth-btn-icon">🌐</div>
+                        <div class="auth-btn-content">
+                            <h3>Sign in with Puter</h3>
+                            <p>Recommended - one-click cloud authentication</p>
+                        </div>
+                    </button>
+                    
+                    <button class="auth-btn" onclick="showGuestOption()">
+                        <div class="auth-btn-icon">👤</div>
+                        <div class="auth-btn-content">
+                            <h3>Continue as Guest</h3>
+                            <p>Try the game without an account</p>
+                        </div>
+                    </button>
+                </div>
+                
+                <div class="divider"><span>or create account with email</span></div>
+                
+                <div class="form-card">
+                    <form id="emailForm" onsubmit="createAccountWithEmail(event)">
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" id="emailInput" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" id="usernameInput" placeholder="Choose a username" required>
+                        </div>
+                        <button type="submit" class="btn-primary">Create Account</button>
+                    </form>
+                </div>
+                
+                <div id="authStatus" class="status-message hidden"></div>
+            </section>
+            
+            <section id="setupSection" class="section">
+                <h2 class="section-title">Setting Up Your Account</h2>
+                <p class="section-desc">We're preparing your GRUDGE Warlords experience</p>
+                
+                <div class="user-card">
+                    <img id="setupAvatar" class="user-avatar" src="" alt="Avatar">
+                    <div id="setupName" class="user-name">Loading...</div>
+                    
+                    <div id="setupProgress" class="status-message info">
+                        Initializing account...
+                    </div>
+                    
+                    <div class="cloud-access">
+                        <h4>☁️ Cloud Access Activated</h4>
+                        <div class="cloud-features">
+                            <div class="cloud-feature">Unlimited Storage</div>
+                            <div class="cloud-feature">Cross-Device Sync</div>
+                            <div class="cloud-feature">Auto-Save Progress</div>
+                            <div class="cloud-feature">Cloud Backups</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="completeSection" class="section">
+                <h2 class="section-title">Account Activated!</h2>
+                <p class="section-desc">Your GRUDGE Warlords account is ready to use</p>
+                
+                <div class="user-card">
+                    <img id="userAvatar" class="user-avatar" src="" alt="Avatar">
+                    <div id="userName" class="user-name"></div>
+                    <div id="userUuid" class="user-uuid"></div>
+                    
+                    <div class="user-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="statLevel">1</div>
+                            <div class="stat-label">Level</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="statGold">0</div>
+                            <div class="stat-label">Gold</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="statRecipes">0</div>
+                            <div class="stat-label">Recipes</div>
+                        </div>
+                    </div>
+                    
+                    <div class="cloud-access">
+                        <h4>☁️ Cloud Features Enabled</h4>
+                        <div class="cloud-features">
+                            <div class="cloud-feature">Unlimited Storage</div>
+                            <div class="cloud-feature">Cross-Device Sync</div>
+                            <div class="cloud-feature">Auto-Save Progress</div>
+                            <div class="cloud-feature">Cloud Backups</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary" id="launchBtn" onclick="launchGame()">Continue to Launcher</button>
+                    <button class="btn-secondary" onclick="logout()">Sign Out</button>
+                </div>
+                
+                <h3 style="color: #ffd700; margin-top: 40px; text-align: center;">Launch Other Apps</h3>
+                <div class="apps-grid">
+                    <div class="app-tile" onclick="openApp('studio')">
+                        <div class="app-tile-icon">⚔️</div>
+                        <div class="app-tile-name">Crafting Studio</div>
+                        <div class="app-tile-desc">Main game experience</div>
+                    </div>
+                    <div class="app-tile" onclick="openApp('launcher')">
+                        <div class="app-tile-icon">🚀</div>
+                        <div class="app-tile-name">Launcher</div>
+                        <div class="app-tile-desc">All apps in one place</div>
+                    </div>
+                    <div class="app-tile" onclick="openApp('cloud')">
+                        <div class="app-tile-icon">☁️</div>
+                        <div class="app-tile-name">Cloud Admin</div>
+                        <div class="app-tile-desc">Manage assets</div>
+                    </div>
+                    <div class="app-tile" onclick="openApp('islands')">
+                        <div class="app-tile-icon">🏝️</div>
+                        <div class="app-tile-name">Islands</div>
+                        <div class="app-tile-desc">Explore worlds</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const APP_URLS = {
+            studio: 'https://grudge-crafting.puter.site',
+            launcher: 'https://grudge-launcher-xu9q5.puter.site',
+            cloud: 'https://grudgecloud-85c9p.puter.site',
+            islands: 'https://islands-cu83xisb0g.puter.site',
+            backend: 'https://grudge-crafting.replit.app'
+        };
+
+        const KV_KEYS = {
+            accounts: 'grudge_accounts',
+            sessions: 'grudge_sessions',
+            onlinePlayers: 'grudge_online_players',
+            activityLog: 'grudge_activity_log',
+            adminEvents: 'grudge_admin_events'
+        };
+
+        let currentUser = null;
+        let returnUrl = null;
+
+        function getReturnUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('returnUrl') || params.get('return') || params.get('redirect') || null;
+        }
+
+        async function init() {
+            returnUrl = getReturnUrl();
+            
+            if (returnUrl) {
+                console.log('Return URL detected:', returnUrl);
+                const launchBtn = document.getElementById('launchBtn');
+                if (launchBtn) {
+                    if (returnUrl.includes('studio') || returnUrl.includes('crafting')) {
+                        launchBtn.textContent = 'Continue to Game';
+                    } else if (returnUrl.includes('launcher')) {
+                        launchBtn.textContent = 'Continue to Launcher';
+                    } else {
+                        launchBtn.textContent = 'Continue';
+                    }
+                }
+            }
+            
+            try {
+                if (puter.auth.isSignedIn()) {
+                    const user = await puter.auth.getUser();
+                    await processUserLogin(user);
+                }
+            } catch (error) {
+                console.error('Init error:', error);
+            }
+        }
+
+        async function signInWithPuter() {
+            const btn = document.getElementById('puterBtn');
+            btn.querySelector('h3').textContent = 'Connecting...';
+            
+            try {
+                const user = await puter.auth.signIn();
+                await processUserLogin(user);
+            } catch (error) {
+                showStatus('authStatus', 'Sign in cancelled or failed', 'error');
+                btn.querySelector('h3').textContent = 'Sign in with Puter';
+            }
+        }
+
+        async function createAccountWithEmail(event) {
+            event.preventDefault();
+            const email = document.getElementById('emailInput').value.trim();
+            const username = document.getElementById('usernameInput').value.trim();
+
+            if (!email || !username) {
+                showStatus('authStatus', 'Please fill in all fields', 'error');
+                return;
+            }
+
+            showStatus('authStatus', 'Creating account...', 'info');
+
+            try {
+                const user = await puter.auth.signIn();
+                if (user) {
+                    await processUserLogin(user, { email, requestedUsername: username });
+                }
+            } catch (error) {
+                showStatus('authStatus', 'Account creation failed: ' + error.message, 'error');
+            }
+        }
+
+        function showGuestOption() {
+            const guestUser = {
+                username: 'Guest_' + Math.random().toString(36).substr(2, 6),
+                uuid: generateUUID(),
+                isGuest: true
+            };
+            processUserLogin(guestUser);
+        }
+
+        async function processUserLogin(user, extra = {}) {
+            currentUser = user;
+            
+            goToStep(2);
+            
+            document.getElementById('setupAvatar').src = `https://api.dicebear.com/7.x/adventurer/svg?seed=${user.username}`;
+            document.getElementById('setupName').textContent = user.username;
+            
+            updateProgress('Saving account to cloud...');
+            await saveAccountToCloud(user, extra);
+            
+            updateProgress('Syncing with backend...');
+            await syncToBackend(user);
+            
+            updateProgress('Setting up cloud access...');
+            await updateOnlineStatus(user, true);
+            
+            updateProgress('Logging activity...');
+            await logActivity(user, 'account_activated');
+            await relayToAdmin('account_activated', user);
+            
+            setTimeout(() => {
+                goToStep(3);
+                displayUserProfile(user);
+            }, 1500);
+        }
+
+        function goToStep(step) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            
+            for (let i = 1; i <= 3; i++) {
+                const stepEl = document.getElementById('step' + i);
+                const lineEl = document.getElementById('line' + (i - 1));
+                
+                if (i < step) {
+                    stepEl.className = 'step completed';
+                    stepEl.textContent = '✓';
+                    if (lineEl) lineEl.classList.add('completed');
+                } else if (i === step) {
+                    stepEl.className = 'step active';
+                    stepEl.textContent = i;
+                } else {
+                    stepEl.className = 'step pending';
+                    stepEl.textContent = i;
+                }
+            }
+            
+            const sections = ['authSection', 'setupSection', 'completeSection'];
+            document.getElementById(sections[step - 1]).classList.add('active');
+        }
+
+        function updateProgress(message) {
+            document.getElementById('setupProgress').textContent = message;
+        }
+
+        function displayUserProfile(user) {
+            document.getElementById('userAvatar').src = `https://api.dicebear.com/7.x/adventurer/svg?seed=${user.username}`;
+            document.getElementById('userName').textContent = user.username;
+            document.getElementById('userUuid').textContent = `ID: ${user.uuid || generateUUID()}`;
+        }
+
+        async function saveAccountToCloud(user, extra = {}) {
+            try {
+                const accounts = await puter.kv.get(KV_KEYS.accounts) || {};
+                
+                const isNewAccount = !accounts[user.username];
+                
+                accounts[user.username] = {
+                    uuid: user.uuid || generateUUID(),
+                    puterUuid: user.uuid,
+                    username: user.username,
+                    email: extra.email || null,
+                    createdAt: accounts[user.username]?.createdAt || new Date().toISOString(),
+                    lastLogin: new Date().toISOString(),
+                    role: user.isGuest ? 'guest' : 'user',
+                    linkedApps: ['app-connection'],
+                    cloudAccess: true,
+                    level: 1,
+                    gold: 0,
+                    recipes: 0
+                };
+                
+                await puter.kv.set(KV_KEYS.accounts, accounts);
+                
+                if (isNewAccount) {
+                    await relayToAdmin('new_account_created', user);
+                }
+                
+                return accounts[user.username];
+            } catch (error) {
+                console.error('Save account error:', error);
+            }
+        }
+
+        async function syncToBackend(user) {
+            try {
+                await fetch(`${APP_URLS.backend}/api/puter-sync`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'account_sync',
+                        data: {
+                            username: user.username,
+                            uuid: user.uuid,
+                            timestamp: new Date().toISOString()
+                        }
+                    })
+                });
+            } catch (error) {
+                console.log('Backend sync deferred:', error.message);
+            }
+        }
+
+        async function updateOnlineStatus(user, isOnline) {
+            try {
+                const onlinePlayers = await puter.kv.get(KV_KEYS.onlinePlayers) || {};
+                
+                if (isOnline) {
+                    onlinePlayers[user.username] = {
+                        uuid: user.uuid,
+                        app: 'app-connection',
+                        connectedAt: new Date().toISOString(),
+                        lastHeartbeat: new Date().toISOString()
+                    };
+                } else {
+                    delete onlinePlayers[user.username];
+                }
+                
+                await puter.kv.set(KV_KEYS.onlinePlayers, onlinePlayers);
+            } catch (error) {
+                console.error('Online status error:', error);
+            }
+        }
+
+        async function logActivity(user, action) {
+            try {
+                const logs = await puter.kv.get(KV_KEYS.activityLog) || [];
+                logs.unshift({
+                    timestamp: new Date().toISOString(),
+                    username: user.username,
+                    uuid: user.uuid,
+                    action: action,
+                    app: 'app-connection'
+                });
+                if (logs.length > 1000) logs.length = 1000;
+                await puter.kv.set(KV_KEYS.activityLog, logs);
+            } catch (error) {
+                console.error('Log activity error:', error);
+            }
+        }
+
+        async function relayToAdmin(eventType, user, data = {}) {
+            try {
+                const events = await puter.kv.get(KV_KEYS.adminEvents) || [];
+                events.unshift({
+                    id: generateUUID(),
+                    timestamp: new Date().toISOString(),
+                    eventType: eventType,
+                    source: 'app-connection',
+                    user: { username: user.username, uuid: user.uuid },
+                    data: data
+                });
+                if (events.length > 500) events.length = 500;
+                await puter.kv.set(KV_KEYS.adminEvents, events);
+            } catch (error) {
+                console.error('Relay to admin error:', error);
+            }
+        }
+
+        function launchGame() {
+            if (currentUser) logActivity(currentUser, 'launch_game');
+            
+            if (returnUrl) {
+                window.location.href = returnUrl;
+            } else {
+                window.location.href = APP_URLS.launcher;
+            }
+        }
+
+        function openApp(appKey) {
+            if (currentUser) logActivity(currentUser, 'launch_' + appKey);
+            window.location.href = APP_URLS[appKey];
+        }
+
+        async function logout() {
+            if (currentUser) {
+                await updateOnlineStatus(currentUser, false);
+                await logActivity(currentUser, 'logout');
+            }
+            
+            try {
+                await puter.auth.signOut();
+            } catch (e) {}
+            
+            currentUser = null;
+            goToStep(1);
+        }
+
+        function showStatus(elementId, message, type) {
+            const el = document.getElementById(elementId);
+            el.textContent = message;
+            el.className = `status-message ${type}`;
+            el.classList.remove('hidden');
+        }
+
+        function generateUUID() {
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        window.addEventListener('beforeunload', async () => {
+            if (currentUser) {
+                await updateOnlineStatus(currentUser, false);
+            }
+        });
+
+        init();
+    </script>
+</body>
+</html>

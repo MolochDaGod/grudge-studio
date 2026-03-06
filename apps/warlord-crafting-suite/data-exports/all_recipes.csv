@@ -1,0 +1,191 @@
+ID,Name,Tier,Profession,Category,OutputItem,OutputQty,CraftTime,Station,Ingredients,XP
+smelt-copper,Smelt Copper Ingot,1,Miner,smelting,copper-ingot,1,30,forge,copper-ore:2|coal:1,25
+smelt-iron,Smelt Iron Ingot,2,Miner,smelting,iron-ingot,1,45,forge,iron-ore:2|coal:2,50
+smelt-steel,Smelt Steel Ingot,3,Miner,smelting,steel-ingot,1,60,forge,steel-ore:2|coal:3|flux:1,100
+smelt-mithril,Smelt Mithril Ingot,4,Miner,smelting,mithril-ingot,1,90,forge,mithril-ore:3|refined-coal:2|refined-flux:1,200
+smelt-adamantine,Smelt Adamantine Ingot,5,Miner,smelting,adamantine-ingot,1,120,forge,adamantine-ore:3|refined-coal:3|refined-flux:2,400
+smelt-orichalcum,Smelt Orichalcum Ingot,6,Miner,smelting,orichalcum-ingot,1,180,forge,orichalcum-ore:4|refined-coal:4|refined-flux:2,800
+smelt-starmetal,Smelt Starmetal Ingot,7,Miner,smelting,starmetal-ingot,1,300,forge,starmetal-ore:4|refined-coal:5|refined-flux:3,1600
+smelt-divine,Smelt Divine Ingot,8,Miner,smelting,divine-ingot,1,600,divine-forge,divine-ore:5|refined-coal:6|refined-flux:4|divine-essence:1,3200
+cut-rough,Cut Rough Gem,1,Miner,gems,rough-gem,1,20,workbench,stone:5,25
+cut-flawed,Cut Flawed Gem,2,Miner,gems,flawed-gem,1,40,workbench,rough-gem:2|flux:1,50
+cut-standard,Cut Standard Gem,3,Miner,gems,standard-gem,1,60,gem-station,flawed-gem:2|refined-flux:1,100
+cut-fine,Cut Fine Gem,4,Miner,gems,fine-gem,1,90,gem-station,standard-gem:2|refined-flux:2,200
+cut-pristine,Cut Pristine Gem,5,Miner,gems,pristine-gem,1,120,gem-station,fine-gem:2|refined-flux:3,400
+cut-flawless,Cut Flawless Gem,6,Miner,gems,flawless-gem,1,180,gem-station,pristine-gem:2|refined-flux:4,800
+cut-radiant,Cut Radiant Gem,7,Miner,gems,radiant-gem,1,300,gem-station,flawless-gem:2|refined-flux:5|ancient-essence:1,1600
+cut-divine,Cut Divine Gem,8,Miner,gems,divine-gem,1,600,gem-station,radiant-gem:2|divine-essence:1,3200
+forge-gladius,Forge Gladius,1,Miner,weapon,gladius,1,60,forge,copper-ingot:2|rawhide:1,25
+forge-falchion,Forge Falchion,2,Miner,weapon,falchion,1,90,forge,iron-ingot:3|thick-hide:1,50
+forge-scimitar,Forge Scimitar,3,Miner,weapon,scimitar,1,120,forge,steel-ingot:3|rugged-leather:1,100
+forge-rapier,Forge Rapier,4,Miner,weapon,rapier,1,180,forge,mithril-ingot:3|hardened-leather:1,200
+forge-katana,Forge Katana,5,Miner,weapon,katana,1,300,forge,adamantine-ingot:4|wyrm-leather:1,400
+forge-soulblade,Forge Soulblade,6,Miner,weapon,soulblade,1,600,forge,orichalcum-ingot:4|infernal-leather:1|flawless-gem:1,800
+forge-starfall-edge,Forge Starfall Edge,7,Miner,weapon,starfall-edge,1,900,forge,starmetal-ingot:5|titan-leather:1|radiant-gem:1,1600
+forge-excalibur,Forge Excalibur,8,Miner,weapon,excalibur,1,1800,divine-forge,divine-ingot:5|divine-leather:2|divine-gem:1,3200
+forge-stiletto,Forge Stiletto,1,Miner,weapon,stiletto,1,45,forge,copper-ingot:1|rawhide:1,25
+forge-dirk,Forge Dirk,2,Miner,weapon,dirk,1,60,forge,iron-ingot:2|thick-hide:1,50
+forge-kris,Forge Kris,3,Miner,weapon,kris,1,90,forge,steel-ingot:2|rugged-leather:1,100
+forge-tanto,Forge Tanto,4,Miner,weapon,tanto,1,120,forge,mithril-ingot:2|hardened-leather:1,200
+forge-assassins-fang,Forge Assassin's Fang,5,Miner,weapon,assassins-fang,1,180,forge,adamantine-ingot:3|wyrm-leather:1,400
+forge-shadow-kiss,Forge Shadow Kiss,6,Miner,weapon,shadow-kiss,1,360,forge,orichalcum-ingot:3|infernal-leather:1|void-rune:1,800
+forge-starlight-piercer,Forge Starlight Piercer,7,Miner,weapon,starlight-piercer,1,600,forge,starmetal-ingot:4|titan-leather:1|radiant-gem:1,1600
+forge-deaths-whisper,Forge Death's Whisper,8,Miner,weapon,deaths-whisper,1,1200,divine-forge,divine-ingot:4|divine-leather:1|divine-gem:1,3200
+forge-copper-shield,Forge Copper Shield,1,Miner,armor,copper-shield,1,60,forge,copper-ingot:3|rawhide:2,25
+forge-iron-shield,Forge Iron Shield,2,Miner,armor,iron-shield,1,90,forge,iron-ingot:4|thick-hide:2,50
+forge-steel-shield,Forge Steel Shield,3,Miner,armor,steel-shield,1,120,forge,steel-ingot:4|rugged-leather:2,100
+forge-mithril-shield,Forge Mithril Shield,4,Miner,armor,mithril-shield,1,180,forge,mithril-ingot:4|hardened-leather:2,200
+forge-adamantine-shield,Forge Adamantine Shield,5,Miner,armor,adamantine-shield,1,300,forge,adamantine-ingot:5|wyrm-leather:2,400
+forge-orichalcum-shield,Forge Orichalcum Shield,6,Miner,armor,orichalcum-shield,1,600,forge,orichalcum-ingot:5|infernal-leather:2|flawless-gem:1,800
+forge-starmetal-shield,Forge Starmetal Shield,7,Miner,armor,starmetal-shield,1,900,forge,starmetal-ingot:6|titan-leather:2|radiant-gem:1,1600
+forge-divine-shield,Forge Divine Shield,8,Miner,armor,divine-shield,1,1800,divine-forge,divine-ingot:6|divine-leather:3|divine-gem:1,3200
+saw-pine,Saw Pine Plank,1,Forester,woodworking,pine-plank,2,20,sawmill,pine-log:1,25
+saw-oak,Saw Oak Plank,2,Forester,woodworking,oak-plank,2,30,sawmill,oak-log:1,50
+saw-maple,Saw Maple Plank,3,Forester,woodworking,maple-plank,2,45,sawmill,maple-log:1,100
+saw-ash,Saw Ash Plank,4,Forester,woodworking,ash-plank,2,60,sawmill,ash-log:1,200
+saw-ironwood,Saw Ironwood Plank,5,Forester,woodworking,ironwood-plank,2,90,sawmill,ironwood-log:1,400
+saw-ebony,Saw Ebony Plank,6,Forester,woodworking,ebony-plank,2,120,sawmill,ebony-log:1,800
+saw-wyrmwood,Saw Wyrmwood Plank,7,Forester,woodworking,wyrmwood-plank,2,180,sawmill,wyrmwood-log:1,1600
+saw-worldtree,Saw Worldtree Plank,8,Forester,woodworking,worldtree-plank,2,300,divine-sawmill,worldtree-log:1,3200
+tan-rawhide,Tan Rawhide,1,Forester,leatherworking,rawhide,1,25,tanning-rack,raw-hide:2,25
+tan-thick,Tan Thick Hide,2,Forester,leatherworking,thick-hide,1,40,tanning-rack,rawhide:2|salt:1,50
+tan-rugged,Tan Rugged Leather,3,Forester,leatherworking,rugged-leather,1,60,tanning-rack,thick-hide:2|salt:2,100
+tan-hardened,Tan Hardened Leather,4,Forester,leatherworking,hardened-leather,1,90,tanning-rack,rugged-leather:2|iron-ingot:1,200
+tan-wyrm,Tan Wyrm Leather,5,Forester,leatherworking,wyrm-leather,1,120,tanning-rack,dragon-hide:2|adamantine-ingot:1,400
+tan-infernal,Tan Infernal Leather,6,Forester,leatherworking,infernal-leather,1,180,tanning-rack,demon-hide:2|orichalcum-ingot:1,800
+tan-titan,Tan Titan Leather,7,Forester,leatherworking,titan-leather,1,300,tanning-rack,giant-hide:2|starmetal-ingot:1,1600
+tan-divine,Tan Divine Leather,8,Forester,leatherworking,divine-leather,1,600,divine-tanning,celestial-hide:2|divine-ingot:1,3200
+craft-hunting-bow,Craft Hunting Bow,1,Forester,weapon,hunting-bow,1,45,workbench,pine-plank:2|string:2,25
+craft-shortbow,Craft Shortbow,2,Forester,weapon,shortbow,1,60,workbench,oak-plank:3|bowstring:1,50
+craft-composite,Craft Composite Bow,3,Forester,weapon,composite-bow,1,90,workbench,maple-plank:3|bowstring:1|rugged-leather:1,100
+craft-recurve,Craft Recurve Bow,4,Forester,weapon,recurve-bow,1,120,workbench,ash-plank:4|silk-string:1|hardened-leather:1,200
+craft-elven,Craft Elven Longbow,5,Forester,weapon,elven-longbow,1,180,workbench,ironwood-plank:4|silk-string:2|wyrm-leather:1,400
+craft-dragonbone,Craft Dragonbone Bow,6,Forester,weapon,dragonbone-bow,1,360,workbench,ebony-plank:5|dragon-sinew:2|infernal-leather:1,800
+craft-phoenix,Craft Phoenix Bow,7,Forester,weapon,phoenix-bow,1,600,workbench,wyrmwood-plank:5|dragon-sinew:2|phoenix-feathers:3,1600
+craft-yggdrasil,Craft Yggdrasil Bow,8,Forester,weapon,yggdrasil-bow,1,1200,divine-workbench,worldtree-plank:6|dragon-sinew:3|divine-leather:1,3200
+craft-quarterstaff,Craft Quarterstaff,1,Forester,weapon,quarterstaff,1,30,workbench,pine-plank:3|string:1,25
+craft-bo-staff,Craft Bo Staff,2,Forester,weapon,bo-staff,1,45,workbench,oak-plank:4|bowstring:1,50
+craft-druid-staff,Craft Druid Staff,3,Forester,weapon,druid-staff,1,90,workbench,maple-plank:4|greater-essence:1,100
+craft-spirit-staff,Craft Spirit Staff,4,Forester,weapon,spirit-staff,1,120,workbench,ash-plank:5|superior-essence:1,200
+craft-treant-staff,Craft Treant Staff,5,Forester,weapon,treant-staff,1,180,workbench,ironwood-plank:5|refined-essence:2,400
+craft-worldroot,Craft Worldroot Staff,6,Forester,weapon,worldroot-staff,1,360,workbench,ebony-plank:6|perfect-essence:2,800
+craft-wyrmwood-staff,Craft Wyrmwood Staff,7,Forester,weapon,wyrmwood-staff,1,600,workbench,wyrmwood-plank:6|ancient-essence:2,1600
+craft-yggdrasil-staff,Craft Yggdrasil Staff,8,Forester,weapon,yggdrasil-staff,1,1200,divine-workbench,worldtree-plank:7|divine-essence:2,3200
+weave-linen,Weave Linen Cloth,1,Mystic,weaving,linen-cloth,2,25,loom,linen-thread:3,25
+weave-wool,Weave Wool Cloth,2,Mystic,weaving,wool-cloth,2,40,loom,wool-thread:3,50
+weave-cotton,Weave Cotton Cloth,3,Mystic,weaving,cotton-cloth,2,60,loom,cotton-thread:3,100
+weave-silk,Weave Silk Cloth,4,Mystic,weaving,silk-cloth,2,90,loom,silk-thread:3,200
+weave-moonweave,Weave Moonweave Cloth,5,Mystic,weaving,moonweave-cloth,2,120,magic-loom,moonweave-thread:3|refined-essence:1,400
+weave-starweave,Weave Starweave Cloth,6,Mystic,weaving,starweave-cloth,2,180,magic-loom,starweave-thread:3|perfect-essence:1,800
+weave-voidweave,Weave Voidweave Cloth,7,Mystic,weaving,voidweave-cloth,2,300,magic-loom,voidweave-thread:3|ancient-essence:1,1600
+weave-divine,Weave Divine Cloth,8,Mystic,weaving,divine-cloth,2,600,divine-loom,divine-thread:3|divine-essence:1,3200
+distill-minor,Distill Minor Essence,1,Mystic,essence,minor-essence,2,20,alchemy-table,herbs:5|water:1,25
+distill-lesser,Distill Lesser Essence,2,Mystic,essence,lesser-essence,2,35,alchemy-table,minor-essence:2|herbs:5,50
+distill-greater,Distill Greater Essence,3,Mystic,essence,greater-essence,2,60,alchemy-table,lesser-essence:2|rare-herbs:3,100
+distill-superior,Distill Superior Essence,4,Mystic,essence,superior-essence,2,90,alchemy-table,greater-essence:2|rare-herbs:5,200
+distill-refined,Distill Refined Essence,5,Mystic,essence,refined-essence,2,120,alchemy-table,superior-essence:2|exotic-herbs:3,400
+distill-perfect,Distill Perfect Essence,6,Mystic,essence,perfect-essence,2,180,alchemy-table,refined-essence:2|exotic-herbs:5,800
+distill-ancient,Distill Ancient Essence,7,Mystic,essence,ancient-essence,2,300,arcane-altar,perfect-essence:2|divine-herbs:3,1600
+distill-divine,Distill Divine Essence,8,Mystic,essence,divine-essence,2,600,divine-altar,ancient-essence:2|divine-herbs:5,3200
+craft-pine-wand,Craft Pine Wand,1,Mystic,weapon,pine-wand,1,45,enchanting-table,pine-plank:1|minor-essence:2,25
+craft-oak-wand,Craft Oak Wand,2,Mystic,weapon,oak-wand,1,60,enchanting-table,oak-plank:2|lesser-essence:2,50
+craft-willow-wand,Craft Willow Wand,3,Mystic,weapon,willow-wand,1,90,enchanting-table,maple-plank:2|greater-essence:2,100
+craft-elder-wand,Craft Elder Wand,4,Mystic,weapon,elder-wand,1,120,enchanting-table,ash-plank:3|superior-essence:2,200
+craft-moon-wand,Craft Moon Wand,5,Mystic,weapon,moon-wand,1,180,enchanting-table,ironwood-plank:3|refined-essence:2|moonweave-cloth:1,400
+craft-star-wand,Craft Star Wand,6,Mystic,weapon,star-wand,1,360,enchanting-table,ebony-plank:3|perfect-essence:2|starweave-cloth:1,800
+craft-void-wand,Craft Void Wand,7,Mystic,weapon,void-wand,1,600,arcane-altar,wyrmwood-plank:4|ancient-essence:2|voidweave-cloth:1,1600
+craft-divine-wand,Craft Divine Wand,8,Mystic,weapon,divine-wand,1,1200,divine-altar,worldtree-plank:4|divine-essence:3|divine-cloth:1,3200
+assemble-bronze-gear,Assemble Bronze Gear,1,Engineer,mechanism,bronze-gear,2,25,workbench,copper-ingot:1|coal:1,25
+assemble-iron-gear,Assemble Iron Gear,2,Engineer,mechanism,iron-gear,2,40,workbench,iron-ingot:1|coal:2,50
+assemble-steel-gear,Assemble Steel Gear,3,Engineer,mechanism,steel-gear,2,60,workbench,steel-ingot:1|coal:3,100
+assemble-precision-gear,Assemble Precision Gear,4,Engineer,mechanism,precision-gear,2,90,engineering-bench,mithril-ingot:2|spring:2,200
+assemble-clockwork-core,Assemble Clockwork Core,5,Engineer,mechanism,clockwork-core,1,120,engineering-bench,precision-gear:4|spring:4|lens:2,400
+assemble-arcane-gear,Assemble Arcane Gear,6,Engineer,mechanism,arcane-gear,2,180,engineering-bench,orichalcum-ingot:2|refined-essence:1,800
+assemble-void-gear,Assemble Void Gear,7,Engineer,mechanism,void-gear,2,300,engineering-bench,starmetal-ingot:2|ancient-essence:1,1600
+assemble-divine-gear,Assemble Divine Gear,8,Engineer,mechanism,divine-gear,2,600,divine-engineering,divine-ingot:2|divine-essence:1,3200
+craft-flintlock-pistol,Craft Flintlock Pistol,1,Engineer,weapon,flintlock-pistol,1,60,engineering-bench,copper-ingot:2|gunpowder:2|lens:1,25
+craft-dueling-pistol,Craft Dueling Pistol,2,Engineer,weapon,dueling-pistol,1,90,engineering-bench,iron-ingot:3|refined-gunpowder:2|lens:1,50
+craft-revolver,Craft Revolver,3,Engineer,weapon,revolver,1,120,engineering-bench,steel-ingot:4|black-powder:3|spring:2,100
+craft-repeater-pistol,Craft Repeater Pistol,4,Engineer,weapon,repeater-pistol,1,180,engineering-bench,mithril-ingot:4|flash-powder:3|precision-gear:1,200
+craft-clockwork-pistol,Craft Clockwork Pistol,5,Engineer,weapon,clockwork-pistol,1,300,engineering-bench,adamantine-ingot:5|thunder-powder:3|clockwork-core:1,400
+craft-plasma-pistol,Craft Plasma Pistol,6,Engineer,weapon,plasma-pistol,1,600,engineering-bench,orichalcum-ingot:5|arcane-powder:4|circuit:2,800
+craft-void-pistol,Craft Void Pistol,7,Engineer,weapon,void-pistol,1,900,engineering-bench,starmetal-ingot:6|void-powder:4|quantum-circuit:1,1600
+craft-divine-pistol,Craft Divine Pistol,8,Engineer,weapon,divine-pistol,1,1800,divine-engineering,divine-ingot:6|divine-powder:5|quantum-circuit:2,3200
+craft-mallet,Craft Mallet,1,Engineer,weapon,mallet,1,45,workbench,copper-ingot:2|pine-plank:1,25
+craft-claw-hammer,Craft Claw Hammer,2,Engineer,weapon,claw-hammer,1,60,workbench,iron-ingot:2|oak-plank:1,50
+craft-ball-peen,Craft Ball Peen Hammer,3,Engineer,weapon,ball-peen,1,90,workbench,steel-ingot:3|maple-plank:1,100
+craft-engineers-hammer,Craft Engineer's Hammer,4,Engineer,weapon,engineers-hammer,1,120,engineering-bench,mithril-ingot:3|ash-plank:1|precision-gear:1,200
+craft-steamhammer,Craft Steam Hammer,5,Engineer,weapon,steamhammer,1,180,engineering-bench,adamantine-ingot:4|ironwood-plank:1|clockwork-core:1,400
+craft-thunder-mallet,Craft Thunder Mallet,6,Engineer,weapon,thunder-mallet,1,360,engineering-bench,orichalcum-ingot:4|ebony-plank:1|arcane-gear:1,800
+craft-void-hammer,Craft Void Hammer,7,Engineer,weapon,void-hammer,1,600,engineering-bench,starmetal-ingot:5|wyrmwood-plank:1|void-gear:1,1600
+craft-mjolnir,Craft Mjolnir,8,Engineer,weapon,mjolnir,1,1200,divine-engineering,divine-ingot:5|worldtree-plank:1|divine-gear:1,3200
+craft-spike-trap,Craft Spike Trap,1,Engineer,trap,spike-trap,3,30,workbench,copper-ingot:2|pine-plank:2,25
+craft-bear-trap,Craft Bear Trap,2,Engineer,trap,bear-trap,2,45,workbench,iron-ingot:3|spring:2,50
+craft-poison-trap,Craft Poison Trap,3,Engineer,trap,poison-trap,2,60,engineering-bench,steel-ingot:3|poison-bomb:1|spring:2,100
+craft-explosive-trap,Craft Explosive Trap,4,Engineer,trap,explosive-trap,1,90,engineering-bench,mithril-ingot:4|dynamite:2|precision-gear:2,200
+craft-frost-trap,Craft Frost Trap,5,Engineer,trap,frost-trap,1,120,engineering-bench,adamantine-ingot:4|ice-essence:2|clockwork-core:1,400
+craft-lightning-trap,Craft Lightning Trap,6,Engineer,trap,lightning-trap,1,180,engineering-bench,orichalcum-ingot:5|lightning-essence:2|arcane-gear:1,800
+craft-void-trap,Craft Void Trap,7,Engineer,trap,void-trap,1,300,engineering-bench,starmetal-ingot:5|dark-essence:2|void-gear:1,1600
+craft-divine-trap,Craft Divine Trap,8,Engineer,trap,divine-trap,1,600,divine-engineering,divine-ingot:6|light-essence:3|divine-gear:1,3200
+craft-grenade,Craft Grenade,2,Engineer,explosive,grenade,5,30,workbench,iron-ingot:1|gunpowder:3,50
+craft-dynamite,Craft Dynamite,3,Engineer,explosive,dynamite,3,45,engineering-bench,steel-ingot:2|black-powder:5,100
+craft-tnt-bundle,Craft TNT Bundle,4,Engineer,explosive,tnt-bundle,2,60,engineering-bench,mithril-ingot:2|flash-powder:6,200
+craft-c4-charge,Craft C4 Charge,5,Engineer,explosive,c4-charge,1,90,engineering-bench,adamantine-ingot:3|thunder-powder:8,400
+cook-bread,Bake Bread,0,Chef,food,bread,2,15,campfire,wheat:3|water:1,10
+cook-soup,Make Soup,1,Chef,food,soup,2,20,cooking-pot,potato:2|carrot:2|water:2,25
+cook-stew,Make Stew,2,Chef,food,stew,2,30,cooking-pot,beef:2|potato:2|onion:2|water:2,50
+cook-roast-meat,Roast Meat,2,Chef,food,roast-meat,2,25,campfire,beef:3|herb-bundle:1,50
+cook-grilled-fish,Grill Fish,2,Chef,food,grilled-fish,2,20,campfire,fish:3|herb-bundle:1,50
+cook-meat-pie,Bake Meat Pie,3,Chef,food,meat-pie,1,45,oven,beef:3|flour:3|butter:1,100
+cook-feast-platter,Prepare Feast Platter,4,Chef,food,feast-platter,1,90,kitchen,beef:5|fish:3|potato:4|spice-blend:2,200
+cook-royal-banquet,Prepare Royal Banquet,6,Chef,food,royal-banquet,1,300,restaurant,venison:5|lobster:3|truffle:3|spice-blend:5,800
+cook-divine-feast,Prepare Divine Feast,8,Chef,food,divine-feast,1,900,divine-kitchen,divine-meat:5|kraken-tentacle:3|divine-fruit:5,3200
+brew-minor-health,Brew Minor Health Potion,0,Chef,potion,minor-health-potion,3,15,cauldron,herbs:3|water:2,10
+brew-lesser-health,Brew Lesser Health Potion,1,Chef,potion,lesser-health-potion,3,25,cauldron,herbs:5|berry:3|water:2,25
+brew-health,Brew Health Potion,2,Chef,potion,health-potion,3,40,cauldron,rare-herbs:3|berry:5|honey:1,50
+brew-greater-health,Brew Greater Health Potion,3,Chef,potion,greater-health-potion,2,60,cauldron,rare-herbs:5|honey:3|minor-essence:1,100
+brew-superior-health,Brew Superior Health Potion,4,Chef,potion,superior-health-potion,2,90,alchemy-lab,exotic-herbs:3|honey:5|lesser-essence:1,200
+brew-mega-health,Brew Mega Health Potion,5,Chef,potion,mega-health-potion,1,120,alchemy-lab,exotic-herbs:5|divine-fruit:1|greater-essence:1,400
+brew-ultra-health,Brew Ultra Health Potion,6,Chef,potion,ultra-health-potion,1,180,alchemy-lab,divine-herbs:3|divine-fruit:2|superior-essence:1,800
+brew-divine-health,Brew Divine Health Potion,8,Chef,potion,divine-health-potion,1,600,divine-kitchen,divine-herbs:5|divine-fruit:5|divine-essence:1,3200
+brew-minor-mana,Brew Minor Mana Potion,0,Chef,potion,minor-mana-potion,3,15,cauldron,herbs:3|water:2,10
+brew-lesser-mana,Brew Lesser Mana Potion,1,Chef,potion,lesser-mana-potion,3,25,cauldron,herbs:5|moonflower:2|water:2,25
+brew-mana,Brew Mana Potion,2,Chef,potion,mana-potion,3,40,cauldron,rare-herbs:3|moonflower:4|minor-essence:1,50
+brew-greater-mana,Brew Greater Mana Potion,3,Chef,potion,greater-mana-potion,2,60,cauldron,rare-herbs:5|moonflower:6|lesser-essence:1,100
+brew-superior-mana,Brew Superior Mana Potion,4,Chef,potion,superior-mana-potion,2,90,alchemy-lab,exotic-herbs:3|starbloom:3|greater-essence:1,200
+brew-mega-mana,Brew Mega Mana Potion,5,Chef,potion,mega-mana-potion,1,120,alchemy-lab,exotic-herbs:5|starbloom:5|superior-essence:1,400
+brew-ultra-mana,Brew Ultra Mana Potion,6,Chef,potion,ultra-mana-potion,1,180,alchemy-lab,divine-herbs:3|starbloom:7|refined-essence:1,800
+brew-divine-mana,Brew Divine Mana Potion,8,Chef,potion,divine-mana-potion,1,600,divine-kitchen,divine-herbs:5|starbloom:10|divine-essence:1,3200
+brew-strength-elixir,Brew Strength Elixir,3,Chef,buff,strength-elixir,1,60,alchemy-lab,rare-herbs:5|beef:3|greater-essence:1,100
+brew-speed-elixir,Brew Speed Elixir,3,Chef,buff,speed-elixir,1,60,alchemy-lab,rare-herbs:5|hawk-feathers:3|greater-essence:1,100
+brew-defense-elixir,Brew Defense Elixir,3,Chef,buff,defense-elixir,1,60,alchemy-lab,rare-herbs:5|iron-ingot:2|greater-essence:1,100
+brew-luck-elixir,Brew Luck Elixir,4,Chef,buff,luck-elixir,1,90,alchemy-lab,exotic-herbs:5|fine-gem:1|superior-essence:1,200
+brew-xp-elixir,Brew XP Elixir,5,Chef,buff,xp-elixir,1,120,alchemy-lab,exotic-herbs:8|ancient-essence:1|pristine-gem:1,400
+brew-divine-elixir,Brew Divine Elixir,8,Chef,buff,divine-elixir,1,600,divine-kitchen,divine-herbs:10|divine-essence:2|divine-gem:1,3200
+craft-bandage,Craft Bandage,0,Chef,consumable,bandage,5,10,workbench,linen-cloth:2,10
+craft-medkit,Craft Medkit,2,Chef,consumable,medkit,2,30,workbench,cotton-cloth:3|herbs:5|bandage:3,50
+craft-advanced-medkit,Craft Advanced Medkit,4,Chef,consumable,advanced-medkit,1,60,alchemy-lab,silk-cloth:3|rare-herbs:5|health-potion:2,200
+tame-donkey,Tame Donkey,1,Forester,mount,donkey,1,300,stable,rawhide:5|apple:3,25
+tame-horse,Tame Horse,2,Forester,mount,horse,1,600,stable,thick-hide:5|carrot:5|honey:2,50
+tame-war-horse,Train War Horse,3,Forester,mount,war-horse,1,1200,stable,rugged-leather:8|apple:10|steel-ingot:3,100
+tame-destrier,Train Destrier,4,Forester,mount,destrier,1,1800,stable,hardened-leather:8|honey:5|mithril-ingot:2,200
+tame-nightmare,Bind Nightmare,5,Forester,mount,nightmare,1,3600,arcane-stable,wyrm-leather:10|fire-essence:3|adamantine-ingot:3,400
+tame-unicorn,Befriend Unicorn,6,Forester,mount,unicorn,1,7200,arcane-stable,infernal-leather:10|light-essence:3|orichalcum-ingot:3,800
+tame-wolf,Tame Wolf,2,Forester,mount,wolf,1,600,stable,thick-hide:6|beef:5|rugged-leather:2,50
+tame-dire-wolf,Tame Dire Wolf,3,Forester,mount,dire-wolf,1,1200,stable,rugged-leather:8|venison:8|steel-ingot:2,100
+tame-giant-eagle,Tame Giant Eagle,4,Forester,mount,giant-eagle,1,1800,aviary,hardened-leather:8|hawk-feathers:20|mithril-ingot:4,200
+tame-griffon,Tame Griffon,5,Forester,mount,griffon,1,3600,aviary,wyrm-leather:10|hawk-feathers:15|adamantine-ingot:5|fine-gem:2,400
+tame-phoenix,Bind Phoenix,7,Forester,mount,phoenix,1,10800,divine-aviary,titan-leather:15|phoenix-feathers:20|fire-essence:5|radiant-gem:3,1600
+tame-dragon,Tame Dragon,7,Forester,mount,dragon,1,14400,dragon-lair,titan-leather:20|dragon-sinew:10|starmetal-ingot:8|radiant-gem:4,1600
+tame-divine-dragon,Bond Divine Dragon,8,Forester,mount,divine-dragon,1,28800,divine-lair,divine-leather:30|divine-essence:6|divine-ingot:12|divine-gem:6,3200
+build-mechanical-horse,Build Mechanical Horse,3,Engineer,mount,mechanical-horse,1,1200,engineering-bench,steel-ingot:10|steel-gear:5|spring:8|coal:20,100
+build-clockwork-spider,Build Clockwork Spider,4,Engineer,mount,clockwork-spider,1,1800,engineering-bench,mithril-ingot:12|precision-gear:6|spring:10|circuit:3,200
+build-steam-tank,Build Steam Tank,5,Engineer,mount,steam-tank,1,3600,engineering-bench,adamantine-ingot:20|clockwork-core:3|spring:15|coal:50,400
+build-gyrocopter,Build Gyrocopter,4,Engineer,mount,gyrocopter,1,1800,engineering-bench,mithril-ingot:10|precision-gear:6|spring:12|lens:3,200
+build-steam-airship,Build Steam Airship,5,Engineer,mount,steam-airship,1,3600,engineering-bench,adamantine-ingot:15|clockwork-core:4|spring:20|coal:100,400
+build-clockwork-dragon,Build Clockwork Dragon,6,Engineer,mount,clockwork-dragon,1,7200,engineering-bench,orichalcum-ingot:20|arcane-gear:8|circuit:12|arcane-powder:15,800
+conjure-floating-disc,Conjure Floating Disc,2,Mystic,mount,floating-disc,1,600,enchanting-table,wool-cloth:5|lesser-essence:3|flawed-gem:2,50
+conjure-magic-carpet,Conjure Magic Carpet,3,Mystic,mount,magic-carpet,1,1200,enchanting-table,cotton-cloth:8|greater-essence:4|standard-gem:2,100
+conjure-cloud,Conjure Cloud Mount,4,Mystic,mount,cloud-mount,1,1800,enchanting-table,silk-cloth:10|superior-essence:4|fine-gem:2,200
+conjure-spectral-steed,Conjure Spectral Steed,5,Mystic,mount,spectral-steed,1,3600,arcane-altar,moonweave-cloth:10|refined-essence:5|pristine-gem:2,400
+conjure-arcane-wyrm,Conjure Arcane Wyrm,6,Mystic,mount,arcane-wyrm,1,7200,arcane-altar,starweave-cloth:12|perfect-essence:5|flawless-gem:3,800

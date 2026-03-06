@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRUDGE Battle Arena - Login Portal</title>
+  <script src="https://js.puter.com/v2/"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+    .font-heading { font-family: 'Cinzel', serif; }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-fadeIn {
+      animation: fadeIn 0.6s ease-out;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .animate-pulse-slow {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-red-900/20 to-slate-900 flex items-center justify-center p-4">
+  <div id="app" class="text-center p-8 max-w-2xl w-full">
+    <div class="animate-pulse-slow">
+      <div class="w-12 h-12 border-4 border-red-500 border-t-transparent rounded-full mx-auto mb-4 animate-spin"></div>
+      <p class="text-slate-400">Initializing GRUDGE Battle Arena...</p>
+    </div>
+  </div>
+
+  <script type="module">
+    // ═══════════════════════════════════════════════════════════
+    // GRUDGE BATTLE ARENA - AUTHENTICATION PORTAL
+    // Powered by Puter SSO
+    // Version: 1.0.0
+    // ═══════════════════════════════════════════════════════════
+    
+    const APP_CONFIG = {
+      // Puter App IDs
+      AUTH_APP_ID: 'grudge-battle-arena-auth',
+      
+      // Session Configuration
+      SESSION_PREFIX: 'grudge_arena_session_',
+      SESSION_DURATION: 2 * 60 * 60 * 1000, // 2 hours
+      SESSION_INDEX_KEY: 'grudge_arena_sessions_index',
+      
+      // URLs - Update these after deployment
+      GAME_URL: window.location.origin, // Will be Vercel URL
+      
+      // Role Mapping (username → role)
+      ROLE_MAP: {
+        'admin': ['admin', 'grudgewarlord', 'outapps', 'molochdagod'],
+        'developer': ['dev', 'developer', 'engineer'],
+        'vip': ['vip', 'premium']
+      },
+      
+      // Default role
+      DEFAULT_ROLE: 'player'
+    };
+    
+    console.log('⚔️ GRUDGE Battle Arena Auth Portal v1.0.0');
+    console.log('📍 Game URL:', APP_CONFIG.GAME_URL);
+
+    // ═══════════════════════════════════════════════════════════
+    // ROLE MANAGEMENT
+    // ═══════════════════════════════════════════════════════════
+    
+    function getUserRole(username) {
+      if (!username) return APP_CONFIG.DEFAULT_ROLE;
+      
+      const lower = username.toLowerCase();
+      
+      for (const [role, usernames] of Object.entries(APP_CONFIG.ROLE_MAP)) {
+        if (usernames.includes(lower)) {
+          console.log(`✅ Role assigned: ${role} for user ${username}`);
+          return role;
+        }
+      }
+      
+      console.log(`✅ Default role assigned: ${APP_CONFIG.DEFAULT_ROLE} for user ${username}`);
+      return APP_CONFIG.DEFAULT_ROLE;
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // SESSION MANAGEMENT
+    // ═══════════════════════════════════════════════════════════
+    
+    function generateSessionCode() {
+      return 'arena_' + crypto.randomUUID().replace(/-/g, '');
+    }
+
+    async function createSession(user) {
+      try {
+        const sessionCode = generateSessionCode();
+        const now = Date.now();
+        
+        const session = {
+          userId: user.uuid,
+          username: user.username,
+          email: user.email || null,
+          role: getUserRole(user.username),
+          createdAt: now,
+          expiresAt: now + APP_CONFIG.SESSION_DURATION,
+          source: 'puter_sso',
+          game: 'battle_arena',
+          version: '1.0.0'
+        };
+        
+        console.log('💾 Creating session:', sessionCode);
+        
+        // Store session in Puter KV
+        await puter.kv.set(
+          APP_CONFIG.SESSION_PREFIX + sessionCode, 
+          JSON.stringify(session)
+        );
+        
+        // Update session index
+        let sessionIndex = [];
+        try {
+          const indexData = await puter.kv.get(APP_CONFIG.SESSION_INDEX_KEY);
+          if (indexData) {
+            sessionIndex = JSON.parse(indexData);
+          }
+        } catch (e) {
+          console.warn('⚠️ Could not load session index, creating new:', e.message);
+        }
+        
+        sessionIndex.push({
+          code: sessionCode,
+          userId: user.uuid,
+          username: user.username,
+          createdAt: now
+        });
+        
+        if (sessionIndex.length > 100) {
+          sessionIndex = sessionIndex.slice(-100);
+        }
+        
+        await puter.kv.set(
+          APP_CONFIG.SESSION_INDEX_KEY, 
+          JSON.stringify(sessionIndex)
+        );
+        
+        console.log('✅ Session created successfully');
+        
+        return { code: sessionCode, session };
+      } catch (error) {
+        console.error('❌ Session creation failed:', error);
+        throw error;
+      }
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // UI RENDERING
+    // ═══════════════════════════════════════════════════════════
+    
+    function renderLogin() {
+      document.getElementById('app').innerHTML = `
+        <div class="bg-slate-800/80 backdrop-blur-sm p-8 rounded-2xl border border-red-500/30 max-w-md mx-auto animate-fadeIn shadow-2xl">
+          <!-- Logo -->
+          <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-red-500 to-orange-600 flex items-center justify-center shadow-lg animate-float">
+            <span class="text-6xl">⚔️</span>
+          </div>
+          
+          <!-- Title -->
+          <h1 class="font-heading text-4xl text-red-400 mb-2">GRUDGE Battle Arena</h1>
+          <p class="text-slate-400 mb-8">Enter the multiplayer battlefield</p>
+          
+          <!-- Sign In Button -->
+          <button id="puter-login" class="w-full py-4 px-6 bg-gradient-to-r from-red-500 to-orange-600 hover:from-red-400 hover:to-orange-500 text-white font-bold rounded-xl transition-all transform hover:scale-105 shadow-lg mb-4 flex items-center justify-center gap-3">
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            <span>Sign in with Puter</span>
+          </button>
+          
+          <!-- Game Features -->
+          <div class="mt-6 space-y-2 text-left">
+            <div class="flex items-center gap-2 text-slate-400 text-sm">
+              <span class="text-green-400">✓</span>
+              <span>Real-time multiplayer combat</span>
+            </div>
+            <div class="flex items-center gap-2 text-slate-400 text-sm">
+              <span class="text-green-400">✓</span>
+              <span>Top-down shooter gameplay</span>
+            </div>
+            <div class="flex items-center gap-2 text-slate-400 text-sm">
+              <span class="text-green-400">✓</span>
+              <span>Battle royale mechanics</span>
+            </div>
+            <div class="flex items-center gap-2 text-slate-400 text-sm">
+              <span class="text-green-400">✓</span>
+              <span>Instant respawn system</span>
+            </div>
+          </div>
+          
+          <!-- Info -->
+          <div class="mt-6 p-4 bg-slate-700/50 rounded-lg border border-slate-600">
+            <p class="text-xs text-slate-400 mb-2">🔐 Secure authentication via Puter SSO</p>
+            <p class="text-xs text-slate-500">Session expires after 2 hours of inactivity</p>
+          </div>
+          
+          <!-- Footer -->
+          <div class="mt-6 text-center">
+            <p class="text-xs text-slate-600">GRUDGE Battle Arena © 2026</p>
+            <p class="text-xs text-slate-700">Powered by GRUDGE Studio</p>
+          </div>
+        </div>
+      `;
+      
+      document.getElementById('puter-login').addEventListener('click', handlePuterLogin);
+    }
+
+    function renderSuccess(username, role, sessionCode) {
+      document.getElementById('app').innerHTML = `
+        <div class="bg-slate-800/80 backdrop-blur-sm p-8 rounded-2xl border border-green-500/30 max-w-md mx-auto animate-fadeIn shadow-2xl">
+          <!-- Success Icon -->
+          <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-green-500/20 flex items-center justify-center">
+            <svg class="w-12 h-12 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          
+          <!-- Welcome Message -->
+          <h2 class="font-heading text-3xl text-green-400 mb-3">Ready for Battle!</h2>
+          <p class="text-xl text-slate-300 mb-4">Welcome, ${username}!</p>
+          
+          <!-- Role Badge -->
+          <div class="mb-6 inline-block px-4 py-2 rounded-full bg-red-500/20 border border-red-500/30">
+            <p class="text-sm text-slate-400">
+              Role: <span class="text-red-400 font-bold uppercase">${role}</span>
+            </p>
+          </div>
+          
+          <!-- Status -->
+          <div class="mb-6 space-y-2">
+            <div class="flex items-center justify-center gap-2 text-slate-400">
+              <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span class="text-sm">Authentication successful</span>
+            </div>
+            <div class="flex items-center justify-center gap-2 text-slate-400">
+              <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span class="text-sm">Session created</span>
+            </div>
+            <div class="flex items-center justify-center gap-2 text-slate-400">
+              <div class="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
+              <span class="text-sm">Entering the arena...</span>
+            </div>
+          </div>
+          
+          <!-- Progress Bar -->
+          <div class="w-full h-2 bg-slate-700 rounded-full overflow-hidden mb-4">
+            <div class="h-full bg-gradient-to-r from-green-400 to-red-400 animate-pulse" style="width: 100%"></div>
+          </div>
+          
+          <p class="text-xs text-slate-500">Session: ${sessionCode.substring(0, 20)}...</p>
+        </div>
+      `;
+    }
+
+    function showError(message, details = null) {
+      document.getElementById('app').innerHTML = `
+        <div class="bg-slate-800/80 backdrop-blur-sm p-8 rounded-2xl border border-red-500/30 max-w-md mx-auto animate-fadeIn shadow-2xl">
+          <!-- Error Icon -->
+          <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-red-500/20 flex items-center justify-center">
+            <svg class="w-12 h-12 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </div>
+          
+          <h2 class="font-heading text-2xl text-red-400 mb-3">Authentication Error</h2>
+          <p class="text-slate-300 mb-4">${message}</p>
+          
+          ${details ? `<p class="text-xs text-slate-500 mb-4 font-mono bg-slate-900/50 p-2 rounded">${details}</p>` : ''}
+          
+          <button onclick="location.reload()" class="w-full px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition-colors">
+            Try Again
+          </button>
+        </div>
+      `;
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // AUTHENTICATION FLOW
+    // ═══════════════════════════════════════════════════════════
+    
+    async function handlePuterLogin() {
+      try {
+        console.log('🔐 Starting Puter authentication...');
+        
+        let user = null;
+        
+        const params = new URLSearchParams(window.location.search);
+        const isInPuterApp = params.has('puter.app_instance_id') || params.has('puter.auth.token');
+        
+        if (isInPuterApp) {
+          console.log('📱 Running in Puter app context');
+          user = await puter.auth.getUser();
+        } else {
+          console.log('🌐 Running in browser context, initiating sign in');
+          user = await puter.auth.signIn();
+        }
+        
+        if (!user) {
+          throw new Error('User authentication returned null');
+        }
+        
+        console.log('✅ User authenticated:', user.username);
+        
+        // Create session
+        const { code, session } = await createSession(user);
+        
+        // Show success
+        renderSuccess(user.username, session.role, code);
+        
+        // Redirect to game
+        setTimeout(() => {
+          // Store session info for game access
+          localStorage.setItem('grudge_arena_auth', code);
+          localStorage.setItem('grudge_arena_username', user.username);
+          localStorage.setItem('grudge_arena_role', session.role);
+          
+          // Redirect to game
+          window.location.href = '/';
+        }, 2000);
+        
+      } catch (error) {
+        console.error('❌ Login failed:', error);
+        showError(
+          'Authentication failed. Please try again.',
+          error.message
+        );
+      }
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // ROUTE HANDLING
+    // ═══════════════════════════════════════════════════════════
+    
+    async function handleRoute() {
+      const path = window.location.pathname;
+      const params = new URLSearchParams(window.location.search);
+      
+      console.log('📍 Route:', path);
+      
+      // Check if already authenticated
+      const authCode = localStorage.getItem('grudge_arena_auth');
+      if (authCode && path === '/') {
+        console.log('🔄 User already authenticated, redirecting to game');
+        window.location.href = '/';
+        return;
+      }
+      
+      // Show login screen
+      renderLogin();
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // INITIALIZATION
+    // ═══════════════════════════════════════════════════════════
+    
+    console.log('🚀 Initializing Battle Arena auth portal...');
+    handleRoute();
+  </script>
+</body>
+</html>

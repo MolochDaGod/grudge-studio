@@ -1,0 +1,49 @@
+{
+  "version": "1",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "build/**"],
+      "cache": false
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "outputs": [".eslintcache"],
+      "cache": true
+    },
+    "type-check": {
+      "cache": true
+    },
+    "test": {
+      "outputs": ["coverage/**"],
+      "cache": false,
+      "dependsOn": ["^build"]
+    },
+    "test:watch": {
+      "cache": false,
+      "persistent": true
+    },
+    "test:coverage": {
+      "outputs": ["coverage/**"],
+      "cache": false
+    },
+    "db:push": {
+      "cache": false,
+      "inputs": ["packages/database/**"]
+    },
+    "db:generate": {
+      "cache": false,
+      "inputs": ["packages/database/**"]
+    },
+    "db:migrate": {
+      "cache": false,
+      "inputs": ["packages/database/**"]
+    },
+    "clean": {
+      "cache": false
+    }
+  }
+}

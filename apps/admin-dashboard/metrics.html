@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metrics Dashboard - GRUDGE Warlords Admin</title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-title">⚔️ GRUDGE Warlords Admin</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Architecture</a></li>
+                <li><a href="schema.html">Database Schema</a></li>
+                <li><a href="api.html">API Docs</a></li>
+                <li><a href="storage.html">Object Storage</a></li>
+                <li><a href="metrics.html" class="active">Metrics</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="page-header">
+            <h1>Metrics Dashboard</h1>
+            <p class="subtitle">Live health checks against production endpoints</p>
+        </header>
+
+        <section>
+            <h2>System Health (Live)</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">These checks run against the actual production services when you load this page.</p>
+
+            <div class="status-grid">
+                <div class="status-card" id="card-auth">
+                    <h4>🔐 Auth Gateway</h4>
+                    <p class="status-url" id="auth-status">Checking...</p>
+                    <p class="status-detail" id="auth-detail">auth-gateway-flax.vercel.app</p>
+                </div>
+
+                <div class="status-card" id="card-objectstore">
+                    <h4>📦 ObjectStore</h4>
+                    <p class="status-url" id="os-status">Checking...</p>
+                    <p class="status-detail" id="os-detail">GrudgeDaDev.github.io/ObjectStore</p>
+                </div>
+
+                <div class="status-card" id="card-apiserver">
+                    <h4>🚀 API Server</h4>
+                    <p class="status-url" id="api-status">Checking...</p>
+                    <p class="status-detail" id="api-detail">localhost:3001 (dev only)</p>
+                </div>
+
+                <div class="status-card" id="card-grudachain">
+                    <h4>☁️ Grudachain Site</h4>
+                    <p class="status-url" id="gc-status">Checking...</p>
+                    <p class="status-detail" id="gc-detail">grudachain-ve8e8.puter.site</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Auth Gateway Details</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">Fetched from <code>GET /api/health</code></p>
+
+            <div class="table-detail">
+                <h3>Health Response</h3>
+                <pre><code id="auth-health-response">Fetching from auth-gateway-flax.vercel.app/api/health ...</code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2>ObjectStore Datasets</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">Available JSON datasets on GitHub Pages</p>
+
+            <div class="table-detail">
+                <h3>Dataset List</h3>
+                <pre><code id="os-datasets">Fetching from ObjectStore ...</code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2>Game Data Not Yet Connected</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">The following metrics require game-layer endpoints that are not yet implemented. They will show real data once the corresponding API routes and database tables exist.</p>
+
+            <div class="schema-grid">
+                <div class="schema-card" style="opacity: 0.5;">
+                    <h3>👥 User Stats</h3>
+                    <p class="schema-purpose">Requires: analytics query against users table</p>
+                    <ul class="table-list">
+                        <li>Total registered users</li>
+                        <li>Active users (24h)</li>
+                        <li>New registrations today</li>
+                        <li>Auth method breakdown</li>
+                    </ul>
+                </div>
+
+                <div class="schema-card" style="opacity: 0.5;">
+                    <h3>🦸 Character Stats</h3>
+                    <p class="schema-purpose">Requires: characters table (not yet created)</p>
+                    <ul class="table-list">
+                        <li>Total characters created</li>
+                        <li>Class/race distribution</li>
+                        <li>Level distribution</li>
+                        <li>Profession rankings</li>
+                    </ul>
+                </div>
+
+                <div class="schema-card" style="opacity: 0.5;">
+                    <h3>⚔️ Combat / Dungeons</h3>
+                    <p class="schema-purpose">Requires: dungeon_runs, combat_logs tables (not yet created)</p>
+                    <ul class="table-list">
+                        <li>Dungeon runs today</li>
+                        <li>Success rate</li>
+                        <li>Monster kills</li>
+                        <li>Combat leaderboards</li>
+                    </ul>
+                </div>
+
+                <div class="schema-card" style="opacity: 0.5;">
+                    <h3>💰 Economy</h3>
+                    <p class="schema-purpose">Requires: gbux_transactions, shop tables (not yet created)</p>
+                    <ul class="table-list">
+                        <li>Gold circulation</li>
+                        <li>GBUX supply / swaps</li>
+                        <li>Shop transactions</li>
+                        <li>NFT minting stats</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 GRUDGE Warlords. Metrics Dashboard.</p>
+        <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.5rem;">
+            Last checked: <span id="last-updated">—</span>
+        </p>
+    </footer>
+
+    <script>
+        const AUTH_BASE = 'https://auth-gateway-flax.vercel.app';
+        const OS_BASE = 'https://grudgedadev.github.io/ObjectStore';
+
+        async function checkHealth() {
+            document.getElementById('last-updated').textContent = new Date().toLocaleString();
+
+            // 1. Auth Gateway health
+            try {
+                const start = Date.now();
+                const res = await fetch(AUTH_BASE + '/api/health');
+                const ms = Date.now() - start;
+                if (res.ok) {
+                    const data = await res.json();
+                    document.getElementById('auth-status').textContent = '✅ Online';
+                    document.getElementById('auth-detail').textContent = `v${data.version} · ${ms}ms · ${data.features?.length || 0} features`;
+                    document.getElementById('card-auth').classList.add('status-live');
+                    document.getElementById('auth-health-response').textContent = JSON.stringify(data, null, 2);
+                } else {
+                    document.getElementById('auth-status').textContent = `⚠️ HTTP ${res.status}`;
+                    document.getElementById('auth-detail').textContent = `Responded in ${ms}ms`;
+                    document.getElementById('auth-health-response').textContent = `HTTP ${res.status}: ${res.statusText}`;
+                }
+            } catch (e) {
+                document.getElementById('auth-status').textContent = '❌ Unreachable';
+                document.getElementById('auth-detail').textContent = e.message;
+                document.getElementById('auth-health-response').textContent = 'Failed to connect: ' + e.message;
+            }
+
+            // 2. ObjectStore (try fetching a known file)
+            try {
+                const start = Date.now();
+                const res = await fetch(OS_BASE + '/weapons.json', { method: 'HEAD' });
+                const ms = Date.now() - start;
+                if (res.ok) {
+                    document.getElementById('os-status').textContent = '✅ Online';
+                    document.getElementById('os-detail').textContent = `GitHub Pages CDN · ${ms}ms`;
+                    document.getElementById('card-objectstore').classList.add('status-live');
+
+                    // Try to list known datasets
+                    const datasets = ['weapons', 'armor', 'materials', 'recipes'];
+                    const results = [];
+                    for (const ds of datasets) {
+                        try {
+                            const r = await fetch(OS_BASE + '/' + ds + '.json', { method: 'HEAD' });
+                            results.push(`${r.ok ? '✅' : '❌'} ${ds}.json`);
+                        } catch {
+                            results.push(`❌ ${ds}.json (fetch failed)`);
+                        }
+                    }
+                    document.getElementById('os-datasets').textContent = results.join('\n');
+                } else {
+                    document.getElementById('os-status').textContent = `⚠️ HTTP ${res.status}`;
+                    document.getElementById('os-detail').textContent = `${ms}ms`;
+                    document.getElementById('os-datasets').textContent = `HTTP ${res.status}`;
+                }
+            } catch (e) {
+                document.getElementById('os-status').textContent = '❌ Unreachable';
+                document.getElementById('os-detail').textContent = e.message;
+                document.getElementById('os-datasets').textContent = 'Failed: ' + e.message;
+            }
+
+            // 3. API Server (localhost — will fail from browser due to CORS/network, expected)
+            try {
+                const res = await fetch('http://localhost:3001/api/v1/status', { signal: AbortSignal.timeout(2000) });
+                if (res.ok) {
+                    const data = await res.json();
+                    document.getElementById('api-status').textContent = '✅ Running';
+                    document.getElementById('api-detail').textContent = `v${data.version} · uptime ${data.uptime}s`;
+                    document.getElementById('card-apiserver').classList.add('status-live');
+                } else {
+                    document.getElementById('api-status').textContent = `⚠️ HTTP ${res.status}`;
+                }
+            } catch {
+                document.getElementById('api-status').textContent = '⏸️ Not running';
+                document.getElementById('api-detail').textContent = 'Dev server not detected on localhost:3001';
+            }
+
+            // 4. Grudachain Puter site
+            try {
+                const start = Date.now();
+                const res = await fetch('https://grudachain-ve8e8.puter.site/', { method: 'HEAD', mode: 'no-cors' });
+                const ms = Date.now() - start;
+                // no-cors means we can't read status, but if no error thrown it's reachable
+                document.getElementById('gc-status').textContent = '✅ Reachable';
+                document.getElementById('gc-detail').textContent = `Puter site · ${ms}ms`;
+                document.getElementById('card-grudachain').classList.add('status-live');
+            } catch (e) {
+                document.getElementById('gc-status').textContent = '❌ Unreachable';
+                document.getElementById('gc-detail').textContent = e.message;
+            }
+        }
+
+        // Run on load
+        checkHealth();
+    </script>
+</body>
+</html>

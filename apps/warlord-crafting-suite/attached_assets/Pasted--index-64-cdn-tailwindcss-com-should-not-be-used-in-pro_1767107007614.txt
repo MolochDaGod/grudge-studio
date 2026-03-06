@@ -1,0 +1,409 @@
+(index):64 cdn.tailwindcss.com should not be used in production. To use Tailwind CSS in production, install it as a PostCSS plugin or use the Tailwind CLI: https://tailwindcss.com/docs/installation
+(anonymous) @ (index):64
+(index):41 GRUDGE Auth initialized https://grudge-auth-73v97.puter.site
+api.puter.com/whoami:1  Failed to load resource: the server responded with a status of 401 ()
+favicon.ico:1  GET https://grudge-auth.puter.site/favicon.ico 404 (Not Found)
+Image
+M @ content.js:1
+O @ content.js:1
+(anonymous) @ content.js:1
+favicon.ico:1  GET https://grudge-auth.puter.site/favicon.ico 404 (Not Found)
+VM28 content-all.js:474 Fetch finished loading: GET "chrome-extension://difoiogjjojoaoomphldepapgpbgkhkb/i18n/en.json".
+P4e @ VM28 content-all.js:474
+(anonymous) @ VM28 content-all.js:474
+(anonymous) @ VM28 content-all.js:474
+jhe @ VM28 content-all.js:14
+JV @ VM28 content-all.js:14
+oxt @ VM28 content-all.js:14
+uS @ VM28 content-all.js:12
+FGr @ VM28 content-all.js:14
+hR @ VM28 content-all.js:14
+Zwt @ VM28 content-all.js:14
+MRe @ VM28 content-all.js:7
+IRe @ VM28 content-all.js:7
+Warning: Don’t paste code into the DevTools Console that you don’t understand or haven’t reviewed yourself. This could allow attackers to steal your identity or take control of your computer. Please type ‘allow pasting’ below and press Enter to allow pasting.
+v2/:4 XHR finished loading: GET "https://api.puter.com/socket.io/?EIO=4&transport=polling&t=Pjlo97F".
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doPoll @ v2/:4
+poll @ v2/:4
+doOpen @ v2/:4
+open @ v2/:4
+open @ v2/:4
+Ke @ v2/:4
+open @ v2/:4
+(anonymous) @ v2/:4
+setTimeout
+reconnect @ v2/:4
+onclose @ v2/:4
+ye.emit @ v2/:4
+onClose @ v2/:4
+(anonymous) @ v2/:4
+ye.emit @ v2/:4
+onClose @ v2/:4
+ws.onclose @ v2/:4
+v2/:4 XHR finished loading: POST "https://api.puter.com/socket.io/?EIO=4&transport=polling&t=Pjlo983&sid=7OPyzKv-IIc-Kbd5Ab4x".
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doWrite @ v2/:4
+(anonymous) @ v2/:4
+(anonymous) @ v2/:4
+re @ v2/:4
+(anonymous) @ v2/:4
+(anonymous) @ v2/:4
+write @ v2/:4
+send @ v2/:4
+flush @ v2/:4
+sendPacket @ v2/:4
+write @ v2/:4
+_packet @ v2/:4
+packet @ v2/:4
+_sendConnectPacket @ v2/:4
+onopen @ v2/:4
+ye.emit @ v2/:4
+onopen @ v2/:4
+(anonymous) @ v2/:4
+ye.emit @ v2/:4
+onOpen @ v2/:4
+onHandshake @ v2/:4
+onPacket @ v2/:4
+ye.emit @ v2/:4
+onPacket @ v2/:4
+(anonymous) @ v2/:4
+onData @ v2/:4
+ye.emit @ v2/:4
+onLoad @ v2/:4
+s.onreadystatechange @ v2/:4
+XMLHttpRequest.send
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doPoll @ v2/:4
+poll @ v2/:4
+doOpen @ v2/:4
+open @ v2/:4
+open @ v2/:4
+Ke @ v2/:4
+open @ v2/:4
+(anonymous) @ v2/:4
+setTimeout
+reconnect @ v2/:4
+onclose @ v2/:4
+ye.emit @ v2/:4
+onClose @ v2/:4
+(anonymous) @ v2/:4
+ye.emit @ v2/:4
+onClose @ v2/:4
+ws.onclose @ v2/:4
+v2/:4 XHR finished loading: GET "https://api.puter.com/socket.io/?EIO=4&transport=polling&t=Pjlo984&sid=7OPyzKv-IIc-Kbd5Ab4x".
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doPoll @ v2/:4
+poll @ v2/:4
+onData @ v2/:4
+ye.emit @ v2/:4
+onLoad @ v2/:4
+s.onreadystatechange @ v2/:4
+XMLHttpRequest.send
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doPoll @ v2/:4
+poll @ v2/:4
+doOpen @ v2/:4
+open @ v2/:4
+open @ v2/:4
+Ke @ v2/:4
+open @ v2/:4
+(anonymous) @ v2/:4
+setTimeout
+reconnect @ v2/:4
+onclose @ v2/:4
+ye.emit @ v2/:4
+onClose @ v2/:4
+(anonymous) @ v2/:4
+ye.emit @ v2/:4
+onClose @ v2/:4
+ws.onclose @ v2/:4
+await puter.workers.create("grudge-server","/GRUDACHAIN/grudge-server.js")
+v2/:4 XHR finished loading: GET "https://api.puter.com/socket.io/?EIO=4&transport=polling&t=PjloFI_".
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doPoll @ v2/:4
+poll @ v2/:4
+doOpen @ v2/:4
+open @ v2/:4
+open @ v2/:4
+Ke @ v2/:4
+open @ v2/:4
+dt @ v2/:4
+ft @ v2/:4
+initializeSocket @ v2/:4
+setAuthToken @ v2/:4
+updateSubmodules @ v2/:4
+setAuthToken @ v2/:4
+(anonymous) @ v2/:4
+v2/:4 XHR finished loading: GET "https://api.puter.com/socket.io/?EIO=4&transport=polling&t=PjloFJ0".
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doPoll @ v2/:4
+poll @ v2/:4
+doOpen @ v2/:4
+open @ v2/:4
+open @ v2/:4
+Ke @ v2/:4
+open @ v2/:4
+dt @ v2/:4
+ft @ v2/:4
+initializeSocket @ v2/:4
+setAPIOrigin @ v2/:4
+updateSubmodules @ v2/:4
+setAuthToken @ v2/:4
+(anonymous) @ v2/:4
+v2/:4 XHR finished loading: GET "https://api.puter.com/socket.io/?EIO=4&transport=polling&t=PjloFJ1".
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doPoll @ v2/:4
+poll @ v2/:4
+doOpen @ v2/:4
+open @ v2/:4
+open @ v2/:4
+Ke @ v2/:4
+open @ v2/:4
+dt @ v2/:4
+ft @ v2/:4
+initializeSocket @ v2/:4
+setAuthToken @ v2/:4
+updateSubmodules @ v2/:4
+setAuthToken @ v2/:4
+messageListener @ v2/:4
+v2/:4 XHR finished loading: GET "https://api.puter.com/socket.io/?EIO=4&transport=polling&t=PjloFJ1.0".
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doPoll @ v2/:4
+poll @ v2/:4
+doOpen @ v2/:4
+open @ v2/:4
+open @ v2/:4
+Ke @ v2/:4
+open @ v2/:4
+dt @ v2/:4
+ft @ v2/:4
+initializeSocket @ v2/:4
+setAPIOrigin @ v2/:4
+updateSubmodules @ v2/:4
+setAuthToken @ v2/:4
+messageListener @ v2/:4
+v2/:4 Fetch finished loading: POST "https://api.puter.com/rao".
+request_rao_ @ v2/:4
+await in request_rao_
+setAuthToken @ v2/:4
+(anonymous) @ v2/:4
+v2/:4 XHR finished loading: GET "https://api.puter.com/whoami".
+(anonymous) @ v2/:4
+getUser @ v2/:4
+setAuthToken @ v2/:4
+(anonymous) @ v2/:4
+v2/:4 XHR finished loading: POST "https://api.puter.com/socket.io/?EIO=4&transport=polling&t=PjloFKu&sid=Ef6lQA5GGHJ3eqKBAb7h".
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doWrite @ v2/:4
+(anonymous) @ v2/:4
+(anonymous) @ v2/:4
+re @ v2/:4
+(anonymous) @ v2/:4
+(anonymous) @ v2/:4
+write @ v2/:4
+send @ v2/:4
+flush @ v2/:4
+sendPacket @ v2/:4
+write @ v2/:4
+_packet @ v2/:4
+packet @ v2/:4
+_sendConnectPacket @ v2/:4
+onopen @ v2/:4
+ye.emit @ v2/:4
+onopen @ v2/:4
+(anonymous) @ v2/:4
+ye.emit @ v2/:4
+onOpen @ v2/:4
+onHandshake @ v2/:4
+onPacket @ v2/:4
+ye.emit @ v2/:4
+onPacket @ v2/:4
+(anonymous) @ v2/:4
+onData @ v2/:4
+ye.emit @ v2/:4
+onLoad @ v2/:4
+s.onreadystatechange @ v2/:4
+XMLHttpRequest.send
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doPoll @ v2/:4
+poll @ v2/:4
+doOpen @ v2/:4
+open @ v2/:4
+open @ v2/:4
+Ke @ v2/:4
+open @ v2/:4
+dt @ v2/:4
+ft @ v2/:4
+initializeSocket @ v2/:4
+setAPIOrigin @ v2/:4
+updateSubmodules @ v2/:4
+setAuthToken @ v2/:4
+messageListener @ v2/:4
+v2/:4 XHR finished loading: GET "https://api.puter.com/socket.io/?EIO=4&transport=polling&t=PjloFKv&sid=Ef6lQA5GGHJ3eqKBAb7h".
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doPoll @ v2/:4
+poll @ v2/:4
+onData @ v2/:4
+ye.emit @ v2/:4
+onLoad @ v2/:4
+s.onreadystatechange @ v2/:4
+XMLHttpRequest.send
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doPoll @ v2/:4
+poll @ v2/:4
+doOpen @ v2/:4
+open @ v2/:4
+open @ v2/:4
+Ke @ v2/:4
+open @ v2/:4
+dt @ v2/:4
+ft @ v2/:4
+initializeSocket @ v2/:4
+setAPIOrigin @ v2/:4
+updateSubmodules @ v2/:4
+setAuthToken @ v2/:4
+messageListener @ v2/:4
+v2/:4 XHR finished loading: GET "https://api.puter.com/whoami".
+(anonymous) @ v2/:4
+getUser @ v2/:4
+setAuthToken @ v2/:4
+messageListener @ v2/:4
+v2/:4 XHR finished loading: GET "https://api.puter.com/socket.io/?EIO=4&transport=polling&t=PjloFLr&sid=Ef6lQA5GGHJ3eqKBAb7h".
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doPoll @ v2/:4
+poll @ v2/:4
+onData @ v2/:4
+ye.emit @ v2/:4
+onLoad @ v2/:4
+s.onreadystatechange @ v2/:4
+XMLHttpRequest.send
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doPoll @ v2/:4
+poll @ v2/:4
+onData @ v2/:4
+ye.emit @ v2/:4
+onLoad @ v2/:4
+s.onreadystatechange @ v2/:4
+XMLHttpRequest.send
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doPoll @ v2/:4
+poll @ v2/:4
+doOpen @ v2/:4
+open @ v2/:4
+open @ v2/:4
+Ke @ v2/:4
+open @ v2/:4
+dt @ v2/:4
+ft @ v2/:4
+initializeSocket @ v2/:4
+setAPIOrigin @ v2/:4
+updateSubmodules @ v2/:4
+setAuthToken @ v2/:4
+messageListener @ v2/:4
+v2/:4 Fetch finished loading: POST "https://api.puter.com/rao".
+request_rao_ @ v2/:4
+await in request_rao_
+setAuthToken @ v2/:4
+messageListener @ v2/:4
+v2/:4 XHR finished loading: POST "https://api.puter.com/drivers/call".
+z @ v2/:4
+(anonymous) @ v2/:4
+(anonymous) @ v2/:4
+get @ v2/:4
+create @ v2/:4
+await in create
+(anonymous) @ VM192:1
+v2/:4 XHR finished loading: GET "https://api.puter.com/socket.io/?EIO=4&transport=polling&t=PjloFMn&sid=Ef6lQA5GGHJ3eqKBAb7h".
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doPoll @ v2/:4
+poll @ v2/:4
+onData @ v2/:4
+ye.emit @ v2/:4
+onLoad @ v2/:4
+s.onreadystatechange @ v2/:4
+XMLHttpRequest.send
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doPoll @ v2/:4
+poll @ v2/:4
+onData @ v2/:4
+ye.emit @ v2/:4
+onLoad @ v2/:4
+s.onreadystatechange @ v2/:4
+XMLHttpRequest.send
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doPoll @ v2/:4
+poll @ v2/:4
+onData @ v2/:4
+ye.emit @ v2/:4
+onLoad @ v2/:4
+s.onreadystatechange @ v2/:4
+XMLHttpRequest.send
+create @ v2/:4
+Me @ v2/:4
+request @ v2/:4
+doPoll @ v2/:4
+poll @ v2/:4
+doOpen @ v2/:4
+open @ v2/:4
+open @ v2/:4
+Ke @ v2/:4
+open @ v2/:4
+dt @ v2/:4
+ft @ v2/:4
+initializeSocket @ v2/:4
+setAPIOrigin @ v2/:4
+updateSubmodules @ v2/:4
+setAuthToken @ v2/:4
+messageListener @ v2/:4
+v2/:5 Uncaught Error: [object Object]
+    at gs.create (v2/:4:222201)
+    at async <anonymous>:1:1
+create @ v2/:4
+await in create
+(anonymous) @ VM192:1
+v2/:4 XHR finished loading: POST "https://api.puter.com/drivers/call".
+z @ v2/:4
+(anonymous) @ v2/:4
+(anonymous) @ v2/:4
+create @ v2/:4
+await in create
+(anonymous) @ VM192:1

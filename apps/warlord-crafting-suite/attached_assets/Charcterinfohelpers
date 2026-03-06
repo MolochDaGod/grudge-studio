@@ -1,0 +1,66 @@
+
+import { useState, useMemo, useEffect } from "react";
+import { useLocation } from "wouter";
+import { RACES, CLASSES, ATTRIBUTES, FACTION_COLORS, AttributeKey, RaceDef, ClassDef } from "@/lib/gameData";
+import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
+import { ChevronRight, ChevronLeft, Sword, Check, Sparkles, Trash2, User, Shield, Play, Pause, RefreshCw, Zap, Settings, ImagePlus, Loader2, Backpack, BookOpen, Hammer, Sliders } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { characterAPI } from "@/lib/api";
+import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from "recharts";
+const bgTexture = "/assets/backgrounds/character-bg.png";
+import Layout from "@/components/Layout";
+import { CharacterManager, Character, EquipmentSlots } from "@/lib/characterManager";
+import { ITEMS, resolveItemImage } from "@/lib/grudaDB";
+import SpriteAnimator, { SpriteAction } from "@/components/SpriteAnimator";
+import PlayerStatusBars from "@/components/PlayerStatusBars";
+import { CombatUnitStatus } from "@/components/CombatUnitStatus";
+import { InventorySlot } from "@/components/SpriteIcon";
+import { calculateDerivedStats } from "@shared/statCalculator";
+import AdminContextMenu from "@/components/AdminContextMenu";
+import { AttributeAllocation } from "@/components/AttributeAllocation";
+
+export default function CharacterBuilder() {
+  const [, setLocation] = useLocation();
+  // If we have characters, default to "roster" view unless creating new
+  const [viewMode, setViewMode] = useState<"create" | "roster">("roster");
+  const [characters, setCharacters] = useState<Character[]>([]);
+  const [activeCharacter, setActiveCharacter] = useState<Character | null>(null);
+
+  // Animation State
+  const [currentAction, setCurrentAction] = useState<SpriteAction>("Idle");
+
+  // Character Sheet Tab
+  const [activeTab, setActiveTab] = useState<"attributes" | "allocate" | "equipment" | "profession" | "skills">("attributes");
+
+  // Admin Mode
+  const [adminMode, setAdminMode] = useState(false);
+  const [regeneratingAvatar, setRegeneratingAvatar] = useState<string | null>(null);
+
+  // Character Creation Loading State
+  const [isCreatingCharacter, setIsCreatingCharacter] = useState(false);
+  const [creationStatus, setCreationStatus] = useState<string>("");
+
+  // Creation State
+  const [step, setStep] = useState<"race" | "class" | "attributes" | "summary">("race");
+  const [charName, setCharName] = useState("");
+  const [selectedRace, setSelectedRace] = useState<RaceDef | null>(null);
+  const [selectedClass, setSelectedClass] = useState<ClassDef | null>(null);
+  const [manualAttributes, setManualAttributes] = useState<Record<AttributeKey, number>>({
+    Strength: 0, Intellect: 0, Vitality: 0, Dexterity: 0, 
+    Endurance: 0, Wisdom: 0, Agility: 0, Tactics: 0
+  });
+
+  const [selectedClassId, setSelectedClassId] = useState<string | null>(null);
+
+  // Load characters on mount
+  useEffect(() => {
+    const loadCharacters = async () => {
+      const chars = await CharacterManager.getAll();
+      setCharacters(chars);
+
+      const active = await CharacterManager.getActiveCharacter();
+      if (active) {
+        setActiveCharacter(active);

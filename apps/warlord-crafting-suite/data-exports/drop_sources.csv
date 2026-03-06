@@ -1,0 +1,94 @@
+SourceID,Name,Category,GameMode,MinHeroLevel,ProfessionRequired,ProfessionLevelMin,DropTierMax,GuaranteedDrops,Notes
+bandit-camp,Bandit Camp,Zone,PvE,1,,,2,"copper-ore,raw-hide",Early game enemy camp
+goblin-cave,Goblin Cave,Dungeon,PvE,1,,,2,"junk-ore,cloth-scraps",Starter dungeon
+forest-clearing,Forest Clearing,Zone,PvE,1,,,1,"pine-log,herbs",Safe gathering area
+copper-vein,Copper Vein,Node,Gathering,1,Miner,1,1,copper-ore,Miner gathering node
+pine-tree,Pine Tree,Node,Gathering,1,Forester,1,1,pine-log,Forester gathering node
+flax-field,Flax Field,Node,Gathering,1,Mystic,1,1,linen-thread,Mystic gathering node
+fishing-spot,Fishing Spot,Node,Gathering,1,Chef,1,1,raw-fish,Chef gathering node
+scrap-pile,Scrap Pile,Node,Gathering,1,Engineer,1,0,scrap-metal,Engineer gathering node
+orc-encampment,Orc Encampment,Zone,PvE,3,,,3,"iron-ore,thick-hide",Mid-early zone
+haunted-ruins,Haunted Ruins,Dungeon,PvE,5,,,3,"iron-ingot,wool-cloth",Spooky dungeon
+iron-vein,Iron Vein,Node,Gathering,1,Miner,10,2,iron-ore,Requires Miner 10
+oak-tree,Oak Tree,Node,Gathering,1,Forester,10,2,oak-log,Requires Forester 10
+sheep-farm,Sheep Farm,Node,Gathering,1,Mystic,10,2,wool-thread,Requires Mystic 10
+river-fishing,River Fishing,Node,Gathering,1,Chef,10,2,salmon,Requires Chef 10
+military-cache,Military Cache,Node,Gathering,1,Engineer,10,2,refined-gunpowder,Requires Engineer 10
+desert-oasis,Desert Oasis,Zone,PvE,6,,,4,"steel-ore,cotton-thread",Desert region
+sand-temple,Sand Temple,Dungeon,PvE,8,,,4,"steel-ingot,silk-thread",Desert dungeon
+steel-deposit,Steel Deposit,Node,Gathering,1,Miner,20,3,steel-ore,Requires Miner 20
+maple-tree,Maple Tree,Node,Gathering,1,Forester,20,3,maple-log,Requires Forester 20
+cotton-field,Cotton Field,Node,Gathering,1,Mystic,20,3,cotton-thread,Requires Mystic 20
+exotic-garden,Exotic Garden,Node,Gathering,1,Chef,20,3,rare-herbs,Requires Chef 20
+engineer-workshop,Engineer Workshop,Node,Gathering,1,Engineer,20,3,black-powder,Requires Engineer 20
+noble-quarter,Noble Quarter,Zone,PvE,10,,,4,"mithril-ore,silk-cloth",Noble city area
+ghost-castle,Ghost Castle,Dungeon,PvE,12,,,5,"mithril-ingot,moonweave-thread",Haunted castle
+mithril-vein,Mithril Vein,Node,Gathering,1,Miner,30,4,mithril-ore,Requires Miner 30
+ash-tree,Ash Tree,Node,Gathering,1,Forester,30,4,ash-log,Requires Forester 30
+silk-farm,Silk Farm,Node,Gathering,1,Mystic,30,4,silk-thread,Requires Mystic 30
+exotic-jungle,Exotic Jungle,Node,Gathering,1,Chef,30,4,exotic-herbs,Requires Chef 30
+tech-lab,Tech Lab,Node,Gathering,1,Engineer,30,4,circuit,Requires Engineer 30
+eastern-shrine,Eastern Shrine,Zone,PvE,14,,,5,"adamantine-ore,moonweave-cloth",Eastern lands
+shadow-dojo,Shadow Dojo,Dungeon,PvE,16,,,6,"adamantine-ingot,starweave-thread",Ninja dungeon
+adamantine-deposit,Adamantine Deposit,Node,Gathering,1,Miner,40,5,adamantine-ore,Requires Miner 40
+ironwood-tree,Ironwood Tree,Node,Gathering,1,Forester,40,5,ironwood-log,Requires Forester 40
+moon-garden,Moon Garden,Node,Gathering,1,Mystic,40,5,moonweave-thread,Requires Mystic 40
+divine-orchard,Divine Orchard,Node,Gathering,1,Chef,40,5,divine-fruit,Requires Chef 40
+mech-factory,Mech Factory,Node,Gathering,1,Engineer,40,5,precision-gear,Requires Engineer 40
+soul-forge,Soul Forge,Zone,PvE,18,,,6,"orichalcum-ore,starweave-cloth",Soul realm
+lich-tower,Lich Tower,Raid,PvE,20,,,7,"orichalcum-ingot,voidweave-thread",Raid dungeon
+orichalcum-seam,Orichalcum Seam,Node,Gathering,1,Miner,50,6,orichalcum-ore,Requires Miner 50
+ebony-tree,Ebony Tree,Node,Gathering,1,Forester,50,6,ebony-log,Requires Forester 50
+star-garden,Star Garden,Node,Gathering,1,Mystic,50,6,starweave-thread,Requires Mystic 50
+celestial-garden,Celestial Garden,Node,Gathering,1,Chef,50,6,divine-herbs,Requires Chef 50
+arcane-vault,Arcane Vault,Node,Gathering,1,Engineer,50,6,arcane-powder,Requires Engineer 50
+astral-plane,Astral Plane,Zone,PvE,20,,,7,"starmetal-ore,voidweave-cloth",Endgame zone
+celestial-temple,Celestial Temple,Raid,PvE,20,,,8,"starmetal-ingot,divine-thread",Raid dungeon
+meteor-crater,Meteor Crater,Node,Gathering,1,Miner,60,7,starmetal-ore,Requires Miner 60
+wyrmwood-grove,Wyrmwood Grove,Node,Gathering,1,Forester,60,7,wyrmwood-log,Requires Forester 60
+void-garden,Void Garden,Node,Gathering,1,Mystic,60,7,voidweave-thread,Requires Mystic 60
+holy-kitchen,Holy Kitchen,Node,Gathering,1,Chef,60,7,divine-herbs,Requires Chef 60
+void-lab,Void Lab,Node,Gathering,1,Engineer,60,7,void-powder,Requires Engineer 60
+divine-arena,Divine Arena,Zone,PvE,20,,,8,"divine-ore,divine-cloth",Divine realm
+holy-sanctum,Holy Sanctum,Raid,PvE,20,,,8,"divine-ingot,divine-thread",Divine raid
+divine-quarry,Divine Quarry,Node,Gathering,1,Miner,70,8,divine-ore,Requires Miner 70
+yggdrasil-root,Yggdrasil Root,Node,Gathering,1,Forester,70,8,worldtree-log,Requires Forester 70
+divine-loom,Divine Loom,Node,Gathering,1,Mystic,70,8,divine-thread,Requires Mystic 70
+gods-kitchen,God's Kitchen,Node,Gathering,1,Chef,70,8,divine-herbs,Requires Chef 70
+divine-armory,Divine Armory,Node,Gathering,1,Engineer,70,8,divine-powder,Requires Engineer 70
+world-boss-fire,Fire Elemental Lord,WorldBoss,PvE,15,,,6,fire-essence,Weekly world boss
+world-boss-water,Water Elemental Lord,WorldBoss,PvE,15,,,6,water-essence,Weekly world boss
+world-boss-earth,Earth Elemental Lord,WorldBoss,PvE,15,,,6,earth-essence,Weekly world boss
+world-boss-air,Air Elemental Lord,WorldBoss,PvE,15,,,6,air-essence,Weekly world boss
+world-boss-dragon,Ancient Dragon,WorldBoss,PvE,18,,,7,dragon-sinew,Weekly world boss
+world-boss-phoenix,Phoenix Lord,WorldBoss,PvE,18,,,7,phoenix-feathers,Weekly world boss
+world-boss-titan,Titan King,WorldBoss,PvE,20,,,8,divine-essence,Monthly world boss
+arena-bronze,Bronze Arena,Arena,PvP,5,,,2,,PvP rewards
+arena-silver,Silver Arena,Arena,PvP,10,,,3,,PvP rewards
+arena-gold,Gold Arena,Arena,PvP,15,,,4,,PvP rewards
+arena-platinum,Platinum Arena,Arena,PvP,18,,,5,,PvP rewards
+arena-diamond,Diamond Arena,Arena,PvP,20,,,6,,PvP rewards
+arena-legendary,Legendary Arena,Arena,PvP,20,,,7,,Top tier PvP
+quest-starter,Starter Quests,Quest,Story,1,,,1,,Main story quests
+quest-chapter1,Chapter 1 Quests,Quest,Story,5,,,2,,Story progression
+quest-chapter2,Chapter 2 Quests,Quest,Story,10,,,3,,Story progression
+quest-chapter3,Chapter 3 Quests,Quest,Story,15,,,4,,Story progression
+quest-chapter4,Chapter 4 Quests,Quest,Story,18,,,5,,Story progression
+quest-endgame,Endgame Quests,Quest,Story,20,,,6,,Final story
+daily-gathering,Daily Gathering,Daily,Daily,1,,,3,,Daily bonus drops
+daily-combat,Daily Combat,Daily,Daily,1,,,3,,Daily bonus drops
+weekly-dungeon,Weekly Dungeon,Weekly,Weekly,10,,,5,,Weekly bonus chest
+weekly-raid,Weekly Raid,Weekly,Weekly,20,,,7,,Weekly raid chest
+event-seasonal,Seasonal Event,Event,Limited,1,,,5,,Limited time event
+event-holiday,Holiday Event,Event,Limited,1,,,4,,Holiday special
+merchant-traveling,Traveling Merchant,Purchase,Shop,1,,,4,varies,100% for purchase
+merchant-guild,Guild Merchant,Purchase,Shop,1,,,5,varies,100% for purchase
+merchant-black,Black Market,Purchase,Shop,15,,,6,varies,Rare items for gold
+treasure-common,Common Chest,Chest,Loot,1,,,2,,Found in world
+treasure-uncommon,Uncommon Chest,Chest,Loot,5,,,3,,Found in dungeons
+treasure-rare,Rare Chest,Chest,Loot,10,,,4,,Hidden chests
+treasure-epic,Epic Chest,Chest,Loot,15,,,5,,Boss room chests
+treasure-legendary,Legendary Chest,Chest,Loot,18,,,6,,Rare spawn chests
+treasure-mythic,Mythic Chest,Chest,Loot,20,,,7,,End dungeon chests
+treasure-divine,Divine Chest,Chest,Loot,20,,,8,,Divine realm only
+dismantle-workbench,Dismantle Workbench,Crafting,Dismantle,1,,,8,,Destroy items for recipes

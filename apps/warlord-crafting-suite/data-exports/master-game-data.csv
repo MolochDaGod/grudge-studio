@@ -1,0 +1,103 @@
+ID,Name,Type,Category,SubCategory,Tier,Profession,Acquisition,Cost,Description,SpritePath,Status
+WEAPONS - T0 Starter
+t0-sword-rusty,Rusty Sword,Weapon,Sword,1h,0,Miner,starter,0,A worn blade barely sharp enough to cut bread,/2dassets/sprites/sword/rusty-sword.png,complete
+t0-axe-chipped,Chipped Axe,Weapon,Axe,1h,0,Miner,starter,0,A woodcutter's axe past its prime,/2dassets/sprites/axe/chipped-axe.png,complete
+t0-dagger-blunt,Blunt Dagger,Weapon,Dagger,1h,0,Miner,starter,0,More of a butter knife than a weapon,/2dassets/sprites/dagger/blunt-dagger.png,complete
+t0-hammer-worn,Worn Hammer,Weapon,Hammer,1h,0,Miner,starter,0,An old blacksmith's hammer,/2dassets/sprites/hammer/worn-hammer.png,complete
+t0-bow-simple,Simple Bow,Weapon,Bow,2h,0,Forester,starter,0,A hunting bow made from bent wood,/2dassets/sprites/bow/simple-bow.png,complete
+t0-crossbow-makeshift,Makeshift Crossbow,Weapon,Crossbow,2h,0,Engineer,starter,0,A crude crossbow held together with rope,/2dassets/sprites/crossbow/makeshift-crossbow.png,complete
+t0-gun-flintlock,Old Flintlock,Weapon,Gun,2h,0,Engineer,starter,0,An antique firearm,/2dassets/sprites/gun/old-flintlock.png,complete
+t0-staff-apprentice,Apprentice Staff,Weapon,Staff,2h,0,Mystic,starter,0,A novice mage's channeling focus,/2dassets/sprites/staff/apprentice-staff.png,complete
+t0-tome-tattered,Tattered Tome,Weapon,Tome,Offhand,0,Mystic,starter,0,Pages are missing but some spells remain,/2dassets/sprites/tome/tattered-tome.png,complete
+t0-greatsword-heavy,Heavy Iron Blade,Weapon,Greatsword,2h,0,Miner,starter,0,Unwieldy but packs a punch,/2dassets/sprites/greatsword/heavy-iron-blade.png,complete
+t0-greataxe-lumber,Lumber Axe,Weapon,Greataxe,2h,0,Forester,starter,0,Better suited for trees than enemies,/2dassets/sprites/greataxe/lumber-axe.png,complete
+t0-hammer2h-sledge,Mining Sledge,Weapon,Hammer2h,2h,0,Miner,starter,0,A miner's sledgehammer,/2dassets/sprites/hammer/mining-sledge.png,complete
+WEAPONS - T1 Crafted
+t1-sword-bloodfeud,Bloodfeud Blade,Weapon,Sword,1h,1,Miner,skillTree,0,Forged in endless clan blood feuds,/2dassets/sprites/sword/bloodfeud-blade.png,complete
+t1-sword-wraithfang,Wraithfang,Weapon,Sword,1h,1,Miner,purchasable,500,Whispers forgotten grudges,/2dassets/sprites/sword/wraithfang.png,complete
+t1-axe-gorehowl,Gorehowl,Weapon,Axe,1h,1,Miner,skillTree,0,Howls with the gore of fallen foes,/2dassets/sprites/axe/gorehowl.png,complete
+t1-bow-wraithbone,Wraithbone Bow,Weapon,Bow,2h,1,Forester,purchasable,500,Carved from bones of wraiths,/2dassets/sprites/bow/wraithbone-bow.png,complete
+t1-dagger-nightfang,Nightfang,Weapon,Dagger,1h,1,Miner,purchasable,500,Fang of endless night grudges,/2dassets/sprites/dagger/nightfang.png,complete
+t1-staff-fire-emberwrath,Emberwrath Staff,Weapon,Fire Staff,2h,1,Mystic,purchasable,500,Wrath of endless burning grudges,/2dassets/sprites/staff/emberwrath-staff.png,pending
+t1-staff-frost-glacial,Glacial Spire Staff,Weapon,Frost Staff,2h,1,Mystic,purchasable,500,Spire of glacial eternal grudges,/2dassets/sprites/staff/glacial-spire-staff.png,pending
+t1-crossbow-ironveil,Ironveil Repeater,Weapon,Crossbow,2h,1,Engineer,purchasable,500,Rapid fire from iron veils,/2dassets/sprites/crossbow/ironveil-repeater.png,pending
+t1-gun-blackpowder,Blackpowder Blaster,Weapon,Gun,2h,1,Engineer,purchasable,500,Blasts with ancient blackpowder grudges,/2dassets/sprites/gun/blackpowder-blaster.png,pending
+MATERIALS - Ores (T1-T8)
+copper-ore,Copper Ore,Material,Ore,Raw,1,Miner,gatherable,50,Basic ore for beginner smithing,/2dassets/sprites/ore/copper-ore.png,complete
+iron-ore,Iron Ore,Material,Ore,Raw,2,Miner,gatherable,100,Common ore for reliable weapons,/2dassets/sprites/ore/iron-ore.png,complete
+steel-ore,Steel Ore,Material,Ore,Raw,3,Miner,gatherable,200,Refined ore for quality gear,/2dassets/sprites/ore/steel-ore.png,complete
+mithril-ore,Mithril Ore,Material,Ore,Raw,4,Miner,gatherable,400,Rare lightweight metal,/2dassets/sprites/ore/mithril-ore.png,complete
+adamantine-ore,Adamantine Ore,Material,Ore,Raw,5,Miner,gatherable,800,Nearly indestructible ore,/2dassets/sprites/ore/adamantine-ore.png,complete
+orichalcum-ore,Orichalcum Ore,Material,Ore,Raw,6,Miner,gatherable,1600,Legendary mythical metal,/2dassets/sprites/ore/orichalcum-ore.png,complete
+starmetal-ore,Starmetal Ore,Material,Ore,Raw,7,Miner,gatherable,3200,Fallen from the heavens,/2dassets/sprites/ore/starmetal-ore.png,complete
+divine-ore,Divine Ore,Material,Ore,Raw,8,Miner,gatherable,6400,Ore blessed by the gods,/2dassets/sprites/ore/divine-ore.png,complete
+MATERIALS - Ingots (T1-T8)
+copper-ingot,Copper Ingot,Material,Component,Refined,1,Miner,craftable,100,Smelted copper bar,/2dassets/sprites/component/copper-ingot.png,complete
+iron-ingot,Iron Ingot,Material,Component,Refined,2,Miner,craftable,200,Smelted iron bar,/2dassets/sprites/component/iron-ingot.png,complete
+steel-ingot,Steel Ingot,Material,Component,Refined,3,Miner,craftable,400,Refined steel bar,/2dassets/sprites/component/steel-ingot.png,complete
+mithril-ingot,Mithril Ingot,Material,Component,Refined,4,Miner,craftable,800,Lightweight mithril bar,/2dassets/sprites/component/mithril-ingot.png,complete
+adamantine-ingot,Adamantine Ingot,Material,Component,Refined,5,Miner,craftable,1600,Indestructible bar,/2dassets/sprites/component/adamantine-ingot.png,complete
+orichalcum-ingot,Orichalcum Ingot,Material,Component,Refined,6,Miner,craftable,3200,Mythical metal bar,/2dassets/sprites/component/orichalcum-ingot.png,complete
+starmetal-ingot,Starmetal Ingot,Material,Component,Refined,7,Miner,craftable,6400,Celestial metal bar,/2dassets/sprites/component/starmetal-ingot.png,complete
+divine-ingot,Divine Ingot,Material,Component,Refined,8,Miner,craftable,12800,Godly metal bar,/2dassets/sprites/component/divine-ingot.png,complete
+MATERIALS - Wood (T1-T8)
+pine-log,Pine Log,Material,Wood,Raw,1,Forester,gatherable,50,Common softwood,/2dassets/sprites/wood/pine-log.png,complete
+oak-log,Oak Log,Material,Wood,Raw,2,Forester,gatherable,100,Sturdy hardwood,/2dassets/sprites/wood/oak-log.png,complete
+maple-log,Maple Log,Material,Wood,Raw,3,Forester,gatherable,200,Flexible quality wood,/2dassets/sprites/wood/maple-log.png,complete
+ash-log,Ash Log,Material,Wood,Raw,4,Forester,gatherable,400,Strong and resilient,/2dassets/sprites/wood/ash-log.png,complete
+ironwood-log,Ironwood Log,Material,Wood,Raw,5,Forester,gatherable,800,Hardwood with metal properties,/2dassets/sprites/wood/ironwood-log.png,complete
+ebony-log,Ebony Log,Material,Wood,Raw,6,Forester,gatherable,1600,Dark legendary timber,/2dassets/sprites/wood/ebony-log.png,complete
+wyrmwood-log,Wyrmwood Log,Material,Wood,Raw,7,Forester,gatherable,3200,Dragon-touched lumber,/2dassets/sprites/wood/wyrmwood-log.png,complete
+worldtree-log,Worldtree Log,Material,Wood,Raw,8,Forester,gatherable,6400,Sacred wood from Yggdrasil,/2dassets/sprites/wood/worldtree-log.png,complete
+MATERIALS - Planks (T1-T8)
+pine-plank,Pine Plank,Material,Plank,Refined,1,Forester,craftable,100,Processed pine wood,/2dassets/sprites/plank/pine-plank.png,complete
+oak-plank,Oak Plank,Material,Plank,Refined,2,Forester,craftable,200,Sturdy oak boards,/2dassets/sprites/plank/oak-plank.png,complete
+maple-plank,Maple Plank,Material,Plank,Refined,3,Forester,craftable,400,Quality maple boards,/2dassets/sprites/plank/maple-plank.png,pending
+ash-plank,Ash Plank,Material,Plank,Refined,4,Forester,craftable,800,Resilient ash boards,/2dassets/sprites/plank/ash-plank.png,pending
+ironwood-plank,Ironwood Plank,Material,Plank,Refined,5,Forester,craftable,1600,Metal-hard planks,/2dassets/sprites/plank/ironwood-plank.png,pending
+ebony-plank,Ebony Plank,Material,Plank,Refined,6,Forester,craftable,3200,Dark legendary planks,/2dassets/sprites/plank/ebony-plank.png,pending
+wyrmwood-plank,Wyrmwood Plank,Material,Plank,Refined,7,Forester,craftable,6400,Dragon-touched planks,/2dassets/sprites/plank/wyrmwood-plank.png,pending
+worldtree-plank,Worldtree Plank,Material,Plank,Refined,8,Forester,craftable,12800,Sacred world planks,/2dassets/sprites/plank/worldtree-plank.png,pending
+MATERIALS - Essence (T1-T8)
+minor-essence,Minor Essence,Material,Essence,Raw,1,Mystic,gatherable,50,Faint magical power,/2dassets/sprites/essence/minor-essence.png,complete
+lesser-essence,Lesser Essence,Material,Essence,Raw,2,Mystic,gatherable,100,Weak magical energy,/2dassets/sprites/essence/lesser-essence.png,complete
+greater-essence,Greater Essence,Material,Essence,Raw,3,Mystic,gatherable,200,Moderate magic power,/2dassets/sprites/essence/greater-essence.png,complete
+superior-essence,Superior Essence,Material,Essence,Raw,4,Mystic,gatherable,400,Strong magical force,/2dassets/sprites/essence/superior-essence.png,complete
+refined-essence,Refined Essence,Material,Essence,Raw,5,Mystic,gatherable,800,Purified magic,/2dassets/sprites/essence/refined-essence.png,complete
+perfect-essence,Perfect Essence,Material,Essence,Raw,6,Mystic,gatherable,1600,Flawless magical power,/2dassets/sprites/essence/perfect-essence.png,complete
+ancient-essence,Ancient Essence,Material,Essence,Raw,7,Mystic,gatherable,3200,Primordial magic,/2dassets/sprites/essence/ancient-essence.png,complete
+divine-essence,Divine Essence,Material,Essence,Raw,8,Mystic,gatherable,6400,Godly magic power,/2dassets/sprites/essence/divine-essence.png,complete
+MATERIALS - Gems (T1-T8)
+rough-gem,Rough Gem,Material,Gem,Raw,1,Miner,gatherable,50,Uncut common stone,/2dassets/sprites/gem/rough-gem.png,complete
+flawed-gem,Flawed Gem,Material,Gem,Raw,2,Miner,gatherable,100,Imperfect gemstone,/2dassets/sprites/gem/flawed-gem.png,complete
+standard-gem,Standard Gem,Material,Gem,Raw,3,Miner,gatherable,200,Common quality gem,/2dassets/sprites/gem/standard-gem.png,complete
+fine-gem,Fine Gem,Material,Gem,Raw,4,Miner,gatherable,400,Quality gemstone,/2dassets/sprites/gem/fine-gem.png,complete
+pristine-gem,Pristine Gem,Material,Gem,Raw,5,Miner,gatherable,800,Near-perfect gem,/2dassets/sprites/gem/pristine-gem.png,complete
+flawless-gem,Flawless Gem,Material,Gem,Raw,6,Miner,gatherable,1600,Perfect gemstone,/2dassets/sprites/gem/flawless-gem.png,complete
+radiant-gem,Radiant Gem,Material,Gem,Raw,7,Miner,gatherable,3200,Glowing magical gem,/2dassets/sprites/gem/radiant-gem.png,complete
+divine-gem,Divine Gem,Material,Gem,Raw,8,Miner,gatherable,6400,Godly gemstone,/2dassets/sprites/gem/divine-gem.png,complete
+MATERIALS - Leather (T1-T8)
+rawhide,Rawhide,Material,Leather,Raw,1,Forester,gatherable,50,Untanned animal hide,/2dassets/sprites/leather/rawhide.png,complete
+thick-hide,Thick Hide,Material,Leather,Raw,2,Forester,gatherable,100,Sturdy animal hide,/2dassets/sprites/leather/thick-hide.png,complete
+rugged-leather,Rugged Leather,Material,Leather,Refined,3,Forester,craftable,200,Tanned quality hide,/2dassets/sprites/leather/rugged-leather.png,complete
+hardened-leather,Hardened Leather,Material,Leather,Refined,4,Forester,craftable,400,Reinforced leather,/2dassets/sprites/leather/hardened-leather.png,complete
+wyrm-leather,Wyrm Leather,Material,Leather,Refined,5,Forester,craftable,800,Dragon scale leather,/2dassets/sprites/leather/wyrm-leather.png,pending
+infernal-leather,Infernal Leather,Material,Leather,Refined,6,Forester,craftable,1600,Demon hide leather,/2dassets/sprites/leather/infernal-leather.png,pending
+titan-leather,Titan Leather,Material,Leather,Refined,7,Forester,craftable,3200,Giant skin leather,/2dassets/sprites/leather/titan-leather.png,pending
+divine-leather,Divine Leather,Material,Leather,Refined,8,Forester,craftable,6400,Godly leather,/2dassets/sprites/leather/divine-leather.png,pending
+MATERIALS - Ingredients (Chef)
+salt,Salt,Material,Ingredient,Raw,1,Chef,gatherable,25,Cooking essential,/2dassets/sprites/ingredient/salt.png,complete
+spice,Spice,Material,Ingredient,Raw,2,Chef,gatherable,50,Flavor enhancer,/2dassets/sprites/ingredient/spice.png,complete
+herb,Herb,Material,Ingredient,Raw,1,Chef,gatherable,25,Healing plant,/2dassets/sprites/ingredient/herb.png,complete
+mushroom,Mushroom,Material,Ingredient,Raw,2,Chef,gatherable,50,Forest fungus,/2dassets/sprites/ingredient/mushroom.png,complete
+raw-meat,Raw Meat,Material,Ingredient,Raw,1,Chef,gatherable,30,Common animal protein,/2dassets/sprites/ingredient/raw-meat.png,complete
+raw-fish,Raw Fish,Material,Ingredient,Raw,1,Chef,gatherable,30,Common fresh catch,/2dassets/sprites/ingredient/raw-fish.png,complete
+MATERIALS - Components (Engineer)
+coal,Coal,Material,Component,Raw,1,Miner,gatherable,25,Fuel for smelting,/2dassets/sprites/component/coal.png,complete
+flux,Flux,Material,Component,Raw,2,Miner,gatherable,50,Smelting additive,/2dassets/sprites/component/flux.png,pending
+string,String,Material,Component,Refined,1,Forester,craftable,25,Plant fiber string,/2dassets/sprites/component/string.png,pending
+bowstring,Bowstring,Material,Component,Refined,2,Forester,craftable,75,Reinforced string,/2dassets/sprites/component/bowstring.png,pending
+gunpowder,Gunpowder,Material,Component,Refined,3,Engineer,craftable,200,Explosive powder,/2dassets/sprites/component/gunpowder.png,complete
+circuit,Circuit,Material,Component,Refined,4,Engineer,craftable,400,Electrical component,/2dassets/sprites/component/circuit.png,pending
+lens,Lens,Material,Component,Refined,3,Engineer,craftable,200,Optical glass,/2dassets/sprites/component/lens.png,pending
+spring,Spring,Material,Component,Refined,2,Engineer,craftable,100,Coiled metal,/2dassets/sprites/component/spring.png,pending

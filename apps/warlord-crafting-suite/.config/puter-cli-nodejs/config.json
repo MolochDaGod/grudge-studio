@@ -1,0 +1,14 @@
+{
+	"profiles": [
+		{
+			"host": "https://puter.com",
+			"username": "GRUDACHAIN",
+			"cwd": "/GRUDACHAIN",
+			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0IjoicyIsInYiOiIwLjAuMCIsInUiOiJqem85UGhKYlRtU0lvQ0VDRzFBdWhBPT0iLCJ1dSI6InJobTkycTlUUkNHRGo4cFpXTDVqc0E9PSIsImlhdCI6MTc2NzA4NTA2MX0.WFxBCKIUi-1wpdkocJQ9HtPZT9iZE3s5dwCtoZeGJCo",
+			"uuid": "3d77a8b5-eeaf-4d9f-8177-963acd1888bf"
+		}
+	],
+	"selected_profile": "3d77a8b5-eeaf-4d9f-8177-963acd1888bf",
+	"username": "GRUDACHAIN",
+	"cwd": "/GRUDACHAIN"
+}

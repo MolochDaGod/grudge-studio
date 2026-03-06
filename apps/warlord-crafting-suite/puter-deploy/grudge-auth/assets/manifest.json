@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0",
+  "name": "GRUDGE Auth Assets",
+  "description": "3D models, textures, and assets for GRUDGE Warlords authentication portal",
+  "categories": {
+    "3d-models": {
+      "path": "models/",
+      "formats": ["glb", "gltf", "fbx"],
+      "items": []
+    },
+    "textures": {
+      "path": "textures/",
+      "formats": ["png", "jpg", "webp"],
+      "items": []
+    },
+    "sprites": {
+      "path": "sprites/",
+      "formats": ["png", "svg"],
+      "items": []
+    },
+    "audio": {
+      "path": "audio/",
+      "formats": ["mp3", "ogg", "wav"],
+      "items": []
+    },
+    "ui": {
+      "path": "ui/",
+      "formats": ["png", "svg"],
+      "items": []
+    }
+  },
+  "cloudSync": {
+    "enabled": true,
+    "kvPrefix": "grudge_asset_",
+    "autoUpload": true
+  },
+  "lastUpdated": "2026-01-02T00:00:00.000Z"
+}

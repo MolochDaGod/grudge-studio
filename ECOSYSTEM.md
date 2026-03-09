@@ -107,6 +107,7 @@ The only deployed backend with a database.
 | DiGrudge | puter.com/app/DiGrudge | Card/battle mode |
 | Nexus-3 | puter.com/app/nexus-3 | Multiplayer hub |
 | Game Editor | puter.com/app/Grudge-Game-Editor | Studio app (needs URL fix) |
+| Grudge GRUDA | puter.com/app/grudgegruda | GRUDA game app |
 
 ## Vercel Deployments
 

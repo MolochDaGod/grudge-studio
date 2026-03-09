@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Grudge Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=Spectral+SC:wght@400;500;600;700&family=IM+Fell+English+SC&family=MedievalSharp&family=Uncial+Antiqua&display=swap" rel="stylesheet">
   <script src="https://js.puter.com/v2/"></script>
+  <script src="https://auth-gateway-flax.vercel.app/grudge-auth-sdk.js"></script>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
   <link rel="stylesheet" href="css/studio.css">
 </head>
@@ -19,6 +21,13 @@
       <p class="login-subtitle">Game Development Platform</p>
       <button id="loginBtn" class="login-btn">
         <span>Sign in with Puter</span>
+      </button>
+      <div style="text-align:center;margin:12px 0 8px;color:var(--muted,#9ca3af);font-size:0.8rem;">— or —</div>
+      <button id="grudgeLoginBtn" class="login-btn" style="background:linear-gradient(180deg,hsl(43 70% 45%),hsl(35 60% 28%));color:hsl(225 30% 10%);border-color:hsl(43 50% 50%);">
+        <span>Sign in with Grudge ID</span>
+      </button>
+      <button id="guestBtn" class="login-btn" style="background:linear-gradient(180deg,hsl(160 50% 35%),hsl(160 45% 26%));color:hsl(160 90% 90%);border-color:hsl(160 40% 40%);">
+        <span>Play as Guest</span>
       </button>
       <div class="login-features">
         <div>✦ 3D Scene Editor</div>
@@ -51,9 +60,11 @@
           <button class="nav-btn active" data-view="dashboard"><span class="nav-icon">📊</span><span class="nav-label">Dashboard</span></button>
           <button class="nav-btn" data-view="editor3d"><span class="nav-icon">🎮</span><span class="nav-label">3D Editor</span></button>
           <button class="nav-btn" data-view="agents"><span class="nav-icon">🤖</span><span class="nav-label">AI Agents</span></button>
+          <button class="nav-btn" data-view="characters"><span class="nav-icon">🛡️</span><span class="nav-label">Characters</span></button>
+          <button class="nav-btn" data-view="saves"><span class="nav-icon">📜</span><span class="nav-label">Saves</span></button>
           <button class="nav-btn" data-view="assets"><span class="nav-icon">🗄️</span><span class="nav-label">Assets</span></button>
           <button class="nav-btn" data-view="kv"><span class="nav-icon">💾</span><span class="nav-label">KV Storage</span></button>
-          <button class="nav-btn" data-view="launcher"><span class="nav-icon">🚀</span><span class="nav-label">App Launcher</span></button>
+          <button class="nav-btn" data-view="launcher"><span class="nav-icon">🚀</span><span class="nav-label">Deploy</span></button>
         </nav>
       </aside>
 
@@ -113,6 +124,42 @@
           </div>
         </div>
 
+        <!-- Characters -->
+        <div class="view" id="view-characters">
+          <div class="char-header">
+            <h2 class="view-title">Character Hub</h2>
+            <div class="char-controls">
+              <span id="charStatus" class="char-status muted">Not loaded</span>
+              <button id="charRefreshBtn" class="btn btn-secondary">Refresh</button>
+              <button id="charSyncToKvBtn" class="btn btn-primary hidden">Sync to KV</button>
+              <button id="charRestoreFromKvBtn" class="btn btn-secondary hidden">Restore from KV</button>
+              <button id="charLinkDiscordBtn" class="btn btn-primary hidden">Link Discord</button>
+            </div>
+          </div>
+          <div id="charGrid" class="char-grid"></div>
+          <div id="charDetail" class="char-detail hidden"></div>
+        </div>
+
+        <!-- Saves -->
+        <div class="view" id="view-saves">
+          <div class="saves-header">
+            <h2 class="view-title">Game Save Manager</h2>
+            <div class="saves-controls">
+              <span id="saveStatus" class="save-status-text muted">Not loaded</span>
+              <button id="saveRefreshBtn" class="btn btn-secondary">Refresh</button>
+              <button id="saveManualBtn" class="btn btn-primary">Save Now</button>
+              <button id="saveExportBtn" class="btn btn-secondary">Export</button>
+              <button id="saveImportBtn" class="btn btn-secondary">Import</button>
+              <button id="autoSaveToggle" class="btn btn-secondary">⏸ Auto-Save: OFF</button>
+              <input type="file" id="saveImportInput" accept=".json" class="hidden">
+            </div>
+          </div>
+          <div class="saves-layout">
+            <div id="saveList" class="save-list"></div>
+            <pre id="savePreview" class="save-preview">Select a save to preview</pre>
+          </div>
+        </div>
+
         <!-- Assets -->
         <div class="view" id="view-assets">
           <div class="assets-header">
@@ -161,5 +208,7 @@
   <script type="module" src="js/editor3d.js"></script>
   <script src="js/agents.js"></script>
   <script src="js/assets.js"></script>
+  <script src="js/characters.js"></script>
+  <script src="js/saves.js"></script>
 </body>
 </html>

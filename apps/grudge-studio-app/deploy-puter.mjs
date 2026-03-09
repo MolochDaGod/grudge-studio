@@ -28,12 +28,17 @@ const subdomain = process.argv[2] || 'grudge-studio-app';
 // Files to deploy (relative to this script's directory)
 const scriptDir = path.dirname(new URL(import.meta.url).pathname).replace(/^\/([A-Z]:)/, '$1');
 const filesToDeploy = [
-  { local: 'index.html',      remote: 'index.html' },
-  { local: 'css/studio.css',  remote: 'css/studio.css' },
-  { local: 'js/app.js',       remote: 'js/app.js' },
-  { local: 'js/editor3d.js',  remote: 'js/editor3d.js' },
-  { local: 'js/agents.js',    remote: 'js/agents.js' },
-  { local: 'js/assets.js',    remote: 'js/assets.js' },
+  { local: 'index.html',              remote: 'index.html' },
+  { local: 'css/studio.css',          remote: 'css/studio.css' },
+  { local: 'js/app.js',               remote: 'js/app.js' },
+  { local: 'js/editor3d.js',          remote: 'js/editor3d.js' },
+  { local: 'js/agents.js',            remote: 'js/agents.js' },
+  { local: 'js/assets.js',            remote: 'js/assets.js' },
+  { local: 'js/characters.js',        remote: 'js/characters.js' },
+  { local: 'js/saves.js',             remote: 'js/saves.js' },
+  { local: 'js/app-registry.js',      remote: 'js/app-registry.js' },
+  { local: 'js/deploy-manager.js',    remote: 'js/deploy-manager.js' },
+  { local: 'js/code-playground.js',   remote: 'js/code-playground.js' },
 ];
 
 // IMPORTANT: Use forward slashes for Puter paths

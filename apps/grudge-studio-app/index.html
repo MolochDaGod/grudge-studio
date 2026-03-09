@@ -6,7 +6,7 @@
   <title>Grudge Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=Spectral+SC:wght@400;500;600;700&family=IM+Fell+English+SC&family=MedievalSharp&family=Uncial+Antiqua&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=Spectral+SC:wght@400;500;600;700&family=IM+Fell+English+SC&family=MedievalSharp&family=Uncial+Antiqua&family=Orbitron:wght@400;500;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://js.puter.com/v2/"></script>
   <script src="https://auth-gateway-flax.vercel.app/grudge-auth-sdk.js"></script>
   <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
@@ -63,8 +63,10 @@
           <button class="nav-btn" data-view="characters"><span class="nav-icon">🛡️</span><span class="nav-label">Characters</span></button>
           <button class="nav-btn" data-view="saves"><span class="nav-icon">📜</span><span class="nav-label">Saves</span></button>
           <button class="nav-btn" data-view="assets"><span class="nav-icon">🗄️</span><span class="nav-label">Assets</span></button>
+          <button class="nav-btn" data-view="code"><span class="nav-icon">💻</span><span class="nav-label">Code</span></button>
           <button class="nav-btn" data-view="kv"><span class="nav-icon">💾</span><span class="nav-label">KV Storage</span></button>
-          <button class="nav-btn" data-view="launcher"><span class="nav-icon">🚀</span><span class="nav-label">Deploy</span></button>
+          <button class="nav-btn" data-view="deploy"><span class="nav-icon">☁️</span><span class="nav-label">Deploy</span></button>
+          <button class="nav-btn" data-view="launcher"><span class="nav-icon">🚀</span><span class="nav-label">Apps</span></button>
         </nav>
       </aside>
 
@@ -195,9 +197,45 @@
           <pre id="kvResult" class="kv-result"></pre>
         </div>
 
+        <!-- Code Playground -->
+        <div class="view" id="view-code">
+          <h2 class="view-title">Code Playground</h2>
+          <div class="code-playground-layout">
+            <div class="code-toolbar">
+              <select id="codeScriptSelect" class="select-input"><option value="">New Script</option></select>
+              <input type="text" id="codeScriptName" class="text-input" placeholder="Script name" style="width:180px">
+              <button id="codeRunBtn" class="btn btn-primary">▶ Run</button>
+              <button id="codeSaveBtn" class="btn btn-secondary">💾 Save</button>
+              <button id="codeLoadBtn" class="btn btn-secondary">📂 Load</button>
+            </div>
+            <div id="codeEditorMount" class="code-editor-mount"></div>
+            <pre id="codeOutput" class="code-output"></pre>
+          </div>
+        </div>
+
+        <!-- Deploy Manager -->
+        <div class="view" id="view-deploy">
+          <h2 class="view-title">Deploy Manager</h2>
+          <div class="deploy-layout">
+            <div class="deploy-panel">
+              <h3 class="section-title">📦 Deployable Apps</h3>
+              <div id="deployAppList" class="deploy-app-list"></div>
+            </div>
+            <div class="deploy-panel">
+              <h3 class="section-title">📁 Cloud Storage <button class="btn btn-secondary btn-xs" id="fsBrowseBtn">Browse</button></h3>
+              <input type="text" id="fsPath" class="text-input" placeholder="/GRUDACHAIN/" value="/GRUDACHAIN" style="width:100%;margin-bottom:0.5rem">
+              <div id="fsBrowser" class="fs-browser"></div>
+            </div>
+            <div class="deploy-panel">
+              <h3 class="section-title">📋 Deploy Log</h3>
+              <div id="deployLog" class="deploy-log"></div>
+            </div>
+          </div>
+        </div>
+
         <!-- App Launcher -->
         <div class="view" id="view-launcher">
-          <h2 class="view-title">Grudge Studio Apps</h2>
+          <h2 class="view-title">GRUDACHAIN App Registry</h2>
           <div class="launcher-grid" id="launcherGrid"></div>
         </div>
       </main>
@@ -210,5 +248,8 @@
   <script src="js/assets.js"></script>
   <script src="js/characters.js"></script>
   <script src="js/saves.js"></script>
+  <script src="js/app-registry.js"></script>
+  <script src="js/deploy-manager.js"></script>
+  <script src="js/code-playground.js"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@
   'use strict';
 
   /* ---------- constants ---------- */
-  const ADMIN_USERS = ['admin', 'grudgewarlord', 'outapps', 'molochdagod', 'grudachain'];
+  const ADMIN_USERS = ['admin', 'grudgewarlord', 'outapps', 'molochdagod', 'grudachain', 'racalvindapirateking'];
 
   const SERVICES = [
     { name: 'Auth Gateway',     url: 'https://auth-gateway-flax.vercel.app', desc: 'Discord & GitHub OAuth' },
@@ -18,16 +18,21 @@
 
   const LAUNCHER_APPS = [
     { icon: '⚔️',  title: 'Grudge Game Editor', desc: 'Main studio application',     url: 'https://puter.com/app/Grudge-Game-Editor' },
+    { icon: '🛠️',  title: 'Warlord Crafting',  desc: 'Crafting Suite (live)',         url: 'https://grudge-crafting.puter.site' },
     { icon: '🎮',  title: 'GrudaChain Hub',     desc: 'Blockchain node explorer',     url: 'https://grudachain-ve8e8.puter.site' },
     { icon: '📊',  title: 'Admin Dashboard',    desc: 'Admin management panel',       url: 'https://grudge-admin.puter.site' },
     { icon: '🖥️',  title: 'Command Center',     desc: 'Worker & site management',     url: 'https://grudge-command-center.puter.site' },
     { icon: '🗄️',  title: 'ObjectStore',        desc: 'Sprite & data asset browser',  url: 'https://molochdagod.github.io/ObjectStore/' },
     { icon: '🔐',  title: 'Auth Gateway',       desc: 'Discord / GitHub OAuth',       url: 'https://auth-gateway-flax.vercel.app' },
+    { icon: '🌐',  title: 'Grudge Warlords',    desc: 'Game portal & MMO hub',        url: 'https://grudgewarlords.com' },
   ];
+
+  const API_BASE = 'https://grudgewarlords.com';
 
   /* ---------- state ---------- */
   let user = null;
   let role = 'viewer';
+  let account = null; // unified KV account
 
   /* ---------- DOM refs ---------- */
   const $ = (sel) => document.querySelector(sel);
@@ -41,9 +46,19 @@
   const statusText  = $('#statusText');
 
   /* ===========================
-     AUTH
+     AUTH (Puter + GrudgeAuth dual login)
      =========================== */
   async function initAuth() {
+    // Check GrudgeAuth SDK session first
+    if (window.GrudgeAuth && GrudgeAuth.isLoggedIn()) {
+      const ud = GrudgeAuth.getUserData();
+      if (ud) {
+        user = { username: ud.username || 'Player', uuid: ud.userId || ud.grudgeId };
+        enterStudio();
+        return;
+      }
+    }
+    // Then try Puter
     try {
       user = await puter.auth.getUser();
       enterStudio();
@@ -65,6 +80,41 @@
     }
   });
 
+  // Grudge ID login — redirect to auth-gateway
+  const grudgeLoginBtn = $('#grudgeLoginBtn');
+  if (grudgeLoginBtn) {
+    grudgeLoginBtn.addEventListener('click', () => {
+      if (window.GrudgeAuth) {
+        GrudgeAuth.redirectToLogin(window.location.href);
+      } else {
+        window.location.href = 'https://auth-gateway-flax.vercel.app?return=' + encodeURIComponent(window.location.href);
+      }
+    });
+  }
+
+  // Guest login
+  const guestBtn = $('#guestBtn');
+  if (guestBtn) {
+    guestBtn.addEventListener('click', async () => {
+      guestBtn.disabled = true;
+      guestBtn.textContent = 'Entering…';
+      try {
+        if (window.GrudgeAuth) {
+          await GrudgeAuth.guestLogin();
+          const ud = GrudgeAuth.getUserData();
+          user = { username: ud?.username || 'Guest', uuid: ud?.userId || 'guest' };
+        } else {
+          user = { username: 'Guest_' + Math.random().toString(36).slice(2,6), uuid: 'guest_' + Date.now() };
+        }
+        enterStudio();
+      } catch (e) {
+        guestBtn.disabled = false;
+        guestBtn.textContent = 'Play as Guest';
+        console.error('Guest login error', e);
+      }
+    });
+  }
+
   function enterStudio() {
     const uname = (user.username || '').toLowerCase();
     role = ADMIN_USERS.includes(uname) ? 'admin' : 'viewer';
@@ -77,8 +127,59 @@
 
     logActivity(`${user.username} signed in (${role})`);
     storeSession();
+    initAccount();
     renderDashboard();
     renderLauncher();
+  }
+
+  /* ===========================
+     UNIFIED ACCOUNT INIT
+     =========================== */
+  async function initAccount() {
+    try {
+      const puterId = user.uuid || user.username;
+      // Init account in Puter KV
+      await puter.kv.set(`grudge:account:${puterId}`, JSON.stringify({
+        puterId,
+        puterUsername: user.username,
+        discordId: null,
+        discordUsername: null,
+        grudgeId: null,
+        walletAddress: null,
+        linkedCharacterIds: [],
+        createdAt: Date.now(),
+        lastSeenAt: Date.now(),
+      }));
+
+      // Also try to fetch existing to preserve linked data
+      try {
+        const existing = await puter.kv.get(`grudge:account:${puterId}`);
+        if (existing) {
+          const data = typeof existing === 'string' ? JSON.parse(existing) : existing;
+          if (data.puterId) {
+            account = { ...data, lastSeenAt: Date.now(), puterUsername: user.username };
+            await puter.kv.set(`grudge:account:${puterId}`, JSON.stringify(account));
+          } else {
+            account = { puterId, puterUsername: user.username, lastSeenAt: Date.now() };
+          }
+        }
+      } catch { /* use fresh account */ }
+
+      if (!account) account = { puterId, puterUsername: user.username };
+
+      // Also init via server for cross-service linking
+      try {
+        await fetch(`${API_BASE}/api/studio/account/init`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ puterId, puterUsername: user.username }),
+        });
+      } catch { /* server may be offline */ }
+
+      logActivity('Account initialized');
+    } catch (err) {
+      console.warn('Account init failed:', err);
+    }
   }
 
   async function storeSession() {
@@ -110,6 +211,7 @@
      DASHBOARD
      =========================== */
   function renderDashboard() {
+    renderAccountCard();
     renderStats();
     renderServices();
   }
@@ -128,6 +230,24 @@
       stats.push({ label: 'KV Keys', num: Array.isArray(keys) ? keys.length : '?', color: 'var(--accent)' });
     } catch {
       stats.push({ label: 'KV Keys', num: '?', color: 'var(--accent)' });
+    }
+
+    /* Discord link status */
+    const discordUser = localStorage.getItem('grudge_studio_user');
+    if (discordUser) {
+      try {
+        const du = JSON.parse(discordUser);
+        stats.push({ label: 'Discord', num: du.username || 'Linked', color: 'hsl(235 86% 65%)' });
+      } catch { /* ignore */ }
+    }
+
+    /* Server health */
+    try {
+      const resp = await fetch(`${API_BASE}/api/studio/health`);
+      const health = await resp.json();
+      stats.push({ label: 'Server', num: health.server?.status === 'ok' ? 'Online' : 'Offline', color: health.server?.status === 'ok' ? 'var(--green)' : 'var(--danger)' });
+    } catch {
+      stats.push({ label: 'Server', num: 'Offline', color: 'var(--danger)' });
     }
 
     statsRow.innerHTML = stats.map(s => `
@@ -155,6 +275,71 @@
         el.innerHTML = '<span style="color:var(--danger)">● unreachable</span>';
       }
     });
+  }
+
+  /* ===========================
+     ACCOUNT CARD
+     =========================== */
+  function renderAccountCard() {
+    let card = document.getElementById('accountCard');
+    if (!card) {
+      card = document.createElement('div');
+      card.id = 'accountCard';
+      card.className = 'account-card';
+      const statsRow = $('#statsRow');
+      if (statsRow) statsRow.parentNode.insertBefore(card, statsRow);
+    }
+
+    const uname = user?.username || 'Unknown';
+    const puterId = user?.uuid || user?.username || '—';
+    const discordUser = localStorage.getItem('grudge_studio_user');
+    let discordName = null;
+    try { if (discordUser) discordName = JSON.parse(discordUser)?.username; } catch {}
+
+    const acct = account || {};
+    const walletAddr = acct.walletAddress;
+
+    card.innerHTML = `
+      <div class="account-card-inner">
+        <div class="account-avatar">👤</div>
+        <div class="account-info">
+          <div class="account-name">${uname}</div>
+          <div class="account-id">ID: ${puterId}</div>
+          <div class="account-role" style="color:${role === 'admin' ? 'var(--yellow)' : 'var(--green)'}">${role.toUpperCase()}</div>
+        </div>
+        <div class="account-links">
+          <div class="account-link-item">
+            <span class="account-link-icon">🔷</span>
+            <span>Puter</span>
+            <span class="account-link-status linked">✓ Linked</span>
+          </div>
+          <div class="account-link-item">
+            <span class="account-link-icon">💬</span>
+            <span>Discord</span>
+            ${discordName
+              ? `<span class="account-link-status linked">✓ ${discordName}</span>`
+              : `<button class="btn btn-secondary btn-xs" onclick="window.location.href='https://auth-gateway-flax.vercel.app/api/discord?return='+encodeURIComponent(location.href)">Link</button>`
+            }
+          </div>
+          <div class="account-link-item">
+            <span class="account-link-icon">🔑</span>
+            <span>GrudgeAuth</span>
+            ${acct.grudgeId
+              ? `<span class="account-link-status linked">✓</span>`
+              : `<button class="btn btn-secondary btn-xs" onclick="window.location.href='https://auth-gateway-flax.vercel.app?return='+encodeURIComponent(location.href)">Link</button>`
+            }
+          </div>
+          <div class="account-link-item">
+            <span class="account-link-icon">💎</span>
+            <span>Wallet</span>
+            ${walletAddr
+              ? `<span class="account-link-status linked">✓ ${walletAddr.slice(0,6)}…${walletAddr.slice(-4)}</span>`
+              : `<span class="account-link-status">Not linked</span>`
+            }
+          </div>
+        </div>
+      </div>
+    `;
   }
 
   /* ===========================
@@ -233,22 +418,21 @@
   });
 
   /* ===========================
-     APP LAUNCHER
+     APP LAUNCHER (via Registry)
      =========================== */
   function renderLauncher() {
-    const grid = $('#launcherGrid');
-    grid.innerHTML = LAUNCHER_APPS.map(app => `
-      <a class="launcher-card" href="${app.url}" target="_blank">
-        <div class="lc-icon">${app.icon}</div>
-        <div class="lc-title">${app.title}</div>
-        <div class="lc-desc">${app.desc}</div>
-        <div class="lc-url">${app.url}</div>
-      </a>`).join('');
+    // Delegate to the full registry if loaded
+    if (window.GrudgeRegistry) {
+      window.GrudgeRegistry.render();
+    } else {
+      const grid = $('#launcherGrid');
+      grid.innerHTML = '<div class="muted">Loading app registry…</div>';
+    }
   }
 
   /* ===========================
      EXPOSE & BOOT
      =========================== */
-  window.GrudgeStudio = { logActivity, user: () => user, role: () => role };
+  window.GrudgeStudio = { logActivity, user: () => user, role: () => role, account: () => account };
   initAuth();
 })();

@@ -19,6 +19,8 @@ import {
 } from "@grudge/shared/utils";
 import { z } from "zod";
 import { registerObjectStorageRoutes } from "./replit_integrations/object_storage";
+import gameDataRoutes from "./routes/gameData";
+import githubRoutes from "./routes/github";
 import { fetchWeaponsFromSheet, fetchArmorFromSheet, fetchChefFromSheet, fetchItemsFromSheet, fetchCraftingFromSheet, fetchAccountsFromSheet, getAccountSheetConfigured, clearSheetsCache, getCacheStatus, appendAccountToSheet, updateAccountInSheet, isSheetWriteConfigured, getAccountSheetSchema, type AccountWriteData } from "./googleSheets";
 import { syncAllSheetsToStore, syncSheetToStore, getSyncStatus, generatePuterExport, getStoredSheetData, GRUDGE_ACCOUNT_SCHEMA, generatePuterSyncCode, isValidSheetName, VALID_SHEET_NAMES } from "./puterSync";
 import { queueAccountChange, flushAccountChanges, logActivity, getRecentActivity, getSyncStatus as getAccountSyncStatus, generatePuterActivityCode } from "./accountSync";
@@ -2407,6 +2409,10 @@ export async function registerRoutes(
 
   // Register object storage routes for file uploads
   registerObjectStorageRoutes(app);
+
+  // ========== Consolidated Routes (from api-server) ==========
+  app.use('/api/game-data', gameDataRoutes);
+  app.use('/api/github', githubRoutes);
 
   return httpServer;
 }

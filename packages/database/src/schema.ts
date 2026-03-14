@@ -373,9 +373,9 @@ export const authTokens = pgTable('auth_tokens', {
   userId: varchar('user_id', { length: 36 }).notNull().references(() => users.id),
   token: varchar('token', { length: 255 }).notNull().unique(),
   tokenType: varchar('token_type', { length: 20 }).notNull(),
-  expiresAt: biginteger('expires_at', { mode: 'number' }).notNull(),
-  createdAt: biginteger('created_at', { mode: 'number' }).notNull().$defaultFn(() => Date.now()),
-  lastUsedAt: biginteger('last_used_at', { mode: 'number' }),
+  expiresAt: bigint('expires_at', { mode: 'number' }).notNull(),
+  createdAt: bigint('created_at', { mode: 'number' }).notNull().$defaultFn(() => Date.now()),
+  lastUsedAt: bigint('last_used_at', { mode: 'number' }),
   deviceInfo: jsonb('device_info'),
   ipAddress: varchar('ip_address', { length: 45 }),
 });
@@ -391,13 +391,13 @@ export const authTokensRelations = relations(authTokens, ({ one }) => ({
 export const battleArenaStats = pgTable('battle_arena_stats', {
   id: varchar('id', { length: 36 }).primaryKey().$defaultFn(() => crypto.randomUUID()),
   userId: varchar('user_id', { length: 36 }).notNull().references(() => users.id),
-  totalKills: biginteger('total_kills', { mode: 'number' }).default(0),
-  totalDeaths: biginteger('total_deaths', { mode: 'number' }).default(0),
-  totalMatches: biginteger('total_matches', { mode: 'number' }).default(0),
+  totalKills: bigint('total_kills', { mode: 'number' }).default(0),
+  totalDeaths: bigint('total_deaths', { mode: 'number' }).default(0),
+  totalMatches: bigint('total_matches', { mode: 'number' }).default(0),
   totalPlaytimeMinutes: integer('total_playtime_minutes').default(0),
   highestKillstreak: integer('highest_killstreak').default(0),
-  createdAt: biginteger('created_at', { mode: 'number' }).notNull().$defaultFn(() => Date.now()),
-  updatedAt: biginteger('updated_at', { mode: 'number' }).notNull().$defaultFn(() => Date.now()),
+  createdAt: bigint('created_at', { mode: 'number' }).notNull().$defaultFn(() => Date.now()),
+  updatedAt: bigint('updated_at', { mode: 'number' }).notNull().$defaultFn(() => Date.now()),
 });
 
 export const battleArenaStatsRelations = relations(battleArenaStats, ({ one }) => ({

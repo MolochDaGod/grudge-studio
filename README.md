@@ -1,46 +1,50 @@
 # Grudge Studio Monorepo
 
-Unified repository for Grudge Studio game development — crafting suite, API server, admin tools, Puter cloud apps, and shared packages.
+Unified repository for Grudge Studio game development — the core `grudge-warlords` app, battle arena, and shared packages.
+
+## Architecture
+
+**Backend**: VPS at `*.grudge-studio.com` — MySQL, Redis, MinIO, 7 Docker microservices
+**Frontend**: Vercel deployments for all web apps
+**DNS**: Cloudflare for `grudge-studio.com` subdomains
 
 ## Live Deployments
 
-| Service | URL | Host |
-|---------|-----|------|
-| Auth Gateway (API) | https://auth-gateway-flax.vercel.app | Vercel |
-| ObjectStore (Data) | https://molochdagod.github.io/ObjectStore/ | GitHub Pages |
-| GrudgeStudioNPM | https://molochdagod.github.io/GrudgeStudioNPM/ | GitHub Pages |
-| Grudge Studio App | https://grudge-studio-app.puter.site | Puter |
-| Command Center | https://grudge-command-center.puter.site | Puter |
-| GrudaChain Hub | https://grudachain-ve8e8.puter.site | Puter |
+- **Game API**: https://api.grudge-studio.com
+- **Auth**: https://id.grudge-studio.com
+- **Dashboard**: https://dash.grudge-studio.com
+- **ObjectStore**: https://molochdagod.github.io/ObjectStore/
+- **Game (WCS)**: https://warlord-crafting-suite.vercel.app
 
 ## Project Structure
 
 ```
 grudge-studio/
 ├── apps/
-│   ├── api-server/                  # REST API (game-data, AI, UUID, sync)
-│   ├── admin-dashboard/             # Admin management panel
-│   ├── battle-arena-client/         # PvP arena frontend
-│   ├── battle-arena-server/         # PvP arena backend (Colyseus)
-│   ├── command-center/              # Puter worker/site ops dashboard
-│   ├── grudge-studio-app/           # Main studio app (3D editor, AI agents, assets)
-│   └── warlord-crafting-suite/      # Crafting, inventory, islands, professions
+│   ├── warlord-crafting-suite/      # grudge-warlords — main game app
+│   │   ├── client/                  # React 19 frontend (20+ pages)
+│   │   └── server/                  # Express API server
+│   │       ├── routes.ts            # All game routes (2400+ lines)
+│   │       ├── routes/gameData.ts   # ObjectStore dataset API
+│   │       ├── routes/github.ts     # GitHub repo management API
+│   │       ├── lib/objectStore.ts   # ObjectStore fetch + cache
+│   │       ├── lib/githubApp.ts     # GitHub App/PAT client
+│   │       └── storage.ts           # Drizzle ORM data layer
+│   ├── battle-arena-client/         # PvP arena frontend (Colyseus)
+│   └── battle-arena-server/         # PvP arena backend (Colyseus WebSocket)
 │
 ├── packages/
-│   ├── auth/                        # Auth token utilities
-│   ├── database/                    # Drizzle ORM database layer
+│   ├── shared/                      # Zod schemas, types, profession utils
+│   ├── database/                    # Drizzle ORM schema (16 tables)
+│   ├── auth/                        # JWT token utilities
 │   ├── game-client/                 # Colyseus client helpers
-│   ├── google-sheets-sync/          # Google Sheets integration
-│   ├── puter-sync/                  # Puter cloud sync
-│   ├── shared/                      # Unified schemas & constants
+│   ├── google-sheets-sync/          # Google Sheets data sync
+│   ├── puter-sync/                  # Puter cloud storage sync
 │   └── ui-components/               # Shared React components
 │
-├── docs/                            # Documentation
-├── scripts/                         # Build & automation
-├── puter-deploy/                    # Puter site/worker deploy files
-├── turbo.json                       # Turbo monorepo config
+├── turbo.json                       # Turbo monorepo pipeline
 ├── pnpm-workspace.yaml              # pnpm workspaces
-└── tsconfig.json                    # Root TypeScript config
+└── docker-compose.yml               # VPS deployment
 ```
 
 ## Getting Started
@@ -55,60 +59,14 @@ grudge-studio/
 pnpm install
 pnpm build
 pnpm dev              # Start all apps
-pnpm dev:warlord      # Start Warlord only
-pnpm dev:api          # Start API server only
 ```
-
-## Packages
-
-| Package | Purpose |
-|---------|---------|
-| @grudge/shared | Zod schemas, types, tier pricing, profession utils |
-| @grudge/database | Drizzle ORM database layer |
-| @grudge/auth | Token-based auth (create, verify, revoke) |
-| @grudge/google-sheets-sync | Sync game data with Google Sheets |
-| @grudge/puter-sync | Puter cloud storage (KV, FS) |
-| @grudge/ui-components | Shared React components |
-| @grudge/game-client | Colyseus multiplayer client helpers |
 
 ## Database
 
-The auth-gateway uses Neon PostgreSQL. The warlord-crafting-suite uses MySQL.
+16 tables via Drizzle ORM: users, characters, inventory_items, crafted_items, unlocked_skills, unlocked_recipes, crafting_jobs, shop_transactions, islands, ai_agents, game_sessions, afk_jobs, uuid_ledger, resource_ledger, auth_tokens, battle_arena_stats
 
 ```bash
-pnpm db:generate       # Generate migrations
 pnpm db:push           # Push schema to database
 ```
 
-## Scripts
-
-```bash
-pnpm dev               # Start all apps
-pnpm build             # Build all packages
-pnpm type-check        # TypeScript checks
-pnpm lint              # Lint all packages
-pnpm test              # Run tests
-pnpm sheets:sync       # Sync Google Sheets
-pnpm clean             # Clean build artifacts
-```
-
-## External Repositories
-
-| Repo | Purpose |
-|------|---------|
-| MolochDaGod/auth-gateway | Auth backend → Vercel |
-| MolochDaGod/ObjectStore | Static game data API → GitHub Pages |
-| MolochDaGod/GrudgeStudioNPM | Three.js playground → GitHub Pages |
-| MolochDaGod/grudachain | GrudaChain node system |
-
-## Documentation
-
-- [Architecture](./docs/ARCHITECTURE.md)
-- [Ecosystem Map](./ECOSYSTEM.md)
-- [Deployment Checklist](./DEPLOYMENT_CHECKLIST.md)
-- [Deploy to Vercel](./DEPLOY_VERCEL.md)
-- [Deploy Command Center](./DEPLOY-COMMAND-CENTER.md)
-
-## License
-
-MIT
+## Part of [Grudge Studio](https://grudge-studio.com)

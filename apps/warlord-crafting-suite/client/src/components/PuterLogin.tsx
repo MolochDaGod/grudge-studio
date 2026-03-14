@@ -13,8 +13,6 @@ import {
   getCharactersFromPuter,
   deleteCharacterFromPuter,
   generateUUID,
-  registerGuestAccount,
-  loginGuestAccount,
   getCurrentGuest,
   logoutGuest,
   getGuestCharacters,
@@ -27,6 +25,7 @@ import {
   type GrudgeCharacter,
   type GuestAccount,
 } from '@/lib/puter';
+import { authLogin, authRegister, setToken } from '@/lib/grudge-backend';
 import { toast } from '@/hooks/use-toast';
 import { LogIn, LogOut, User, Plus, Trash2, Shield, Loader2, UserPlus, Eye, EyeOff, KeyRound, Download } from 'lucide-react';
 
@@ -141,17 +140,25 @@ export function PuterLogin({ onCharacterSelect, selectedCharacter }: PuterLoginP
     setAuthError('');
     
     try {
-      const result = await registerGuestAccount(guestUsername.trim(), guestPassword);
-      if (result.success && result.account) {
-        setGuestUser(result.account);
+      const data = await authRegister(guestUsername.trim(), guestPassword);
+      if (data.token && data.user) {
+        setToken(data.token);
+        const account: GuestAccount = {
+          id: data.user.grudge_id || data.user.id || guestUsername.trim(),
+          username: data.user.username || guestUsername.trim(),
+          createdAt: new Date().toISOString(),
+        };
+        // Persist to localStorage so getCurrentGuest() still works
+        localStorage.setItem('grudge_guest_account', JSON.stringify(account));
+        setGuestUser(account);
         setGuestUsername('');
         setGuestPassword('');
-        await loadGuestCharacters(result.account.id);
+        await loadGuestCharacters(account.id);
       } else {
-        setAuthError(result.error || 'Registration failed');
+        setAuthError(data.error || 'Registration failed');
       }
     } catch (error) {
-      setAuthError('Registration failed');
+      setAuthError('Unable to reach server');
       console.error('Guest register failed:', error);
     } finally {
       setIsLoading(false);
@@ -168,17 +175,24 @@ export function PuterLogin({ onCharacterSelect, selectedCharacter }: PuterLoginP
     setAuthError('');
     
     try {
-      const result = await loginGuestAccount(guestUsername.trim(), guestPassword);
-      if (result.success && result.account) {
-        setGuestUser(result.account);
+      const data = await authLogin(guestUsername.trim(), guestPassword);
+      if (data.token && data.user) {
+        setToken(data.token);
+        const account: GuestAccount = {
+          id: data.user.grudge_id || data.user.id || guestUsername.trim(),
+          username: data.user.username || guestUsername.trim(),
+          createdAt: new Date().toISOString(),
+        };
+        localStorage.setItem('grudge_guest_account', JSON.stringify(account));
+        setGuestUser(account);
         setGuestUsername('');
         setGuestPassword('');
-        await loadGuestCharacters(result.account.id);
+        await loadGuestCharacters(account.id);
       } else {
-        setAuthError(result.error || 'Login failed');
+        setAuthError(data.error || 'Login failed');
       }
     } catch (error) {
-      setAuthError('Login failed');
+      setAuthError('Unable to reach server');
       console.error('Guest login failed:', error);
     } finally {
       setIsLoading(false);

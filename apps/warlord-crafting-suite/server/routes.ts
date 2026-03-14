@@ -142,50 +142,40 @@ function validateTier(tier: number): number {
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin123";
 
-const AUTH_TOKEN_EXPIRY_MS = 2 * 60 * 60 * 1000; // 2 hours
+// VPS auth verification — replaces local authTokens Map
+const VPS_AUTH_URL = process.env.VPS_AUTH_URL || 'https://id.grudge-studio.com';
 
-const authTokens = new Map<string, { userId: string; username: string; createdAt: number }>();
-
-import * as crypto from 'crypto';
-import * as bcrypt from 'bcrypt';
-
-const BCRYPT_ROUNDS = 10;
-
-function generateAuthToken(): string {
-  return crypto.randomBytes(32).toString('hex');
+interface VpsTokenPayload {
+  grudge_id: string;
+  username: string;
+  discord_id?: string;
+  wallet_address?: string;
+  puter_id?: string;
 }
 
-async function hashPassword(password: string): Promise<string> {
-  return bcrypt.hash(password, BCRYPT_ROUNDS);
+/** Verify a VPS JWT by calling id.grudge-studio.com/auth/verify */
+async function verifyVpsToken(token: string): Promise<VpsTokenPayload | null> {
+  try {
+    const res = await fetch(`${VPS_AUTH_URL}/auth/verify`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token }),
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    if (data.valid && data.user) return data.user as VpsTokenPayload;
+    return null;
+  } catch {
+    return null;
+  }
 }
 
-async function verifyPassword(password: string, hash: string): Promise<boolean> {
-  return bcrypt.compare(password, hash);
+/** Extract userId from Bearer token via VPS verification */
+async function getAuthenticatedUser(authHeader: string | undefined): Promise<VpsTokenPayload | null> {
+  if (!authHeader?.startsWith('Bearer ')) return null;
+  const token = authHeader.slice(7);
+  return verifyVpsToken(token);
 }
-
-function cleanupExpiredTokens() {
-  const now = Date.now();
-  authTokens.forEach((data, token) => {
-    if (now - data.createdAt > AUTH_TOKEN_EXPIRY_MS) {
-      authTokens.delete(token);
-    }
-  });
-}
-
-setInterval(cleanupExpiredTokens, 60 * 1000);
-
-const registerSchema = z.object({
-  username: z.string().min(3).max(20),
-  password: z.string().min(4),
-  email: z.string().email().optional(),
-  displayName: z.string().optional(),
-});
-
-const loginSchema = z.object({
-  username: z.string().min(1),
-  password: z.string().min(1),
-  generateToken: z.boolean().optional(),
-});
 
 export async function registerRoutes(
   httpServer: Server,
@@ -231,488 +221,9 @@ export async function registerRoutes(
     }
   });
 
-  // Register new account (server-side with DB storage)
-  app.post("/api/auth/register", async (req, res) => {
-    try {
-      const data = registerSchema.parse(req.body);
-      
-      const existing = await storage.getUserByUsername(data.username);
-      if (existing) {
-        return res.status(400).json({ success: false, error: "Username already exists" });
-      }
-      
-      const user = await storage.createUser({
-        username: data.username,
-        password: await hashPassword(data.password),
-        email: data.email,
-        displayName: data.displayName,
-      });
-      
-      const token = generateAuthToken();
-      authTokens.set(token, { userId: user.id, username: user.username, createdAt: Date.now() });
-      
-      res.json({ 
-        success: true, 
-        user: { id: user.id, username: user.username, displayName: user.displayName },
-        token,
-        expiresIn: AUTH_TOKEN_EXPIRY_MS,
-      });
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ success: false, error: error.errors[0].message });
-      }
-      console.error("Registration error:", error);
-      res.status(500).json({ success: false, error: "Registration failed" });
-    }
-  });
-
-  // Login with credentials (server-side validation)
-  app.post("/api/auth/login", async (req, res) => {
-    try {
-      const data = loginSchema.parse(req.body);
-      
-      const user = await storage.getUserByUsername(data.username);
-      if (!user) {
-        return res.status(401).json({ success: false, error: "Invalid credentials" });
-      }
-      
-      if (!await verifyPassword(data.password, user.password)) {
-        return res.status(401).json({ success: false, error: "Invalid credentials" });
-      }
-      
-      let token: string | undefined;
-      if (data.generateToken) {
-        token = generateAuthToken();
-        authTokens.set(token, { userId: user.id, username: user.username, createdAt: Date.now() });
-      }
-      
-      res.json({ 
-        success: true, 
-        user: { 
-          id: user.id, 
-          username: user.username, 
-          displayName: user.displayName,
-          email: user.email,
-          avatarUrl: user.avatarUrl,
-          isPremium: user.isPremium,
-        },
-        ...(token ? { token, expiresIn: AUTH_TOKEN_EXPIRY_MS } : {}),
-      });
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        return res.status(400).json({ success: false, error: "Invalid request" });
-      }
-      console.error("Login error:", error);
-      res.status(500).json({ success: false, error: "Login failed" });
-    }
-  });
-
-  // Wallet authentication - creates/logins user with wallet address
-  app.post("/api/auth/wallet", async (req, res) => {
-    try {
-      const { walletAddress, email, name } = req.body;
-      
-      if (!walletAddress || typeof walletAddress !== 'string' || walletAddress.length < 32) {
-        return res.status(400).json({ success: false, error: "Valid wallet address required" });
-      }
-      
-      // Check if user with this wallet already exists
-      let user = await storage.getUserByWallet(walletAddress);
-      
-      if (!user) {
-        // Create new user with wallet
-        const shortAddr = walletAddress.slice(0, 6) + '...' + walletAddress.slice(-4);
-        const username = `wallet_${walletAddress.slice(0, 8).toLowerCase()}`;
-        const randomPassword = crypto.randomBytes(32).toString('hex');
-        
-        user = await storage.createUser({
-          username,
-          password: await hashPassword(randomPassword),
-          email: email || undefined,
-          displayName: name || shortAddr,
-        });
-        
-        // Update with wallet address
-        await storage.updateUserWallet(user.id, walletAddress);
-        user = await storage.getUser(user.id);
-        
-        console.log(`[Auth] New wallet user created: ${username} (${shortAddr})`);
-      } else {
-        // Update last login
-        await storage.updateUserLastLogin(user.id);
-        console.log(`[Auth] Wallet user logged in: ${user.username}`);
-      }
-      
-      // Generate auth token
-      const token = generateAuthToken();
-      authTokens.set(token, { userId: user!.id, username: user!.username, createdAt: Date.now() });
-      
-      res.json({
-        success: true,
-        user: {
-          id: user!.id,
-          username: user!.username,
-          displayName: user!.displayName || user!.username,
-          email: user!.email,
-          walletAddress: walletAddress,
-          isPremium: user!.isPremium,
-          createdAt: user!.createdAt,
-        },
-        token,
-        expiresIn: AUTH_TOKEN_EXPIRY_MS,
-      });
-    } catch (error) {
-      console.error("Wallet auth error:", error);
-      res.status(500).json({ success: false, error: "Wallet authentication failed" });
-    }
-  });
-
-  // Generate auth token (requires valid credentials - for cross-app redirects)
-  app.post("/api/auth/token", async (req, res) => {
-    try {
-      const { username, password } = req.body;
-      
-      if (!username || !password) {
-        return res.status(400).json({ error: "Credentials required" });
-      }
-      
-      const user = await storage.getUserByUsername(username);
-      if (!user || !await verifyPassword(password, user.password)) {
-        return res.status(401).json({ error: "Invalid credentials" });
-      }
-      
-      const token = generateAuthToken();
-      authTokens.set(token, { userId: user.id, username: user.username, createdAt: Date.now() });
-      
-      res.json({ success: true, token, expiresIn: AUTH_TOKEN_EXPIRY_MS });
-    } catch (error) {
-      console.error("Error generating auth token:", error);
-      res.status(500).json({ error: "Failed to generate token" });
-    }
-  });
-
-  // Exchange auth token for user info (for external apps)
-  app.post("/api/auth/exchange", async (req, res) => {
-    try {
-      const { token } = req.body;
-      
-      if (!token) {
-        return res.status(400).json({ error: "Token required" });
-      }
-      
-      const tokenData = authTokens.get(token);
-      
-      if (!tokenData) {
-        return res.status(401).json({ error: "Invalid or expired token" });
-      }
-      
-      if (Date.now() - tokenData.createdAt > AUTH_TOKEN_EXPIRY_MS) {
-        authTokens.delete(token);
-        return res.status(401).json({ error: "Token expired" });
-      }
-      
-      authTokens.delete(token);
-      
-      const user = await storage.getUser(tokenData.userId);
-      
-      res.json({
-        success: true,
-        user: user ? {
-          id: user.id,
-          username: user.username,
-          displayName: user.displayName,
-          email: user.email,
-          avatarUrl: user.avatarUrl,
-          isPremium: user.isPremium,
-        } : {
-          id: tokenData.userId,
-          username: tokenData.username,
-        },
-      });
-    } catch (error) {
-      console.error("Error exchanging auth token:", error);
-      res.status(500).json({ error: "Failed to exchange token" });
-    }
-  });
-
-  // Verify token without consuming it
-  app.get("/api/auth/verify", async (req, res) => {
-    try {
-      const token = req.query.token as string;
-      
-      if (!token) {
-        return res.status(400).json({ valid: false, error: "Token required" });
-      }
-      
-      const tokenData = authTokens.get(token);
-      
-      if (!tokenData) {
-        return res.json({ valid: false, error: "Invalid token" });
-      }
-      
-      if (Date.now() - tokenData.createdAt > AUTH_TOKEN_EXPIRY_MS) {
-        return res.json({ valid: false, error: "Token expired" });
-      }
-      
-      res.json({ valid: true, userId: tokenData.userId, username: tokenData.username });
-    } catch (error) {
-      res.status(500).json({ valid: false, error: "Verification failed" });
-    }
-  });
-
-  const SSO_ALLOWED_ROLES = ['premium', 'user', 'guest'];
-  const PRIVILEGED_USERNAMES = ['admin', 'grudgewarlord', 'outapps', 'grudachain', 'dev', 'developer'];
-  const SSO_SECRET = process.env.SESSION_SECRET || 'grudge-sso-fallback-secret';
-  const SSO_TOKEN_EXPIRY_MS = 5 * 60 * 1000;
-  
-  const ssoSessions = new Map<string, { userId: string; username: string; role: string; createdAt: number }>();
-  const SSO_SESSION_EXPIRY_MS = 2 * 60 * 60 * 1000;
-  const ssoRateLimits = new Map<string, { count: number; resetAt: number }>();
-  const SSO_RATE_LIMIT = 10;
-  const SSO_RATE_WINDOW_MS = 60 * 1000;
-
-  function generateSsoSignature(payload: string): string {
-    return crypto.createHmac('sha256', SSO_SECRET).update(payload).digest('hex');
-  }
-  
-  function verifySsoSignature(payload: string, signature: string): boolean {
-    const expected = generateSsoSignature(payload);
-    return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signature));
-  }
-
-  app.post("/api/auth/sso/token", async (req, res) => {
-    try {
-      const { username, role, puterUserId } = req.body;
-      const clientIp = req.ip || req.socket.remoteAddress || 'unknown';
-      const now = Date.now();
-      
-      const rateKey = clientIp;
-      const rateData = ssoRateLimits.get(rateKey) || { count: 0, resetAt: now + SSO_RATE_WINDOW_MS };
-      
-      if (now > rateData.resetAt) {
-        rateData.count = 0;
-        rateData.resetAt = now + SSO_RATE_WINDOW_MS;
-      }
-      
-      rateData.count++;
-      ssoRateLimits.set(rateKey, rateData);
-      
-      if (rateData.count > SSO_RATE_LIMIT) {
-        console.warn(`[SSO] Rate limited token request: ${clientIp}`);
-        return res.status(429).json({ success: false, error: "Too many requests" });
-      }
-      
-      if (!username || !puterUserId) {
-        return res.status(400).json({ success: false, error: "Username and Puter user ID required" });
-      }
-      
-      const lowerUsername = username.toLowerCase();
-      if (PRIVILEGED_USERNAMES.includes(lowerUsername)) {
-        console.warn(`[SSO] Blocked privileged username token request: ${username}`);
-        return res.status(403).json({ 
-          success: false, 
-          error: "Privileged accounts must use direct login",
-          requiresDirectLogin: true
-        });
-      }
-      
-      const existingUser = await storage.getUserByUsername(username);
-      if (existingUser) {
-        if (!existingUser.puterId) {
-          console.warn(`[SSO] Account ${username} exists but not linked to Puter - requires password login first`);
-          return res.status(403).json({ 
-            success: false, 
-            error: "Account exists but not linked to Puter. Please login with password first to link your Puter account.",
-            requiresPasswordLogin: true
-          });
-        }
-        if (existingUser.puterId !== puterUserId) {
-          console.warn(`[SSO] Puter UUID mismatch for ${username}: expected ${existingUser.puterId}, got ${puterUserId}`);
-          return res.status(403).json({ 
-            success: false, 
-            error: "Account already linked to different Puter account",
-            accountMismatch: true
-          });
-        }
-      }
-      
-      const safeRole = SSO_ALLOWED_ROLES.includes(role) ? role : 'user';
-      const expiresAt = now + SSO_TOKEN_EXPIRY_MS;
-      const payload = JSON.stringify({ username, role: safeRole, puterUserId, expiresAt });
-      const signature = generateSsoSignature(payload);
-      
-      const token = Buffer.from(payload).toString('base64') + '.' + signature;
-      
-      console.log(`[SSO] Token generated for ${username} (${safeRole}) with Puter ID ${puterUserId}`);
-      
-      res.json({
-        success: true,
-        token,
-        expiresAt
-      });
-    } catch (error) {
-      console.error("SSO token generation failed:", error);
-      res.status(500).json({ success: false, error: "Token generation failed" });
-    }
-  });
-
-  app.post("/api/auth/sso", async (req, res) => {
-    try {
-      const { token } = req.body;
-      const clientIp = req.ip || req.socket.remoteAddress || 'unknown';
-      const now = Date.now();
-      
-      const rateKey = clientIp;
-      const rateData = ssoRateLimits.get(rateKey) || { count: 0, resetAt: now + SSO_RATE_WINDOW_MS };
-      
-      if (now > rateData.resetAt) {
-        rateData.count = 0;
-        rateData.resetAt = now + SSO_RATE_WINDOW_MS;
-      }
-      
-      rateData.count++;
-      ssoRateLimits.set(rateKey, rateData);
-      
-      if (rateData.count > SSO_RATE_LIMIT) {
-        console.warn(`[SSO] Rate limited: ${clientIp}`);
-        return res.status(429).json({ success: false, error: "Too many requests" });
-      }
-      
-      if (!token) {
-        return res.status(400).json({ success: false, error: "Token required" });
-      }
-      
-      const [payloadB64, signature] = token.split('.');
-      if (!payloadB64 || !signature) {
-        return res.status(400).json({ success: false, error: "Invalid token format" });
-      }
-      
-      let payload: { username: string; role: string; puterUserId?: string; expiresAt: number };
-      try {
-        payload = JSON.parse(Buffer.from(payloadB64, 'base64').toString('utf-8'));
-      } catch {
-        return res.status(400).json({ success: false, error: "Invalid token payload" });
-      }
-      
-      try {
-        if (!verifySsoSignature(JSON.stringify({ username: payload.username, role: payload.role, puterUserId: payload.puterUserId, expiresAt: payload.expiresAt }), signature)) {
-          console.warn(`[SSO] Invalid signature for ${payload.username}`);
-          return res.status(403).json({ success: false, error: "Invalid token signature" });
-        }
-      } catch {
-        return res.status(403).json({ success: false, error: "Signature verification failed" });
-      }
-      
-      if (payload.expiresAt < now) {
-        return res.status(401).json({ success: false, error: "Token expired" });
-      }
-      
-      const lowerUsername = payload.username.toLowerCase();
-      if (PRIVILEGED_USERNAMES.includes(lowerUsername)) {
-        return res.status(403).json({ 
-          success: false, 
-          error: "Privileged accounts must use direct login",
-          requiresDirectLogin: true
-        });
-      }
-      
-      const safeRole = SSO_ALLOWED_ROLES.includes(payload.role) ? payload.role : 'user';
-      const sessionId = `sso_${now}_${crypto.randomBytes(8).toString('hex')}`;
-      
-      ssoSessions.set(sessionId, {
-        userId: payload.puterUserId || payload.username,
-        username: payload.username,
-        role: safeRole,
-        createdAt: now
-      });
-      
-      setTimeout(() => ssoSessions.delete(sessionId), SSO_SESSION_EXPIRY_MS);
-      
-      console.log(`[SSO] Verified session created for ${payload.username} (${safeRole})`);
-      
-      res.json({
-        success: true,
-        sessionId,
-        user: {
-          id: payload.puterUserId || payload.username,
-          username: payload.username,
-          role: safeRole,
-          isPuterUser: true,
-        }
-      });
-    } catch (error) {
-      console.error("SSO session creation failed:", error);
-      res.status(500).json({ success: false, error: "SSO failed" });
-    }
-  });
-
-  app.post("/api/auth/sso/link", async (req, res) => {
-    try {
-      const { username, password, puterUserId } = req.body;
-      
-      if (!username || !password || !puterUserId) {
-        return res.status(400).json({ success: false, error: "Username, password, and Puter user ID required" });
-      }
-      
-      const user = await storage.getUserByUsername(username);
-      if (!user) {
-        return res.status(404).json({ success: false, error: "User not found" });
-      }
-      
-      if (!await verifyPassword(password, user.password)) {
-        return res.status(401).json({ success: false, error: "Invalid password" });
-      }
-      
-      if (user.puterId && user.puterId !== puterUserId) {
-        return res.status(403).json({ 
-          success: false, 
-          error: "Account already linked to different Puter account"
-        });
-      }
-      
-      if (!user.puterId) {
-        await storage.updateUser(user.id, { puterId: puterUserId });
-        console.log(`[SSO] Linked Puter account ${puterUserId} to user ${username} after password verification`);
-      }
-      
-      res.json({ success: true, message: "Puter account linked successfully" });
-    } catch (error) {
-      console.error("SSO link failed:", error);
-      res.status(500).json({ success: false, error: "Link failed" });
-    }
-  });
-
-  app.get("/api/auth/sso/verify", async (req, res) => {
-    try {
-      const sessionId = req.query.sessionId as string;
-      
-      if (!sessionId) {
-        return res.json({ valid: false, error: "Session ID required" });
-      }
-      
-      const session = ssoSessions.get(sessionId);
-      
-      if (!session) {
-        return res.json({ valid: false, error: "Invalid session" });
-      }
-      
-      if (Date.now() - session.createdAt > SSO_SESSION_EXPIRY_MS) {
-        ssoSessions.delete(sessionId);
-        return res.json({ valid: false, error: "Session expired" });
-      }
-      
-      res.json({
-        valid: true,
-        user: {
-          id: session.userId,
-          username: session.username,
-          role: session.role,
-        }
-      });
-    } catch (error) {
-      res.status(500).json({ valid: false, error: "Verification failed" });
-    }
-  });
+  // Auth is now handled by VPS at id.grudge-studio.com
+  // Client calls VPS directly for login/register/wallet/puter/guest
+  // Server verifies VPS JWTs via getAuthenticatedUser() for protected routes
 
   // Admin authentication route
   app.post("/api/admin/auth", async (req, res) => {
@@ -2068,14 +1579,8 @@ export async function registerRoutes(
       }
 
       // Auth check: verify requesting user owns this character
-      let authenticatedUserId: string | null = null;
-      if (authHeader?.startsWith('Bearer ')) {
-        const token = authHeader.slice(7);
-        const tokenData = authTokens.get(token);
-        if (tokenData && Date.now() - tokenData.createdAt < AUTH_TOKEN_EXPIRY_MS) {
-          authenticatedUserId = tokenData.userId;
-        }
-      }
+      const vpsUser = await getAuthenticatedUser(authHeader);
+      const authenticatedUserId = vpsUser?.grudge_id || null;
       
       // Verify ownership (allow if character has no userId or if userId matches authenticated user)
       if (character.userId && authenticatedUserId && character.userId !== authenticatedUserId) {
@@ -2118,15 +1623,9 @@ export async function registerRoutes(
         return res.status(400).json({ error: "Missing required fields" });
       }
 
-      // Auth check: get authenticated user from token
-      let authenticatedUserId: string | null = null;
-      if (authHeader?.startsWith('Bearer ')) {
-        const token = authHeader.slice(7);
-        const tokenData = authTokens.get(token);
-        if (tokenData && Date.now() - tokenData.createdAt < AUTH_TOKEN_EXPIRY_MS) {
-          authenticatedUserId = tokenData.userId;
-        }
-      }
+      // Auth check: get authenticated user from VPS token
+      const vpsUser = await getAuthenticatedUser(authHeader);
+      const authenticatedUserId = vpsUser?.grudge_id || null;
 
       // Verify character exists and get its owner
       const character = await storage.getCharacter(characterId);
@@ -2232,22 +1731,17 @@ export async function registerRoutes(
   // AI AGENT API ROUTES (with auth)
   // ============================================
 
-  // Helper: validate auth token and get userId
-  const getAuthenticatedUserId = (authHeader: string | undefined): string | null => {
-    if (!authHeader?.startsWith('Bearer ')) return null;
-    const token = authHeader.slice(7);
-    const tokenData = authTokens.get(token);
-    if (tokenData && Date.now() - tokenData.createdAt < AUTH_TOKEN_EXPIRY_MS) {
-      return tokenData.userId;
-    }
-    return null;
+  // Helper: validate VPS JWT and get userId
+  const getAuthenticatedUserId = async (authHeader: string | undefined): Promise<string | null> => {
+    const user = await getAuthenticatedUser(authHeader);
+    return user?.grudge_id || null;
   };
 
   // Get AI agents for authenticated user
   app.get("/api/ai-agents", async (req, res) => {
     try {
       const authHeader = req.headers.authorization;
-      const authenticatedUserId = getAuthenticatedUserId(authHeader);
+      const authenticatedUserId = await getAuthenticatedUserId(authHeader);
       
       if (!authenticatedUserId) {
         return res.status(401).json({ error: "Authentication required" });
@@ -2278,7 +1772,7 @@ export async function registerRoutes(
   app.get("/api/ai-agents/:id", async (req, res) => {
     try {
       const authHeader = req.headers.authorization;
-      const authenticatedUserId = getAuthenticatedUserId(authHeader);
+      const authenticatedUserId = await getAuthenticatedUserId(authHeader);
       
       if (!authenticatedUserId) {
         return res.status(401).json({ error: "Authentication required" });
@@ -2305,7 +1799,7 @@ export async function registerRoutes(
   app.post("/api/ai-agents", async (req, res) => {
     try {
       const authHeader = req.headers.authorization;
-      const authenticatedUserId = getAuthenticatedUserId(authHeader);
+      const authenticatedUserId = await getAuthenticatedUserId(authHeader);
       
       if (!authenticatedUserId) {
         return res.status(401).json({ error: "Authentication required" });
@@ -2372,7 +1866,7 @@ export async function registerRoutes(
   app.patch("/api/ai-agents/:id", async (req, res) => {
     try {
       const authHeader = req.headers.authorization;
-      const authenticatedUserId = getAuthenticatedUserId(authHeader);
+      const authenticatedUserId = await getAuthenticatedUserId(authHeader);
       
       if (!authenticatedUserId) {
         return res.status(401).json({ error: "Authentication required" });
@@ -2407,7 +1901,7 @@ export async function registerRoutes(
   app.delete("/api/ai-agents/:id", async (req, res) => {
     try {
       const authHeader = req.headers.authorization;
-      const authenticatedUserId = getAuthenticatedUserId(authHeader);
+      const authenticatedUserId = await getAuthenticatedUserId(authHeader);
       
       if (!authenticatedUserId) {
         return res.status(401).json({ error: "Authentication required" });
@@ -2437,7 +1931,7 @@ export async function registerRoutes(
   app.get("/api/game-sessions/active/:islandId", async (req, res) => {
     try {
       const authHeader = req.headers.authorization;
-      const authenticatedUserId = getAuthenticatedUserId(authHeader);
+      const authenticatedUserId = await getAuthenticatedUserId(authHeader);
       
       if (!authenticatedUserId) {
         return res.status(401).json({ error: "Authentication required" });
@@ -2455,7 +1949,7 @@ export async function registerRoutes(
   app.get("/api/game-sessions", async (req, res) => {
     try {
       const authHeader = req.headers.authorization;
-      const authenticatedUserId = getAuthenticatedUserId(authHeader);
+      const authenticatedUserId = await getAuthenticatedUserId(authHeader);
       
       if (!authenticatedUserId) {
         return res.status(401).json({ error: "Authentication required" });
@@ -2473,7 +1967,7 @@ export async function registerRoutes(
   app.post("/api/game-sessions", async (req, res) => {
     try {
       const authHeader = req.headers.authorization;
-      const authenticatedUserId = getAuthenticatedUserId(authHeader);
+      const authenticatedUserId = await getAuthenticatedUserId(authHeader);
       
       if (!authenticatedUserId) {
         return res.status(401).json({ error: "Authentication required" });
@@ -2524,7 +2018,7 @@ export async function registerRoutes(
   app.patch("/api/game-sessions/:id", async (req, res) => {
     try {
       const authHeader = req.headers.authorization;
-      const authenticatedUserId = getAuthenticatedUserId(authHeader);
+      const authenticatedUserId = await getAuthenticatedUserId(authHeader);
       
       if (!authenticatedUserId) {
         return res.status(401).json({ error: "Authentication required" });
@@ -2556,7 +2050,7 @@ export async function registerRoutes(
   app.post("/api/game-sessions/:id/end", async (req, res) => {
     try {
       const authHeader = req.headers.authorization;
-      const authenticatedUserId = getAuthenticatedUserId(authHeader);
+      const authenticatedUserId = await getAuthenticatedUserId(authHeader);
       
       if (!authenticatedUserId) {
         return res.status(401).json({ error: "Authentication required" });
@@ -2585,7 +2079,7 @@ export async function registerRoutes(
   app.get("/api/afk-jobs", async (req, res) => {
     try {
       const authHeader = req.headers.authorization;
-      const authenticatedUserId = getAuthenticatedUserId(authHeader);
+      const authenticatedUserId = await getAuthenticatedUserId(authHeader);
       
       if (!authenticatedUserId) {
         return res.status(401).json({ error: "Authentication required" });
@@ -2603,7 +2097,7 @@ export async function registerRoutes(
   app.post("/api/afk-jobs", async (req, res) => {
     try {
       const authHeader = req.headers.authorization;
-      const authenticatedUserId = getAuthenticatedUserId(authHeader);
+      const authenticatedUserId = await getAuthenticatedUserId(authHeader);
       
       if (!authenticatedUserId) {
         return res.status(401).json({ error: "Authentication required" });
@@ -2666,7 +2160,7 @@ export async function registerRoutes(
   app.post("/api/afk-jobs/:id/complete", async (req, res) => {
     try {
       const authHeader = req.headers.authorization;
-      const authenticatedUserId = getAuthenticatedUserId(authHeader);
+      const authenticatedUserId = await getAuthenticatedUserId(authHeader);
       
       if (!authenticatedUserId) {
         return res.status(401).json({ error: "Authentication required" });
@@ -2696,7 +2190,7 @@ export async function registerRoutes(
   app.get("/api/resources/uncommitted", async (req, res) => {
     try {
       const authHeader = req.headers.authorization;
-      const authenticatedUserId = getAuthenticatedUserId(authHeader);
+      const authenticatedUserId = await getAuthenticatedUserId(authHeader);
       
       if (!authenticatedUserId) {
         return res.status(401).json({ error: "Authentication required" });
@@ -2714,7 +2208,7 @@ export async function registerRoutes(
   app.post("/api/resources/commit", async (req, res) => {
     try {
       const authHeader = req.headers.authorization;
-      const authenticatedUserId = getAuthenticatedUserId(authHeader);
+      const authenticatedUserId = await getAuthenticatedUserId(authHeader);
       
       if (!authenticatedUserId) {
         return res.status(401).json({ error: "Authentication required" });
@@ -2827,7 +2321,7 @@ export async function registerRoutes(
   app.post("/api/ledger/log", async (req, res) => {
     try {
       const authHeader = req.headers.authorization;
-      const authenticatedUserId = getAuthenticatedUserId(authHeader);
+      const authenticatedUserId = await getAuthenticatedUserId(authHeader);
       
       const { grudgeUuid, eventType, characterId, relatedUuids, outputUuid, previousState, newState, metadata } = req.body;
       
@@ -2870,7 +2364,7 @@ export async function registerRoutes(
   app.get("/api/ledger/account", async (req, res) => {
     try {
       const authHeader = req.headers.authorization;
-      const authenticatedUserId = getAuthenticatedUserId(authHeader);
+      const authenticatedUserId = await getAuthenticatedUserId(authHeader);
       
       if (!authenticatedUserId) {
         return res.status(401).json({ error: "Authentication required" });

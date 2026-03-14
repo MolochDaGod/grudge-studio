@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { LogIn, Loader2, UserPlus, Eye, EyeOff, Sparkles, Shield, Zap, Crown, User, Sword, Flame, Leaf, Wallet } from 'lucide-react';
 import { useAuth, type UserRole } from '@/contexts/AuthContext';
+import { authWallet, setToken } from '@/lib/grudge-backend';
 import grudgeLogo from '@/assets/grudge-logo.png';
 
 const WEB3AUTH_CLIENT_ID = 'BPi5PB_UiIZ-cPz1GtV5i1I2iOSOHuimiXBI0e-Oe_u6X3oVAbCiAZOTEBtTXw4tsluTITPqA8zMsfxIKMjiqNQ';
@@ -79,36 +80,23 @@ export default function LoginPage() {
 
   const registerWalletUser = async (walletAddress: string, userInfo?: any): Promise<boolean> => {
     try {
-      const response = await fetch('/api/auth/wallet', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          walletAddress,
-          email: userInfo?.email,
-          name: userInfo?.name,
-        }),
-      });
-      
-      const data = await response.json();
-      
-      if (data.success && data.user) {
+      const data = await authWallet(walletAddress, userInfo?.email, userInfo?.name);
+
+      if (data.token && data.user) {
+        setToken(data.token);
         const authUser = {
-          id: data.user.id,
+          id: data.user.grudge_id || data.user.id,
           username: data.user.username,
-          displayName: data.user.displayName || data.user.username,
-          role: data.user.isPremium ? 'premium' : 'user',
+          displayName: data.user.username,
+          role: 'user',
           isPuterUser: false,
           walletAddress: walletAddress,
-          createdAt: data.user.createdAt || new Date().toISOString(),
+          createdAt: new Date().toISOString(),
           lastLogin: new Date().toISOString(),
         };
-        
+
         localStorage.setItem('grudge_auth_user', JSON.stringify(authUser));
-        if (data.token) {
-          localStorage.setItem('grudge_auth_token', data.token);
-        }
-        
-        console.log('[Auth] Wallet user registered/logged in:', authUser.username);
+        console.log('[Auth] Wallet user via VPS:', authUser.username);
         return true;
       }
       return false;

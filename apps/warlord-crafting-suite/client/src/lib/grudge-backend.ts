@@ -10,8 +10,18 @@ const AUTH_API = import.meta.env.VITE_AUTH_API_URL || 'https://id.grudge-studio.
 
 // ── Helpers ──────────────────────────────────
 
+const TOKEN_KEY = 'grudge_auth_token';
+
 function getToken(): string | null {
-  return localStorage.getItem('authToken');
+  return localStorage.getItem(TOKEN_KEY);
+}
+
+export function setToken(token: string | null) {
+  if (token) {
+    localStorage.setItem(TOKEN_KEY, token);
+  } else {
+    localStorage.removeItem(TOKEN_KEY);
+  }
 }
 
 async function gameApiFetch<T = any>(
@@ -131,6 +141,50 @@ export async function completeMission(missionId: string | number) {
 
 // ── Auth (VPS id.grudge-studio.com) ──────────
 
+export async function authLogin(username: string, password: string) {
+  const res = await fetch(`${AUTH_API}/auth/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password }),
+  });
+  return res.json();
+}
+
+export async function authRegister(username: string, password: string) {
+  const res = await fetch(`${AUTH_API}/auth/register`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password }),
+  });
+  return res.json();
+}
+
+export async function authGuest() {
+  const res = await fetch(`${AUTH_API}/auth/guest`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  return res.json();
+}
+
+export async function authWallet(walletAddress: string, email?: string, name?: string) {
+  const res = await fetch(`${AUTH_API}/auth/wallet`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ walletAddress, email, name }),
+  });
+  return res.json();
+}
+
+export async function authPuter(puterUuid: string, puterUsername: string) {
+  const res = await fetch(`${AUTH_API}/auth/puter`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ puterUuid, puterUsername }),
+  });
+  return res.json();
+}
+
 export async function verifyToken(token: string) {
   const res = await fetch(`${AUTH_API}/auth/verify`, {
     method: 'POST',
@@ -162,5 +216,15 @@ export default {
   professions: { get: getProfessions },
   factions: { list: getFactions },
   missions: { list: getMissions, complete: completeMission },
-  auth: { verify: verifyToken, me: getMyIdentity },
+  auth: {
+    login: authLogin,
+    register: authRegister,
+    guest: authGuest,
+    wallet: authWallet,
+    puter: authPuter,
+    verify: verifyToken,
+    me: getMyIdentity,
+    setToken,
+    getToken,
+  },
 };

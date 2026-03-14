@@ -8,9 +8,11 @@
 
 ### **✅ Core Systems**
 - [x] Character creation & management
+- [x] **NEW:** Character page (`/character`) — view, select, manage characters with full stats panel
 - [x] Inventory system
 - [x] Crafting system (500+ recipes)
 - [x] Skill tree system
+- [x] **NEW:** Weapon Skill Tree page (`/skill-tree`) — browse 22 weapon types with sprite icons
 - [x] Authentication (Puter + local)
 - [x] Database (PostgreSQL + Puter KV)
 - [x] API server (Express + Puter Worker)

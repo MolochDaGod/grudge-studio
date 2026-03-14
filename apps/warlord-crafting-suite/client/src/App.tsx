@@ -24,6 +24,8 @@ import CraftingPage from "@/pages/Crafting";
 import HomeIslandPage from "@/pages/HomeIsland";
 import AIAgentTesting from "@/pages/AIAgentTesting";
 import IslandDemo from "@/pages/IslandDemo";
+import SkillTreePage from "@/pages/SkillTreePage";
+import CharacterPage from "@/pages/CharacterPage";
 import { Layout } from "@/components/layout/Layout";
 import { CharacterProvider } from "@/contexts/CharacterContext";
 import { PlatformProvider } from "@/contexts/PlatformContext";
@@ -67,6 +69,8 @@ function Router() {
             <Route path="/adminmap">
               <AdminRoute><AdminMap /></AdminRoute>
             </Route>
+            <Route path="/skill-tree" component={SkillTreePage} />
+            <Route path="/character" component={CharacterPage} />
             <Route path="/home-island" component={HomeIslandPage} />
             <Route path="/island-demo" component={IslandDemo} />
             <Route path="/ai-testing">

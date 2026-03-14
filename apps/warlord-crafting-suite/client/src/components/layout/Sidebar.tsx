@@ -1,6 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
-import { Shield, Sword, LayoutDashboard, PanelLeftClose, PanelLeft, Settings, Store, MessageSquare, Users, LogIn, LogOut, Crown, Zap, User, Hammer, Grid3x3 } from "lucide-react";
+import { Shield, Sword, LayoutDashboard, PanelLeftClose, PanelLeft, Settings, Store, MessageSquare, Users, LogIn, LogOut, Crown, Zap, User, Hammer, Grid3x3, Swords, UserCircle } from "lucide-react";
 import { useAuth, type UserRole } from "@/contexts/AuthContext";
 
 import minerIcon from '@assets/generated_images/miner_profession_game_icon.png';
@@ -30,6 +30,8 @@ const NAV_ITEMS: NavItem[] = [
   { href: "/crafting", label: "Crafting", icon: Hammer, color: "text-orange-400" },
   { href: "/shop", label: "Shop", icon: Store, color: "text-[hsl(43_85%_55%)]" },
   { href: "/arsenal", label: "Arsenal", icon: Shield, color: "text-cyan-400" },
+  { href: "/skill-tree", label: "Skill Tree", icon: Swords, color: "text-red-400" },
+  { href: "/character", label: "Character", icon: UserCircle, color: "text-amber-400" },
   { href: "/command", label: "Command", icon: MessageSquare, color: "text-amber-500", requiredRoles: ['admin', 'developer', 'premium'] },
   { href: "/npcs", label: "NPCs", icon: Users, color: "text-purple-400" },
   { href: "/admin", label: "Admin", icon: Settings, color: "text-red-400", requiredRoles: ['admin', 'developer'] },

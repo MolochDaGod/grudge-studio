@@ -78,42 +78,63 @@
     }
 
     async function checkAuth() {
-      if (isRunningInPuterApp()) {
-        try {
+      // Always try Puter auth first — works for any logged-in Puter user on *.puter.site
+      try {
+        const user = await puter.auth.getUser();
+        if (user) {
+          const role = getUserRole(user.username);
+          currentUser = {
+            userId: user.uuid,
+            username: user.username,
+            role: role,
+            source: 'puter_auth'
+          };
+          console.log(`Auto-authenticated as ${user.username} (${role})`);
+          return true;
+        }
+      } catch (e) {
+        console.log('Puter auth check failed, trying fallbacks:', e.message);
+      }
+
+      // Try Puter sign-in flow if not already authenticated
+      try {
+        const token = await puter.auth.signIn();
+        if (token) {
           const user = await puter.auth.getUser();
           if (user) {
             const role = getUserRole(user.username);
-            if (APP_CONFIG.ALLOWED_ROLES.includes(role)) {
-              currentUser = {
-                userId: user.uuid,
-                username: user.username,
-                role: role,
-                source: 'puter_app'
-              };
-              return true;
-            }
+            currentUser = {
+              userId: user.uuid,
+              username: user.username,
+              role: role,
+              source: 'puter_signin'
+            };
+            console.log(`Signed in as ${user.username} (${role})`);
+            return true;
           }
-        } catch (e) {
-          console.log('Puter auth check failed:', e.message);
         }
+      } catch (e) {
+        console.log('Puter sign-in failed, trying session fallbacks:', e.message);
       }
       
+      // Fallback: auth_code from URL params
       const params = new URLSearchParams(window.location.search);
       const authCode = params.get('auth_code');
       
       if (authCode) {
         const session = await verifySession(authCode);
-        if (session && APP_CONFIG.ALLOWED_ROLES.includes(session.role)) {
+        if (session) {
           currentUser = session;
           localStorage.setItem('grudge_cloud_auth', authCode);
           return true;
         }
       }
       
+      // Fallback: stored session from localStorage
       const storedCode = localStorage.getItem('grudge_cloud_auth');
       if (storedCode) {
         const session = await verifySession(storedCode);
-        if (session && APP_CONFIG.ALLOWED_ROLES.includes(session.role)) {
+        if (session) {
           currentUser = session;
           return true;
         }
@@ -125,15 +146,19 @@
     function renderAccessDenied() {
       document.getElementById('app').innerHTML = `
         <div class="min-h-screen flex items-center justify-center">
-          <div class="bg-slate-800/80 backdrop-blur-sm p-8 rounded-2xl border border-red-500/30 max-w-md text-center">
-            <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-red-500/20 flex items-center justify-center">
-              <span class="text-4xl">🔒</span>
+          <div class="bg-slate-800/80 backdrop-blur-sm p-8 rounded-2xl border border-purple-500/30 max-w-md text-center">
+            <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-purple-500/20 flex items-center justify-center">
+              <span class="text-4xl">☁️</span>
             </div>
-            <h1 class="font-heading text-2xl text-red-400 mb-4">Access Denied</h1>
-            <p class="text-slate-400 mb-6">This admin tool requires admin or developer privileges.</p>
+            <h1 class="font-heading text-2xl text-purple-400 mb-4">GRUDGE Cloud</h1>
+            <p class="text-slate-400 mb-6">Sign in with your Puter account to access Cloud Admin.</p>
+            <button onclick="retryPuterSignIn()" 
+               class="inline-block px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition cursor-pointer mb-3 w-full">
+              Sign In with Puter
+            </button>
             <a href="${APP_CONFIG.AUTH_URL}?returnUrl=${encodeURIComponent(window.location.href)}" 
-               class="inline-block px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition">
-              Sign In
+               class="inline-block px-6 py-3 bg-slate-700 hover:bg-slate-600 text-white rounded-lg transition w-full">
+              Sign In with GrudgeAuth
             </a>
           </div>
         </div>
@@ -342,7 +367,30 @@
 
     window.logout = () => {
       localStorage.removeItem('grudge_cloud_auth');
+      puter.auth.signOut().catch(() => {});
       window.location.href = APP_CONFIG.AUTH_URL + '?logout=1&returnUrl=' + encodeURIComponent(window.location.origin);
+    };
+
+    window.retryPuterSignIn = async () => {
+      try {
+        const token = await puter.auth.signIn();
+        if (token) {
+          const user = await puter.auth.getUser();
+          if (user) {
+            currentUser = {
+              userId: user.uuid,
+              username: user.username,
+              role: getUserRole(user.username),
+              source: 'puter_retry'
+            };
+            renderDashboard();
+            return;
+          }
+        }
+      } catch (e) {
+        console.log('Puter sign-in retry failed:', e.message);
+      }
+      alert('Sign-in failed. Please make sure you are logged into Puter.');
     };
 
     window.showStorage = showStorage;

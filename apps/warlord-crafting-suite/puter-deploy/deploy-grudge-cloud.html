@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Deploy GRUDGE Cloud Fix</title>
+  <script src="https://js.puter.com/v2/"></script>
+  <style>
+    body { font-family: monospace; background: #0f172a; color: #e2e8f0; padding: 40px; }
+    .log { background: #1e293b; padding: 20px; border-radius: 8px; white-space: pre-wrap; max-height: 500px; overflow-y: auto; margin-top: 20px; }
+    button { background: #7c3aed; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 16px; margin: 8px 4px; }
+    button:hover { background: #6d28d9; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .success { color: #4ade80; }
+    .error { color: #f87171; }
+    .info { color: #60a5fa; }
+    h1 { color: #a78bfa; }
+  </style>
+</head>
+<body>
+  <h1>☁️ Deploy GRUDGE Cloud Fix</h1>
+  <p>This will upload the fixed index.html to Puter cloud and update the hosting for grudgecloud-85c9p.puter.site</p>
+  <button id="deployBtn" onclick="deploy()">🚀 Deploy Fix</button>
+  <button onclick="checkStatus()">📋 Check Current Status</button>
+  <div class="log" id="log">Ready...\n</div>
+
+  <script>
+    const CLOUD_PATH = '/GRUDACHAIN/puter-deploy/grudge-cloud';
+    const SUBDOMAIN = 'grudgecloud-85c9p';
+
+    function log(msg, cls = '') {
+      const el = document.getElementById('log');
+      const span = document.createElement('span');
+      span.className = cls;
+      span.textContent = `[${new Date().toLocaleTimeString()}] ${msg}\n`;
+      el.appendChild(span);
+      el.scrollTop = el.scrollHeight;
+    }
+
+    // The fixed index.html content
+    const FIXED_INDEX = `PLACEHOLDER`;
+
+    async function deploy() {
+      const btn = document.getElementById('deployBtn');
+      btn.disabled = true;
+      btn.textContent = 'Deploying...';
+
+      try {
+        // Step 1: Authenticate
+        log('Checking Puter authentication...', 'info');
+        let user;
+        try {
+          user = await puter.auth.getUser();
+        } catch (e) {
+          log('Not signed in, requesting sign-in...', 'info');
+          await puter.auth.signIn();
+          user = await puter.auth.getUser();
+        }
+        log(`Authenticated as: ${user.username}`, 'success');
+
+        // Step 2: Read the fixed file from local deploy folder
+        log('Reading fixed index.html from local source...', 'info');
+
+        // We'll fetch it from the same directory as this deploy script
+        let fixedContent;
+        try {
+          const resp = await fetch('grudge-cloud/index.html');
+          fixedContent = await resp.text();
+          log(`Loaded local index.html (${fixedContent.length} bytes)`, 'success');
+        } catch (e) {
+          log('Could not fetch local file, will use embedded version...', 'info');
+          // Fallback: user can paste content
+          fixedContent = prompt('Paste the contents of grudge-cloud/index.html:');
+          if (!fixedContent) {
+            log('No content provided. Aborting.', 'error');
+            return;
+          }
+        }
+
+        // Step 3: Ensure cloud directory exists
+        log(`Ensuring cloud path exists: ${CLOUD_PATH}`, 'info');
+        try {
+          await puter.fs.mkdir(CLOUD_PATH, { recursive: true });
+          log('Cloud directory ready', 'success');
+        } catch (e) {
+          log('Directory already exists or created', 'info');
+        }
+
+        // Step 4: Write the fixed file to cloud
+        log('Uploading fixed index.html to Puter cloud...', 'info');
+        try {
+          await puter.fs.write(`${CLOUD_PATH}/index.html`, fixedContent, { overwrite: true });
+          log('File uploaded successfully!', 'success');
+        } catch (e) {
+          log(`Upload error: ${e.message}`, 'error');
+          // Try delete then write
+          try {
+            await puter.fs.delete(`${CLOUD_PATH}/index.html`);
+            await puter.fs.write(`${CLOUD_PATH}/index.html`, fixedContent);
+            log('File uploaded (after delete+write)!', 'success');
+          } catch (e2) {
+            log(`Failed to upload: ${e2.message}`, 'error');
+            return;
+          }
+        }
+
+        // Step 5: Update hosting
+        log(`Updating hosting for ${SUBDOMAIN}...`, 'info');
+        try {
+          await puter.hosting.update(SUBDOMAIN, CLOUD_PATH);
+          log(`Hosting updated! Site is live at https://${SUBDOMAIN}.puter.site`, 'success');
+        } catch (e) {
+          log(`Hosting update failed: ${e.message}. Trying create...`, 'info');
+          try {
+            await puter.hosting.create(SUBDOMAIN, CLOUD_PATH);
+            log(`Hosting created! Site is live at https://${SUBDOMAIN}.puter.site`, 'success');
+          } catch (e2) {
+            log(`Hosting create also failed: ${e2.message}`, 'error');
+          }
+        }
+
+        log('=== DEPLOYMENT COMPLETE ===', 'success');
+        log(`Visit: https://${SUBDOMAIN}.puter.site`, 'success');
+
+      } catch (error) {
+        log(`Deployment failed: ${error.message}`, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '🚀 Deploy Fix';
+      }
+    }
+
+    async function checkStatus() {
+      log('Checking current hosting status...', 'info');
+      try {
+        let user;
+        try {
+          user = await puter.auth.getUser();
+        } catch (e) {
+          await puter.auth.signIn();
+          user = await puter.auth.getUser();
+        }
+        log(`Signed in as: ${user.username}`, 'success');
+
+        try {
+          const site = await puter.hosting.get(SUBDOMAIN);
+          log(`Site found: ${SUBDOMAIN}`, 'success');
+          log(`  URL: https://${SUBDOMAIN}.puter.site`, 'info');
+          log(`  Details: ${JSON.stringify(site, null, 2)}`, 'info');
+        } catch (e) {
+          log(`Site not found: ${e.message}`, 'error');
+        }
+
+        try {
+          const files = await puter.fs.readdir(CLOUD_PATH);
+          log(`Cloud files at ${CLOUD_PATH}:`, 'info');
+          files.forEach(f => log(`  ${f.is_dir ? '📁' : '📄'} ${f.name}`, 'info'));
+        } catch (e) {
+          log(`Cloud path not found: ${e.message}`, 'error');
+        }
+      } catch (error) {
+        log(`Status check failed: ${error.message}`, 'error');
+      }
+    }
+  </script>
+</body>
+</html>

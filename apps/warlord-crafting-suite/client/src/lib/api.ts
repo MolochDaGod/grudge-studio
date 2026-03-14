@@ -12,7 +12,7 @@ const isPuterEnvironment = typeof window !== 'undefined' && window.location.host
 // API Configuration
 export const API_CONFIG = {
   // Express Backend (PostgreSQL, game logic)
-  EXPRESS_URL: import.meta.env.VITE_BACKEND_URL || 'https://grudge-crafting.replit.app',
+  EXPRESS_URL: import.meta.env.VITE_BACKEND_URL || 'https://api.grudge-studio.com',
   
   // Puter Worker (AI, sessions, sprites)
   PUTER_WORKER_URL: import.meta.env.VITE_PUTER_WORKER_URL || 'https://grudge-server.puter.site',

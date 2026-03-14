@@ -16,7 +16,7 @@ import {
   getStatIcon,
   CRAFTING_BONUS_TYPES
 } from '@shared/characterAggregator';
-import { DEFAULT_ATTRIBUTES } from '@shared/schema';
+import { getDefaultAttributes } from '@shared/statCalculator';
 
 // Import profession skill trees
 import { minerData } from '@/data/miner';
@@ -65,7 +65,7 @@ export function useCharacterStats(options: UseCharacterStatsOptions = {}): {
       level: character.level,
       experience: character.experience,
       gold: character.gold,
-      attributes: (character.attributes as any) || DEFAULT_ATTRIBUTES,
+      attributes: (character.attributes as any) || getDefaultAttributes(),
       currentHealth: character.currentHealth,
       currentMana: character.currentMana,
       currentStamina: character.currentStamina,

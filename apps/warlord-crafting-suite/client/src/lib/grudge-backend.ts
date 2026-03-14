@@ -12,7 +12,7 @@ const AUTH_API = import.meta.env.VITE_AUTH_API_URL || 'https://id.grudge-studio.
 
 const TOKEN_KEY = 'grudge_auth_token';
 
-function getToken(): string | null {
+export function getToken(): string | null {
   return localStorage.getItem(TOKEN_KEY);
 }
 

@@ -143,11 +143,13 @@ export function PuterLogin({ onCharacterSelect, selectedCharacter }: PuterLoginP
       const data = await authRegister(guestUsername.trim(), guestPassword);
       if (data.token && data.user) {
         setToken(data.token);
-        const account: GuestAccount = {
+        const account = {
           id: data.user.grudge_id || data.user.id || guestUsername.trim(),
           username: data.user.username || guestUsername.trim(),
           createdAt: new Date().toISOString(),
-        };
+          passwordHash: '',
+          lastLogin: new Date().toISOString(),
+        } as GuestAccount;
         // Persist to localStorage so getCurrentGuest() still works
         localStorage.setItem('grudge_guest_account', JSON.stringify(account));
         setGuestUser(account);
@@ -178,11 +180,13 @@ export function PuterLogin({ onCharacterSelect, selectedCharacter }: PuterLoginP
       const data = await authLogin(guestUsername.trim(), guestPassword);
       if (data.token && data.user) {
         setToken(data.token);
-        const account: GuestAccount = {
+        const account = {
           id: data.user.grudge_id || data.user.id || guestUsername.trim(),
           username: data.user.username || guestUsername.trim(),
           createdAt: new Date().toISOString(),
-        };
+          passwordHash: '',
+          lastLogin: new Date().toISOString(),
+        } as GuestAccount;
         localStorage.setItem('grudge_guest_account', JSON.stringify(account));
         setGuestUser(account);
         setGuestUsername('');

@@ -26,6 +26,7 @@ import AIAgentTesting from "@/pages/AIAgentTesting";
 import IslandDemo from "@/pages/IslandDemo";
 import SkillTreePage from "@/pages/SkillTreePage";
 import CharacterPage from "@/pages/CharacterPage";
+import CollaborationHub from "@/pages/CollaborationHub";
 import { Layout } from "@/components/layout/Layout";
 import { CharacterProvider } from "@/contexts/CharacterContext";
 import { PlatformProvider } from "@/contexts/PlatformContext";
@@ -73,6 +74,7 @@ function Router() {
             <Route path="/character" component={CharacterPage} />
             <Route path="/home-island" component={HomeIslandPage} />
             <Route path="/island-demo" component={IslandDemo} />
+            <Route path="/collaboration-hub" component={CollaborationHub} />
             <Route path="/ai-testing">
               <AdminRoute><AIAgentTesting /></AdminRoute>
             </Route>

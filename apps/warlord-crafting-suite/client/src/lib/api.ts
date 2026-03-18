@@ -14,8 +14,8 @@ export const API_CONFIG = {
   // Express Backend (PostgreSQL, game logic)
   EXPRESS_URL: import.meta.env.VITE_BACKEND_URL || 'https://api.grudge-studio.com',
   
-  // Puter Worker (AI, sessions, sprites)
-  PUTER_WORKER_URL: import.meta.env.VITE_PUTER_WORKER_URL || 'https://grudge-server.puter.site',
+  // Puter Worker (AI, sessions, sprites) — falls back to Grudge API
+  PUTER_WORKER_URL: import.meta.env.VITE_PUTER_WORKER_URL || 'https://api.grudge-studio.com',
   
   // Environment info
   IS_PUTER: isPuterEnvironment,
@@ -92,8 +92,8 @@ export async function apiCall<T = any>(
     'Content-Type': 'application/json',
   };
   
-  // Add auth token if available
-  const authToken = localStorage.getItem('authToken');
+  // Add auth token if available (must match grudge-backend.ts TOKEN_KEY)
+  const authToken = localStorage.getItem('grudge_auth_token');
   if (authToken) {
     defaultHeaders['Authorization'] = `Bearer ${authToken}`;
   }

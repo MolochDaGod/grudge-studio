@@ -159,10 +159,12 @@ export async function authRegister(username: string, password: string) {
   return res.json();
 }
 
-export async function authGuest() {
+export async function authGuest(deviceId?: string) {
+  const id = deviceId || crypto.randomUUID().slice(0, 12);
   const res = await fetch(`${AUTH_API}/auth/guest`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ deviceId: id }),
   });
   return res.json();
 }
@@ -204,6 +206,57 @@ export async function getMyIdentity() {
   return res.json();
 }
 
+// ── OAuth redirect flows ─────────────────────
+// These redirect the browser to the Grudge auth backend, which handles
+// the provider OAuth and redirects back with ?token=...&grudge_id=...
+
+/** Redirect to Discord OAuth via Grudge backend */
+export function loginWithDiscord(redirectUri?: string) {
+  const redir = redirectUri || `${window.location.origin}/login`;
+  window.location.href = `${AUTH_API}/auth/discord?redirect_uri=${encodeURIComponent(redir)}`;
+}
+
+/** Redirect to Google OAuth via Grudge backend */
+export function loginWithGoogle(redirectUri?: string) {
+  const redir = redirectUri || `${window.location.origin}/login`;
+  window.location.href = `${AUTH_API}/auth/google?redirect_uri=${encodeURIComponent(redir)}`;
+}
+
+/** Redirect to GitHub OAuth via Grudge backend */
+export function loginWithGitHub(redirectUri?: string) {
+  const redir = redirectUri || `${window.location.origin}/login`;
+  window.location.href = `${AUTH_API}/auth/github?redirect_uri=${encodeURIComponent(redir)}`;
+}
+
+// ── OAuth callback capture ───────────────────
+
+/**
+ * Capture auth data from URL params after OAuth redirect callback.
+ * The backend redirects back with ?token=...&grudge_id=...&provider=...
+ * Call this on mount of your login/auth page.
+ * Returns the auth data if captured, null otherwise.
+ */
+export function captureAuthCallback(): { token: string; grudgeId: string; provider?: string } | null {
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get('token');
+  const grudgeId = params.get('grudge_id');
+  const provider = params.get('provider');
+
+  if (!token) return null;
+
+  // Store the token
+  setToken(token);
+
+  // Clean auth params from URL
+  const cleanUrl = new URL(window.location.href);
+  ['token', 'grudge_id', 'provider', 'username', 'displayName', 'isNew'].forEach(
+    (k) => cleanUrl.searchParams.delete(k),
+  );
+  window.history.replaceState({}, '', cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
+
+  return { token, grudgeId: grudgeId || '', provider: provider || undefined };
+}
+
 // ── Default export ───────────────────────────
 
 export default {
@@ -226,5 +279,9 @@ export default {
     me: getMyIdentity,
     setToken,
     getToken,
+    loginWithDiscord,
+    loginWithGoogle,
+    loginWithGitHub,
+    captureAuthCallback,
   },
 };

@@ -1,6 +1,13 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { isPuterAvailable, getPuter, type PuterUser } from '@/lib/puter';
-import { authLogin, authRegister, authGuest, authPuter, setToken as setBackendToken, getToken as getBackendToken } from '@/lib/grudge-backend';
+import {
+  authLogin, authRegister, authGuest, authPuter,
+  setToken as setBackendToken, getToken as getBackendToken,
+  loginWithDiscord as redirectDiscord,
+  loginWithGoogle as redirectGoogle,
+  loginWithGitHub as redirectGitHub,
+  captureAuthCallback, getMyIdentity,
+} from '@/lib/grudge-backend';
 
 export type UserRole = 'admin' | 'developer' | 'ai_agent' | 'premium' | 'user' | 'guest';
 
@@ -25,6 +32,9 @@ interface AuthContextType {
   signInWithPuter: () => Promise<boolean>;
   signInWithCredentials: (username: string, password: string) => Promise<{ success: boolean; error?: string }>;
   register: (username: string, password: string) => Promise<{ success: boolean; error?: string }>;
+  signInWithDiscord: () => void;
+  signInWithGoogle: () => void;
+  signInWithGitHub: () => void;
   signOut: () => Promise<void>;
   continueAsGuest: () => void;
   hasRole: (roles: UserRole | UserRole[]) => boolean;
@@ -82,6 +92,30 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const initAuth = async () => {
+      // Capture OAuth callback tokens from URL (?token=...&grudge_id=...&provider=...)
+      const captured = captureAuthCallback();
+      if (captured) {
+        try {
+          const identity = await getMyIdentity();
+          const role = determineRole(identity.username || 'Player', false);
+          const authUser: AuthUser = {
+            id: captured.grudgeId || identity.grudge_id || '',
+            username: identity.username || 'Player',
+            displayName: identity.display_name || identity.username,
+            role,
+            isPuterUser: false,
+            createdAt: new Date().toISOString(),
+            lastLogin: new Date().toISOString(),
+          };
+          saveUser(authUser);
+          setAuthToken(captured.token);
+          setIsLoading(false);
+          return;
+        } catch {
+          // Token might be invalid — fall through to normal init
+        }
+      }
+
       // Restore session from localStorage
       const stored = localStorage.getItem(AUTH_STORAGE_KEY);
       if (stored) {
@@ -255,6 +289,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
   };
 
+  // ── OAuth redirect flows (browser redirect to Grudge backend) ────────
+  const signInWithDiscord = () => redirectDiscord();
+  const signInWithGoogle = () => redirectGoogle();
+  const signInWithGitHub = () => redirectGitHub();
+
   const continueAsGuest = async () => {
     // Try VPS guest endpoint first
     try {
@@ -304,6 +343,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         signInWithPuter,
         signInWithCredentials,
         register,
+        signInWithDiscord,
+        signInWithGoogle,
+        signInWithGitHub,
         signOut,
         continueAsGuest,
         hasRole,

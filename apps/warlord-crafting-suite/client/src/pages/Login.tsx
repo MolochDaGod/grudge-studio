@@ -5,12 +5,12 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { LogIn, Loader2, UserPlus, Eye, EyeOff, Sparkles, Shield, Zap, Crown, User, Sword, Flame, Leaf, Wallet } from 'lucide-react';
+import { LogIn, Loader2, UserPlus, Eye, EyeOff, Sparkles, Shield, Zap, Crown, User, Sword, Flame, Leaf, Wallet, MessageSquare, Github, Chrome } from 'lucide-react';
 import { useAuth, type UserRole } from '@/contexts/AuthContext';
 import { authWallet, setToken } from '@/lib/grudge-backend';
 import grudgeLogo from '@/assets/grudge-logo.png';
 
-const WEB3AUTH_CLIENT_ID = 'BPi5PB_UiIZ-cPz1GtV5i1I2iOSOHuimiXBI0e-Oe_u6X3oVAbCiAZOTEBtTXw4tsluTITPqA8zMsfxIKMjiqNQ';
+const WEB3AUTH_CLIENT_ID = import.meta.env.VITE_WEB3AUTH_CLIENT_ID || 'BPi5PB_UiIZ-cPz1GtV5i1I2iOSOHuimiXBI0e-Oe_u6X3oVAbCiAZOTEBtTXw4tsluTITPqA8zMsfxIKMjiqNQ';
 
 const WEB3AUTH_UI_CONFIG = {
   appName: "GRUDGE Warlords",
@@ -65,7 +65,7 @@ const FACTION_EMBLEMS = [
 
 export default function LoginPage() {
   const [, setLocation] = useLocation();
-  const { user, isAuthenticated, signInWithPuter, signInWithCredentials, register, continueAsGuest, isPuterAvailable } = useAuth();
+  const { user, isAuthenticated, signInWithPuter, signInWithCredentials, register, continueAsGuest, isPuterAvailable, signInWithDiscord, signInWithGoogle, signInWithGitHub } = useAuth();
   
   const [authTab, setAuthTab] = useState<'login' | 'register'>('login');
   const [username, setUsername] = useState('');
@@ -393,6 +393,37 @@ export default function LoginPage() {
                 </span>
               </div>
             )}
+          </div>
+          
+          {/* SIGN IN PROVIDERS */}
+          <div className="grid grid-cols-3 gap-2">
+            <Button
+              variant="outline"
+              onClick={signInWithDiscord}
+              className="border-slate-600 hover:bg-slate-800 flex flex-col items-center gap-1 h-auto py-3 text-slate-300"
+              title="Sign in with Discord"
+            >
+              <MessageSquare className="w-5 h-5 text-indigo-400" />
+              <span className="text-[10px]">Discord</span>
+            </Button>
+            <Button
+              variant="outline"
+              onClick={signInWithGoogle}
+              className="border-slate-600 hover:bg-slate-800 flex flex-col items-center gap-1 h-auto py-3 text-slate-300"
+              title="Sign in with Google"
+            >
+              <Chrome className="w-5 h-5 text-blue-400" />
+              <span className="text-[10px]">Google</span>
+            </Button>
+            <Button
+              variant="outline"
+              onClick={signInWithGitHub}
+              className="border-slate-600 hover:bg-slate-800 flex flex-col items-center gap-1 h-auto py-3 text-slate-300"
+              title="Sign in with GitHub"
+            >
+              <Github className="w-5 h-5 text-slate-300" />
+              <span className="text-[10px]">GitHub</span>
+            </Button>
           </div>
           
           {/* DIVIDER */}

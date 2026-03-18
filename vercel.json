@@ -2,27 +2,18 @@
   "buildCommand": "pnpm build",
   "devCommand": "pnpm dev",
   "installCommand": "pnpm install --frozen-lockfile",
-  "framework": "other",
+  "framework": "vite",
   "functions": {
     "api/**/*.ts": {
       "memory": 1024,
       "maxDuration": 60
     }
   },
-  "env": [
-    {
-      "key": "DATABASE_URL",
-      "value": "@database_url"
-    },
-    {
-      "key": "NODE_ENV",
-      "value": "production"
-    },
-    {
-      "key": "SESSION_SECRET",
-      "value": "@session_secret"
-    }
-  ],
+  "env": {
+    "DATABASE_URL": "@database_url",
+    "NODE_ENV": "production",
+    "SESSION_SECRET": "@session_secret"
+  },
   "git": {
     "deploymentEnabled": true
   }

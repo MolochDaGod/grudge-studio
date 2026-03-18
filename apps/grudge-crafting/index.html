@@ -449,6 +449,78 @@ body {
 .toast.success { border-color: var(--green); color: var(--green); }
 .toast.error { border-color: var(--red); color: var(--red); }
 
+/* ======================== ITEM DATABASE ======================== */
+.db-toolbar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.db-search {
+  flex: 1;
+  min-width: 180px;
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 12px;
+  font-family: inherit;
+  outline: none;
+}
+.db-search:focus { border-color: var(--gold-dim); }
+.db-search::placeholder { color: var(--text-dim); }
+.db-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+  max-height: calc(100vh - 180px);
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.db-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  transition: all 0.15s;
+  cursor: default;
+}
+.db-card:hover { border-color: var(--gold-dim); background: rgba(212,168,67,0.04); }
+.db-card img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: rgba(0,0,0,0.3);
+}
+.db-card-info { flex: 1; min-width: 0; }
+.db-card-name { font-size: 12px; font-weight: 600; color: var(--gold); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.db-card-cat { font-size: 9px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+.db-card-stats { font-size: 10px; color: var(--text-dim); margin-top: 4px; line-height: 1.4; }
+.db-card-stats span { color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+.db-summary {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+/* item icon in recipe / inventory (replaces emoji) */
+.item-img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  image-rendering: pixelated;
+  vertical-align: middle;
+}
+.slot .item-img { width: 32px; height: 32px; }
+.result-icon .item-img { width: 40px; height: 40px; }
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
@@ -475,6 +547,7 @@ body {
       <button class="nav-btn active" data-page="dashboard"><span class="icon">📊</span><span>Dashboard</span></button>
       <button class="nav-btn" data-page="crafting"><span class="icon">🔨</span><span>Crafting Bench</span></button>
       <button class="nav-btn" data-page="inventory"><span class="icon">🎒</span><span>Inventory</span><span class="badge" id="inv-count">0</span></button>
+      <button class="nav-btn" data-page="item-database"><span class="icon">📦</span><span>Item Database</span><span class="badge" id="db-count">…</span></button>
       <button class="nav-btn" data-page="account"><span class="icon">👤</span><span>Account</span></button>
     </div>
 
@@ -560,6 +633,19 @@ body {
       </div>
       <div class="recipe-filters" id="inv-filters"></div>
       <div class="inv-grid" id="inv-grid"></div>
+    </div>
+
+    <!-- ITEM DATABASE -->
+    <div class="page" id="page-item-database">
+      <div class="page-header">
+        <h2 class="page-title">📦 Item Database</h2>
+        <div class="db-summary" id="db-summary">Loading items…</div>
+      </div>
+      <div class="db-toolbar">
+        <input type="text" class="db-search" id="db-search" placeholder="Search items by name…" oninput="renderItemDatabase()">
+        <div class="recipe-filters" id="db-cat-filters" style="margin-bottom:0"></div>
+      </div>
+      <div class="db-grid" id="db-grid"></div>
     </div>
 
     <!-- ACCOUNT -->
@@ -834,6 +920,7 @@ function renderCurrentPage() {
   if (p === 'dashboard') renderDashboard();
   else if (p === 'crafting') renderCraftingPage();
   else if (p === 'inventory') renderInventoryPage();
+  else if (p === 'item-database') renderItemDatabase();
   else if (p === 'account') renderAccountPage();
   else if (p.startsWith('prof-')) renderProfessionPage(p.replace('prof-',''));
 }
@@ -907,7 +994,7 @@ function renderCraftingPage() {
     const sel = STATE.selectedRecipe && STATE.selectedRecipe.id === r.id;
     const tierColors = ['#666','#22c55e','#60a5fa','#a78bfa','#f59e0b','#ef4444','#ec4899','#f97316','#dc2626'];
     return `<div class="recipe-item ${sel?'selected':''} ${canCraft?'':'cant-craft'}" onclick="selectRecipe('${r.id}')">
-      <span class="recipe-icon">${r.icon||'📦'}</span>
+      <span class="recipe-icon">${itemIcon(r.n, r.icon)}</span>
       <div class="recipe-info">
         <div class="recipe-name">${r.n}</div>
         <div class="recipe-meta">${r.prof} · ${r.type}</div>
@@ -937,7 +1024,7 @@ function renderBenchDetail() {
     const have = STATE.inventory[name] || 0;
     const enough = have >= qty;
     return `<div class="slot ${enough?'filled':'missing'}">
-      <span>${MAT_ICONS[name]||'📦'}</span>
+      <span>${itemIcon(name, MAT_ICONS[name])}</span>
       <span class="slot-qty ${enough?'enough':'short'}">${have}/${qty}</span>
       <span class="slot-name">${name}</span>
     </div>`;
@@ -953,7 +1040,7 @@ function renderBenchDetail() {
     <div class="bench-slots">${slotsHtml}${emptySlotsHtml}</div>
     <div class="craft-result">
       <span class="craft-arrow">→</span>
-      <span class="result-icon">${r.icon||'📦'}</span>
+      <span class="result-icon">${itemIcon(r.n, r.icon)}</span>
       <div>
         <div class="result-name">${r.n}</div>
         <div style="font-size:9px;color:var(--text-dim)">${r.prof} · T${r.tier} · ${r.type}</div>
@@ -1057,8 +1144,9 @@ function renderInvFiltered(type, btn) {
 
 function renderInvItems(items) {
   document.getElementById('inv-grid').innerHTML = items.map(([name, qty]) => {
+    const fallback = MAT_ICONS[name] || (RECIPES.find(r=>r.n===name)?.icon) || '📦';
     return `<div class="inv-item">
-      <span class="icon">${MAT_ICONS[name] || (RECIPES.find(r=>r.n===name)?.icon) || '📦'}</span>
+      <span class="icon">${itemIcon(name, fallback)}</span>
       <span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${name}</span>
       <span class="qty">×${qty}</span>
     </div>`;
@@ -1177,7 +1265,7 @@ function renderProfessionPage(name) {
           const canCraft = checkCanCraft(r);
           const tierColors = ['#666','#22c55e','#60a5fa','#a78bfa','#f59e0b','#ef4444','#ec4899','#f97316','#dc2626'];
           return `<div class="recipe-item ${canCraft?'':'cant-craft'}" onclick="navigate('crafting');document.getElementById('bench-prof').value='${profName}';selectRecipe('${r.id}');renderCraftingPage()">
-            <span class="recipe-icon">${r.icon||'📦'}</span>
+            <span class="recipe-icon">${itemIcon(r.n, r.icon)}</span>
             <div class="recipe-info">
               <div class="recipe-name">${r.n}</div>
               <div class="recipe-meta">${r.desc || ''}</div>
@@ -1215,11 +1303,95 @@ function showToast(msg, type='') {
 }
 
 // ============================================================
+// OBJECTSTORE ITEM DATABASE
+// ============================================================
+let ITEM_DB = [];           // all items from items-database.json
+let ITEM_DB_CATEGORIES = []; // unique categories
+let ITEM_ICON_MAP = {};      // name (lowercase) → icon URL
+let dbFilterCat = 'all';
+
+async function loadItemDatabase() {
+  try {
+    const url = window.GRUDGE_CONFIG.OBJECTSTORE_URL + '/api/v1/items-database.json';
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    ITEM_DB = data.items || [];
+    ITEM_DB_CATEGORIES = data.categories || [];
+    // Build icon lookup map (lowercase name → icon url)
+    ITEM_DB.forEach(item => {
+      if (item.icon) {
+        ITEM_ICON_MAP[item.name.toLowerCase()] = item.icon;
+      }
+    });
+    document.getElementById('db-count').textContent = ITEM_DB.length;
+    console.log(`[ObjectStore] Loaded ${ITEM_DB.length} items`);
+    // Re-render pages that use icons
+    renderAll();
+  } catch(e) {
+    console.error('[ObjectStore] Failed to load item database:', e);
+    document.getElementById('db-count').textContent = '!';
+    document.getElementById('db-summary').textContent = 'Failed to load — check console';
+  }
+}
+
+/** Get icon HTML for an item name. Returns <img> if ObjectStore has it, else emoji. */
+function itemIcon(name, emoji, cssClass) {
+  const cls = cssClass || 'item-img';
+  const url = ITEM_ICON_MAP[name.toLowerCase()];
+  if (url) return `<img class="${cls}" src="${url}" alt="${name}" loading="lazy">`;
+  return emoji || '📦';
+}
+
+function renderItemDatabase() {
+  const query = (document.getElementById('db-search')?.value || '').toLowerCase().trim();
+  // Category filter buttons
+  document.getElementById('db-cat-filters').innerHTML =
+    `<button class="filter-btn ${dbFilterCat==='all'?'active':''}" onclick="dbFilterCat='all';renderItemDatabase()">All</button>` +
+    ITEM_DB_CATEGORIES.map(c =>
+      `<button class="filter-btn ${dbFilterCat===c?'active':''}" onclick="dbFilterCat='${c}';renderItemDatabase()">${c[0].toUpperCase()+c.slice(1)}</button>`
+    ).join('');
+
+  let items = ITEM_DB;
+  if (dbFilterCat !== 'all') items = items.filter(i => i.category === dbFilterCat);
+  if (query) items = items.filter(i => i.name.toLowerCase().includes(query));
+
+  document.getElementById('db-summary').textContent = `${items.length} of ${ITEM_DB.length} items`;
+
+  // Render max 200 at a time for performance
+  const showing = items.slice(0, 200);
+  document.getElementById('db-grid').innerHTML = showing.map(item => {
+    const statsArr = [];
+    if (item.stats.damage) statsArr.push(`DMG <span>${item.stats.damage}</span>`);
+    if (item.stats.defense) statsArr.push(`DEF <span>${item.stats.defense}</span>`);
+    if (item.stats.health) statsArr.push(`HP <span>${item.stats.health}</span>`);
+    if (item.stats.mana) statsArr.push(`MP <span>${item.stats.mana}</span>`);
+    if (item.stats.requiredLevel) statsArr.push(`Lv <span>${item.stats.requiredLevel}</span>`);
+    if (item.stats.tier != null) statsArr.push(`T<span>${item.stats.tier}</span>`);
+    return `<div class="db-card">
+      ${item.icon ? `<img src="${item.icon}" alt="${item.name}" loading="lazy">` : '<div style="width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:28px;background:rgba(0,0,0,0.3);border-radius:4px">📦</div>'}
+      <div class="db-card-info">
+        <div class="db-card-name" title="${item.name}">${item.name}</div>
+        <div class="db-card-cat">${item.category}</div>
+        ${statsArr.length ? `<div class="db-card-stats">${statsArr.join(' · ')}</div>` : ''}
+        ${item.tooltip ? `<div style="font-size:9px;color:var(--text-dim);margin-top:3px;max-height:32px;overflow:hidden">${item.tooltip.split('\n')[0]}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('') || '<div style="padding:20px;text-align:center;color:var(--text-dim)">No items found</div>';
+
+  if (items.length > 200) {
+    document.getElementById('db-grid').insertAdjacentHTML('beforeend',
+      `<div style="grid-column:1/-1;text-align:center;padding:12px;color:var(--text-dim);font-size:11px">Showing 200 of ${items.length} — use search to narrow results</div>`);
+  }
+}
+
+// ============================================================
 // INIT
 // ============================================================
 addLog('⚔ Grudge Crafting Suite initialized');
 renderAll();
 if (typeof puter !== 'undefined') checkAuth();
+loadItemDatabase();
 </script>
 </body>
 </html>

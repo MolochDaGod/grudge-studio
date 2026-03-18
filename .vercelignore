@@ -1,0 +1,36 @@
+# Node / Python environments
+node_modules/
+.conda/
+.venv/
+__pycache__/
+
+# Build artifacts
+dist/
+build/
+
+# Large nested directories
+apps/warlord-crafting-suite/grudge-builder/
+apps/warlord-crafting-suite/attached_assets/
+apps/warlord-crafting-suite/puter-deploy/
+apps/warlord-crafting-suite/.local/
+apps/warlord-crafting-suite/.conda/
+apps/warlord-crafting-suite/.venv/
+apps/warlord-crafting-suite/.history/
+apps/warlord-crafting-suite/temp-solana-extract/
+apps/battle-arena-client/node_modules/
+
+# IDE / editor
+.history/
+.ipynb_checkpoints/
+
+# Secrets
+.env
+.env.local
+.env.production
+
+# Binaries
+*.zip
+*.mpq
+*.MPQ
+*.psd
+*.exe

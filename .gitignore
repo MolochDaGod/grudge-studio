@@ -30,3 +30,4 @@ apps/warlord-crafting-suite/grudge-builder/Grudge-Builder-refrences/
 # Local config
 .local/
 
+.vercel

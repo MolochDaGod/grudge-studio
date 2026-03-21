@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+﻿import { useState, useEffect, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -7,11 +7,11 @@ import {
   Wifi, WifiOff, Shield, Skull, Crown, Gamepad2, Globe,
 } from 'lucide-react';
 
-// ── Grudge Backend URLs ───────────────────────────────────────────────────────
+// â”€â”€ Grudge Backend URLs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const GW_API = 'https://grudgewarlords.com/api';
 const GAME_API = import.meta.env.VITE_GAME_API_URL || 'https://api.grudge-studio.com';
 
-// ── Types ─────────────────────────────────────────────────────────────────────
+// â”€â”€ Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 interface PlatformStats {
   totalPlayers: number;
   totalHeroes: number;
@@ -59,7 +59,7 @@ interface LeaderboardEntry {
 
 type ServiceStatus = 'online' | 'offline' | 'checking';
 
-// ── Helpers ───────────────────────────────────────────────────────────────────
+// â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 async function fetchJson<T>(url: string, fallback: T): Promise<T> {
   try {
     const res = await fetch(url, { credentials: 'omit' });
@@ -78,10 +78,10 @@ function timeAgo(ts: number): string {
 
 function winRate(w: number, l: number): string {
   const total = w + l;
-  return total > 0 ? `${Math.round((w / total) * 100)}%` : '—';
+  return total > 0 ? `${Math.round((w / total) * 100)}%` : 'â€”';
 }
 
-// ── Component ─────────────────────────────────────────────────────────────────
+// â”€â”€ Component â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export default function CollaborationHub() {
   const [tab, setTab] = useState<'lobby' | 'leaderboard' | 'battles'>('lobby');
   const [gwStatus, setGwStatus] = useState<ServiceStatus>('checking');
@@ -197,7 +197,7 @@ export default function CollaborationHub() {
             <Users className="w-5 h-5 text-blue-400" />
             <div>
               <div className="text-xs text-[hsl(45_15%_45%)] uppercase tracking-wider font-heading">Players</div>
-              <div className="text-sm font-bold text-[hsl(43_85%_65%)]">{stats?.totalPlayers ?? '—'}</div>
+              <div className="text-sm font-bold text-[hsl(43_85%_65%)]">{stats?.totalPlayers ?? 'â€”'}</div>
             </div>
           </CardContent>
         </Card>
@@ -206,7 +206,7 @@ export default function CollaborationHub() {
             <Swords className="w-5 h-5 text-red-400" />
             <div>
               <div className="text-xs text-[hsl(45_15%_45%)] uppercase tracking-wider font-heading">Arena Battles</div>
-              <div className="text-sm font-bold text-[hsl(43_85%_65%)]">{stats?.arenaBattles ?? '—'}</div>
+              <div className="text-sm font-bold text-[hsl(43_85%_65%)]">{stats?.arenaBattles ?? 'â€”'}</div>
             </div>
           </CardContent>
         </Card>
@@ -224,7 +224,7 @@ export default function CollaborationHub() {
           <Card key={s.label}>
             <CardContent className="p-3 text-center">
               <div className="flex items-center justify-center gap-1 mb-1">{s.icon}</div>
-              <div className="text-lg font-bold text-[hsl(43_85%_65%)] font-heading">{s.value ?? '—'}</div>
+              <div className="text-lg font-bold text-[hsl(43_85%_65%)] font-heading">{s.value ?? 'â€”'}</div>
               <div className="text-[10px] text-[hsl(45_15%_45%)] uppercase tracking-wider">{s.label}</div>
             </CardContent>
           </Card>
@@ -291,7 +291,7 @@ export default function CollaborationHub() {
                   </div>
                   <div className="text-right text-xs text-[hsl(45_15%_45%)]">
                     <div>Win rate: <span className="text-[hsl(43_85%_65%)] font-bold">{winRate(team.wins, team.losses)}</span></div>
-                    <div>Avg Lv. {team.avgLevel} • {team.heroCount} heroes</div>
+                    <div>Avg Lv. {team.avgLevel} â€¢ {team.heroCount} heroes</div>
                     <div>{timeAgo(team.createdAt)}</div>
                   </div>
                 </div>
@@ -353,7 +353,7 @@ export default function CollaborationHub() {
             <Card key={b.battleId}>
               <CardContent className="p-3 flex items-center gap-3">
                 <div className="text-xl">
-                  {b.result === 'team_won' ? '🛡️' : '⚔️'}
+                  {b.result === 'team_won' ? 'ðŸ›¡ï¸' : 'âš”ï¸'}
                 </div>
                 <div className="flex-1">
                   <div className="font-heading font-bold text-sm text-white">
@@ -363,7 +363,7 @@ export default function CollaborationHub() {
                     </span>
                   </div>
                   <div className="text-xs text-[hsl(45_15%_45%)] mt-0.5">
-                    Battle {b.battleId.slice(0, 12)}… • {timeAgo(b.timestamp)}
+                    Battle {b.battleId.slice(0, 12)}â€¦ â€¢ {timeAgo(b.timestamp)}
                   </div>
                 </div>
               </CardContent>
@@ -390,11 +390,12 @@ export default function CollaborationHub() {
           <a href="https://grudgewarlords.com/compendium.html" target="_blank" rel="noopener noreferrer">
             <Button size="sm" variant="outline"><Globe className="w-4 h-4 mr-1" /> Compendium</Button>
           </a>
-          <a href="https://discord.gg/KmAC5aXs84" target="_blank" rel="noopener noreferrer">
-            <Button size="sm" variant="outline">💬 Discord</Button>
+          <a href="https://discord.gg/FtGtmxmwkh" target="_blank" rel="noopener noreferrer">
+            <Button size="sm" variant="outline">ðŸ’¬ Discord</Button>
           </a>
         </CardContent>
       </Card>
     </div>
   );
 }
+

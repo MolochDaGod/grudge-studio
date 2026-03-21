@@ -2,9 +2,9 @@
 
 ## Overview
 
-Grudge Studio is a distributed game development platform powering the Grudge Warlords universe. It spans Vercel, Puter, and GitHub Pages, unified through a common auth gateway and shared ObjectStore data layer.
+Grudge Studio is a distributed game development platform powering the Grudge Warlords universe. All frontends (Vercel, Puter, Cloudflare, GitHub Pages) connect to a **single canonical backend** on VPS via Docker/Coolify.
 
-Last verified: 2026-02-28
+Last verified: 2026-03-21
 
 ## Architecture
 
@@ -22,8 +22,8 @@ Last verified: 2026-02-28
     â”‚ + AI/KV â”‚           â”‚   (API)     â”‚         â”‚  (Static)   â”‚
     â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”˜           â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”˜         â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”˜
          â”‚                       â”‚                       â”‚
-    Puter SSO              Neon PostgreSQL          ObjectStore
-    puter.kv / ai          + Supabase               icon-index.json
+    Puter SSO              MySQL 8.0 on VPS          ObjectStore
+    puter.kv / ai          (VPS MySQL)               icon-index.json
 ```
 
 ## Deployed Backend: auth-gateway (âœ… LIVE)
@@ -34,7 +34,7 @@ The only deployed backend with a database.
 - **Repo**: github.com/MolochDaGod/auth-gateway (private)
 - **Local**: `Warlord-Crafting-Suite/auth-gateway`
 - **Runtime**: Vercel Serverless Functions (Node.js)
-- **DB**: Neon PostgreSQL (pooled) + Supabase
+- **DB**: MySQL 8.0 (grudge_game) on VPS — see grudge-studio-backend
 
 ### API Endpoints (`/api/*`)
 
@@ -125,13 +125,11 @@ node apps/command-center/deploy-puter.mjs          # â†’ grudge-command-cen
 node apps/grudge-studio-app/deploy-puter.mjs       # â†’ grudge-studio-app.puter.site
 ```
 
-### Vercel (auth-gateway)
+### VPS Backend Deploy
 
 ```bash
-cd Warlord-Crafting-Suite/auth-gateway
-git add -A && git commit -m "update"
-git push origin master
-# Vercel auto-deploys from master branch
+ssh -i ~/.ssh/grudge_deploy root@74.208.155.229 "cd /opt/grudge-studio-backend && git pull && docker compose up -d"
+# All services auto-rebuild
 ```
 
 ### GitHub Pages (ObjectStore / GrudgeStudioNPM)
@@ -148,7 +146,7 @@ cd GrudgeStudioNPM && git push origin main
 2. **Game Data**: All apps fetch sprites and stats from ObjectStore (GitHub Pages)
 3. **State**: Puter KV stores session data, scene saves, user prefs
 4. **AI**: puter.ai powers 7 specialized agents in studio app and command center
-5. **Accounts**: auth-gateway stores users in Neon PostgreSQL + Supabase
+5. **Accounts**: auth-gateway stores users in MySQL 8.0 on VPS (VPS MySQL)
 
 ## Local Directory Map
 

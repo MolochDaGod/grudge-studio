@@ -11,15 +11,18 @@ healthcheckPath = "/api/health"
 healthcheckTimeout = 30
 processes = ["web"]
 
-[[services]]
-name = "db"
-protocol = "postgres"
-plan = "starter"
+# NOTE: PostgreSQL service removed — all data lives in the Grudge Studio
+# VPS backend (MySQL 8 via grudge-studio-backend).
+# Frontend apps call api.grudge-studio.com and id.grudge-studio.com.
 
 [env]
-DATABASE_URL = {
-  description = "PostgreSQL connection string",
-  example = "postgresql://user:pass@host/db"
+GRUDGE_AUTH_URL = {
+  description = "Grudge ID auth backend URL",
+  example = "https://id.grudge-studio.com"
+}
+GRUDGE_API_URL = {
+  description = "Grudge Game API backend URL",
+  example = "https://api.grudge-studio.com"
 }
 NODE_ENV = "production"
 SESSION_SECRET = {

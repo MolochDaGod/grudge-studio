@@ -10,7 +10,8 @@
     }
   },
   "env": {
-    "DATABASE_URL": "@database_url",
+    "GRUDGE_AUTH_URL": "@grudge_auth_url",
+    "GRUDGE_API_URL": "@grudge_api_url",
     "NODE_ENV": "production",
     "SESSION_SECRET": "@session_secret"
   },

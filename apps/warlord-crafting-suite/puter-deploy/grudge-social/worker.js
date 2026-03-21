@@ -1,4 +1,4 @@
-const KV_KEYS = {
+﻿const KV_KEYS = {
     accounts: 'grudge_accounts',
     friends: 'grudge_friends',
     friendRequests: 'grudge_friend_requests',
@@ -15,7 +15,7 @@ const KV_KEYS = {
     notifications: 'grudge_notifications_'
 };
 
-const BACKEND_URL = 'https://grudge-crafting.replit.app';
+const BACKEND_URL = 'https://api.grudge-studio.com';
 
 async function handleRequest(request) {
     const url = new URL(request.url);

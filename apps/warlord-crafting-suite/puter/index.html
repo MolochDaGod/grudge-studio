@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -135,7 +135,7 @@
 <body>
   <div id="app-container">
     <div class="loading-screen" id="loading">
-      <h1>⚔️ GRUDGE Warlords</h1>
+      <h1>âš”ï¸ GRUDGE Warlords</h1>
       <p>Initializing Crafting Suite...</p>
       <div class="spinner"></div>
     </div>
@@ -155,7 +155,7 @@
   <script>
     // Configuration
     const PUTER_KV_KEY = 'grudge_backend_url';
-    const DEFAULT_BACKEND = 'https://grudge-crafting.replit.app';
+    const DEFAULT_BACKEND = 'https://api.grudge-studio.com';
     
     let backendUrl = '';
     
@@ -241,7 +241,7 @@
     function showError(message) {
       document.getElementById('loading').innerHTML = `
         <div class="error-screen">
-          <h2>⚠️ Error</h2>
+          <h2>âš ï¸ Error</h2>
           <p>${message}</p>
           <button onclick="location.reload()" style="margin-top: 20px; padding: 10px 20px; background: #d4af37; border: none; border-radius: 4px; cursor: pointer;">Retry</button>
         </div>

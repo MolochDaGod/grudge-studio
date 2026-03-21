@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -400,7 +400,7 @@
         }
         
         .cloud-feature::before {
-            content: '✓';
+            content: 'âœ“';
             color: #4caf50;
             font-weight: 700;
         }
@@ -508,7 +508,7 @@
                 
                 <div class="auth-options">
                     <button class="auth-btn primary" onclick="signInWithPuter()" id="puterBtn">
-                        <div class="auth-btn-icon">🌐</div>
+                        <div class="auth-btn-icon">ðŸŒ</div>
                         <div class="auth-btn-content">
                             <h3>Sign in with Puter</h3>
                             <p>Recommended - one-click cloud authentication</p>
@@ -516,7 +516,7 @@
                     </button>
                     
                     <button class="auth-btn" onclick="showGuestOption()">
-                        <div class="auth-btn-icon">👤</div>
+                        <div class="auth-btn-icon">ðŸ‘¤</div>
                         <div class="auth-btn-content">
                             <h3>Continue as Guest</h3>
                             <p>Try the game without an account</p>
@@ -556,7 +556,7 @@
                     </div>
                     
                     <div class="cloud-access">
-                        <h4>☁️ Cloud Access Activated</h4>
+                        <h4>â˜ï¸ Cloud Access Activated</h4>
                         <div class="cloud-features">
                             <div class="cloud-feature">Unlimited Storage</div>
                             <div class="cloud-feature">Cross-Device Sync</div>
@@ -592,7 +592,7 @@
                     </div>
                     
                     <div class="cloud-access">
-                        <h4>☁️ Cloud Features Enabled</h4>
+                        <h4>â˜ï¸ Cloud Features Enabled</h4>
                         <div class="cloud-features">
                             <div class="cloud-feature">Unlimited Storage</div>
                             <div class="cloud-feature">Cross-Device Sync</div>
@@ -608,22 +608,22 @@
                 <h3 style="color: #ffd700; margin-top: 40px; text-align: center;">Launch Other Apps</h3>
                 <div class="apps-grid">
                     <div class="app-tile" onclick="openApp('studio')">
-                        <div class="app-tile-icon">⚔️</div>
+                        <div class="app-tile-icon">âš”ï¸</div>
                         <div class="app-tile-name">Crafting Studio</div>
                         <div class="app-tile-desc">Main game experience</div>
                     </div>
                     <div class="app-tile" onclick="openApp('launcher')">
-                        <div class="app-tile-icon">🚀</div>
+                        <div class="app-tile-icon">ðŸš€</div>
                         <div class="app-tile-name">Launcher</div>
                         <div class="app-tile-desc">All apps in one place</div>
                     </div>
                     <div class="app-tile" onclick="openApp('cloud')">
-                        <div class="app-tile-icon">☁️</div>
+                        <div class="app-tile-icon">â˜ï¸</div>
                         <div class="app-tile-name">Cloud Admin</div>
                         <div class="app-tile-desc">Manage assets</div>
                     </div>
                     <div class="app-tile" onclick="openApp('islands')">
-                        <div class="app-tile-icon">🏝️</div>
+                        <div class="app-tile-icon">ðŸï¸</div>
                         <div class="app-tile-name">Islands</div>
                         <div class="app-tile-desc">Explore worlds</div>
                     </div>
@@ -638,7 +638,7 @@
             launcher: 'https://grudge-launcher-xu9q5.puter.site',
             cloud: 'https://grudgecloud-85c9p.puter.site',
             islands: 'https://islands-cu83xisb0g.puter.site',
-            backend: 'https://grudge-crafting.replit.app'
+            backend: 'https://api.grudge-studio.com'
         };
 
         const KV_KEYS = {
@@ -764,7 +764,7 @@
                 
                 if (i < step) {
                     stepEl.className = 'step completed';
-                    stepEl.textContent = '✓';
+                    stepEl.textContent = 'âœ“';
                     if (lineEl) lineEl.classList.add('completed');
                 } else if (i === step) {
                     stepEl.className = 'step active';

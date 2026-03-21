@@ -1,4 +1,4 @@
-# GRUDGE Warlords - Puter Deployment Package
+﻿# GRUDGE Warlords - Puter Deployment Package
 
 This folder contains everything needed to deploy companion apps or connect external projects to the GRUDGE Warlords backend.
 
@@ -29,7 +29,7 @@ cp puter/env.example .env
 | Secret | Description | Where to Get |
 |--------|-------------|--------------|
 | `DATABASE_URL` | PostgreSQL connection string | Replit Secrets tab |
-| `YOUR_APP_URL` | Published app URL | After publishing (e.g., `https://grudge-crafting.replit.app`) |
+| `YOUR_APP_URL` | Published app URL | After publishing (e.g., `https://api.grudge-studio.com`) |
 | `OBJECT_STORAGE_BUCKET` | Replit object storage bucket ID | `DEFAULT_OBJECT_STORAGE_BUCKET_ID` secret |
 
 ### 3. Install Dependencies
@@ -198,24 +198,24 @@ Copy `../shared/schema.ts` for full Drizzle schema definitions.
 ## Architecture Overview
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                     GRUDGE Warlords Architecture                │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│   PUTER.COM (Static Client)          REPLIT (Backend Server)   │
-│   ┌─────────────────────────┐        ┌─────────────────────────┐│
-│   │  puter/index.html       │        │  Express.js (port 5000) ││
-│   │  ├─ puter.auth          │  HTTP  │  ├─ /api/auth/*         ││
-│   │  ├─ puter.kv            │◄──────►│  ├─ /api/sheets/*       ││
-│   │  ├─ UUID/SHA utilities  │        │  ├─ /api/characters/*   ││
-│   │  └─ GrudgeAccount link  │        │  └─ /api/shop/*         ││
-│   └─────────────────────────┘        └───────────┬─────────────┘│
-│                                                  │              │
-│                                      ┌───────────▼─────────────┐│
-│                                      │  PostgreSQL + Google    ││
-│                                      │  Sheets + Object Storage││
-│                                      └─────────────────────────┘│
-└─────────────────────────────────────────────────────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚                     GRUDGE Warlords Architecture                â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚                                                                 â”‚
+â”‚   PUTER.COM (Static Client)          REPLIT (Backend Server)   â”‚
+â”‚   â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”        â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”â”‚
+â”‚   â”‚  puter/index.html       â”‚        â”‚  Express.js (port 5000) â”‚â”‚
+â”‚   â”‚  â”œâ”€ puter.auth          â”‚  HTTP  â”‚  â”œâ”€ /api/auth/*         â”‚â”‚
+â”‚   â”‚  â”œâ”€ puter.kv            â”‚â—„â”€â”€â”€â”€â”€â”€â–ºâ”‚  â”œâ”€ /api/sheets/*       â”‚â”‚
+â”‚   â”‚  â”œâ”€ UUID/SHA utilities  â”‚        â”‚  â”œâ”€ /api/characters/*   â”‚â”‚
+â”‚   â”‚  â””â”€ GrudgeAccount link  â”‚        â”‚  â””â”€ /api/shop/*         â”‚â”‚
+â”‚   â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜        â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜â”‚
+â”‚                                                  â”‚              â”‚
+â”‚                                      â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”â”‚
+â”‚                                      â”‚  PostgreSQL + Google    â”‚â”‚
+â”‚                                      â”‚  Sheets + Object Storageâ”‚â”‚
+â”‚                                      â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 **Why this split?** Puter.com is static-only hosting with built-in APIs. It cannot run Express servers, open custom ports, or connect to PostgreSQL. The backend must run on Replit (or any Node.js host) where we control the server process.
@@ -258,7 +258,7 @@ puter site:create grudge-warlords ./puter-deploy --subdomain=grudge-warlords  # 
 
 | Module | Purpose |
 |--------|---------|
-| `puter/sync/cloudSync.ts` | Sync KV ↔ Cloud storage, backups, exports |
+| `puter/sync/cloudSync.ts` | Sync KV â†” Cloud storage, backups, exports |
 
 ### Serverless Worker
 
@@ -279,7 +279,7 @@ Puter.com offers free hosting with:
 1. Create account at [puter.com](https://puter.com)
 2. Create new app from dashboard
 3. Upload `index.html` (the main deployable file)
-4. **Set `BACKEND_URL`** to your published Replit app (e.g., `https://grudge-crafting.replit.app`)
+4. **Set `BACKEND_URL`** to your published Replit app (e.g., `https://api.grudge-studio.com`)
 
 ### Puter.js Features Used
 
@@ -355,7 +355,7 @@ After successful auth, user is redirected to `return_url` with:
 const params = new URLSearchParams(window.location.search);
 const token = params.get('token');
 
-const response = await fetch('https://grudge-crafting.replit.app/api/auth/exchange', {
+const response = await fetch('https://api.grudge-studio.com/api/auth/exchange', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ token })

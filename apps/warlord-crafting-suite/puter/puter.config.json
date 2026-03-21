@@ -1,4 +1,4 @@
-{
+﻿{
   "name": "grudge-warlords",
   "version": "2.5.0",
   "description": "GRUDGE Warlords - Cloud Auth, AI Tools, Storage & Cross-App Services",
@@ -8,7 +8,7 @@
   "env": {
     "BACKEND_URL": {
       "required": false,
-      "description": "GRUDGE Warlords backend URL (e.g., https://grudge-crafting.replit.app)"
+      "description": "GRUDGE Warlords backend URL (e.g., https://api.grudge-studio.com)"
     },
     "PUTER_CLOUD_URL": {
       "required": false,

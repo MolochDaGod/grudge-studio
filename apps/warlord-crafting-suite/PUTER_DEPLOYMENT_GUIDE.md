@@ -1,4 +1,4 @@
-# 🚀 GRUDGE Warlords - Official Puter Deployment Guide
+﻿# ðŸš€ GRUDGE Warlords - Official Puter Deployment Guide
 
 Based on official Puter templates:
 - React: https://github.com/HeyPuter/react
@@ -6,36 +6,36 @@ Based on official Puter templates:
 
 ---
 
-## 📋 **Deployment Architecture**
+## ðŸ“‹ **Deployment Architecture**
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│  Frontend (Puter.com)                                    │
-│  • React + Vite (built static files)                    │
-│  • Deployed to Puter hosting                            │
-│  • Uses Puter SDK for auth                              │
-└─────────────────────────────────────────────────────────┘
-                         ↓
-        ┌────────────────┴────────────────┐
-        ↓                                  ↓
-┌──────────────────┐            ┌──────────────────┐
-│  Express Backend │            │  Puter Worker    │
-│  (Replit/Railway)│            │  (Puter.com)     │
-├──────────────────┤            ├──────────────────┤
-│ • PostgreSQL DB  │            │ • Puter KV       │
-│ • Game logic     │            │ • AI features    │
-│ • Characters     │            │ • Sessions       │
-│ • Inventory      │            │ • Sprite gen     │
-└──────────────────┘            └──────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚  Frontend (Puter.com)                                    â”‚
+â”‚  â€¢ React + Vite (built static files)                    â”‚
+â”‚  â€¢ Deployed to Puter hosting                            â”‚
+â”‚  â€¢ Uses Puter SDK for auth                              â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                         â†“
+        â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+        â†“                                  â†“
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”            â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚  Express Backend â”‚            â”‚  Puter Worker    â”‚
+â”‚  (Replit/Railway)â”‚            â”‚  (Puter.com)     â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤            â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ â€¢ PostgreSQL DB  â”‚            â”‚ â€¢ Puter KV       â”‚
+â”‚ â€¢ Game logic     â”‚            â”‚ â€¢ AI features    â”‚
+â”‚ â€¢ Characters     â”‚            â”‚ â€¢ Sessions       â”‚
+â”‚ â€¢ Inventory      â”‚            â”‚ â€¢ Sprite gen     â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜            â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 ---
 
-## 🎯 **Step 1: Build React App for Puter**
+## ðŸŽ¯ **Step 1: Build React App for Puter**
 
 ### **1.1 Update Vite Config**
 
-Your current `vite.config.ts` already builds to `dist/public/` ✅
+Your current `vite.config.ts` already builds to `dist/public/` âœ…
 
 ### **1.2 Build the App**
 
@@ -46,12 +46,12 @@ npm run build
 This creates:
 ```
 dist/public/
-├── index.html
-├── assets/
-│   ├── index-[hash].js
-│   ├── index-[hash].css
-│   └── ...
-└── ...
+â”œâ”€â”€ index.html
+â”œâ”€â”€ assets/
+â”‚   â”œâ”€â”€ index-[hash].js
+â”‚   â”œâ”€â”€ index-[hash].css
+â”‚   â””â”€â”€ ...
+â””â”€â”€ ...
 ```
 
 ### **1.3 Add Puter SDK to Built App**
@@ -61,11 +61,11 @@ The Puter SDK is already in your `client/index.html`:
 <script src="https://js.puter.com/v2/"></script>
 ```
 
-✅ This will work in the built version!
+âœ… This will work in the built version!
 
 ---
 
-## 🎯 **Step 2: Deploy Frontend to Puter**
+## ðŸŽ¯ **Step 2: Deploy Frontend to Puter**
 
 ### **Option A: Using Puter GUI**
 
@@ -73,7 +73,7 @@ The Puter SDK is already in your `client/index.html`:
 2. Create new app: "grudge-warlords"
 3. Upload `dist/public/` contents
 4. Set environment variables:
-   - `VITE_BACKEND_URL` = `https://grudge-crafting.replit.app`
+   - `VITE_BACKEND_URL` = `https://api.grudge-studio.com`
    - `VITE_PUTER_WORKER_URL` = `https://grudge-server.puter.site`
 
 ### **Option B: Using Puter CLI** (Recommended)
@@ -94,7 +94,7 @@ puter deploy grudge-warlords
 
 ---
 
-## 🎯 **Step 3: Deploy Puter Worker (Backend)**
+## ðŸŽ¯ **Step 3: Deploy Puter Worker (Backend)**
 
 ### **3.1 Prepare Worker File**
 
@@ -118,7 +118,7 @@ Your worker is now at: `https://grudge-server.puter.site`
 
 ---
 
-## 🎯 **Step 4: Configure Express Backend for Puter**
+## ðŸŽ¯ **Step 4: Configure Express Backend for Puter**
 
 ### **4.1 Update CORS**
 
@@ -138,13 +138,13 @@ app.use(cors({
 
 ### **4.2 Add Puter Auth Endpoint**
 
-Already exists! ✅ Your `/api/auth/sso` endpoint handles Puter auth.
+Already exists! âœ… Your `/api/auth/sso` endpoint handles Puter auth.
 
 ---
 
-## 🎯 **Step 5: Connect Everything**
+## ðŸŽ¯ **Step 5: Connect Everything**
 
-### **5.1 Frontend → Express Backend**
+### **5.1 Frontend â†’ Express Backend**
 
 Update `client/src/lib/api.ts` (create if doesn't exist):
 
@@ -154,7 +154,7 @@ const isPuter = window.location.hostname.includes('puter');
 
 export const API_CONFIG = {
   // Express backend (PostgreSQL, game data)
-  BACKEND_URL: import.meta.env.VITE_BACKEND_URL || 'https://grudge-crafting.replit.app',
+  BACKEND_URL: import.meta.env.VITE_BACKEND_URL || 'https://api.grudge-studio.com',
   
   // Puter worker (AI features)
   PUTER_WORKER_URL: import.meta.env.VITE_PUTER_WORKER_URL || 'https://grudge-server.puter.site',
@@ -176,12 +176,12 @@ export async function apiCall(endpoint: string, options = {}) {
 }
 ```
 
-### **5.2 Frontend → Puter Worker**
+### **5.2 Frontend â†’ Puter Worker**
 
 AI features automatically route to Puter Worker:
-- `/api/ai/chat` → Puter Worker
-- `/api/sprites/generate` → Puter Worker
-- `/api/npc/chat` → Puter Worker
+- `/api/ai/chat` â†’ Puter Worker
+- `/api/sprites/generate` â†’ Puter Worker
+- `/api/npc/chat` â†’ Puter Worker
 
 ### **5.3 Puter Auth Integration**
 
@@ -217,7 +217,7 @@ useEffect(() => {
 
 ---
 
-## 📦 **Complete Deployment Checklist**
+## ðŸ“¦ **Complete Deployment Checklist**
 
 ### **Frontend (Puter.com)**
 - [ ] Build React app: `npm run build`
@@ -238,7 +238,7 @@ useEffect(() => {
 
 ---
 
-## 🧪 **Testing**
+## ðŸ§ª **Testing**
 
 ### **1. Test Frontend**
 ```
@@ -255,7 +255,7 @@ curl https://grudge-server.puter.site/api/health
 
 ### **3. Test Express Backend**
 ```bash
-curl https://grudge-crafting.replit.app/api/health
+curl https://api.grudge-studio.com/api/health
 # Should return: {"status":"healthy","app":"grudge-warlords"}
 ```
 
@@ -268,27 +268,27 @@ curl https://grudge-crafting.replit.app/api/health
 
 ---
 
-## 🎮 **User Experience**
+## ðŸŽ® **User Experience**
 
 1. User visits `https://grudge-warlords.puter.site`
 2. Puter SDK auto-authenticates user
 3. Frontend sends Puter UUID to Express backend
 4. Express creates/links account in PostgreSQL
 5. User plays game:
-   - Game data → Express backend (PostgreSQL)
-   - AI features → Puter Worker (Puter KV + AI)
+   - Game data â†’ Express backend (PostgreSQL)
+   - AI features â†’ Puter Worker (Puter KV + AI)
 6. Sessions stored in Puter KV
 7. All data synced across devices
 
 ---
 
-## 🚀 **Next Steps**
+## ðŸš€ **Next Steps**
 
 **Ready to deploy?** I can:
-1. ✅ Create the API client (`client/src/lib/api.ts`)
-2. ✅ Update AuthContext for Puter integration
-3. ✅ Update CORS in Express backend
-4. ✅ Create deployment scripts
-5. ✅ Build and test the app
+1. âœ… Create the API client (`client/src/lib/api.ts`)
+2. âœ… Update AuthContext for Puter integration
+3. âœ… Update CORS in Express backend
+4. âœ… Create deployment scripts
+5. âœ… Build and test the app
 
 **Which would you like me to do first?**

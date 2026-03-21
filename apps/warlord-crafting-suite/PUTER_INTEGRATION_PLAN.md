@@ -1,6 +1,6 @@
-# 🚀 Puter Integration Plan for GRUDGE Warlords
+﻿# ðŸš€ Puter Integration Plan for GRUDGE Warlords
 
-## 📋 **Current Architecture Overview**
+## ðŸ“‹ **Current Architecture Overview**
 
 ### **What You Have**
 
@@ -8,7 +8,7 @@
    - PostgreSQL database via Drizzle ORM
    - Full auth system (username/password, wallet, Puter SSO)
    - All game APIs (characters, crafting, inventory, etc.)
-   - Deployed on Replit: `https://grudge-crafting.replit.app`
+   - Deployed on Replit: `https://api.grudge-studio.com`
 
 2. **Puter Worker** (`puter-deploy/grudge-server/index.js`)
    - Lightweight API for AI features
@@ -23,49 +23,49 @@
 
 ---
 
-## 🎯 **Integration Strategy**
+## ðŸŽ¯ **Integration Strategy**
 
 ### **Hybrid Architecture** (Recommended)
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│  Frontend (Puter.com)                                    │
-│  • Built React app deployed to Puter                     │
-│  • Uses Puter SDK for auth                               │
-│  • Connects to BOTH backends                             │
-└─────────────────────────────────────────────────────────┘
-                         ↓
-        ┌────────────────┴────────────────┐
-        ↓                                  ↓
-┌──────────────────┐            ┌──────────────────┐
-│  Express Backend │            │  Puter Worker    │
-│  (Replit/Railway)│            │  (Puter.com)     │
-├──────────────────┤            ├──────────────────┤
-│ • PostgreSQL DB  │            │ • Puter KV       │
-│ • User accounts  │            │ • AI features    │
-│ • Characters     │            │ • Sprite gen     │
-│ • Inventory      │            │ • NPC chat       │
-│ • Crafting       │            │ • Sessions       │
-│ • Shop           │            │                  │
-└──────────────────┘            └──────────────────┘
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚  Frontend (Puter.com)                                    â”‚
+â”‚  â€¢ Built React app deployed to Puter                     â”‚
+â”‚  â€¢ Uses Puter SDK for auth                               â”‚
+â”‚  â€¢ Connects to BOTH backends                             â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                         â†“
+        â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+        â†“                                  â†“
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”            â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+â”‚  Express Backend â”‚            â”‚  Puter Worker    â”‚
+â”‚  (Replit/Railway)â”‚            â”‚  (Puter.com)     â”‚
+â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤            â”œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¤
+â”‚ â€¢ PostgreSQL DB  â”‚            â”‚ â€¢ Puter KV       â”‚
+â”‚ â€¢ User accounts  â”‚            â”‚ â€¢ AI features    â”‚
+â”‚ â€¢ Characters     â”‚            â”‚ â€¢ Sprite gen     â”‚
+â”‚ â€¢ Inventory      â”‚            â”‚ â€¢ NPC chat       â”‚
+â”‚ â€¢ Crafting       â”‚            â”‚ â€¢ Sessions       â”‚
+â”‚ â€¢ Shop           â”‚            â”‚                  â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜            â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 ### **Why Hybrid?**
 
-✅ **Best of Both Worlds**:
+âœ… **Best of Both Worlds**:
 - PostgreSQL for complex game data (characters, inventory, crafting)
 - Puter KV for sessions and AI features
 - Puter AI for free AI capabilities
 - Existing backend keeps working
 
-✅ **Deployment**:
+âœ… **Deployment**:
 - Frontend: Puter.com (free hosting)
 - Express Backend: Replit/Railway (PostgreSQL support)
 - Puter Worker: Puter.com (AI features)
 
 ---
 
-## 📝 **Implementation Steps**
+## ðŸ“ **Implementation Steps**
 
 ### **Step 1: Build React App for Puter**
 
@@ -92,7 +92,7 @@ const isPuter = window.location.hostname.includes('puter');
 
 export const API_CONFIG = {
   // Main backend (PostgreSQL, game data)
-  EXPRESS_API: process.env.BACKEND_URL || 'https://grudge-crafting.replit.app',
+  EXPRESS_API: process.env.BACKEND_URL || 'https://api.grudge-studio.com',
   
   // Puter worker (AI features)
   PUTER_API: isPuter 
@@ -166,7 +166,7 @@ if (process.env.PUTER_AUTH_TOKEN) {
 
 ---
 
-## 🔧 **Configuration Files Needed**
+## ðŸ”§ **Configuration Files Needed**
 
 ### **1. Environment Variables**
 
@@ -179,7 +179,7 @@ PUTER_WORKER_URL=https://grudge-server.puter.site
 
 **Puter Frontend** (set in Puter dashboard):
 ```env
-VITE_BACKEND_URL=https://grudge-crafting.replit.app
+VITE_BACKEND_URL=https://api.grudge-studio.com
 VITE_PUTER_WORKER_URL=https://grudge-server.puter.site
 ```
 
@@ -205,7 +205,7 @@ Already exists! Just needs backend URL updated:
 
 ---
 
-## 📦 **Deployment Checklist**
+## ðŸ“¦ **Deployment Checklist**
 
 ### **Frontend (Puter.com)**
 - [ ] Build React app: `npm run build`
@@ -214,7 +214,7 @@ Already exists! Just needs backend URL updated:
 - [ ] Test login and basic features
 
 ### **Express Backend (Replit/Railway)**
-- [ ] Already deployed ✅
+- [ ] Already deployed âœ…
 - [ ] Add CORS for `*.puter.site`
 - [ ] Test `/api/health` endpoint
 - [ ] Verify PostgreSQL connection
@@ -227,7 +227,7 @@ Already exists! Just needs backend URL updated:
 
 ---
 
-## 🎮 **User Flow**
+## ðŸŽ® **User Flow**
 
 1. User visits `https://grudge-warlords.puter.site`
 2. Puter SDK auto-authenticates user
@@ -239,12 +239,12 @@ Already exists! Just needs backend URL updated:
 
 ---
 
-## 🚀 **Next Steps**
+## ðŸš€ **Next Steps**
 
 **Want me to:**
-1. ✅ Build the React app for Puter deployment?
-2. ✅ Create deployment scripts?
-3. ✅ Update CORS settings in Express?
-4. ✅ Create a simple index.html launcher for Puter?
+1. âœ… Build the React app for Puter deployment?
+2. âœ… Create deployment scripts?
+3. âœ… Update CORS settings in Express?
+4. âœ… Create a simple index.html launcher for Puter?
 
 **Choose one and I'll implement it!**

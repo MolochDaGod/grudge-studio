@@ -1,4 +1,4 @@
-# Grudge Studio Ecosystem
+﻿# Grudge Studio Ecosystem
 
 ## Overview
 
@@ -9,28 +9,28 @@ Last verified: 2026-02-28
 ## Architecture
 
 ```
-                    ┌─────────────────────────────────────┐
-                    │       Grudge Studio App               │
-                    │   (grudge-studio-app.puter.site)      │
-                    └────────────┬────────────────────────┘
-                                 │ orchestrates
-         ┌───────────────────────┼───────────────────────┐
-         │                       │                       │
-    ┌────▼────┐           ┌──────▼──────┐         ┌──────▼──────┐
-    │  Puter  │           │   Vercel    │         │   GitHub    │
-    │  Sites  │           │  auth-gw    │         │   Pages     │
-    │ + AI/KV │           │   (API)     │         │  (Static)   │
-    └────┬────┘           └──────┬──────┘         └──────┬──────┘
-         │                       │                       │
+                    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+                    â”‚       Grudge Studio App               â”‚
+                    â”‚   (grudge-studio-app.puter.site)      â”‚
+                    â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                                 â”‚ orchestrates
+         â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+         â”‚                       â”‚                       â”‚
+    â”Œâ”€â”€â”€â”€â–¼â”€â”€â”€â”€â”           â”Œâ”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”         â”Œâ”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”
+    â”‚  Puter  â”‚           â”‚   Vercel    â”‚         â”‚   GitHub    â”‚
+    â”‚  Sites  â”‚           â”‚  auth-gw    â”‚         â”‚   Pages     â”‚
+    â”‚ + AI/KV â”‚           â”‚   (API)     â”‚         â”‚  (Static)   â”‚
+    â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”˜           â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”˜         â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”˜
+         â”‚                       â”‚                       â”‚
     Puter SSO              Neon PostgreSQL          ObjectStore
     puter.kv / ai          + Supabase               icon-index.json
 ```
 
-## Deployed Backend: auth-gateway (✅ LIVE)
+## Deployed Backend: auth-gateway (âœ… LIVE)
 
 The only deployed backend with a database.
 
-- **URL**: https://auth-gateway-flax.vercel.app
+- **URL**: https://id.grudge-studio.com
 - **Repo**: github.com/MolochDaGod/auth-gateway (private)
 - **Local**: `Warlord-Crafting-Suite/auth-gateway`
 - **Runtime**: Vercel Serverless Functions (Node.js)
@@ -38,28 +38,28 @@ The only deployed backend with a database.
 
 ### API Endpoints (`/api/*`)
 
-- `GET /api/health` — Health check
-- `POST /api/login` — Username/password auth
-- `POST /api/register` — New account creation
-- `POST /api/verify` — Token verification
-- `POST /api/guest` — Guest session
-- `GET /api/discord` — Discord OAuth callback
-- `GET /api/github` — GitHub App OAuth callback
-- `GET /api/google` — Google OAuth callback
-- `POST /api/puter` — Puter auth bridge
-- `POST /api/connect-wallet` — Crossmint wallet linking
-- `POST /api/create-crossmint-wallet` — New Crossmint wallet
-- `GET /api/db-test` — DB connectivity check
-- `POST /api/migrate` — Run schema migrations
+- `GET /api/health` â€” Health check
+- `POST /api/login` â€” Username/password auth
+- `POST /api/register` â€” New account creation
+- `POST /api/verify` â€” Token verification
+- `POST /api/guest` â€” Guest session
+- `GET /api/discord` â€” Discord OAuth callback
+- `GET /api/github` â€” GitHub App OAuth callback
+- `GET /api/google` â€” Google OAuth callback
+- `POST /api/puter` â€” Puter auth bridge
+- `POST /api/connect-wallet` â€” Crossmint wallet linking
+- `POST /api/create-crossmint-wallet` â€” New Crossmint wallet
+- `GET /api/db-test` â€” DB connectivity check
+- `POST /api/migrate` â€” Run schema migrations
 
-## Local-Only Backend: api-server (❌ NOT DEPLOYED)
+## Local-Only Backend: api-server (âŒ NOT DEPLOYED)
 
 - **Local**: `grudge-studio/apps/api-server/`
 - **Purpose**: REST API for game-data, AI agents, sync, UUID generation
 - **Has `vercel.json`** but no Vercel project or GitHub repo exists for it
 - Endpoints: `/api/v1/game-data`, `/api/v1/assets`, `/api/v1/ai`, `/api/v1/sync`, `/api/v1/uuid`, `/api/v1/github`
 
-## GitHub Pages: ObjectStore (✅ LIVE)
+## GitHub Pages: ObjectStore (âœ… LIVE)
 
 - **URL**: https://molochdagod.github.io/ObjectStore/
 - **Repo**: github.com/MolochDaGod/ObjectStore (public)
@@ -67,35 +67,35 @@ The only deployed backend with a database.
 - **Content**: Sprite PNGs for weapons, materials, professions, attributes
 - Static-only, no auth required. All games fetch from here.
 
-## GitHub Pages: GrudgeStudioNPM (✅ LIVE)
+## GitHub Pages: GrudgeStudioNPM (âœ… LIVE)
 
 - **URL**: https://molochdagod.github.io/GrudgeStudioNPM/
 - **Repo**: github.com/MolochDaGod/GrudgeStudioNPM (public)
-- **Content**: playground.html — Three.js r150 with 4 race models, 15 weapons, admin panel, hotbar, ObjectStore integration
+- **Content**: playground.html â€” Three.js r150 with 4 race models, 15 weapons, admin panel, hotbar, ObjectStore integration
 
-## Puter Sites (✅ LIVE)
+## Puter Sites (âœ… LIVE)
 
-- **grudge-studio-app.puter.site** — Main studio app: 3D editor, AI agents, asset browser, KV storage, service monitor
-- **grudge-command-center.puter.site** — Worker/site ops dashboard with 7 AI agents
-- **grudachain-ve8e8.puter.site** — GrudaChain Hub (node explorer)
+- **grudge-studio-app.puter.site** â€” Main studio app: 3D editor, AI agents, asset browser, KV storage, service monitor
+- **grudge-command-center.puter.site** â€” Worker/site ops dashboard with 7 AI agents
+- **grudachain-ve8e8.puter.site** â€” GrudaChain Hub (node explorer)
 
-## Puter Sites (❌ DOWN / UNVERIFIED)
+## Puter Sites (âŒ DOWN / UNVERIFIED)
 
-- **grudge-admin.puter.site** — Returns 404 (orphaned subdomain)
-- **authgrudge.puter.site** — Status unknown (legacy auth page)
-- **grudge-attack-system.puter.site** — Status unknown (combat demo)
+- **grudge-admin.puter.site** â€” Returns 404 (orphaned subdomain)
+- **authgrudge.puter.site** â€” Status unknown (legacy auth page)
+- **grudge-attack-system.puter.site** â€” Status unknown (combat demo)
 
 ## Puter App
 
-- **puter.com/app/Grudge-Game-Editor** — Registered to GRUDACHAIN, but `index_url` still points to old VJS fork (`colorful-puppy-4769-zilvf.puter.site`). Puter API does not allow programmatic update of forked app metadata.
+- **puter.com/app/Grudge-Game-Editor** â€” Registered to GRUDACHAIN, but `index_url` still points to old VJS fork (`colorful-puppy-4769-zilvf.puter.site`). Puter API does not allow programmatic update of forked app metadata.
 
 ### Puter SDK Features Used
 
-- **puter.kv** — Key-value storage for game state, user prefs, scene saves
-- **puter.fs** — Cloud filesystem for deploy scripts, site hosting
-- **puter.ai** — AI chat powering the 7 studio agents
-- **puter.auth** — SSO (signIn, getUser) used by studio app and command center
-- **puter.hosting** — Subdomain management (create/update sites)
+- **puter.kv** â€” Key-value storage for game state, user prefs, scene saves
+- **puter.fs** â€” Cloud filesystem for deploy scripts, site hosting
+- **puter.ai** â€” AI chat powering the 7 studio agents
+- **puter.auth** â€” SSO (signIn, getUser) used by studio app and command center
+- **puter.hosting** â€” Subdomain management (create/update sites)
 
 ## Puter-Hosted Games
 
@@ -111,9 +111,9 @@ The only deployed backend with a database.
 
 ## Vercel Deployments
 
-- **auth-gateway-flax.vercel.app** — Auth backend (the real deployed API)
-- **starwaygruda-webclient-as2n.vercel.app** — Starway GRUDA web client
-- **grudachain-rho.vercel.app** — GRUDA Legion Standalone AI System
+- **auth-gateway-flax.vercel.app** â€” Auth backend (the real deployed API)
+- **starwaygruda-webclient-as2n.vercel.app** â€” Starway GRUDA web client
+- **grudachain-rho.vercel.app** â€” GRUDA Legion Standalone AI System
 
 ## Deploy Scripts
 
@@ -121,8 +121,8 @@ The only deployed backend with a database.
 
 ```bash
 # Each app has its own deploy-puter.mjs that bypasses the puter-cli Windows backslash bug
-node apps/command-center/deploy-puter.mjs          # → grudge-command-center.puter.site
-node apps/grudge-studio-app/deploy-puter.mjs       # → grudge-studio-app.puter.site
+node apps/command-center/deploy-puter.mjs          # â†’ grudge-command-center.puter.site
+node apps/grudge-studio-app/deploy-puter.mjs       # â†’ grudge-studio-app.puter.site
 ```
 
 ### Vercel (auth-gateway)
@@ -154,14 +154,14 @@ cd GrudgeStudioNPM && git push origin main
 
 ```
 Documents/
-├── 1111111/
-│   ├── grudge-studio/             # Monorepo (apps + packages + docs)
-│   │   ├── apps/                  # 7 apps (api-server, studio, arena, etc.)
-│   │   ├── packages/              # 7 packages (shared, auth, db, etc.)
-│   │   └── puter-deploy/          # Legacy Puter deploy files
-│   ├── ObjectStore/               # → molochdagod.github.io/ObjectStore/
-│   └── Warlord-Crafting-Suite/
-│       └── auth-gateway/          # → auth-gateway-flax.vercel.app
-└── GitHub/
-    └── GrudgeStudioNPM/           # → molochdagod.github.io/GrudgeStudioNPM/
+â”œâ”€â”€ 1111111/
+â”‚   â”œâ”€â”€ grudge-studio/             # Monorepo (apps + packages + docs)
+â”‚   â”‚   â”œâ”€â”€ apps/                  # 7 apps (api-server, studio, arena, etc.)
+â”‚   â”‚   â”œâ”€â”€ packages/              # 7 packages (shared, auth, db, etc.)
+â”‚   â”‚   â””â”€â”€ puter-deploy/          # Legacy Puter deploy files
+â”‚   â”œâ”€â”€ ObjectStore/               # â†’ molochdagod.github.io/ObjectStore/
+â”‚   â””â”€â”€ Warlord-Crafting-Suite/
+â”‚       â””â”€â”€ auth-gateway/          # â†’ auth-gateway-flax.vercel.app
+â””â”€â”€ GitHub/
+    â””â”€â”€ GrudgeStudioNPM/           # â†’ molochdagod.github.io/GrudgeStudioNPM/
 ```

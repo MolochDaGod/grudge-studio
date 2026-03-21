@@ -1,4 +1,4 @@
-/**
+﻿/**
  * GRUDGE Warlords - Puter Worker Server
  * 
  * Deployed on Puter as the backend API for GRUDGE Warlords
@@ -28,7 +28,7 @@ const APP_CONFIG = {
   SERVER_APP_ID: 'app-f9ad7ff9-1a2e-4bb0-a20a-8db9db03a620',
   CLOUD_APP_ID: 'app-72f20857-03d2-4551-b6fd-7bf1f90a2cf0',
   
-  REPLIT_DEPLOYMENT: 'https://grudge-crafting.replit.app',
+  REPLIT_DEPLOYMENT: 'https://api.grudge-studio.com',
   
   SESSION_PREFIX: 'grudge_session_',
   JOB_PREFIX: 'grudge_job_',

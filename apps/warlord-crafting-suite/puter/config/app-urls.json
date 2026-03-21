@@ -1,4 +1,4 @@
-{
+﻿{
   "version": "1.1.0",
   "lastUpdated": "2026-01-01",
   "description": "Centralized Puter app URL configuration with auth redirect support",
@@ -98,12 +98,12 @@
     }
   },
   "backend": {
-    "replit": "https://grudge-crafting.replit.app",
+    "replit": "https://api.grudge-studio.com",
     "description": "Use Replit backend for API calls since no Puter server worker exists"
   },
   "notes": [
     "grudge-server-lwvwd does NOT exist - use Replit backend or create Puter Worker",
-    "App names in Puter can differ from subdomain (e.g., 'warlords' → 'Grudge-crafting')",
+    "App names in Puter can differ from subdomain (e.g., 'warlords' â†’ 'Grudge-crafting')",
     "Always verify subdomain matches actual deployed app before updating"
   ]
 }

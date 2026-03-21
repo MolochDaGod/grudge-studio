@@ -1,4 +1,4 @@
-# GRUDGE Warlords - Puter Deployment Guide
+﻿# GRUDGE Warlords - Puter Deployment Guide
 
 ## Overview
 
@@ -65,7 +65,7 @@ puter> sites
 | Editor | https://colorful-puppy-4769-zilvf.puter.site | Map editor |
 
 ## Backend
-The Replit backend is at: **https://grudge-crafting.replit.app**
+The Replit backend is at: **https://api.grudge-studio.com**
 
 All Puter apps connect to this backend for:
 - Authentication (SSO with HMAC-signed tokens)
@@ -131,21 +131,21 @@ puter> update <local_dir> <remote_dir> [-r] [--delete]
 
 ```
 puter-deploy/
-├── grudge-apps/        # Apps Portal
-│   ├── index.html
-│   ├── grudge-logo.png
-│   └── login-bg.png
-├── grudge-auth/        # Authentication
-│   ├── index.html
-│   ├── puter-manifest.json
-│   ├── grudge-logo.png
-│   └── login-bg.png
-├── grudge-cloud/       # Cloud Admin
-│   ├── index.html
-│   └── puter-manifest.json
-└── grudge-server/      # Backend Worker
-    ├── index.js
-    └── puter-manifest.json
+â”œâ”€â”€ grudge-apps/        # Apps Portal
+â”‚   â”œâ”€â”€ index.html
+â”‚   â”œâ”€â”€ grudge-logo.png
+â”‚   â””â”€â”€ login-bg.png
+â”œâ”€â”€ grudge-auth/        # Authentication
+â”‚   â”œâ”€â”€ index.html
+â”‚   â”œâ”€â”€ puter-manifest.json
+â”‚   â”œâ”€â”€ grudge-logo.png
+â”‚   â””â”€â”€ login-bg.png
+â”œâ”€â”€ grudge-cloud/       # Cloud Admin
+â”‚   â”œâ”€â”€ index.html
+â”‚   â””â”€â”€ puter-manifest.json
+â””â”€â”€ grudge-server/      # Backend Worker
+    â”œâ”€â”€ index.js
+    â””â”€â”€ puter-manifest.json
 ```
 
 ## Troubleshooting
@@ -170,7 +170,7 @@ Check you're logged into the correct Puter account.
 
 ### "Account exists but not linked"
 For existing accounts, login with password first at:
-https://grudge-crafting.replit.app/login
+https://api.grudge-studio.com/login
 
 ## Environment Variables
 
@@ -185,4 +185,4 @@ https://grudge-crafting.replit.app/login
 - **Puter Developer Docs**: https://docs.puter.com
 - **Puter GitHub**: https://github.com/HeyPuter/puter
 - **puter-cli GitHub**: https://github.com/HeyPuter/puter-cli
-- **Replit Backend**: https://grudge-crafting.replit.app
+- **Replit Backend**: https://api.grudge-studio.com

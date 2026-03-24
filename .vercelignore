@@ -8,9 +8,8 @@ __pycache__/
 dist/
 build/
 
-# Large nested directories
+# Large nested directories (NOT attached_assets — Vite needs those for build)
 apps/warlord-crafting-suite/grudge-builder/
-apps/warlord-crafting-suite/attached_assets/
 apps/warlord-crafting-suite/puter-deploy/
 apps/warlord-crafting-suite/.local/
 apps/warlord-crafting-suite/.conda/

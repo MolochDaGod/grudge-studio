@@ -1,6 +1,6 @@
 {
-  "buildCommand": "pnpm build",
-  "devCommand": "pnpm dev",
+  "buildCommand": "cd apps/warlord-crafting-suite && npx vite build",
+  "outputDirectory": "apps/warlord-crafting-suite/dist/public",
   "installCommand": "pnpm install --frozen-lockfile",
   "framework": "vite",
   "functions": {
@@ -12,6 +12,12 @@
   "env": {
     "GRUDGE_AUTH_URL": "@grudge_auth_url",
     "GRUDGE_API_URL": "@grudge_api_url",
+    "VITE_GAME_API_URL": "https://api.grudge-studio.com",
+    "VITE_AUTH_API_URL": "https://id.grudge-studio.com",
+    "VITE_BACKEND_URL": "https://api.grudge-studio.com",
+    "VITE_OBJECTSTORE_URL": "https://molochdagod.github.io/ObjectStore",
+    "VITE_WS_URL": "wss://ws.grudge-studio.com",
+    "VITE_PUTER_ENABLED": "true",
     "NODE_ENV": "production",
     "SESSION_SECRET": "@session_secret"
   },

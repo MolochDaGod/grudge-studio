@@ -251,7 +251,7 @@ export function generatePuterSyncCode(): string {
 // Puter FS Sync Client for GRUDGE Warlords
 // Run this in a Puter app to sync sheets data
 
-const BACKEND_URL = localStorage.getItem('grudge_backend_url') || 'https://grudge-warlords.replit.app';
+const BACKEND_URL = localStorage.getItem('grudge_backend_url') || 'https://api.grudge-studio.com';
 const SHEETS_PATH = 'grudge/sheets';
 
 async function fetchAndStoreSheets() {

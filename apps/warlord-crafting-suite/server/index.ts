@@ -10,10 +10,14 @@ const httpServer = createServer(app);
 const corsOptions: cors.CorsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = [
-      /\.replit\.app$/,
-      /\.replit\.dev$/,
+      /grudgewarlords\.com$/,
+      /grudge-studio\.com$/,
+      /\.vercel\.app$/,
+      /\.github\.io$/,
       /\.puter\.site$/,
       /\.puter\.com$/,
+      /\.replit\.app$/,
+      /\.replit\.dev$/,
       /^https?:\/\/localhost/,
       /^https?:\/\/127\.0\.0\.1/,
     ];

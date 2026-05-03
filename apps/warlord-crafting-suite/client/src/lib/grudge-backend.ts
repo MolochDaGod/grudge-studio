@@ -8,6 +8,9 @@
 const GAME_API = import.meta.env.VITE_GAME_API_URL || 'https://api.grudge-studio.com';
 const AUTH_API = import.meta.env.VITE_AUTH_API_URL || 'https://id.grudge-studio.com';
 
+// The callback page that receives the grudge_token after OAuth
+const OAUTH_CALLBACK = `${window.location.origin}/auth-callback.html`;
+
 // ── Helpers ──────────────────────────────────
 
 const TOKEN_KEY = 'grudge_auth_token';
@@ -142,18 +145,20 @@ export async function completeMission(missionId: string | number) {
 // ── Auth (VPS id.grudge-studio.com) ──────────
 
 export async function authLogin(username: string, password: string) {
-  const res = await fetch(`${AUTH_API}/auth/login`, {
+  const res = await fetch(`${AUTH_API}/api/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
     body: JSON.stringify({ username, password }),
   });
   return res.json();
 }
 
 export async function authRegister(username: string, password: string) {
-  const res = await fetch(`${AUTH_API}/auth/register`, {
+  const res = await fetch(`${AUTH_API}/api/auth/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
     body: JSON.stringify({ username, password }),
   });
   return res.json();
@@ -161,93 +166,116 @@ export async function authRegister(username: string, password: string) {
 
 export async function authGuest(deviceId?: string) {
   const id = deviceId || crypto.randomUUID().slice(0, 12);
-  const res = await fetch(`${AUTH_API}/auth/guest`, {
+  const res = await fetch(`${AUTH_API}/api/auth/guest`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
     body: JSON.stringify({ deviceId: id }),
   });
   return res.json();
 }
 
 export async function authWallet(walletAddress: string, email?: string, name?: string) {
-  const res = await fetch(`${AUTH_API}/auth/wallet`, {
+  const res = await fetch(`${AUTH_API}/api/auth/wallet`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
     body: JSON.stringify({ walletAddress, email, name }),
   });
   return res.json();
 }
 
 export async function authPuter(puterUuid: string, puterUsername: string) {
-  const res = await fetch(`${AUTH_API}/auth/puter`, {
+  const res = await fetch(`${AUTH_API}/api/auth/puter-sso`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ puterUuid, puterUsername }),
+    credentials: 'include',
+    body: JSON.stringify({ puterId: puterUuid, puterUsername }),
   });
   return res.json();
 }
 
 export async function verifyToken(token: string) {
-  const res = await fetch(`${AUTH_API}/auth/verify`, {
+  const res = await fetch(`${AUTH_API}/api/auth/session/exchange`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
     body: JSON.stringify({ token }),
   });
   return res.json();
 }
 
 export async function getMyIdentity() {
-  const token = getToken();
-  if (!token) throw new Error('Not authenticated');
-  const res = await fetch(`${AUTH_API}/identity/me`, {
-    headers: { Authorization: `Bearer ${token}` },
+  const res = await fetch(`${AUTH_API}/api/auth/me`, {
+    credentials: 'include',
   });
   if (!res.ok) throw new Error('Identity fetch failed');
   return res.json();
 }
 
 // ── OAuth redirect flows ─────────────────────
-// These redirect the browser to the Grudge auth backend, which handles
-// the provider OAuth and redirects back with ?token=...&grudge_id=...
+// The login buttons redirect to id.grudge-studio.com/auth/<provider>/start
+// which handles the provider OAuth and redirects back to /auth-callback.html
+// with ?grudge_token=<jwt>&auth=<provider>&new=<0|1>.
+// The ?next= param saved in sessionStorage is read by auth-callback.html.
 
-/** Redirect to Discord OAuth via Grudge backend */
-export function loginWithDiscord(redirectUri?: string) {
-  const redir = redirectUri || `${window.location.origin}/login`;
-  window.location.href = `${AUTH_API}/auth/discord?redirect_uri=${encodeURIComponent(redir)}`;
+/** Redirect to Discord OAuth via Grudge auth hub */
+export function loginWithDiscord(next?: string) {
+  try { sessionStorage.setItem('gw_auth_next', next || window.location.pathname); } catch {}
+  window.location.href =
+    `${AUTH_API}/auth/discord/start?redirect=${encodeURIComponent(OAUTH_CALLBACK)}`;
 }
 
-/** Redirect to Google OAuth via Grudge backend */
-export function loginWithGoogle(redirectUri?: string) {
-  const redir = redirectUri || `${window.location.origin}/login`;
-  window.location.href = `${AUTH_API}/auth/google?redirect_uri=${encodeURIComponent(redir)}`;
+/** Redirect to Google OAuth via Grudge auth hub */
+export function loginWithGoogle(next?: string) {
+  try { sessionStorage.setItem('gw_auth_next', next || window.location.pathname); } catch {}
+  window.location.href =
+    `${AUTH_API}/auth/google/start?redirect=${encodeURIComponent(OAUTH_CALLBACK)}`;
 }
 
-/** Redirect to GitHub OAuth via Grudge backend */
-export function loginWithGitHub(redirectUri?: string) {
-  const redir = redirectUri || `${window.location.origin}/login`;
-  window.location.href = `${AUTH_API}/auth/github?redirect_uri=${encodeURIComponent(redir)}`;
+/** Redirect to GitHub OAuth via Grudge auth hub */
+export function loginWithGitHub(next?: string) {
+  try { sessionStorage.setItem('gw_auth_next', next || window.location.pathname); } catch {}
+  window.location.href =
+    `${AUTH_API}/auth/github/start?redirect=${encodeURIComponent(OAUTH_CALLBACK)}`;
 }
 
-// ── OAuth callback capture ───────────────────
+// ── OAuth callback capture (legacy + grudge_token) ───────────────
 
 /**
- * Capture auth data from URL params after OAuth redirect callback.
- * The backend redirects back with ?token=...&grudge_id=...&provider=...
- * Call this on mount of your login/auth page.
- * Returns the auth data if captured, null otherwise.
+ * Capture auth data from URL params after OAuth redirect.
+ * Handles both the old ?token=... format and the new ?grudge_token=... format.
+ * auth-callback.html handles the full exchange for the new format;
+ * this is a fallback for deep-links that land directly on the React app.
  */
 export function captureAuthCallback(): { token: string; grudgeId: string; provider?: string } | null {
   const params = new URLSearchParams(window.location.search);
+
+  // New format: grudge_token (5-min launch JWT from The-ENGINE)
+  const grudgeToken = params.get('grudge_token');
+  if (grudgeToken) {
+    // Store it temporarily; AuthContext will exchange it via verifyToken()
+    setToken(grudgeToken);
+    const provider = params.get('auth') || undefined;
+
+    const cleanUrl = new URL(window.location.href);
+    ['grudge_token', 'auth', 'new', 'next', 'redirect'].forEach((k) =>
+      cleanUrl.searchParams.delete(k),
+    );
+    window.history.replaceState({}, '', cleanUrl.pathname + cleanUrl.search + cleanUrl.hash);
+
+    return { token: grudgeToken, grudgeId: '', provider };
+  }
+
+  // Legacy format: ?token=...&grudge_id=...
   const token = params.get('token');
   const grudgeId = params.get('grudge_id');
   const provider = params.get('provider');
 
   if (!token) return null;
 
-  // Store the token
   setToken(token);
 
-  // Clean auth params from URL
   const cleanUrl = new URL(window.location.href);
   ['token', 'grudge_id', 'provider', 'username', 'displayName', 'isNew'].forEach(
     (k) => cleanUrl.searchParams.delete(k),

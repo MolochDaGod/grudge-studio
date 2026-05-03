@@ -18,11 +18,11 @@
       gap: 1.5rem;
     }
     .logo { font-size: 2rem; font-weight: 800; letter-spacing: -1px; }
-    .logo span { color: #7c5cff; }
+    .logo span { color: #f59e0b; }
     .spinner {
       width: 48px; height: 48px;
-      border: 4px solid rgba(124,92,255,.2);
-      border-top-color: #7c5cff;
+      border: 4px solid rgba(245,158,11,.15);
+      border-top-color: #f59e0b;
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
     }
@@ -45,20 +45,20 @@
       display: inline-block;
       padding: .5rem 1.25rem;
       border-radius: 6px;
-      background: #7c5cff;
-      color: #fff;
-      font-weight: 600;
+      background: #f59e0b;
+      color: #0a0a0f;
+      font-weight: 700;
       text-decoration: none;
       font-size: .875rem;
       cursor: pointer;
       border: none;
     }
-    .btn.ghost { background: transparent; border: 1px solid rgba(255,255,255,.2); }
+    .btn.ghost { background: transparent; color: #e2e0ff; border: 1px solid rgba(255,255,255,.2); }
     .btns { display: flex; gap: .75rem; justify-content: center; }
   </style>
 </head>
 <body>
-  <div class="logo">Grudge<span>Warlords</span></div>
+  <div class="logo">GRUDGE <span>Warlords</span></div>
   <div class="spinner" id="spinner"></div>
   <p class="msg" id="msg">Completing sign-in&hellip;</p>
 
@@ -74,8 +74,13 @@
     (function () {
       var params   = new URLSearchParams(window.location.search);
       var token    = params.get('grudge_token');
-      var next     = params.get('next') || params.get('redirect') || sessionStorage.getItem('gw_auth_next') || '/';
+      var next     = params.get('next') || params.get('redirect') || '';
       var provider = params.get('auth') || 'oauth';
+
+      // Prefer sessionStorage-saved next (set before OAuth redirect)
+      if (!next) {
+        try { next = sessionStorage.getItem('gw_auth_next') || '/'; } catch(e) { next = '/'; }
+      }
 
       // Safety: only allow same-origin redirects
       if (next && (next.startsWith('http://') || next.startsWith('https://'))) {
@@ -84,6 +89,7 @@
           if (u.hostname !== window.location.hostname) next = '/';
         } catch (e) { next = '/'; }
       }
+      if (!next) next = '/';
 
       function showError(msg) {
         document.getElementById('spinner').style.display = 'none';
@@ -92,9 +98,7 @@
         document.getElementById('errorBox').classList.add('visible');
       }
 
-      function retry() {
-        window.location.href = '/?login=1';
-      }
+      function retry() { window.location.href = '/login'; }
       window.retry = retry;
 
       if (!token) {
@@ -115,12 +119,32 @@
         return r.json();
       })
       .then(function (player) {
-        // Store player profile for the frontend to read
+        // Map The-ENGINE role names to the roles AuthContext expects
+        var roleMap = { player: 'user', guest: 'guest', admin: 'admin' };
+        var role = roleMap[player.role] || 'user';
+
+        // Build the AuthUser shape that AuthContext reads from localStorage
+        var authUser = {
+          id: player.grudgeId || String(player.id || ''),
+          username: player.username || '',
+          displayName: player.displayName || player.username || '',
+          email: player.email || undefined,
+          role: role,
+          isPuterUser: false,
+          createdAt: new Date().toISOString(),
+          lastLogin: new Date().toISOString(),
+        };
+
+        try { localStorage.setItem('grudge_auth_user', JSON.stringify(authUser)); } catch (e) {}
+        // Also keep raw grudge_player for other consumers
         try { localStorage.setItem('grudge_player', JSON.stringify(player)); } catch (e) {}
         try { sessionStorage.removeItem('gw_auth_next'); } catch (e) {}
-        document.getElementById('msg').textContent = 'Welcome, ' + (player.displayName || player.username) + '!';
-        // Small delay so the user sees the welcome message
-        setTimeout(function () { window.location.href = next; }, 600);
+
+        document.getElementById('msg').textContent =
+          'Welcome back, ' + (player.displayName || player.username) + '!';
+
+        // Short delay so the user sees the welcome flash
+        setTimeout(function () { window.location.replace(next); }, 700);
       })
       .catch(function (err) {
         showError(err.message || 'Authentication failed. Please try again.');

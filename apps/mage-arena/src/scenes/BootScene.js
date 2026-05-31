@@ -154,6 +154,19 @@ export class BootScene extends Phaser.Scene {
       this.load.image(`slash_${i}`, `${CDN}/sprites/effects/slash/PNG/1/${i}.png`);
     }
 
+    // Shield animations for parry/frozen VFX
+    const SHIELD_BASE = `${MAGIC_FX}/shield-animation-asset-pack`;
+    for (let i = 1; i <= 8; i++) {
+      this.load.image(`fire_shield_${i}`, `${CDN}/${SHIELD_BASE}/Fire_Shield/PNG/Fire_Shield_Frame_0${i}.png`);
+      this.load.image(`water_shield_${i}`, `${CDN}/${SHIELD_BASE}/Water_Shield/PNG/Water_Shield_Frame_0${i}.png`);
+      this.load.image(`earth_shield_${i}`, `${CDN}/${SHIELD_BASE}/Earth_Shield/PNG/Earth_Shield_Frame_0${i}.png`);
+    }
+
+    // Rarity glow effects for casting VFX
+    this.load.image('fx_magic_glow', `${CDN}/sprites/foozle/effects/Effects/Rarity_Effects/Png/Magic_effect.png`);
+    this.load.image('fx_legendary_glow', `${CDN}/sprites/foozle/effects/Effects/Rarity_Effects/Png/Legendary_effect.png`);
+    this.load.image('fx_rare_glow', `${CDN}/sprites/foozle/effects/Effects/Rarity_Effects/Png/Rare_effect.png`);
+
     // ── Load pickups ──
     this.load.image('pickup_health', `${CDN}/sprites/foozle/pickups/Pickups/Potions/Health/Png/SmallHealthPotion.png`);
     this.load.image('pickup_mana', `${CDN}/sprites/foozle/pickups/Pickups/Potions/Mana/Png/SmallManaPotion.png`);
@@ -287,7 +300,23 @@ export class BootScene extends Phaser.Scene {
     makeFrameAnim('anim_ground_hit', 'ground_hit', 8, 14, 0);
     makeFrameAnim('anim_meteor', 'meteor', 12, 12, 0);
     makeFrameAnim('anim_slash', 'slash', 10, 18, 0);
+    makeFrameAnim('anim_fire_shield', 'fire_shield', 8, 10, 0);
+    makeFrameAnim('anim_water_shield', 'water_shield', 8, 10, 0);
+    makeFrameAnim('anim_earth_shield', 'earth_shield', 8, 10, 0);
 
-    this.scene.start('Select');
+    // Generate crosshair texture (32x32)
+    const ch = this.make.graphics({ add: false });
+    ch.lineStyle(1, 0xffffff, 0.8);
+    ch.moveTo(16, 4); ch.lineTo(16, 12);  // top
+    ch.moveTo(16, 20); ch.lineTo(16, 28); // bottom
+    ch.moveTo(4, 16); ch.lineTo(12, 16);  // left
+    ch.moveTo(20, 16); ch.lineTo(28, 16); // right
+    ch.strokePath();
+    ch.fillStyle(0xff4444, 0.9);
+    ch.fillCircle(16, 16, 2); // center dot
+    ch.generateTexture('crosshair', 32, 32);
+    ch.destroy();
+
+    this.scene.start('Landing');
   }
 }

@@ -108,9 +108,23 @@ export class SelectScene extends Phaser.Scene {
       });
     });
 
-    // Instructions
+    // Settings summary from Landing
+    const difficulty = this.registry.get('difficulty') || 'normal';
+    const allyCount = this.registry.get('allyCount') ?? 3;
+    this.add.text(w / 2, h - 50, `${difficulty.toUpperCase()} difficulty • ${allyCount} AI allies`, {
+      font: '10px monospace', fill: '#888888',
+    }).setOrigin(0.5);
+
     this.add.text(w / 2, h - 30, 'Click a champion to enter the dungeon', {
       font: '11px monospace', fill: '#555555',
     }).setOrigin(0.5);
+
+    // Back to Landing
+    const backZone = this.add.text(20, h - 30, '← Settings', {
+      font: '10px monospace', fill: '#666688',
+    }).setInteractive({ useHandCursor: true });
+    backZone.on('pointerdown', () => this.scene.start('Landing'));
+    backZone.on('pointerover', () => backZone.setColor('#aaaacc'));
+    backZone.on('pointerout', () => backZone.setColor('#666688'));
   }
 }

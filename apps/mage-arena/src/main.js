@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { BootScene } from './scenes/BootScene.js';
+import { LandingScene } from './scenes/LandingScene.js';
 import { SelectScene } from './scenes/SelectScene.js';
 import { ArenaScene } from './scenes/ArenaScene.js';
 import { HudScene } from './scenes/HudScene.js';
@@ -18,7 +19,7 @@ const config = {
     default: 'arcade',
     arcade: { gravity: { x: 0, y: 0 }, debug: false },
   },
-  scene: [BootScene, SelectScene, ArenaScene, HudScene],
+  scene: [BootScene, LandingScene, SelectScene, ArenaScene, HudScene],
 };
 
 new Phaser.Game(config);

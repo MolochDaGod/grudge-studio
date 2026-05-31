@@ -27,8 +27,14 @@ export class ArenaScene extends Phaser.Scene {
     this.maxMp = heroCfg.mp;
     this.kills = 0;
     this.bossActive = null;
-    this.selectedAlly = null;       // LMB target selection
-    this.selectionRing = null;      // visual ring on selected ally
+    this.selectedAlly = null;
+    this.selectionRing = null;
+
+    // Read difficulty settings from Landing scene
+    this.hpMult = this.registry.get('hpMult') || 1;
+    this.spdMult = this.registry.get('spdMult') || 1;
+    this.waveMult = this.registry.get('waveMult') || 1;
+    this.allyCount = this.registry.get('allyCount') ?? 3;
 
     // World
     this.cameras.main.setBackgroundColor('#0d0a12');
@@ -92,10 +98,17 @@ export class ArenaScene extends Phaser.Scene {
     this.cKey.on('down', () => this.events.emit('togglePanel'));
     this.skillKeys.forEach((key, i) => { key.on('down', () => this.useSkill(i)); });
 
-    // Spawn
-    this.spawnWave(6);
+    // Crosshair cursor
+    this.input.setDefaultCursor('none');
+    this.crosshair = this.add.image(0, 0, 'crosshair').setDepth(100).setScrollFactor(0);
+
+    // Spawn — scale wave size by difficulty
+    const initWave = Math.max(3, Math.round(6 * this.waveMult));
+    this.spawnWave(initWave);
     this.spawnAllies();
-    this.time.addEvent({ delay: 10000, callback: () => this.spawnWave(4), loop: true });
+    const waveInterval = Math.max(5000, Math.round(10000 / this.waveMult));
+    const waveSize = Math.max(2, Math.round(4 * this.waveMult));
+    this.time.addEvent({ delay: waveInterval, callback: () => this.spawnWave(waveSize), loop: true });
     this.time.addEvent({ delay: 100, callback: () => this.updateEnemyAI(), loop: true });
   }
 
@@ -105,6 +118,11 @@ export class ArenaScene extends Phaser.Scene {
   update(time, delta) {
     if (this.hp <= 0) return;
     if (this.isDashing) return;
+
+    // Crosshair follows mouse (screen-space)
+    if (this.crosshair) {
+      this.crosshair.setPosition(this.input.activePointer.x, this.input.activePointer.y);
+    }
 
     // Mouse-aimed facing
     const pointer = this.input.activePointer;
@@ -303,8 +321,9 @@ export class ArenaScene extends Phaser.Scene {
     unit.setScale(cfg.isGolem ? 2.0 : 2.5);
     unit.body.setCircle(12, 12, 20);  // Phase 2: circular collider
     unit.setData('charKey', charKey);
-    unit.setData('hp', Math.floor(cfg.hp * (group === this.enemies ? 0.6 : 1)));
-    unit.setData('maxHp', Math.floor(cfg.hp * (group === this.enemies ? 0.6 : 1)));
+    const hpBase = group === this.enemies ? Math.floor(cfg.hp * 0.6 * this.hpMult) : cfg.hp;
+    unit.setData('hp', hpBase);
+    unit.setData('maxHp', hpBase);
     unit.setData('facing', DIR.down);
     unit.setData('dead', false);
     unit.setData('attackCd', 0);
@@ -329,8 +348,9 @@ export class ArenaScene extends Phaser.Scene {
   }
 
   spawnAllies() {
+    if (this.allyCount <= 0) return;
     const others = Object.keys(HEROES).filter(k => k !== this.heroId);
-    for (let i = 0; i < Math.min(3, others.length); i++) {
+    for (let i = 0; i < Math.min(this.allyCount, others.length); i++) {
       this.spawnUnit(others[i], WORLD.w / 2 + (i - 1) * 80, WORLD.h / 2 + 60, this.allies, 0x88ff88);
     }
   }
@@ -385,17 +405,31 @@ export class ArenaScene extends Phaser.Scene {
     const hurtKey = heroKey(this.heroId, 'hurt', this.facing);
     if (this.anims.exists(hurtKey)) this.player.play(hurtKey);
 
-    const shield = this.add.graphics().setDepth(20);
-    const draw = () => {
-      shield.clear();
-      shield.lineStyle(3, 0x4488ff, 0.6); shield.strokeCircle(this.player.x, this.player.y, 34);
-      shield.lineStyle(1, 0x88bbff, 0.3); shield.strokeCircle(this.player.x, this.player.y, 38);
-    };
-    draw();
-    const timer = this.time.addEvent({ delay: 16, callback: draw, loop: true });
-    this.time.delayedCall(COMBAT.parryWindow, () => {
-      this.isParrying = false; timer.destroy(); shield.destroy();
-    });
+    // Use Fire Shield animation if available, else fallback to graphics
+    let shieldSprite = null;
+    if (this.anims.exists('anim_fire_shield') && this.textures.exists('fire_shield_1')) {
+      shieldSprite = this.add.sprite(this.player.x, this.player.y, 'fire_shield_1').setScale(0.08).setDepth(20).setAlpha(0.8); // 720px → ~58px
+      shieldSprite.play('anim_fire_shield');
+      const followTimer = this.time.addEvent({ delay: 16, callback: () => {
+        if (shieldSprite?.active) shieldSprite.setPosition(this.player.x, this.player.y);
+      }, loop: true });
+      this.time.delayedCall(COMBAT.parryWindow, () => {
+        this.isParrying = false; followTimer.destroy();
+        if (shieldSprite?.active) shieldSprite.destroy();
+      });
+    } else {
+      const shield = this.add.graphics().setDepth(20);
+      const draw = () => {
+        shield.clear();
+        shield.lineStyle(3, 0x4488ff, 0.6); shield.strokeCircle(this.player.x, this.player.y, 34);
+        shield.lineStyle(1, 0x88bbff, 0.3); shield.strokeCircle(this.player.x, this.player.y, 38);
+      };
+      draw();
+      const timer = this.time.addEvent({ delay: 16, callback: draw, loop: true });
+      this.time.delayedCall(COMBAT.parryWindow, () => {
+        this.isParrying = false; timer.destroy(); shield.destroy();
+      });
+    }
   }
 
   doDash() {
@@ -495,12 +529,13 @@ export class ArenaScene extends Phaser.Scene {
     let proj;
     if (tex) {
       proj = this.physics.add.sprite(this.player.x + nx * 24, this.player.y + ny * 24, tex);
-      proj.setScale(0.5); proj.setRotation(angle);
+      proj.setScale(0.08); // 640px sprites → ~50px on screen
+      proj.setRotation(angle);
       if (this.anims.exists(anim)) proj.play(anim);
     } else {
       this.ensureCircleTex();
       proj = this.physics.add.sprite(this.player.x + nx * 24, this.player.y + ny * 24, 'proj_circle');
-      proj.setScale(1.5); proj.setTint(color);
+      proj.setScale(2); proj.setTint(color);
     }
     proj.setVelocity(nx * speed, ny * speed);
     proj.setData('damage', damage); proj.setData('owner', 'player');
@@ -516,12 +551,14 @@ export class ArenaScene extends Phaser.Scene {
     let proj;
     if (tex && this.textures.exists(tex)) {
       proj = this.physics.add.sprite(fx + nx * 16, fy + ny * 16, tex);
-      proj.setScale(0.4); proj.setRotation(angle);
+      proj.setScale(0.06); // enemy/ally projectiles slightly smaller
+      proj.setRotation(angle);
       if (anim && this.anims.exists(anim)) proj.play(anim);
       if (tint) proj.setTint(tint);
     } else {
       this.ensureCircleTex();
       proj = this.physics.add.sprite(fx + nx * 16, fy + ny * 16, 'proj_circle');
+      proj.setScale(1.5);
       proj.setTint(tint || 0xff4444);
     }
     proj.setVelocity(nx * speed, ny * speed);
@@ -547,7 +584,7 @@ export class ArenaScene extends Phaser.Scene {
 
   spawnAoE(cx, cy, damage, radius, statusEffect) {
     if (this.anims.exists('anim_meteor') && this.textures.exists('meteor_1')) {
-      const fx = this.add.sprite(cx, cy, 'meteor_1'); fx.setScale(0.5); fx.setDepth(12);
+      const fx = this.add.sprite(cx, cy, 'meteor_1'); fx.setScale(0.1); fx.setDepth(12); // 1024px → ~100px
       fx.play('anim_meteor'); fx.once('animationcomplete', () => fx.destroy());
     } else if (this.textures.exists('fx_destroy')) {
       const fx = this.add.sprite(cx, cy, 'fx_destroy'); fx.setScale(3); fx.setDepth(12);
@@ -567,7 +604,7 @@ export class ArenaScene extends Phaser.Scene {
 
   showSlashEffect(x, y) {
     if (this.anims.exists('anim_slash') && this.textures.exists('slash_1')) {
-      const s = this.add.sprite(x, y, 'slash_1'); s.setScale(1.5); s.setDepth(12);
+      const s = this.add.sprite(x, y, 'slash_1'); s.setScale(0.12); s.setDepth(12); // 496px → ~60px
       s.play('anim_slash'); s.once('animationcomplete', () => s.destroy());
     } else {
       const g = this.add.graphics(); g.fillStyle(this.heroCfg.color, 0.6); g.fillCircle(x, y, 15); g.setDepth(12);
@@ -579,15 +616,23 @@ export class ArenaScene extends Phaser.Scene {
     const ak = type === 'ground' ? 'anim_ground_hit' : 'anim_fire_explosion';
     const tk = type === 'ground' ? 'ground_hit_1' : 'fire_explosion_1';
     if (this.anims.exists(ak) && this.textures.exists(tk)) {
-      const fx = this.add.sprite(x, y, tk); fx.setScale(type === 'ground' ? 0.6 : 0.4); fx.setDepth(13);
+      // ground_hit=1200px, fire_explosion=480px → target ~60-80px
+      const scale = type === 'ground' ? 0.06 : 0.12;
+      const fx = this.add.sprite(x, y, tk); fx.setScale(scale); fx.setDepth(13);
       fx.play(ak); fx.once('animationcomplete', () => fx.destroy());
     }
   }
 
   showCastingVFX(x, y, color) {
-    const g = this.add.graphics().setDepth(11);
-    g.lineStyle(2, color, 0.5); g.strokeCircle(x, y + 10, 20);
-    this.tweens.add({ targets: g, alpha: 0, scale: 1.5, duration: 400, onComplete: () => g.destroy() });
+    // Magic_effect is 54x20 (small spritesheet strip) — use it as-is or use glow graphic
+    if (this.textures.exists('fx_magic_glow')) {
+      const glow = this.add.image(x, y + 5, 'fx_magic_glow').setScale(1.5).setDepth(11).setAlpha(0.7);
+      this.tweens.add({ targets: glow, alpha: 0, scale: 2.5, duration: 500, onComplete: () => glow.destroy() });
+    } else {
+      const g = this.add.graphics().setDepth(11);
+      g.lineStyle(2, color, 0.5); g.strokeCircle(x, y + 10, 20);
+      this.tweens.add({ targets: g, alpha: 0, scale: 1.5, duration: 400, onComplete: () => g.destroy() });
+    }
   }
 
   // ══════════════════════════════════════════════════════════════════════════
@@ -811,8 +856,8 @@ export class ArenaScene extends Phaser.Scene {
         enemy.setData('attackCd', cd - 100);
       }
 
-      // Movement — slow when shooting
-      const spd = (td > 200 ? 55 + Math.random() * 15 : 25) * getSpeedMult(enemy);
+      // Movement — slow when shooting, scale by difficulty
+      const spd = (td > 200 ? 55 + Math.random() * 15 : 25) * getSpeedMult(enemy) * this.spdMult;
       enemy.setVelocity((dx / td) * spd, (dy / td) * spd);
 
       // Walk/run animation (don't interrupt attack)

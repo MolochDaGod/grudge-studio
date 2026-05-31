@@ -1,8 +1,12 @@
 {
-  "buildCommand": "cd apps/warlord-crafting-suite && npx vite build",
+  "buildCommand": "pnpm --filter @grudge/shared build && pnpm --filter @grudge/combat build && cd apps/warlord-crafting-suite && npx vite build",
   "outputDirectory": "apps/warlord-crafting-suite/dist/public",
   "installCommand": "pnpm install --frozen-lockfile",
   "framework": "vite",
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
   "functions": {
     "api/**/*.ts": {
       "memory": 1024,

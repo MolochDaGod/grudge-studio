@@ -22,10 +22,10 @@ These are the corrected HTML documentation pages deployed to `grudge-studio.com`
 
 The originals referenced Supabase, NeonDB, and Next.js App Router. These were corrected to match the **actual** Grudge Studio infrastructure:
 
-- **Database**: MySQL 8 (Docker container on VPS 74.208.155.229)
+- **Database**: PostgreSQL (Railway-managed)
 - **Auth**: Web3Auth + Discord OAuth + JWT via `id.grudge-studio.com`
-- **Backend**: Express.js services in Docker (Coolify + Traefik)
-- **Cache**: Redis 7 (Docker)
+- **Backend**: Express.js on Railway
+- **Cache**: Redis (Railway addon or Upstash)
 - **CDN**: Cloudflare R2 via `assets.grudge-studio.com`
 - **Removed**: Exposed API keys, localStorage usage, wrong endpoint URLs
 

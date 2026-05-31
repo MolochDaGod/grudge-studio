@@ -246,7 +246,7 @@ psql grudge_studio_db < backup_grudge_builder.sql
 2. **Revert commits**:
 ```bash
 git revert <commit-hash>
-git push origin main
+git push origin master
 ```
 
 3. **Notify team** and coordinate next attempt

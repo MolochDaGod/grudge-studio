@@ -19,17 +19,15 @@ Complete this checklist before deploying to production.
 - [ ] Lock file committed
 
 ### Configuration
-- [ ] `.env.production` created
-- [ ] All environment variables set
-- [ ] Database URL verified
+- [ ] `.env` configured (see `.env.example`)
+- [ ] All environment variables set in Vercel/Railway dashboard
+- [ ] DATABASE_URL verified (Railway auto-generates)
 - [ ] Session secret generated
-- [ ] Admin password set
 - [ ] NODE_ENV=production
 
 ### Database
-- [ ] PostgreSQL 13+ running
-- [ ] Database accessible
-- [ ] Schema migrations ready
+- [ ] PostgreSQL accessible (Railway or local)
+- [ ] Schema pushed: `pnpm db:push`
 - [ ] Backup strategy in place
 - [ ] Connection pooling configured
 
@@ -90,22 +88,6 @@ Choose one and complete that section:
 - [ ] Health check path configured
 - [ ] Domain ready
 - [ ] Team/organization created
-
-### Fly.io
-- [ ] CLI installed and authenticated
-- [ ] App created
-- [ ] PostgreSQL provisioned
-- [ ] Secrets set
-- [ ] Regions selected
-- [ ] Domain configured
-
-### Heroku
-- [ ] CLI installed and authenticated
-- [ ] App created
-- [ ] PostgreSQL addon added
-- [ ] Config variables set
-- [ ] Buildpacks configured
-- [ ] Domain configured
 
 ---
 
@@ -248,7 +230,7 @@ Deployment is successful when:
 **Deployment Date**: [Date]
 **Deployed By**: [Your Name]
 **Version**: 1.0.0
-**Platform**: [Docker/Vercel/Railway/Fly.io/Heroku]
+**Platform**: [Docker/Vercel/Railway]
 
 **Pre-deployment Status**:
 - [ ] Tests: PASS

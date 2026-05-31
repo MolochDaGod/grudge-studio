@@ -14,6 +14,9 @@ Complete guide to building the entire monorepo.
 ### macOS/Linux
 ```bash
 ./build.sh
+```
+
+### Cross-Platform
 ```bash
 node build.js
 # or

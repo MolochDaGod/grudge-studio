@@ -1,0 +1,31 @@
+{
+  "name": "@grudge/combat",
+  "version": "1.0.0",
+  "description": "Combat engine — AI, attackers, weapons, effects, and input controls (ported from annihilatetrainer)",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./constants": "./dist/constants.js",
+    "./types": "./dist/types.js",
+    "./ai": "./dist/ai/index.js",
+    "./weapons": "./dist/weapons/index.js",
+    "./effects": "./dist/effects/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "xstate": "^5.19.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "@types/node": "^20.19.0",
+    "vitest": "^4.0.18"
+  }
+}

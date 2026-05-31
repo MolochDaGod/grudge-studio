@@ -10,7 +10,7 @@ grudge-studio/
 │   ├── battle-arena-server/        # Multiplayer PvP server (Port 2567)
 │   └── battle-arena-client/        # Battle Arena game client
 ├── packages/
-│   ├── database/                   # MySQL + Drizzle ORM (UNIFIED)
+│   ├── database/                   # PostgreSQL + Drizzle ORM (UNIFIED)
 │   ├── auth/                       # Authentication utilities (UNIFIED)
 │   ├── shared/                     # Zod schemas + profession utils (UNIFIED)
 │   ├── game-client/                # Colyseus client helpers
@@ -24,13 +24,12 @@ grudge-studio/
 ## 🗄️ Database Architecture
 
 ### Connection Details
-- **Type**: MySQL 8.0
-- **Host**: <DB_HOST>:<DB_PORT>
-- **Database**: <DB_NAME>
-- **Credentials**: <DB_USER> / <DB_PASSWORD>
-- **ORM**: Drizzle ORM with mysql2 driver
+- **Type**: PostgreSQL 16
+- **Host**: Railway-managed (production) or localhost (dev)
+- **ORM**: Drizzle ORM with node-postgres driver
+- **Connection**: `DATABASE_URL` env var (Railway auto-generates)
 
-### Schema Tables (18 total)
+### Schema Tables (16 total)
 
 #### Core User System
 1. **users** - Central user accounts
@@ -313,7 +312,7 @@ Response: { id, address }
 {
   "database": {
     "drizzle-orm": "^0.39.3",
-    "mysql2": "^3.16.1"
+    "pg": "^8.13.0"
   },
   "server": {
     "express": "^4.22.1",
@@ -363,24 +362,29 @@ Vercel Edge
 **Features**:
 - ✅ Persistent processes
 - ✅ WebSocket support
-- ✅ Direct MySQL connection
+- ✅ Direct PostgreSQL connection
 - ✅ Environment variables
 
-### Option 3: Hybrid Deployment (RECOMMENDED)
+### Option 3: Hybrid Deployment (RECOMMENDED — CURRENT PRODUCTION)
 ```
 Vercel:
-  - Warlord Crafting Suite (frontend + API)
+  - Warlord Crafting Suite (frontend)
   - Static assets, React app
-  - REST endpoints
+  - Serverless API functions (api/grudge-builder)
 
-Railway/Render:
-  - Battle Arena Server (Colyseus)
-  - WebSocket server on port 2567
-  - Persistent connection to MySQL
+Railway:
+  - Backend API server (Express)
+  - Battle Arena Server (Colyseus WebSocket)
+  - PostgreSQL database
 
-Shared:
-  - MySQL Database (<DB_HOST>)
-  - @grudge/* packages (published to npm or private registry)
+Cloudflare:
+  - DNS for grudge-studio.com
+  - R2 asset storage (assets.grudge-studio.com)
+  - Workers for system doc pages
+
+Puter:
+  - Lightweight hosted apps
+  - User cloud storage / KV / AI
 ```
 
 ---
@@ -389,8 +393,8 @@ Shared:
 
 ### 🔴 BLOCKER: Warlord Schema Duplicate
 **File**: `apps/warlord-crafting-suite/shared/schema.ts`
-**Status**: Still using PostgreSQL types (pgTable)
-**Impact**: Will cause runtime errors with MySQL database
+**Status**: May still contain a local copy of the schema
+**Impact**: Can cause import conflicts with `@grudge/database`
 
 **Fix Required**:
 1. Delete `apps/warlord-crafting-suite/shared/schema.ts`
@@ -521,10 +525,9 @@ battle_arena_stats: user_id
 ### Connection Pooling
 ```typescript
 // packages/database/src/index.ts
-mysql.createPool({
-  connectionLimit: 10,
-  queueLimit: 0,
-  waitForConnections: true
+new pg.Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
 })
 ```
 
@@ -589,7 +592,7 @@ mysql.createPool({
 
 ### Architecture
 - ✅ Hybrid deployment (Vercel + Railway)
-- ✅ MySQL remains external (not in container)
+- ✅ PostgreSQL on Railway (managed, not self-hosted)
 - ✅ Shared packages remain in monorepo
 - ⚠️ Consider Redis for session storage
 - ⚠️ Consider separate read replicas

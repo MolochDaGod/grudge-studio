@@ -2,9 +2,9 @@ name: Build & Deploy
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
 
 jobs:
   build:
@@ -52,7 +52,7 @@ jobs:
   backup:
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master'
     
     steps:
       - uses: actions/checkout@v4
@@ -62,7 +62,7 @@ jobs:
       - name: Push to gitsafe backup
         run: |
           git remote add gitsafe https://gitsafe/backup || true
-          git push gitsafe main --force
+          git push gitsafe master --force
         continue-on-error: true
         env:
           GIT_AUTHOR_NAME: GitHub Actions

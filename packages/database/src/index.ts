@@ -6,13 +6,13 @@ import * as schema from './schema';
 export * from './schema';
 
 if (!process.env.DATABASE_URL) {
-  throw new Error('DATABASE_URL must be set. Check your .env file for the Neon PostgreSQL connection string.');
+  throw new Error('DATABASE_URL must be set. Check your .env file for the PostgreSQL connection string.');
 }
 
-// PostgreSQL connection pool (Neon)
+// PostgreSQL connection pool (Railway / VPS)
 const poolConnection = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false },
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
 });
 
 // Drizzle database instance

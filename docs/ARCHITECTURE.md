@@ -14,29 +14,32 @@ Grudge Studio is organized as a monorepo containing multiple applications and sh
 ```
 grudge-studio/
 ├── apps/
-│   ├── api-server/                   # REST API (game-data, AI, UUID, sync) — NOT YET DEPLOYED
-│   ├── admin-dashboard/              # Admin management panel (Puter site)
+│   ├── warlord-crafting-suite/       # Main game app (React 19 + Express)
 │   ├── battle-arena-client/          # PvP arena frontend
 │   ├── battle-arena-server/          # PvP arena backend (Colyseus)
-│   ├── command-center/               # Ops dashboard → grudge-command-center.puter.site
-│   ├── grudge-studio-app/            # Main studio → grudge-studio-app.puter.site
-│   └── warlord-crafting-suite/       # Crafting, inventory, islands, professions
+│   └── grudge-crafting/              # Standalone crafting tool (Puter deploy)
+├── api/
+│   └── grudge-builder/              # Vercel serverless API functions
 ├── packages/
 │   ├── auth/                         # Token-based auth utilities
-│   ├── database/                     # Drizzle ORM layer
+│   ├── combat/                       # Combat engine (AI, weapons, effects)
+│   ├── database/                     # Drizzle ORM + PostgreSQL
 │   ├── game-client/                  # Colyseus client helpers
 │   ├── google-sheets-sync/           # Sheet data sync & caching
 │   ├── puter-sync/                   # Puter cloud storage integration
 │   ├── shared/                       # Zod schemas, types, constants
 │   └── ui-components/                # Shared React components
+├── docs/systems/                     # HTML system docs (served by Cloudflare Workers)
+├── puter-deploy/                     # Puter-hosted app originals
 └── scripts/                          # Automation & deployment
 ```
 
 ## External Services
 
-- **auth-gateway** (Vercel) — The deployed backend with Neon PostgreSQL + Supabase. Lives in a separate repo: `MolochDaGod/auth-gateway`
-- **ObjectStore** (GitHub Pages) — Static game data API at `molochdagod.github.io/ObjectStore/`
-- **Puter Cloud** — Hosts studio app, command center, GrudaChain hub. Provides KV, AI, FS, and auth SDK
+- **Grudge Backend (Railway)** — Express API at `api.grudge-studio.com`, PostgreSQL database, WebSocket at `ws.grudge-studio.com`
+- **Cloudflare** — DNS for `grudge-studio.com`, R2 asset storage at `assets.grudge-studio.com`, Workers for system doc pages
+- **ObjectStore (GitHub Pages)** — Static game data API at `molochdagod.github.io/ObjectStore/`
+- **Puter Cloud** — User-pays cloud storage, KV, AI, FS, and auth SDK. Hosts lightweight apps (grudge-crafting, command center)
 
 ## Data Flow
 
@@ -95,6 +98,16 @@ Every item, sprite, ability has a unique identifier:
 - Profession progression
 - Tier pricing multipliers
 - Sprite mappings
+
+### @grudge/combat
+**Combat Engine** (ported from annihilatetrainer)
+- Framework-agnostic — runs with Three.js/Cannon-ES or server-side Colyseus
+- `Ai` base class + 5 archetype AIs (Mutant, Paladin, Robot, RobotBoss, Parrot)
+- `Attacker` hitbox manager with collision group bitmasks
+- 7 weapon types: Sword, GreatSword, Bullet, Hadouken, Grenade, Shield, Flail
+- Effects: Splash (hit VFX), Pop (AoE knockback)
+- `RoleControls` input manager with fighting-game combo detection
+- Collision groups: SCENE, ROLE, ENEMY, ROLE_ATTACKER, ENEMY_ATTACKER, TRIGGER, ENEMY_SHIELD
 
 ### @grudge/database
 **Data Access Layer**
@@ -175,6 +188,15 @@ Every item, sprite, ability has a unique identifier:
 - Can execute AFK jobs
 - Status tracking (idle, busy, harvesting)
 
+### 7. Combat Engine (@grudge/combat)
+- Base AI with detector sphere, chase/return, auto-attack
+- Per-archetype FSMs: attack cooldowns, multi-ability selection, boss phases
+- Melee: bone-tracked hitboxes (Sword, GreatSword with shield-block + launch)
+- Ranged: Bullet/Hadouken with rebound, Grenade with arc trajectory
+- Defense: Shield block collider, knockDown/knockBack pipeline
+- Effects: Splash at contact point, Pop AoE burst with knockback
+- Input: WASD + combo system (↓→J=hadouken, →↓→J=shoryuken)
+
 ## Development Workflow
 
 ### Adding a Feature
@@ -214,28 +236,25 @@ pnpm dev              # Starts on http://localhost:5000
 ### Production Build
 ```bash
 pnpm build
-NODE_ENV=production npm run start
+NODE_ENV=production node apps/warlord-crafting-suite/dist/index.cjs
 ```
 
 ### Database
-Uses PostgreSQL with Drizzle ORM.
+Uses PostgreSQL with Drizzle ORM. Production database hosted on Railway.
 
 ```bash
-# Set DATABASE_URL env var
-export DATABASE_URL="postgresql://user:pass@host/db"
-
+# Set DATABASE_URL env var (Railway provides this automatically)
 pnpm db:push          # Apply schema changes
 ```
 
 ### Environment Variables
 
-**Warlord App:**
-- `DATABASE_URL` - PostgreSQL connection
-- `NODE_ENV` - development/production
-- `PORT` - Server port (default 5000)
-- `SESSION_SECRET` - Auth session secret
-- `GOOGLE_SHEET_*` - Google Sheets API
-- `PUTER_*` - Puter cloud config
+See `.env.example` for the full list. Key variables:
+- `DATABASE_URL` — PostgreSQL connection (set in Railway/Vercel dashboard, not in repo)
+- `VITE_GAME_API_URL` — `https://api.grudge-studio.com`
+- `VITE_AUTH_API_URL` — `https://id.grudge-studio.com`
+- `SESSION_SECRET` — set in Vercel/Railway dashboard
+- `NODE_ENV` — `production`
 
 ## Performance Considerations
 
@@ -245,7 +264,7 @@ pnpm db:push          # Apply schema changes
 - Manual refresh endpoint available
 - UUID ledger indexed by grudgeUuid
 
-### Database
+### 2. Database (PostgreSQL)
 - Proper indexes on frequently queried fields
 - Connection pooling via pg
 - Drizzle relations for efficient queries

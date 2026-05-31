@@ -4,7 +4,7 @@
 
 ```
 Development: http://localhost:5000
-Production: https://warlord.grudgestudio.com (when deployed)
+Production: https://api.grudge-studio.com
 ```
 
 ## Authentication
@@ -467,5 +467,5 @@ room.onMessage("player_action", (msg) => console.log(msg));
 
 ---
 
-**Last Updated**: January 2026
+**Last Updated**: May 2026
 **Version**: 1.0.0

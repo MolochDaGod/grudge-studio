@@ -149,31 +149,35 @@ export function bossKey(bossId, anim, dir) {
   return `boss_${bossId}_${anim}_${dir}`;
 }
 
-/** Skill definitions per class */
+/** Skill definitions per class
+ *  dual: true means skill behaves differently on ally vs enemy target
+ *  allyEffect: status effect applied to selected ally
+ *  enemyEffect: status effect applied to enemies
+ */
 export const SKILLS = {
-  sorceress:      [
+  sorceress: [
     { name: 'Magic Missile', cost: 15, damage: 30, type: 'projectile' },
-    { name: 'Ice Blast',     cost: 25, damage: 45, type: 'projectile' },
+    { name: 'Arcane Surge',  cost: 25, damage: 45, type: 'projectile', dual: true, allyEffect: 'regen', enemyEffect: 'burning' },
     { name: 'Teleport',      cost: 30, damage: 0,  type: 'dash' },
-    { name: 'Meteor',        cost: 50, damage: 80, type: 'aoe' },
+    { name: 'Meteor',        cost: 50, damage: 80, type: 'aoe', enemyEffect: 'burning' },
   ],
   skeletonhunter: [
-    { name: 'Power Shot',  cost: 15, damage: 35, type: 'projectile' },
-    { name: 'Rain Arrows', cost: 30, damage: 25, type: 'aoe' },
-    { name: 'Evade',       cost: 20, damage: 0,  type: 'dash' },
-    { name: 'Snipe',       cost: 40, damage: 70, type: 'projectile' },
+    { name: 'Power Shot',    cost: 15, damage: 35, type: 'projectile' },
+    { name: "Nature's Arrow",cost: 25, damage: 25, type: 'aoe', dual: true, allyEffect: 'regen', allyHeal: 20, enemyEffect: 'poison' },
+    { name: 'Evade',         cost: 20, damage: 0,  type: 'dash' },
+    { name: 'Snipe',         cost: 40, damage: 70, type: 'projectile' },
   ],
-  warrior:        [
-    { name: 'Cleave',      cost: 10, damage: 40, type: 'melee' },
-    { name: 'Shield Bash', cost: 20, damage: 25, type: 'melee' },
-    { name: 'War Cry',     cost: 25, damage: 0,  type: 'buff' },
-    { name: 'Whirlwind',   cost: 35, damage: 55, type: 'aoe' },
+  warrior: [
+    { name: 'Cleave',       cost: 10, damage: 40, type: 'melee' },
+    { name: 'Battle Shout', cost: 20, damage: 25, type: 'melee', dual: true, allyEffect: 'haste', enemyEffect: 'stunned' },
+    { name: 'War Cry',      cost: 25, damage: 0,  type: 'buff' },
+    { name: 'Whirlwind',    cost: 35, damage: 55, type: 'aoe', enemyEffect: 'bleed' },
   ],
-  golem:          [
-    { name: 'Ground Slam', cost: 10, damage: 50, type: 'aoe' },
-    { name: 'Boulder Toss',cost: 20, damage: 35, type: 'projectile' },
-    { name: 'Taunt',       cost: 15, damage: 0,  type: 'buff' },
-    { name: 'Earthquake',  cost: 40, damage: 70, type: 'aoe' },
+  golem: [
+    { name: 'Ground Slam',  cost: 10, damage: 50, type: 'aoe' },
+    { name: 'Earth Shield',  cost: 20, damage: 35, type: 'projectile', dual: true, allyEffect: 'shield', enemyEffect: 'frozen' },
+    { name: 'Taunt',         cost: 15, damage: 0,  type: 'buff' },
+    { name: 'Earthquake',    cost: 40, damage: 70, type: 'aoe', enemyEffect: 'stunned' },
   ],
 };
 
@@ -221,4 +225,18 @@ export const COMBAT = {
   dashDuration: 200,
   dashCooldown: 1500,
   bossSpawnKills: 15,
+  critChance: 0.20,
+  critMult: 1.5,
+  enemyAttackRange: 280,
+  enemyMeleeRange: 50,
+  enemyAttackCdMin: 1800,
+  enemyAttackCdMax: 3000,
+  allyAttackCd: 1200,
+  allyFollowDist: 120,
+  allyAttackRange: 250,
 };
+
+/** Get the correct attack animation key for a hero (golem uses 'attack', others use 'attack01') */
+export function getAttackAnimKey(charKey) {
+  return HEROES[charKey]?.isGolem ? 'attack' : 'attack01';
+}

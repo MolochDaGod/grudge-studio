@@ -5,6 +5,9 @@ export class BootScene extends Phaser.Scene {
   constructor() { super('Boot'); }
 
   preload() {
+    // Enable CORS for cross-origin R2 sprite loading
+    this.load.setCORS('anonymous');
+
     // Loading bar
     const w = this.cameras.main.width;
     const h = this.cameras.main.height;
@@ -37,9 +40,14 @@ export class BootScene extends Phaser.Scene {
       }
     }
 
-    // Load effect sprites (use a few key ones)
-    this.load.spritesheet('fx_slash', `https://assets.grudge-studio.com/sprites/effects/slash/PNG/1/1.png`, { frameWidth: 64, frameHeight: 64 });
-    this.load.spritesheet('fx_flame', `https://assets.grudge-studio.com/sprites/effects/flame/flame1/images/Sek_00001.png`, { frameWidth: 64, frameHeight: 64 });
+    // Load effect sprites as images (individual frame PNGs, not spritesheets)
+    this.load.image('fx_slash', `https://assets.grudge-studio.com/sprites/effects/slash/PNG/1/1.png`);
+    this.load.image('fx_flame', `https://assets.grudge-studio.com/sprites/effects/flame/flame1/images/Sek_00001.png`);
+
+    // Handle load errors gracefully — some R2 assets may 404
+    this.load.on('loaderror', (file) => {
+      console.warn(`Failed to load: ${file.key} from ${file.url}`);
+    });
   }
 
   create() {

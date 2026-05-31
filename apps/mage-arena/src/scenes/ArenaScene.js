@@ -205,7 +205,9 @@ export class ArenaScene extends Phaser.Scene {
   }
 
   showSlashEffect(x, y) {
-    const slash = this.add.sprite(x, y, 'fx_slash');
+    // Use fx_slash image if loaded, otherwise use a generated circle
+    const key = this.textures.exists('fx_slash') ? 'fx_slash' : 'proj';
+    const slash = this.add.sprite(x, y, key);
     slash.setScale(2);
     slash.setAlpha(0.8);
     this.tweens.add({

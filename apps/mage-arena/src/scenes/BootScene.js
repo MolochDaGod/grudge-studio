@@ -91,16 +91,68 @@ export class BootScene extends Phaser.Scene {
     this.load.image('tileset_lava', `${CDN}/sprites/foozle/tileset/LavaDungeonTileset.png`);
     this.load.image('tileset_mockup', `${CDN}/sprites/foozle/tileset/LavaMockup.png`);
 
-    // ── Load effects ──
-    this.load.spritesheet('fx_wave_down', `${CDN}/sprites/foozle/effects/Wave/Big/Down/WaveBigDown.png`, { frameWidth: 48, frameHeight: 48 });
-    this.load.spritesheet('fx_wave_up', `${CDN}/sprites/foozle/effects/Wave/Big/Up/WaveBigUp.png`, { frameWidth: 48, frameHeight: 48 });
-    this.load.spritesheet('fx_wave_left', `${CDN}/sprites/foozle/effects/Wave/Big/Left/WaveBigLeft.png`, { frameWidth: 48, frameHeight: 48 });
-    this.load.spritesheet('fx_wave_right', `${CDN}/sprites/foozle/effects/Wave/Big/Right/WaveBigRight.png`, { frameWidth: 48, frameHeight: 48 });
-    this.load.spritesheet('fx_destroy', `${CDN}/sprites/foozle/effects/VFX/Destroy_Effect.png`, { frameWidth: 48, frameHeight: 48 });
+    // ── Load effects (path fix: Effects/ subfolder) ──
+    this.load.spritesheet('fx_wave_down', `${CDN}/sprites/foozle/effects/Effects/Wave/Big/Down/WaveBigDown.png`, { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('fx_wave_up', `${CDN}/sprites/foozle/effects/Effects/Wave/Big/Up/WaveBigUp.png`, { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('fx_wave_left', `${CDN}/sprites/foozle/effects/Effects/Wave/Big/Left/WaveBigLeft.png`, { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('fx_wave_right', `${CDN}/sprites/foozle/effects/Effects/Wave/Big/Right/WaveBigRight.png`, { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('fx_wave_small_down', `${CDN}/sprites/foozle/effects/Effects/Wave/Small/Down/WaveSmallDown.png`, { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('fx_wave_small_up', `${CDN}/sprites/foozle/effects/Effects/Wave/Small/Up/WaveSmallUp.png`, { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('fx_wave_small_left', `${CDN}/sprites/foozle/effects/Effects/Wave/Small/Left/WaveSmallLeft.png`, { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('fx_wave_small_right', `${CDN}/sprites/foozle/effects/Effects/Wave/Small/Right/WaveSmallRIght.png`, { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('fx_destroy', `${CDN}/sprites/foozle/effects/Effects/VFX/Destroy_Effect.png`, { frameWidth: 48, frameHeight: 48 });
 
     // Pickup effect sprites
-    this.load.spritesheet('fx_health_pickup', `${CDN}/sprites/foozle/effects/Pickup_effects/Png/Health_Potion_Pickup_effect.png`, { frameWidth: 48, frameHeight: 48 });
-    this.load.spritesheet('fx_mana_pickup', `${CDN}/sprites/foozle/effects/Pickup_effects/Png/Mana_Potion_Pickup_effect.png`, { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('fx_health_pickup', `${CDN}/sprites/foozle/effects/Effects/Pickup_effects/Png/Health_Potion_Pickup_effect.png`, { frameWidth: 48, frameHeight: 48 });
+    this.load.spritesheet('fx_mana_pickup', `${CDN}/sprites/foozle/effects/Effects/Pickup_effects/Png/Mana_Potion_Pickup_effect.png`, { frameWidth: 48, frameHeight: 48 });
+
+    // ── Load projectile sprites (individual frames from magic-fx packs) ──
+    const MAGIC_FX = 'sprites/foozle/magic-fx';
+    const FIRE_BASE = `${MAGIC_FX}/water-and-fire-magic-sprite-ve`;
+    const WIND_BASE = `${MAGIC_FX}/down-wind-and-lightning-magic-`;
+    const EARTH_BASE = `${MAGIC_FX}/and-earth-magic-sprites-for-to`;
+
+    // Fireball (8 frames) — Sorceress primary
+    for (let i = 1; i <= 8; i++) {
+      this.load.image(`fireball_${i}`, `${CDN}/${FIRE_BASE}/Fire_Ball/PNG/Fire_Ball_Frame_0${i}.png`);
+    }
+    // Fire Arrow (8 frames) — Hunter primary
+    for (let i = 1; i <= 8; i++) {
+      this.load.image(`fire_arrow_${i}`, `${CDN}/${FIRE_BASE}/Fire_Arrow/PNG/Fire_Arrow_Frame_0${i}.png`);
+    }
+    // Wind Ball (8 frames) — enemy/golem projectile
+    for (let i = 1; i <= 8; i++) {
+      this.load.image(`wind_ball_${i}`, `${CDN}/${WIND_BASE}/Wind_Ball/PNG/Wind_Ball_Frame_0${i}.png`);
+    }
+    // Lightning Arrow (12 frames) — enemy ranged
+    for (let i = 1; i <= 9; i++) {
+      this.load.image(`lightning_arrow_${i}`, `${CDN}/${WIND_BASE}/Lightning_Arrow/PNG/Lightning_Arrow_Frame_0${i}.png`);
+    }
+    for (let i = 10; i <= 12; i++) {
+      this.load.image(`lightning_arrow_${i}`, `${CDN}/${WIND_BASE}/Lightning_Arrow/PNG/Lightning_Arrow_Frame_${i}.png`);
+    }
+    // Fire Explosion (12 frames) — impact effect
+    for (let i = 1; i <= 9; i++) {
+      this.load.image(`fire_explosion_${i}`, `${CDN}/${EARTH_BASE}/Fire_Explosion/PNG/Fire_Explosion_Frame_0${i}.png`);
+    }
+    for (let i = 10; i <= 12; i++) {
+      this.load.image(`fire_explosion_${i}`, `${CDN}/${EARTH_BASE}/Fire_Explosion/PNG/Fire_Explosion_Frame_${i}.png`);
+    }
+    // Ground Hit (8 frames) — melee impact
+    for (let i = 1; i <= 8; i++) {
+      this.load.image(`ground_hit_${i}`, `${CDN}/${EARTH_BASE}/Ground_Hit/PNG/Ground_Hit_Frame_0${i}.png`);
+    }
+    // Meteor (12 frames) — AoE impact
+    for (let i = 1; i <= 9; i++) {
+      this.load.image(`meteor_${i}`, `${CDN}/${EARTH_BASE}/Meteor/PNG/Meteor_Frame_0${i}.png`);
+    }
+    for (let i = 10; i <= 12; i++) {
+      this.load.image(`meteor_${i}`, `${CDN}/${EARTH_BASE}/Meteor/PNG/Meteor_Frame_${i}.png`);
+    }
+    // Slash frames (from old effect pack) — melee VFX
+    for (let i = 1; i <= 10; i++) {
+      this.load.image(`slash_${i}`, `${CDN}/sprites/effects/slash/PNG/1/${i}.png`);
+    }
 
     // ── Load pickups ──
     this.load.image('pickup_health', `${CDN}/sprites/foozle/pickups/Pickups/Potions/Health/Png/SmallHealthPotion.png`);
@@ -214,6 +266,27 @@ export class BootScene extends Phaser.Scene {
         repeat: 0,
       });
     }
+
+    // ── Projectile animations (from individual frame images) ──
+    const makeFrameAnim = (key, prefix, count, rate, repeat = -1) => {
+      const frames = [];
+      for (let i = 1; i <= count; i++) {
+        const fk = `${prefix}_${i}`;
+        if (this.textures.exists(fk)) frames.push({ key: fk });
+      }
+      if (frames.length > 0) {
+        this.anims.create({ key, frames, frameRate: rate, repeat });
+      }
+    };
+
+    makeFrameAnim('anim_fireball', 'fireball', 8, 14, -1);
+    makeFrameAnim('anim_fire_arrow', 'fire_arrow', 8, 14, -1);
+    makeFrameAnim('anim_wind_ball', 'wind_ball', 8, 12, -1);
+    makeFrameAnim('anim_lightning_arrow', 'lightning_arrow', 12, 14, -1);
+    makeFrameAnim('anim_fire_explosion', 'fire_explosion', 12, 16, 0);
+    makeFrameAnim('anim_ground_hit', 'ground_hit', 8, 14, 0);
+    makeFrameAnim('anim_meteor', 'meteor', 12, 12, 0);
+    makeFrameAnim('anim_slash', 'slash', 10, 18, 0);
 
     this.scene.start('Select');
   }

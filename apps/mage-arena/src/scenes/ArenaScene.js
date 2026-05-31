@@ -44,14 +44,18 @@ export class ArenaScene extends Phaser.Scene {
 
     // Groups
     this.enemies = this.physics.add.group();
-    this.projectiles = this.physics.add.group();
+    this.projectiles = this.physics.add.group();      // player/ally projectiles
+    this.enemyProjectiles = this.physics.add.group();  // enemy projectiles
     this.pickups = this.physics.add.group();
     this.allies = this.physics.add.group();
     this.bossGroup = this.physics.add.group();
 
-    // Collisions
+    // Collisions — player projectiles hit enemies/bosses
     this.physics.add.overlap(this.projectiles, this.enemies, this.projectileHit, null, this);
     this.physics.add.overlap(this.projectiles, this.bossGroup, this.projectileHitBoss, null, this);
+    // Enemy projectiles hit player and allies
+    this.physics.add.overlap(this.enemyProjectiles, this.player, this.enemyProjHitPlayer, null, this);
+    this.physics.add.overlap(this.enemyProjectiles, this.allies, this.enemyProjHitAlly, null, this);
     this.physics.add.overlap(this.player, this.pickups, this.collectPickup, null, this);
 
     // Input
@@ -377,14 +381,22 @@ export class ArenaScene extends Phaser.Scene {
     if (this.isParrying || this.hp <= 0) return;
     this.isParrying = true;
 
-    // Visual indicator
+    // Visual indicator — follows player
     const shield = this.add.graphics();
-    shield.lineStyle(3, 0x4488ff, 0.6);
-    shield.strokeCircle(this.player.x, this.player.y, 30);
     shield.setDepth(20);
+    const drawShield = () => {
+      shield.clear();
+      shield.lineStyle(3, 0x4488ff, 0.6);
+      shield.strokeCircle(this.player.x, this.player.y, 34);
+      shield.lineStyle(1, 0x88bbff, 0.3);
+      shield.strokeCircle(this.player.x, this.player.y, 38);
+    };
+    drawShield();
+    const shieldUpdate = this.time.addEvent({ delay: 16, callback: drawShield, loop: true });
 
     this.time.delayedCall(COMBAT.parryWindow, () => {
       this.isParrying = false;
+      shieldUpdate.destroy();
       shield.destroy();
     });
   }
@@ -453,34 +465,99 @@ export class ArenaScene extends Phaser.Scene {
     }
   }
 
-  spawnProjectile(targetX, targetY, damage, color, speed) {
-    if (!this.textures.exists('proj')) {
-      const g = this.make.graphics({ add: false });
-      g.fillStyle(color, 1);
-      g.fillCircle(6, 6, 6);
-      g.generateTexture('proj', 12, 12);
-      g.destroy();
-    }
+  /** Get the correct projectile animation key for a hero class */
+  getProjAnim(charKey) {
+    if (charKey === 'sorceress') return 'anim_fireball';
+    if (charKey === 'skeletonhunter') return 'anim_fire_arrow';
+    if (charKey === 'golem') return 'anim_wind_ball';
+    return 'anim_fireball'; // fallback
+  }
 
+  /** Get the first available frame key for a projectile animation */
+  getProjTexture(charKey) {
+    if (charKey === 'sorceress' && this.textures.exists('fireball_1')) return 'fireball_1';
+    if (charKey === 'skeletonhunter' && this.textures.exists('fire_arrow_1')) return 'fire_arrow_1';
+    if (charKey === 'golem' && this.textures.exists('wind_ball_1')) return 'wind_ball_1';
+    if (this.textures.exists('fireball_1')) return 'fireball_1';
+    return null; // will fallback to generated circle
+  }
+
+  spawnProjectile(targetX, targetY, damage, color, speed) {
     const dx = targetX - this.player.x;
     const dy = targetY - this.player.y;
     const len = Math.sqrt(dx * dx + dy * dy) || 1;
     const nx = dx / len;
     const ny = dy / len;
+    const angle = Math.atan2(dy, dx);
 
-    const proj = this.physics.add.sprite(
-      this.player.x + nx * 20,
-      this.player.y + ny * 20,
-      'proj'
-    );
-    proj.setScale(2);
-    proj.setTint(color);
+    const texKey = this.getProjTexture(this.heroId);
+    const animKey = this.getProjAnim(this.heroId);
+    let proj;
+
+    if (texKey) {
+      proj = this.physics.add.sprite(this.player.x + nx * 24, this.player.y + ny * 24, texKey);
+      proj.setScale(0.5);
+      proj.setRotation(angle);
+      if (this.anims.exists(animKey)) proj.play(animKey);
+    } else {
+      // Fallback: generated circle
+      if (!this.textures.exists('proj_circle')) {
+        const g = this.make.graphics({ add: false });
+        g.fillStyle(0xffffff, 1);
+        g.fillCircle(6, 6, 6);
+        g.generateTexture('proj_circle', 12, 12);
+        g.destroy();
+      }
+      proj = this.physics.add.sprite(this.player.x + nx * 24, this.player.y + ny * 24, 'proj_circle');
+      proj.setScale(1.5);
+      proj.setTint(color);
+    }
+
     proj.setVelocity(nx * speed, ny * speed);
     proj.setData('damage', damage);
+    proj.setData('owner', 'player');
     proj.setDepth(15);
     this.projectiles.add(proj);
 
-    this.time.delayedCall(1500, () => { if (proj.active) proj.destroy(); });
+    this.time.delayedCall(2000, () => { if (proj.active) proj.destroy(); });
+  }
+
+  /** Spawn a projectile from any position toward a target (for enemies/allies) */
+  spawnProjectileFrom(fromX, fromY, targetX, targetY, damage, animKey, texKey, group, tint) {
+    const dx = targetX - fromX;
+    const dy = targetY - fromY;
+    const len = Math.sqrt(dx * dx + dy * dy) || 1;
+    const nx = dx / len;
+    const ny = dy / len;
+    const angle = Math.atan2(dy, dx);
+    const speed = 220;
+
+    let proj;
+    if (texKey && this.textures.exists(texKey)) {
+      proj = this.physics.add.sprite(fromX + nx * 16, fromY + ny * 16, texKey);
+      proj.setScale(0.4);
+      proj.setRotation(angle);
+      if (animKey && this.anims.exists(animKey)) proj.play(animKey);
+      if (tint) proj.setTint(tint);
+    } else {
+      if (!this.textures.exists('proj_circle')) {
+        const g = this.make.graphics({ add: false });
+        g.fillStyle(0xffffff, 1);
+        g.fillCircle(6, 6, 6);
+        g.generateTexture('proj_circle', 12, 12);
+        g.destroy();
+      }
+      proj = this.physics.add.sprite(fromX + nx * 16, fromY + ny * 16, 'proj_circle');
+      proj.setTint(tint || 0xff4444);
+    }
+
+    proj.setVelocity(nx * speed, ny * speed);
+    proj.setData('damage', damage);
+    proj.setDepth(14);
+    group.add(proj);
+
+    this.time.delayedCall(2500, () => { if (proj.active) proj.destroy(); });
+    return proj;
   }
 
   spawnMeleeHit(damage) {
@@ -565,11 +642,33 @@ export class ArenaScene extends Phaser.Scene {
   }
 
   showSlashEffect(x, y) {
-    const g = this.add.graphics();
-    g.fillStyle(this.heroCfg.color, 0.6);
-    g.fillCircle(x, y, 15);
-    g.setDepth(12);
-    this.tweens.add({ targets: g, alpha: 0, scale: 3, duration: 250, onComplete: () => g.destroy() });
+    // Use animated slash if available
+    if (this.anims.exists('anim_slash') && this.textures.exists('slash_1')) {
+      const slash = this.add.sprite(x, y, 'slash_1');
+      slash.setScale(1.5);
+      slash.setDepth(12);
+      slash.play('anim_slash');
+      slash.once('animationcomplete', () => slash.destroy());
+    } else {
+      const g = this.add.graphics();
+      g.fillStyle(this.heroCfg.color, 0.6);
+      g.fillCircle(x, y, 15);
+      g.setDepth(12);
+      this.tweens.add({ targets: g, alpha: 0, scale: 3, duration: 250, onComplete: () => g.destroy() });
+    }
+  }
+
+  /** Show impact explosion at a position */
+  showImpact(x, y, type = 'fire') {
+    const animKey = type === 'ground' ? 'anim_ground_hit' : 'anim_fire_explosion';
+    const texKey = type === 'ground' ? 'ground_hit_1' : 'fire_explosion_1';
+    if (this.anims.exists(animKey) && this.textures.exists(texKey)) {
+      const fx = this.add.sprite(x, y, texKey);
+      fx.setScale(type === 'ground' ? 0.6 : 0.4);
+      fx.setDepth(13);
+      fx.play(animKey);
+      fx.once('animationcomplete', () => fx.destroy());
+    }
   }
 
   // ────── DAMAGE ──────
@@ -660,6 +759,7 @@ export class ArenaScene extends Phaser.Scene {
   projectileHit(proj, enemy) {
     if (enemy.getData('dead')) return;
     const dmg = proj.getData('damage') || COMBAT.baseLMBDamage;
+    this.showImpact(proj.x, proj.y, 'fire');
     proj.destroy();
     this.damageEnemy(enemy, dmg);
   }
@@ -667,8 +767,39 @@ export class ArenaScene extends Phaser.Scene {
   projectileHitBoss(proj, boss) {
     if (boss.getData('dead')) return;
     const dmg = proj.getData('damage') || COMBAT.baseLMBDamage;
+    this.showImpact(proj.x, proj.y, 'fire');
     proj.destroy();
     this.damageBoss(boss, dmg);
+  }
+
+  /** Enemy projectile hits the player */
+  enemyProjHitPlayer(player, proj) {
+    const dmg = proj.getData('damage') || 8;
+    this.showImpact(proj.x, proj.y, 'fire');
+    proj.destroy();
+    this.playerTakeDamage(dmg);
+  }
+
+  /** Enemy projectile hits an ally */
+  enemyProjHitAlly(ally, proj) {
+    if (!ally.active) return;
+    const dmg = proj.getData('damage') || 8;
+    this.showImpact(proj.x, proj.y, 'fire');
+    proj.destroy();
+    let hp = ally.getData('hp') - dmg;
+    ally.setData('hp', hp);
+    this.showDamage(ally.x, ally.y - 20, dmg, '#ff8888');
+    if (hp <= 0) {
+      const charKey = ally.getData('charKey');
+      const facing = ally.getData('facing') || DIR.down;
+      const deathKey = heroKey(charKey, 'death', facing);
+      if (this.anims.exists(deathKey)) {
+        ally.play(deathKey);
+        ally.once('animationcomplete', () => ally.destroy());
+      } else {
+        ally.destroy();
+      }
+    }
   }
 
   playerTakeDamage(dmg) {
@@ -750,13 +881,29 @@ export class ArenaScene extends Phaser.Scene {
   updateEnemyAI() {
     this.enemies.children.each(enemy => {
       if (!enemy.active || enemy.getData('dead')) return;
-      const dx = this.player.x - enemy.x;
-      const dy = this.player.y - enemy.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
 
+      // Find nearest target: player or ally
+      let targetX = this.player.x;
+      let targetY = this.player.y;
+      let targetDist = Phaser.Math.Distance.Between(enemy.x, enemy.y, this.player.x, this.player.y);
+
+      // Check if any ally is closer
+      this.allies.children.each(ally => {
+        if (!ally.active) return;
+        const ad = Phaser.Math.Distance.Between(enemy.x, enemy.y, ally.x, ally.y);
+        if (ad < targetDist) {
+          targetX = ally.x;
+          targetY = ally.y;
+          targetDist = ad;
+        }
+      });
+
+      const dx = targetX - enemy.x;
+      const dy = targetY - enemy.y;
+      const dist = targetDist;
       const eId = enemy.getData('charKey');
 
-      if (dist > 400) {
+      if (dist > 500) {
         enemy.setVelocity(0, 0);
         const idleKey = heroKey(eId, 'idle', enemy.getData('facing') || DIR.down);
         if (this.anims.exists(idleKey) && enemy.anims.currentAnim?.key !== idleKey) enemy.play(idleKey);
@@ -771,11 +918,42 @@ export class ArenaScene extends Phaser.Scene {
       }
       enemy.setData('facing', eFacing);
 
-      const eSpeed = 55 + Math.random() * 15;
+      // Ranged attack: fire projectile at target when in range
+      if (dist < 300 && dist > 60) {
+        const cd = enemy.getData('attackCd') || 0;
+        if (cd <= 0) {
+          enemy.setData('attackCd', 2000 + Math.random() * 1000);
+          // Play attack animation briefly
+          const atkKey = heroKey(eId, 'attack01', eFacing);
+          if (this.anims.exists(atkKey)) {
+            enemy.play(atkKey);
+            enemy.once('animationcomplete', () => {
+              const idleKey = heroKey(eId, 'idle', eFacing);
+              if (enemy.active && this.anims.exists(idleKey)) enemy.play(idleKey);
+            });
+          }
+          // Fire enemy projectile
+          this.spawnProjectileFrom(
+            enemy.x, enemy.y, targetX, targetY,
+            8, 'anim_lightning_arrow', 'lightning_arrow_1',
+            this.enemyProjectiles, 0xff6666
+          );
+        } else {
+          enemy.setData('attackCd', cd - 100);
+        }
+      }
+
+      // Move toward target (slower if in shooting range)
+      const eSpeed = dist > 200 ? 55 + Math.random() * 15 : 25;
       enemy.setVelocity((dx / dist) * eSpeed, (dy / dist) * eSpeed);
 
       const walkKey = heroKey(eId, 'walk', eFacing);
-      if (this.anims.exists(walkKey) && enemy.anims.currentAnim?.key !== walkKey) enemy.play(walkKey);
+      if (this.anims.exists(walkKey) && enemy.anims.currentAnim?.key !== walkKey) {
+        // Don't interrupt attack anim
+        if (!enemy.anims.currentAnim?.key?.includes('attack')) {
+          enemy.play(walkKey);
+        }
+      }
     });
   }
 
@@ -832,9 +1010,9 @@ export class ArenaScene extends Phaser.Scene {
         const idleKey = heroKey(charKey, 'idle', facing);
         if (this.anims.exists(idleKey) && ally.anims.currentAnim?.key !== idleKey) ally.play(idleKey);
 
-        // Attack nearest enemy
+      // Attack nearest enemy with visible projectile
         let nearestEnemy = null;
-        let nearestDist = 200;
+        let nearestDist = 250;
         this.enemies.children.each(enemy => {
           if (!enemy.active || enemy.getData('dead')) return;
           const ed = Phaser.Math.Distance.Between(ally.x, ally.y, enemy.x, enemy.y);
@@ -843,10 +1021,37 @@ export class ArenaScene extends Phaser.Scene {
 
         const cd = ally.getData('attackCd') || 0;
         if (nearestEnemy && cd <= 0) {
-          ally.setData('attackCd', 1500);
+          ally.setData('attackCd', 1200);
           const cfg = HEROES[charKey];
-          this.damageEnemy(nearestEnemy, 15);
-          this.showSlashEffect(nearestEnemy.x, nearestEnemy.y);
+
+          // Play attack animation
+          const atkKey = heroKey(charKey, 'attack01', facing);
+          if (this.anims.exists(atkKey)) {
+            ally.play(atkKey);
+            ally.once('animationcomplete', () => {
+              const idleK = heroKey(charKey, 'idle', facing);
+              if (ally.active && this.anims.exists(idleK)) ally.play(idleK);
+            });
+          }
+
+          // Fire visible projectile
+          if (cfg.attackType === 'projectile') {
+            const projTex = this.getProjTexture(charKey);
+            const projAnim = this.getProjAnim(charKey);
+            this.spawnProjectileFrom(
+              ally.x, ally.y, nearestEnemy.x, nearestEnemy.y,
+              15, projAnim, projTex,
+              this.projectiles, null
+            );
+          } else if (cfg.attackType === 'melee') {
+            // Melee allies do direct damage + VFX
+            this.damageEnemy(nearestEnemy, 20);
+            this.showSlashEffect(nearestEnemy.x, nearestEnemy.y);
+          } else {
+            // AoE/golem allies
+            this.damageEnemy(nearestEnemy, 18);
+            this.showImpact(nearestEnemy.x, nearestEnemy.y, 'ground');
+          }
         }
         if (cd > 0) ally.setData('attackCd', cd - 100);
       }

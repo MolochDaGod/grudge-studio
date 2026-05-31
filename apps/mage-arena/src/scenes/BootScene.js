@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import { HEROES, ANIMS, FRAME, heroSpriteUrl, heroKey } from '../config.js';
+import { HEROES, ANIMS, FRAME, CDN, heroSpriteUrl, heroKey } from '../config.js';
 
 export class BootScene extends Phaser.Scene {
   constructor() { super('Boot'); }
@@ -41,8 +41,8 @@ export class BootScene extends Phaser.Scene {
     }
 
     // Load effect sprites as images (individual frame PNGs, not spritesheets)
-    this.load.image('fx_slash', `https://assets.grudge-studio.com/sprites/effects/slash/PNG/1/1.png`);
-    this.load.image('fx_flame', `https://assets.grudge-studio.com/sprites/effects/flame/flame1/images/Sek_00001.png`);
+    this.load.image('fx_slash', `${CDN}/sprites/effects/slash/PNG/1/1.png`);
+    this.load.image('fx_flame', `${CDN}/sprites/effects/flame/flame1/images/Sek_00001.png`);
 
     // Handle load errors gracefully — some R2 assets may 404
     this.load.on('loaderror', (file) => {

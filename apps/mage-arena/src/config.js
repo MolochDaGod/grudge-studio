@@ -1,5 +1,8 @@
-/** R2 CDN base URL for all sprites */
-export const CDN = 'https://assets.grudge-studio.com';
+/** R2 CDN base URL for all sprites
+ *  Using public R2 dev URL for guaranteed CORS support.
+ *  assets.grudge-studio.com Worker needs CORS headers added for XHR requests.
+ */
+export const CDN = 'https://pub-e7fcf1fd4c9946ecb84b3766bbc7b50d.r2.dev';
 export const MANIFEST_URL = `${CDN}/manifests/sprite-manifest.json`;
 
 /** Frame size — all craftpix top-down sheets are 64x64 per frame, 4 rows (directions) */

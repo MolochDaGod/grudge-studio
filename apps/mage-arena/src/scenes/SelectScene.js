@@ -8,12 +8,23 @@ export class SelectScene extends Phaser.Scene {
     const w = this.cameras.main.width;
     const h = this.cameras.main.height;
 
-    this.add.text(w / 2, 50, 'MAGE ARENA', {
-      font: '32px monospace', fill: '#ff6600', stroke: '#000', strokeThickness: 4,
+    // Dark dungeon background
+    this.cameras.main.setBackgroundColor('#0d0a15');
+
+    // Background panel (if loaded)
+    if (this.textures.exists('ui_panel1')) {
+      const panel = this.add.image(w / 2, h / 2, 'ui_panel1');
+      panel.setDisplaySize(w - 40, h - 40);
+      panel.setAlpha(0.3);
+    }
+
+    // Title
+    this.add.text(w / 2, 40, 'MAGE ARENA', {
+      font: '36px monospace', fill: '#ff6622', stroke: '#000', strokeThickness: 5,
     }).setOrigin(0.5);
 
-    this.add.text(w / 2, 90, 'Choose Your Champion', {
-      font: '16px monospace', fill: '#cccccc',
+    this.add.text(w / 2, 78, 'Choose Your Champion', {
+      font: '14px monospace', fill: '#aa99cc',
     }).setOrigin(0.5);
 
     const keys = Object.keys(HEROES);
@@ -22,44 +33,69 @@ export class SelectScene extends Phaser.Scene {
     keys.forEach((charKey, i) => {
       const cfg = HEROES[charKey];
       const x = spacing * (i + 1);
-      const y = h / 2 - 20;
+      const y = h / 2 - 10;
 
-      // Animated idle preview (front-facing)
-      const preview = this.add.sprite(x, y, heroKey(charKey, 'idle'));
-      preview.setScale(3);
-      preview.play(`${charKey}_idle_${DIR.down}`);
+      // Card background
+      const card = this.add.graphics();
+      card.fillStyle(0x15101f, 0.85);
+      card.fillRoundedRect(x - 70, y - 90, 140, 240, 8);
+      card.lineStyle(2, 0x332244, 1);
+      card.strokeRoundedRect(x - 70, y - 90, 140, 240, 8);
+
+      // Character icon (portrait)
+      if (this.textures.exists(cfg.icon)) {
+        const icon = this.add.image(x, y - 65, cfg.icon);
+        icon.setDisplaySize(40, 40);
+      }
+
+      // Animated idle preview
+      const idleKey = heroKey(charKey, 'idle', DIR.down);
+      let preview;
+      if (this.textures.exists(idleKey)) {
+        preview = this.add.sprite(x, y + 10, idleKey);
+        preview.setScale(3);
+        preview.play(idleKey);
+      } else {
+        // Fallback colored rect
+        const fb = this.add.graphics();
+        fb.fillStyle(cfg.color, 0.6);
+        fb.fillRect(x - 20, y - 20, 40, 40);
+        preview = { setScale: () => {} };
+      }
 
       // Name
-      this.add.text(x, y + 70, cfg.name, {
-        font: '14px monospace', fill: '#ffffff', stroke: '#000', strokeThickness: 2,
+      this.add.text(x, y + 65, cfg.name, {
+        font: '13px monospace', fill: '#ffffff', stroke: '#000', strokeThickness: 2,
       }).setOrigin(0.5);
 
-      // Role
-      this.add.text(x, y + 88, cfg.role, {
-        font: '11px monospace', fill: '#aaaaaa',
+      // Role + Resource
+      this.add.text(x, y + 82, `${cfg.role} • ${cfg.resource}`, {
+        font: '10px monospace', fill: '#8877aa',
       }).setOrigin(0.5);
 
       // Stats
-      this.add.text(x, y + 108, `HP:${cfg.hp}  MP:${cfg.mp}  SPD:${cfg.speed}`, {
-        font: '9px monospace', fill: '#888888',
+      this.add.text(x, y + 98, `HP:${cfg.hp}  MP:${cfg.mp}`, {
+        font: '10px monospace', fill: '#888888',
+      }).setOrigin(0.5);
+
+      this.add.text(x, y + 112, `SPD:${cfg.speed}  ${cfg.attackType.toUpperCase()}`, {
+        font: '9px monospace', fill: '#666666',
       }).setOrigin(0.5);
 
       // Clickable zone
-      const zone = this.add.zone(x, y, 120, 160).setInteractive({ useHandCursor: true });
-
-      // Highlight border
+      const zone = this.add.zone(x, y, 140, 240).setInteractive({ useHandCursor: true });
       const border = this.add.graphics();
 
       zone.on('pointerover', () => {
         border.clear();
         border.lineStyle(2, cfg.color, 1);
-        border.strokeRect(x - 60, y - 70, 120, 180);
-        preview.setScale(3.3);
+        border.strokeRoundedRect(x - 70, y - 90, 140, 240, 8);
+        if (preview.setScale) preview.setScale(3.4);
       });
 
       zone.on('pointerout', () => {
         border.clear();
-        preview.setScale(3);
+        if (preview.setScale) preview.setScale(3);
       });
 
       zone.on('pointerdown', () => {
@@ -73,8 +109,8 @@ export class SelectScene extends Phaser.Scene {
     });
 
     // Instructions
-    this.add.text(w / 2, h - 40, 'Click a champion to enter the arena', {
-      font: '12px monospace', fill: '#666666',
+    this.add.text(w / 2, h - 30, 'Click a champion to enter the dungeon', {
+      font: '11px monospace', fill: '#555555',
     }).setOrigin(0.5);
   }
 }

@@ -39,7 +39,7 @@ grudge-studio/
 │   │       └── storage.ts           # Drizzle ORM data layer
 │   ├── battle-arena-client/         # PvP arena frontend (Colyseus)
 │   ├── battle-arena-server/         # PvP arena backend (Colyseus WebSocket)
-│   ├── mage-arena/                  # 2D combat game (Phaser 3, R2 sprites)
+│   ├── mage-arena/                  # 2D dungeon crawler (Phaser 3, Foozle Lucifer assets, R2 CDN)
 │   └── grudge-crafting/             # Standalone crafting tool (Puter deploy)
 │
 ├── api/

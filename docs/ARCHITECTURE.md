@@ -17,6 +17,7 @@ grudge-studio/
 │   ├── warlord-crafting-suite/       # Main game app (React 19 + Express)
 │   ├── battle-arena-client/          # PvP arena frontend
 │   ├── battle-arena-server/          # PvP arena backend (Colyseus)
+│   ├── mage-arena/                   # 2D combat game (Phaser 3, R2 sprites)
 │   └── grudge-crafting/              # Standalone crafting tool (Puter deploy)
 ├── api/
 │   └── grudge-builder/              # Vercel serverless API functions

@@ -27,6 +27,7 @@ import IslandDemo from "@/pages/IslandDemo";
 import SkillTreePage from "@/pages/SkillTreePage";
 import CharacterPage from "@/pages/CharacterPage";
 import CollaborationHub from "@/pages/CollaborationHub";
+import AvernusArena from "@/pages/AvernusArena";
 import { Layout } from "@/components/layout/Layout";
 import { CharacterProvider } from "@/contexts/CharacterContext";
 import { PlatformProvider } from "@/contexts/PlatformContext";
@@ -40,6 +41,7 @@ function Router() {
   return (
     <Switch>
       <Route path="/login" component={LoginPage} />
+      <Route path="/avernus-arena" component={AvernusArena} />
       <Route>
         <AuthGate>
         <Layout>
